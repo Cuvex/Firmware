@@ -1,4 +1,4 @@
-Hello Developer
+Hello Developer.
 
 This project is the source code of the **Firmware** that is installed on the Cuvex device. For legal reasons, we have temporarily left out third-party components, waiting for them to give us their authorization to publish. In any case, you can access and download everything necessary to configure and compile the project at the following links:
 
