@@ -1,3 +1,16 @@
+/*
+ *****************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+
 #include <gui/common/CustomKeyboard.hpp>
 #include <string.h>
 #include <touchgfx/Color.hpp>
@@ -8,9 +21,7 @@
 CustomKeyboard::CustomKeyboard() : keyboard(), modeBtnTextArea(), capslockPressed(this, &CustomKeyboard::capslockPressedHandler), backspacePressed(this, &CustomKeyboard::backspacePressedHandler),
 modePressed(this, &CustomKeyboard::modePressedHandler), keyPressed(this, &CustomKeyboard::keyPressedhandler), alphaKeys(true), uppercaseKeys(false), firstCharacterEntry(false)
 {
-	/*
-	 * Asignación de los callback en las zonas del teclado que deben tenerlas y asignación del layout
-	 */
+	/*** Assignment of callbacks in the zones of the keyboard that require them, and layout assignment ***/
 	layout_1.callbackAreaArray[0].callback = &capslockPressed;
 	layout_1.callbackAreaArray[1].callback = &backspacePressed;
 	layout_1.callbackAreaArray[2].callback = &modePressed;
@@ -19,9 +30,7 @@ modePressed(this, &CustomKeyboard::modePressedHandler), keyPressed(this, &Custom
 	keyboard.setPosition(0, 0, 320, 240);
 	keyboard.setTextIndentation();
 
-	/*
-	 * Asignación del buffer asociado con el teclado
-	 */
+	/*** Assignment of the buffer associated with the keyboard ***/
 	memset(buffer, 0, sizeof(buffer));
 	keyboard.setBuffer(buffer, BUFFER_SIZE);
 
@@ -35,34 +44,6 @@ modePressed(this, &CustomKeyboard::modePressedHandler), keyPressed(this, &Custom
 
 	add(keyboard);
 	add(modeBtnTextArea);
-
-//	/*
-//	 * Asignación de los callback en las zonas del teclado que deben tenerlas y asignación del layout
-//	 */
-//	layout_1.callbackAreaArray[0].callback = &capslockPressed;
-//	layout_1.callbackAreaArray[1].callback = &backspacePressed;
-//	layout_1.callbackAreaArray[2].callback = &modePressed;
-//	keyboard.setLayout(&layout_1);
-//	keyboard.setKeyListener(keyPressed);
-//	keyboard.setPosition(0, 0, 320, 240);
-//	keyboard.setTextIndentation();
-//
-//	/*
-//	 * Asignación del buffer asociado con el teclado
-//	 */
-//	memset(buffer, 0, sizeof(buffer));
-//	keyboard.setBuffer(buffer, BUFFER_SIZE);
-//
-//	uppercaseKeys = true;
-//	firstCharacterEntry = true;
-//
-//	modeBtnTextArea.setPosition(3, 93, 76, 25);
-//	modeBtnTextArea.setColor(Color::getColorFromRGB(0x00, 0x00, 0x00));
-//
-//	setKeyMappingList();
-//
-//	add(keyboard);
-//	add(modeBtnTextArea);
 }
 
 /************************************************************************************************************************************************************************************************************************
@@ -103,11 +84,11 @@ void CustomKeyboard::backspacePressedHandler()
 
 	if(pos > 0)
 	{
-		/*** Borrado de la entrada previa en el buffer y decremento de la posición ***/
+		/*** Clearing the previous input in the buffer and decrementing the position ***/
 		buffer[pos - 1] = 0;
 		keyboard.setBufferPosition(pos - 1);
 
-		/*** Cambio del mapeado de las teclas si se ha introducido el primer caracter ***/
+		/*** Changing the key mapping if the first character has been entered ***/
 		if(pos == 1)
 		{
 			firstCharacterEntry = true;
@@ -165,18 +146,13 @@ void CustomKeyboard::modePressedHandler()
  ************************************************************************************************************************************************************************************************************************/
 void CustomKeyboard::keyPressedhandler(Unicode::UnicodeChar keyChar)
 {
-	/*** Después de la primera pulsación el teclado se va a minúsculas ***/
+	/*** After the first keystroke, the keyboard switches to lowercase ***/
 	if((firstCharacterEntry == true) && (keyChar != 0))
 	{
 		firstCharacterEntry = false;
 		uppercaseKeys = false;
 		setKeyMappingList();
 	}
-
-//	/*** Debug ***/
-//	HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-//
-//	printf("[%c]\r\n", keyChar);
 }
 
 /************************************************************************************************************************************************************************************************************************

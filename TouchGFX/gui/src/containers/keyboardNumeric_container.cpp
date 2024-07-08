@@ -1,23 +1,36 @@
+/*
+ *****************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+
 #include <gui/containers/keyboardNumeric_container.hpp>
 #include <touchgfx/Color.hpp>
 #include <string.h>
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 keyboardNumeric_container::keyboardNumeric_container(): keyboard(), backspacePressed(this, &keyboardNumeric_container::backspacePressedHandler),
 keyPressed(this, &keyboardNumeric_container::keyPressedhandler)
 {
-	/*** Inicialización buffer ***/
+	/*** Buffer Initialization ***/
 	memset(buffer, 0x00, BUFFER_SIZE+1);
 
-	/*** Asignación de callback de teclas especiales ***/
+	/*** Assignment of callback for special keys ***/
 	layout_3.callbackAreaArray[0].callback = &backspacePressed;
 
-	/*** Inicialización del custom widget "keyboard" ***/
+	/*** Initialization of the custom widget "keyboard" ***/
 	keyboard.setLayout(&layout_3);
 	keyboard.setKeyListener(keyPressed);
 	keyboard.setPosition(0, 0, 320, 240);
@@ -28,10 +41,10 @@ keyPressed(this, &keyboardNumeric_container::keyPressedhandler)
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardNumeric_container::initialize()
 {
@@ -39,10 +52,10 @@ void keyboardNumeric_container::initialize()
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardNumeric_container::backspacePressedHandler()
 {
@@ -50,17 +63,17 @@ void keyboardNumeric_container::backspacePressedHandler()
 
 	if(pos > 0)
 	{
-		/*** Borrado de la entrada previa en el buffer y decremento de la posición ***/
+		/*** Clearing the previous input in the buffer and decrementing the position ***/
 		buffer[pos - 1] = 0;
 		keyboard.setBufferPosition(pos - 1);
 	}
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardNumeric_container::keyPressedhandler(Unicode::UnicodeChar keyChar)
 {
@@ -68,10 +81,10 @@ void keyboardNumeric_container::keyPressedhandler(Unicode::UnicodeChar keyChar)
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardNumeric_container::setTouchable(bool touch)
 {
@@ -80,10 +93,10 @@ void keyboardNumeric_container::setTouchable(bool touch)
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 Unicode:: UnicodeChar* keyboardNumeric_container::getBuffer()
 {
@@ -91,10 +104,10 @@ Unicode:: UnicodeChar* keyboardNumeric_container::getBuffer()
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardNumeric_container::clearBuffer()
 {

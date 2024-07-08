@@ -3,7 +3,7 @@
 **
 **  File        : LinkerScript.ld
 **
-**  Author      : Cuvex Team.
+**  Author      : STM32CubeIDE
 **
 **  Abstract    : Linker script for STM32U5A9xJ Device from STM32U5 series
 **                      4096Kbytes FLASH
@@ -22,7 +22,8 @@
 *****************************************************************************
 ** @attention
 **
-** Portion Copyright (C) 2023 Semilla3 OÜ.  All Rights Reserved.
+** Copyright (c) 2023 STMicroelectronics.
+** All rights reserved.
 **
 ** This software is licensed under terms that can be found in the LICENSE file
 ** in the root directory of this software component.
@@ -45,8 +46,10 @@ MEMORY
 {
   RAM (xrw)   		: ORIGIN = 0x20000000, LENGTH = 2496K
   SRAM4 (xrw) 		: ORIGIN = 0x28000000, LENGTH = 16K
-  BOOTLOADER (rx) 	: ORIGIN = 0x08000000, LENGTH = 600k
+  BOOTLOADER (rx) 	: ORIGIN = 0x08000000, LENGTH = 600K
   FLASH (rx)  		: ORIGIN = 0x08096000, LENGTH = 3480K
+  /*FLASH (rx)  		: ORIGIN = 0x08000000, LENGTH = 3480K*/
+  DEVICE_ALIAS (rx) : ORIGIN = 0x083FA000, LENGTH = 8K
   SETTINGS (rx) 	: ORIGIN = 0x083FC000, LENGTH = 8K
   SIGNATURE (rx) 	: ORIGIN = 0x083FE000, LENGTH = 8K
 }

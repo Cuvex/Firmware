@@ -1,9 +1,20 @@
+/*
+ *****************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+
 #include <gui/containers/thinking_circles_container.hpp>
 #include <touchgfx/Color.hpp>
 
-/*******************************/
 extern struct cuvex cuvex;
-/*******************************/
 
 thinking_circles_container::thinking_circles_container()
 {
@@ -14,7 +25,7 @@ void thinking_circles_container::initialize()
 {
     thinking_circles_containerBase::initialize();
 
-	/*** Configuración de elementos de pantalla en función al modo (oscuro/claro) ***/
+	/*** Setting screen elements based on mode (dark/light) ***/
 	if(cuvex.info.mode == DARK)
 	{
 	    circle1_smallPainter.setColor(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D));
@@ -31,7 +42,7 @@ void thinking_circles_container::initialize()
 	    circle3_big.setPainter(circle3_bigPainter);
 	}
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	circle1_small.invalidate();
 	circle2_small.invalidate();
 	circle3_small.invalidate();

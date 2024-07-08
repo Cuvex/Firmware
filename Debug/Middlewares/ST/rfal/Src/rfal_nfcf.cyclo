@@ -1,0 +1,8 @@
+../Middlewares/ST/rfal/Src/rfal_nfcf.c:146:13:rfalNfcfComputeValidSENF	13
+../Middlewares/ST/rfal/Src/rfal_nfcf.c:227:12:rfalNfcfPollerInitialize	3
+../Middlewares/ST/rfal/Src/rfal_nfcf.c:249:12:rfalNfcfPollerPoll	1
+../Middlewares/ST/rfal/Src/rfal_nfcf.c:255:12:rfalNfcfPollerCheckPresence	1
+../Middlewares/ST/rfal/Src/rfal_nfcf.c:268:12:rfalNfcfPollerCollisionResolution	9
+../Middlewares/ST/rfal/Src/rfal_nfcf.c:329:12:rfalNfcfPollerCheck	16
+../Middlewares/ST/rfal/Src/rfal_nfcf.c:416:12:rfalNfcfPollerUpdate	18
+../Middlewares/ST/rfal/Src/rfal_nfcf.c:514:6:rfalNfcfListenerIsT3TReq	6

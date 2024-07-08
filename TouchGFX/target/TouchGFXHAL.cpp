@@ -9,7 +9,8 @@
   ******************************************************************************
   * @attention
   *
-  * Portion Copyright (C) 2023 Semilla3 OÜ.  All Rights Reserved.
+  * Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
   * in the root directory of this software component.
@@ -159,4 +160,4 @@ void TouchGFXHAL::endFrame()
 
 /* USER CODE END TouchGFXHAL.cpp */
 
-/************************ (C) COPYRIGHT Semilla3 OÜ  *****END OF FILE****/
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

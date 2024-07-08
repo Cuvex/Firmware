@@ -1,0 +1,7 @@
+../TouchGFX/target/STM32TouchController.cpp:37:6:virtual void STM32TouchController::init()	1
+../TouchGFX/target/STM32TouchController.cpp:48:6:virtual bool STM32TouchController::sampleTouch(int32_t&, int32_t&)	3
+../TouchGFX/target/STM32TouchController.hpp:36:7:STM32TouchController::~STM32TouchController()	1
+../TouchGFX/target/STM32TouchController.hpp:36:7:virtual STM32TouchController::~STM32TouchController()	1
+../TouchGFX/target/STM32TouchController.cpp:126:9:uint8_t TS_IO_Read(uint8_t, uint8_t)	2
+../TouchGFX/target/STM32TouchController.cpp:182:6:void TS_IO_Write(uint8_t, uint8_t, uint8_t)	2
+../TouchGFX/target/STM32TouchController.cpp:197:6:void TS_IO_Delay(uint32_t)	1

@@ -1,0 +1,10 @@
+../TouchGFX/gui/include/gui/screen_flow_4_screen/screen_flow_4Presenter.hpp:41:13:screen_flow_4Presenter::~screen_flow_4Presenter()	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4Presenter.cpp:23:6:virtual void screen_flow_4Presenter::activate()	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4Presenter.cpp:28:6:virtual void screen_flow_4Presenter::deactivate()	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4Presenter.cpp:60:6:virtual void screen_flow_4Presenter::updateStateNfc(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_flow_4_screen/screen_flow_4Presenter.hpp:41:13:virtual screen_flow_4Presenter::~screen_flow_4Presenter()	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4Presenter.cpp:40:6:virtual void screen_flow_4Presenter::changeScreen(uint16_t)	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4Presenter.cpp:48:6:virtual void screen_flow_4Presenter::changeStateNfc(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_flow_4_screen/screen_flow_4Presenter.hpp:41:13:virtual void* screen_flow_4Presenter::_ZThn4_N22screen_flow_4PresenterD1Ev()	1
+../TouchGFX/gui/include/gui/screen_flow_4_screen/screen_flow_4Presenter.hpp:41:13:virtual void* screen_flow_4Presenter::_ZThn4_N22screen_flow_4PresenterD0Ev()	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4Presenter.cpp:17:1:screen_flow_4Presenter::screen_flow_4Presenter(screen_flow_4View&)	1

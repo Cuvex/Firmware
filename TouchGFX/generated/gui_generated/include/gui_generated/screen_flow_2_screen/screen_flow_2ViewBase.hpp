@@ -14,16 +14,16 @@
 #include <gui/containers/textArea_container.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
-#include <gui/containers/keyboardBIP39_container.hpp>
+#include <gui/containers/keyboardSeed_container.hpp>
 #include <gui/containers/keyboardPassphrase_container.hpp>
-#include <touchgfx/containers/ScrollableContainer.hpp>
 #include <gui/containers/keyboardPlainText_container.hpp>
+#include <gui/containers/thinking_circles_container.hpp>
+#include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/containers/ScrollableContainer.hpp>
 #include <gui/containers/keyboardPassword_container.hpp>
 #include <gui/containers/keyboardPasswordCheck_container.hpp>
 #include <gui/containers/textAreaSelected_container.hpp>
 #include <touchgfx/widgets/ToggleButton.hpp>
-#include <touchgfx/widgets/Image.hpp>
-#include <gui/containers/thinking_circles_container.hpp>
 #include <gui/containers/keyboardAlias_container.hpp>
 #include <gui/containers/close_button_container.hpp>
 
@@ -42,67 +42,67 @@ public:
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void seedButtonPressed()
+    virtual void menuBip39Pressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void plainTextButtonPressed()
+    virtual void menuPlainTextPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void hideKeyboard1Pressed()
+    virtual void hideKeyboard1SeedPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void showKeyboard1Pressed()
+    virtual void showKeyboard1SeedPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void enterKeyboard1Pressed()
+    virtual void enterKeyboard1SeedPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void hideKeyboard2Pressed()
+    virtual void hideKeyboard2SeedPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void showKeyboard2Pressed()
+    virtual void showKeyboard2SeedPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void enterKeyboard2Pressed()
+    virtual void enterKeyboard2SeedPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void hideKeyboard3Pressed()
+    virtual void hideKeyboard3SeedPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void showKeyboard3Pressed()
+    virtual void showKeyboard3SeedPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void enterKeyboard3Pressed()
+    virtual void enterKeyboard3SeedPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void hideKeyboard4Pressed()
+    virtual void hideKeyboardPlainTextPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void showKeyboard4Pressed()
+    virtual void showKeyboardPlainTextPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void enterKeyboard4Pressed()
+    virtual void enterKeyboardPlainTextPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void hideKeyboard5Pressed()
+    virtual void hideKeyboardPasswordPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void enterKeyboard5Pressed()
+    virtual void enterKeyboardPasswordPressed()
     {
         // Override and implement this function in screen_flow_2
     }
@@ -118,7 +118,7 @@ public:
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void storeCriptogramPressed()
+    virtual void passwordSuccessPressed()
     {
         // Override and implement this function in screen_flow_2
     }
@@ -142,11 +142,11 @@ public:
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void show1Keyboard5Pressed()
+    virtual void show1KeyboardPasswordPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void show2Keyboard5Pressed()
+    virtual void show2KeyboardPasswordPressed()
     {
         // Override and implement this function in screen_flow_2
     }
@@ -174,19 +174,31 @@ public:
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void hideKeyboard6Pressed()
+    virtual void hideKeyboardAliasPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void showKeyboard6Pressed()
+    virtual void showKeyboardAliasPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void enterKeyboard6Pressed()
+    virtual void enterKeyboardAliasPressed()
     {
         // Override and implement this function in screen_flow_2
     }
-    virtual void assignAliasPressed()
+    virtual void menuSlip39Pressed()
+    {
+        // Override and implement this function in screen_flow_2
+    }
+    virtual void menuXmrPressed()
+    {
+        // Override and implement this function in screen_flow_2
+    }
+    virtual void menuTextFromNfcPressed()
+    {
+        // Override and implement this function in screen_flow_2
+    }
+    virtual void btnFromNfcErrorPressed()
     {
         // Override and implement this function in screen_flow_2
     }
@@ -201,102 +213,130 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box background;
-    touchgfx::Container s0_menu;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_seed;
+    touchgfx::Container s0_menuSelection;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_text_from_nfc;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_plain_text;
-    touchgfx::Container s1_seedBip39;
-    touchgfx::Container s1_1_typeNumWords;
-    keyboardNumeric_container keyboard1_numeric;
-    textArea_container keyboard1_text_area;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard1_btn_hide;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard1_btn_show;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard1_btn_enter;
-    touchgfx::TextAreaWithOneWildcard keyboard1_text_typed;
-    touchgfx::TextArea keyboard1_text_info;
-    touchgfx::Container s1_2_typeWords;
-    keyboardBIP39_container keyboard2_BIP39;
-    textArea_container keyboard2_text_area;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard2_btn_hide;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard2_btn_show;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard2_btn_enter;
-    touchgfx::TextAreaWithOneWildcard keyboard2_text_typed;
-    touchgfx::TextAreaWithOneWildcard keyboard2_text_predicted;
-    touchgfx::TextAreaWithTwoWildcards keyboard2_text_info;
-    touchgfx::Container s1_3_typePassphrase;
-    keyboardPassphrase_container keyboard3_passphrase;
-    touchgfx::Box keyboard3_text_area;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard3_btn_hide;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard3_btn_show;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  keyboard3_btn_enter;
-    touchgfx::TextAreaWithOneWildcard keyboard3_text_typed;
-    touchgfx::TextArea keyboard3_text_info_1;
-    touchgfx::TextArea keyboard3_text_info_2;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard3_btn_up;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard3_btn_down;
-    touchgfx::TextAreaWithOneWildcard keyboard3_char_count;
-    touchgfx::Container s1_4_checkSeedInfo;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_encrypt1;
-    touchgfx::Container container_typed_check1;
-    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  btn_scroll_down1;
-    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  btn_scroll_up1;
-    touchgfx::ScrollableContainer scrollable_container_typed_check1;
-    touchgfx::TextAreaWithOneWildcard typed_check1;
-    touchgfx::Container s2_plainText;
-    touchgfx::Container s2_1_typePlainText;
-    keyboardPlainText_container keyboard4_plain_text;
-    touchgfx::Box keyboard4_text_area;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard4_btn_hide;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard4_btn_show;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  keyboard4_btn_enter;
-    touchgfx::TextAreaWithOneWildcard keyboard4_text_typed;
-    touchgfx::TextArea keyboard4_text_info;
-    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  keyboard4_btn_up;
-    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  keyboard4_btn_down;
-    touchgfx::TextAreaWithOneWildcard keyboard4_char_count;
-    touchgfx::Container s2_2_checkPlainTextInfo;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_encrypt2;
-    touchgfx::Container container_typed_check2;
-    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  btn_scroll_down2;
-    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  btn_scroll_up2;
-    touchgfx::ScrollableContainer scrollable_container_typed_check2;
-    touchgfx::TextAreaWithOneWildcard typed_check2;
-    touchgfx::Container s3_multiSignature;
-    touchgfx::Container s3_1_askMultiSignature;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_seed_xmr;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_seed_slip39;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_seed_bip39;
+    touchgfx::Container s1_menuContent;
+    touchgfx::Container s1_seed;
+    touchgfx::Container s1_seed_1_typeNumWords;
+    keyboardNumeric_container keyboard1_seed;
+    textArea_container keyboard1_text_area_seed;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard1_btn_hide_seed;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard1_btn_show_seed;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard1_btn_enter_seed;
+    touchgfx::TextAreaWithOneWildcard keyboard1_text_typed_seed;
+    touchgfx::TextArea keyboard1_text_info_seed;
+    touchgfx::Container s1_seed_2_typeWords;
+    keyboardSeed_container keyboard2_seed;
+    textArea_container keyboard2_text_area_seed;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard2_btn_hide_seed;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard2_btn_show_seed;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard2_btn_enter_seed;
+    touchgfx::TextAreaWithOneWildcard keyboard2_text_typed_seed;
+    touchgfx::TextAreaWithOneWildcard keyboard2_text_predicted_seed;
+    touchgfx::TextAreaWithTwoWildcards keyboard2_text_info_seed;
+    touchgfx::Container s1_seed_3_typePassphrase;
+    keyboardPassphrase_container keyboard3_seed;
+    touchgfx::Box keyboard3_text_area_seed;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard3_btn_hide_seed;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard3_btn_show_seed;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  keyboard3_btn_enter_seed;
+    touchgfx::TextAreaWithOneWildcard keyboard3_text_typed_seed;
+    touchgfx::TextArea keyboard3_text_info_1_seed;
+    touchgfx::TextArea keyboard3_text_info_2_seed;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard3_btn_up_seed;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard3_btn_down_seed;
+    touchgfx::TextAreaWithOneWildcard keyboard3_char_count_seed;
+    touchgfx::Container s1_plainText;
+    touchgfx::Container s1_plainText_1_typePlainText;
+    keyboardPlainText_container keyboard_plain_text;
+    touchgfx::Box keyboard_text_area_plain_text;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_hide_plain_text;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_show_plain_text;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  keyboard_btn_enter_plain_text;
+    touchgfx::TextAreaWithOneWildcard keyboard_text_typed_plain_text;
+    touchgfx::TextArea keyboard_text_info_plain_text;
+    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  keyboard_btn_up_plain_text;
+    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  keyboard_btn_down_plain_text;
+    touchgfx::TextAreaWithOneWildcard keyboard_char_count_plain_text;
+    touchgfx::Container s1_fromNFC;
+    touchgfx::Container s1_fromNFC_1_initNFC;
+    thinking_circles_container s1_fromNFC_1_init_nfc_thinking_circles;
+    touchgfx::Image s1_fromNFC_1_init_nfc_image;
+    touchgfx::TextArea s1_fromNFC_1_init_nfc_text1;
+    touchgfx::TextArea s1_fromNFC_1_init_nfc_text2;
+    touchgfx::Container s1_fromNFC_2_waitReadNFC;
+    touchgfx::Image s1_fromNFC_wait_read_nfc_image;
+    touchgfx::TextArea s1_fromNFC_wait_read_nfc_text;
+    touchgfx::Container s1_fromNFC_3_error;
+    touchgfx::TextArea s1_fromNFC_error_text;
+    touchgfx::Image s1_fromNFC_error_image;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  s1_fromNFC_error_btn;
+    touchgfx::Container s1_checkInfo;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_encrypt;
+    touchgfx::Container s1_checkInfo_Seed;
+    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  btn_scroll_down_seed;
+    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  btn_scroll_up_seed;
+    touchgfx::ScrollableContainer scrollable_container_typed_check_seed;
+    touchgfx::TextAreaWithOneWildcard typed_check_seed;
+    touchgfx::Container s1_checkInfo_PlainText;
+    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  btn_scroll_down_plain_text;
+    touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  btn_scroll_up_plain_text;
+    touchgfx::ScrollableContainer scrollable_container_typed_check_plain_text;
+    touchgfx::TextAreaWithOneWildcard typed_check_plain_text;
+    touchgfx::Container s2_multiSignature;
+    touchgfx::Container s2_1_askMultiSignature;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_multi_yes;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_multi_no;
     touchgfx::TextArea text_info_multi_1;
-    touchgfx::Container s3_2_numMultiSignature;
+    touchgfx::Container s2_2_numMultiSignature;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_multi_select;
     touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  btn_multi_plus;
     touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  btn_multi_minus;
     touchgfx::TextAreaWithOneWildcard text_multi_num;
     touchgfx::TextArea text_info_multi_2;
-    touchgfx::Container s4_password;
-    touchgfx::Container s4_1_typePasword;
-    keyboardPassword_container keyboard5_password_1;
-    keyboardPasswordCheck_container keyboard5_password_2;
-    textArea_container keyboard5_text_area_1;
-    textArea_container keyboard5_text_area_2;
-    textAreaSelected_container keyboard5_text_area_selected_1;
-    textAreaSelected_container keyboard5_text_area_selected_2;
-    touchgfx::TextAreaWithOneWildcard keyboard5_text_typed_1;
-    touchgfx::TextAreaWithOneWildcard keyboard5_text_typed_2;
-    touchgfx::TextAreaWithOneWildcard keyboard5_text_typed_hide_1;
-    touchgfx::TextAreaWithOneWildcard keyboard5_text_typed_hide_2;
-    touchgfx::ToggleButton keyboard5_pwd_eye_1;
-    touchgfx::ToggleButton keyboard5_pwd_eye_2;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard5_btn_show_1;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard5_btn_show_2;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard5_btn_hide;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  keyboard5_btn_enter;
-    touchgfx::TextAreaWithOneWildcard keyboard5_text_info_1;
-    touchgfx::TextArea keyboard5_text_info_2;
-    touchgfx::TextArea keyboard5_placeholder_1;
-    touchgfx::TextArea keyboard5_placeholder_2;
-    touchgfx::Container s4_2_successPassword;
-    touchgfx::WildcardTextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_store_cryptogram;
+    touchgfx::TextArea text_info_multi_3;
+    touchgfx::TextArea text_info_multi_4;
+    touchgfx::TextArea text_info_multi_5;
+    touchgfx::Container s3_password;
+    touchgfx::Container s3_1_typePasword;
+    keyboardPassword_container keyboard1_password;
+    keyboardPasswordCheck_container keyboard2_password;
+    textArea_container keyboard1_text_area_password;
+    textArea_container keyboard2_text_area_password;
+    textAreaSelected_container keyboard1_text_area_selected_password;
+    textAreaSelected_container keyboard2_text_area_selected_password;
+    touchgfx::TextAreaWithOneWildcard keyboard1_text_typed_password;
+    touchgfx::TextAreaWithOneWildcard keyboard2_text_typed_password;
+    touchgfx::TextAreaWithOneWildcard keyboard1_text_typed_hide_password;
+    touchgfx::TextAreaWithOneWildcard keyboard2_text_typed_hide_password;
+    touchgfx::ToggleButton keyboard1_pwd_eye_password;
+    touchgfx::ToggleButton keyboard2_pwd_eye_password;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard1_btn_show_password;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard2_btn_show_password;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_hide_password;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  keyboard_btn_enter_password;
+    touchgfx::TextAreaWithOneWildcard text_info_1_password;
+    touchgfx::TextArea text_info_2_password;
+    touchgfx::TextArea placeholder_1_password;
+    touchgfx::TextArea placeholder_2_password;
+    touchgfx::Container s3_2_successPassword;
+    touchgfx::WildcardTextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_pwd_success;
     touchgfx::TextAreaWithOneWildcard text_pwd_success_info;
     touchgfx::Image image_pwd_success;
+    touchgfx::Container s4_alias;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_assign_alias;
+    keyboardAlias_container keyboard_alias;
+    textArea_container keyboard_text_area_alias;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_hide_alias;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_show_alias;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_enter_alias;
+    touchgfx::TextAreaWithOneWildcard keyboard_text_typed_alias;
+    touchgfx::TextArea keyboard_text_info_1_alias;
+    touchgfx::TextArea keyboard_text_info_2_alias;
     touchgfx::Container s5_initNFC;
     thinking_circles_container init_nfc_thinking_circles;
     touchgfx::Image init_nfc_image;
@@ -305,23 +345,12 @@ protected:
     touchgfx::Container s6_waitReadWriteNFC;
     touchgfx::Image wait_read_write_nfc_image;
     touchgfx::TextArea wait_read_write_nfc_text;
-    touchgfx::Container s7_writeError1;
+    touchgfx::Container s7_writeError;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_retry;
-    touchgfx::TextArea text_7;
-    touchgfx::Container s8_writeError2;
-    touchgfx::Container s8_1_viewTagInfo;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_assign_alias;
-    touchgfx::TextArea text_uid_info;
-    touchgfx::TextAreaWithOneWildcard text_uid;
-    touchgfx::Container s8_2_typeAlias;
-    keyboardAlias_container keyboard6_alias;
-    textArea_container keyboard6_text_area;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard6_btn_hide;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard6_btn_show;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard6_btn_enter;
-    touchgfx::TextAreaWithOneWildcard keyboard6_text_typed;
-    touchgfx::TextArea keyboard6_text_info;
-    touchgfx::Container s9_writeSuccess;
+    touchgfx::TextArea text_error_cryptogram;
+    touchgfx::TextArea text_error_tag_format;
+    touchgfx::Image image_error;
+    touchgfx::Container s8_writeSuccess;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_success;
     touchgfx::Image image_success;
     touchgfx::Container text_cryptogram_success_spanish;
@@ -342,48 +371,46 @@ protected:
     /*
      * Wildcard Buffers
      */
-    static const uint16_t KEYBOARD1_TEXT_TYPED_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar keyboard1_text_typedBuffer[KEYBOARD1_TEXT_TYPED_SIZE];
-    static const uint16_t KEYBOARD2_TEXT_TYPED_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar keyboard2_text_typedBuffer[KEYBOARD2_TEXT_TYPED_SIZE];
-    static const uint16_t KEYBOARD2_TEXT_PREDICTED_SIZE = 15;
-    touchgfx::Unicode::UnicodeChar keyboard2_text_predictedBuffer[KEYBOARD2_TEXT_PREDICTED_SIZE];
-    static const uint16_t KEYBOARD2_TEXT_INFOBUFFER1_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar keyboard2_text_infoBuffer1[KEYBOARD2_TEXT_INFOBUFFER1_SIZE];
-    static const uint16_t KEYBOARD2_TEXT_INFOBUFFER2_SIZE = 5;
-    touchgfx::Unicode::UnicodeChar keyboard2_text_infoBuffer2[KEYBOARD2_TEXT_INFOBUFFER2_SIZE];
-    static const uint16_t KEYBOARD3_TEXT_TYPED_SIZE = 105;
-    touchgfx::Unicode::UnicodeChar keyboard3_text_typedBuffer[KEYBOARD3_TEXT_TYPED_SIZE];
-    static const uint16_t KEYBOARD3_CHAR_COUNT_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar keyboard3_char_countBuffer[KEYBOARD3_CHAR_COUNT_SIZE];
-    static const uint16_t TYPED_CHECK1_SIZE = 1005;
-    touchgfx::Unicode::UnicodeChar typed_check1Buffer[TYPED_CHECK1_SIZE];
-    static const uint16_t KEYBOARD4_TEXT_TYPED_SIZE = 505;
-    touchgfx::Unicode::UnicodeChar keyboard4_text_typedBuffer[KEYBOARD4_TEXT_TYPED_SIZE];
-    static const uint16_t KEYBOARD4_CHAR_COUNT_SIZE = 10;
-    touchgfx::Unicode::UnicodeChar keyboard4_char_countBuffer[KEYBOARD4_CHAR_COUNT_SIZE];
-    static const uint16_t TYPED_CHECK2_SIZE = 1005;
-    touchgfx::Unicode::UnicodeChar typed_check2Buffer[TYPED_CHECK2_SIZE];
+    static const uint16_t KEYBOARD1_TEXT_TYPED_SEED_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar keyboard1_text_typed_seedBuffer[KEYBOARD1_TEXT_TYPED_SEED_SIZE];
+    static const uint16_t KEYBOARD2_TEXT_TYPED_SEED_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar keyboard2_text_typed_seedBuffer[KEYBOARD2_TEXT_TYPED_SEED_SIZE];
+    static const uint16_t KEYBOARD2_TEXT_PREDICTED_SEED_SIZE = 15;
+    touchgfx::Unicode::UnicodeChar keyboard2_text_predicted_seedBuffer[KEYBOARD2_TEXT_PREDICTED_SEED_SIZE];
+    static const uint16_t KEYBOARD2_TEXT_INFO_SEEDBUFFER1_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar keyboard2_text_info_seedBuffer1[KEYBOARD2_TEXT_INFO_SEEDBUFFER1_SIZE];
+    static const uint16_t KEYBOARD2_TEXT_INFO_SEEDBUFFER2_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar keyboard2_text_info_seedBuffer2[KEYBOARD2_TEXT_INFO_SEEDBUFFER2_SIZE];
+    static const uint16_t KEYBOARD3_TEXT_TYPED_SEED_SIZE = 105;
+    touchgfx::Unicode::UnicodeChar keyboard3_text_typed_seedBuffer[KEYBOARD3_TEXT_TYPED_SEED_SIZE];
+    static const uint16_t KEYBOARD3_CHAR_COUNT_SEED_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar keyboard3_char_count_seedBuffer[KEYBOARD3_CHAR_COUNT_SEED_SIZE];
+    static const uint16_t KEYBOARD_TEXT_TYPED_PLAIN_TEXT_SIZE = 505;
+    touchgfx::Unicode::UnicodeChar keyboard_text_typed_plain_textBuffer[KEYBOARD_TEXT_TYPED_PLAIN_TEXT_SIZE];
+    static const uint16_t KEYBOARD_CHAR_COUNT_PLAIN_TEXT_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar keyboard_char_count_plain_textBuffer[KEYBOARD_CHAR_COUNT_PLAIN_TEXT_SIZE];
+    static const uint16_t TYPED_CHECK_SEED_SIZE = 2005;
+    touchgfx::Unicode::UnicodeChar typed_check_seedBuffer[TYPED_CHECK_SEED_SIZE];
+    static const uint16_t TYPED_CHECK_PLAIN_TEXT_SIZE = 1005;
+    touchgfx::Unicode::UnicodeChar typed_check_plain_textBuffer[TYPED_CHECK_PLAIN_TEXT_SIZE];
     static const uint16_t TEXT_MULTI_NUM_SIZE = 5;
     touchgfx::Unicode::UnicodeChar text_multi_numBuffer[TEXT_MULTI_NUM_SIZE];
-    static const uint16_t KEYBOARD5_TEXT_TYPED_1_SIZE = 45;
-    touchgfx::Unicode::UnicodeChar keyboard5_text_typed_1Buffer[KEYBOARD5_TEXT_TYPED_1_SIZE];
-    static const uint16_t KEYBOARD5_TEXT_TYPED_2_SIZE = 45;
-    touchgfx::Unicode::UnicodeChar keyboard5_text_typed_2Buffer[KEYBOARD5_TEXT_TYPED_2_SIZE];
-    static const uint16_t KEYBOARD5_TEXT_TYPED_HIDE_1_SIZE = 45;
-    touchgfx::Unicode::UnicodeChar keyboard5_text_typed_hide_1Buffer[KEYBOARD5_TEXT_TYPED_HIDE_1_SIZE];
-    static const uint16_t KEYBOARD5_TEXT_TYPED_HIDE_2_SIZE = 45;
-    touchgfx::Unicode::UnicodeChar keyboard5_text_typed_hide_2Buffer[KEYBOARD5_TEXT_TYPED_HIDE_2_SIZE];
-    static const uint16_t KEYBOARD5_TEXT_INFO_1_SIZE = 50;
-    touchgfx::Unicode::UnicodeChar keyboard5_text_info_1Buffer[KEYBOARD5_TEXT_INFO_1_SIZE];
-    static const uint16_t BTN_STORE_CRYPTOGRAM_SIZE = 25;
-    touchgfx::Unicode::UnicodeChar btn_store_cryptogramBuffer[BTN_STORE_CRYPTOGRAM_SIZE];
+    static const uint16_t KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE = 45;
+    touchgfx::Unicode::UnicodeChar keyboard1_text_typed_passwordBuffer[KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE];
+    static const uint16_t KEYBOARD2_TEXT_TYPED_PASSWORD_SIZE = 45;
+    touchgfx::Unicode::UnicodeChar keyboard2_text_typed_passwordBuffer[KEYBOARD2_TEXT_TYPED_PASSWORD_SIZE];
+    static const uint16_t KEYBOARD1_TEXT_TYPED_HIDE_PASSWORD_SIZE = 45;
+    touchgfx::Unicode::UnicodeChar keyboard1_text_typed_hide_passwordBuffer[KEYBOARD1_TEXT_TYPED_HIDE_PASSWORD_SIZE];
+    static const uint16_t KEYBOARD2_TEXT_TYPED_HIDE_PASSWORD_SIZE = 45;
+    touchgfx::Unicode::UnicodeChar keyboard2_text_typed_hide_passwordBuffer[KEYBOARD2_TEXT_TYPED_HIDE_PASSWORD_SIZE];
+    static const uint16_t TEXT_INFO_1_PASSWORD_SIZE = 50;
+    touchgfx::Unicode::UnicodeChar text_info_1_passwordBuffer[TEXT_INFO_1_PASSWORD_SIZE];
+    static const uint16_t BTN_PWD_SUCCESS_SIZE = 25;
+    touchgfx::Unicode::UnicodeChar btn_pwd_successBuffer[BTN_PWD_SUCCESS_SIZE];
     static const uint16_t TEXT_PWD_SUCCESS_INFO_SIZE = 50;
     touchgfx::Unicode::UnicodeChar text_pwd_success_infoBuffer[TEXT_PWD_SUCCESS_INFO_SIZE];
-    static const uint16_t TEXT_UID_SIZE = 25;
-    touchgfx::Unicode::UnicodeChar text_uidBuffer[TEXT_UID_SIZE];
-    static const uint16_t KEYBOARD6_TEXT_TYPED_SIZE = 25;
-    touchgfx::Unicode::UnicodeChar keyboard6_text_typedBuffer[KEYBOARD6_TEXT_TYPED_SIZE];
+    static const uint16_t KEYBOARD_TEXT_TYPED_ALIAS_SIZE = 25;
+    touchgfx::Unicode::UnicodeChar keyboard_text_typed_aliasBuffer[KEYBOARD_TEXT_TYPED_ALIAS_SIZE];
     static const uint16_t TEXT_CRYPTOGRAM_SUCCESS_SPANISH_5_SIZE = 25;
     touchgfx::Unicode::UnicodeChar text_cryptogram_success_spanish_5Buffer[TEXT_CRYPTOGRAM_SUCCESS_SPANISH_5_SIZE];
     static const uint16_t TEXT_CRYPTOGRAM_SUCCESS_SPANISH_4_SIZE = 25;
@@ -404,8 +431,8 @@ private:
     /*
      * Tick Counter Declarations
      */
-    static const uint32_t TICK_INTERACTION1_INTERVAL = 10;
-    uint32_t frameCountInteraction1Interval;
+    static const uint32_t TICK_TICKEVENT_INTERVAL = 10;
+    uint32_t frameCountTickEventInterval;
 
     /*
      * Callback Declarations

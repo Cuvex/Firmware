@@ -1,0 +1,5 @@
+../Middlewares/ST/ndef/Src/message/ndef_types.c:174:12:ndefRecordTypeStringToTypeId	12
+../Middlewares/ST/ndef/Src/message/ndef_types.c:252:12:ndefTypeToRecord	5
+../Middlewares/ST/ndef/Src/message/ndef_types.c:278:12:ndefRecordSetNdefType	6
+../Middlewares/ST/ndef/Src/message/ndef_types.c:302:17:ndefRecordGetNdefType	5
+../Middlewares/ST/ndef/Src/message/ndef_types.c:214:12:ndefRecordToType	6

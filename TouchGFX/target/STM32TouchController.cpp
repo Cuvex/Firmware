@@ -7,7 +7,8 @@
  ******************************************************************************
  * @attention
  *
- * Portion Copyright (C) 2023 Semilla3 OÜ.  All Rights Reserved.
+ * Copyright (c) 2022 STMicroelectronics.
+ * All rights reserved.
  *
  * This software is licensed under terms that can be found in the LICENSE file
  * in the root directory of this software component.
@@ -200,4 +201,4 @@ void TS_IO_Delay(uint32_t Delay)
 
 /* USER CODE END STM32TouchController */
 
-/************************ (C) COPYRIGHT Semilla3 OÜ *****END OF FILE****/
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

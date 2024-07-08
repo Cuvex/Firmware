@@ -1,0 +1,17 @@
+../Drivers/CMSIS/Include/core_cm33.h:2448:34:__NVIC_SystemReset	1
+../Core/Src/mainTask.c:177:6:stateMachineScreens	48
+../Core/Src/mainTask.c:371:6:clearNfc_readerFlags	1
+../Core/Src/mainTask.c:384:6:clearNfc_tagFlags	1
+../Core/Src/mainTask.c:401:6:clearNfc_tagInfo	1
+../Core/Src/mainTask.c:358:6:clearNfc_all	1
+../Core/Src/mainTask.c:433:6:readFlash	3
+../Core/Src/mainTask.c:448:6:writeFlash	3
+../Core/Src/mainTask.c:471:6:eraseFlash	1
+../Core/Src/mainTask.c:499:6:initEEPROM	1
+../Core/Src/mainTask.c:527:6:loadEEPROM	2
+../Core/Src/mainTask.c:570:6:editEEPROM	10
+../Core/Src/mainTask.c:634:6:saveDeviceAlias	0
+../Core/Src/mainTask.c:647:6:eraseSignature	0
+../Core/Src/mainTask.c:59:6:processGuiToMainQueue	21
+../Core/Src/mainTask.c:659:6:getCuvexVersions	25
+../Core/Src/mainTask.c:25:6:main_Task	2

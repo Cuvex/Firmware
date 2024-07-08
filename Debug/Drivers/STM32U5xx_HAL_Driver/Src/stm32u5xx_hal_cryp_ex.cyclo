@@ -1,0 +1,9 @@
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_cryp_ex.c:788:13:CRYPEx_SetKey	4
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_cryp_ex.c:673:26:CRYPEx_KeyEncrypt	15
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_cryp_ex.c:558:26:CRYPEx_KeyDecrypt	14
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_cryp_ex.c:103:19:HAL_CRYPEx_AESGCM_GenerateAuthTAG	10
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_cryp_ex.c:217:19:HAL_CRYPEx_AESCCM_GenerateAuthTAG	9
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_cryp_ex.c:340:19:HAL_CRYPEx_WrapKey	3
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_cryp_ex.c:382:19:HAL_CRYPEx_UnwrapKey	7
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_cryp_ex.c:462:19:HAL_CRYPEx_EncryptSharedKey	3
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_cryp_ex.c:506:19:HAL_CRYPEx_DecryptSharedKey	3

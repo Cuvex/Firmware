@@ -1,0 +1,13 @@
+../Core/Src/qrcode.c:106:15:getAlphanumeric	12
+../Core/Src/qrcode.c:150:13:getModeBits	2
+../Core/Src/qrcode.c:202:13:bb_appendBits	3
+../Core/Src/qrcode.c:216:13:bb_setBit	2
+../Core/Src/qrcode.c:237:13:bb_getBit	1
+../Core/Src/qrcode.c:249:13:applyMask	14
+../Core/Src/qrcode.c:272:13:setFunctionModule	1
+../Core/Src/qrcode.c:278:13:drawFinderPattern	8
+../Core/Src/qrcode.c:303:13:drawFormatBits	6
+../Core/Src/qrcode.c:763:10:qrcode_getBufferSize	1
+../Core/Src/qrcode.c:768:8:qrcode_initBytes	96
+../Core/Src/qrcode.c:844:8:qrcode_initText	1
+../Core/Src/qrcode.c:848:6:qrcode_getModule	3

@@ -1,6 +1,20 @@
-/************************************************************************
- ****************************** bip39_lib.h *****************************
- ************************************************************************/
+/**
+ ******************************************************************************
+ * @file           : bip39_lib.h
+ * @brief          : Header for bip39_lib.c file.
+ *                   This file contains the common defines of the seed bip39 library.
+ ******************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+
 #ifndef INC_BIP39_LIB_H_
 #define INC_BIP39_LIB_H_
 

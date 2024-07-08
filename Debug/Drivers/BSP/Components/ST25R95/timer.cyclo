@@ -1,0 +1,5 @@
+../Drivers/BSP/Components/ST25R95/timer.c:68:10:timerCalculateTimer	1
+../Drivers/BSP/Components/ST25R95/timer.c:75:6:timerIsExpired	1
+../Drivers/BSP/Components/ST25R95/timer.c:99:6:timerDelay	2
+../Drivers/BSP/Components/ST25R95/timer.c:110:6:timerStopwatchStart	1
+../Drivers/BSP/Components/ST25R95/timer.c:117:10:timerStopwatchMeasure	1

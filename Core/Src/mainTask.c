@@ -1,18 +1,31 @@
-/*
- * mainTask.c
+/**
+ ******************************************************************************
+ * @file           : mainTask.c
+ * @brief          : Main task (freeRTOS)
+ ******************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
  */
 
 #include "mainTask.h"
 
-/******************************************************************************************************************************************************************************
- ***** Función 		: void main_Task(void const * argument)
- ***** Descripción 	: Función principal de la tarea "mainTask"
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void main_Task(void const * argument)
 {
 	/*** Lectura de sectores EEPROM/SIGNATURE + inicialización + carga datos en RAM ***/
+	readFlash(DEV_ALIAS_ADDR, cuvex.device_alias_buffer, DEV_ALIAS_SIZE);
 	readFlash(EEPROM_ADDR, cuvex.eeprom_buffer, EEPROM_SIZE);
 	readFlash(SIGNATURE_ADDR, cuvex.signature_buffer, SIGNATURE_SIZE);
 
@@ -37,18 +50,12 @@ void main_Task(void const * argument)
 	}
 }
 
-/*
- *
- * FUNCIONES PRINCIPALES
- *
- */
-
-/******************************************************************************************************************************************************************************
- ***** Función 		: void processGuiToMainQueue(void)
- ***** Descripción 	: Procesado de mensajes provenientes de "guiTask"
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void processGuiToMainQueue(void)
 {
 	uint16_t rcv_data_gui = 0;
@@ -114,6 +121,11 @@ void processGuiToMainQueue(void)
 			cuvex.nfc.tag.action = NFC_TAG_READ;
 			break;
 
+		case GUI_TO_MAIN_NFC_TAG_READ_FROM_NFC:
+			clearNfc_tagFlags();
+			cuvex.nfc.tag.action = NFC_TAG_READ_FROM_NFC;
+			break;
+
 		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_1:
 			clearNfc_tagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FLOW_1;
@@ -124,14 +136,29 @@ void processGuiToMainQueue(void)
 			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FLOW_2;
 			break;
 
+		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_2_T4T_8K:
+			clearNfc_tagFlags();
+			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FLOW_2_T4T_8K;
+			break;
+
 		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_4:
 			clearNfc_tagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FLOW_4;
 			break;
 
+		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_4_T4T_8K:
+			clearNfc_tagFlags();
+			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FLOW_4_T4T_8K;
+			break;
+
 			/********************************************************/
 		case GUI_TO_MAIN_FLASH_SAVE_SETTINGS:
 			editEEPROM();
+			break;
+
+		case GUI_TO_MAIN_FLASH_SAVE_SETTINGS_AND_DEVICE_ALIAS:
+			editEEPROM();
+			saveDeviceAlias();
 			break;
 
 		case GUI_TO_MAIN_FLASH_ERASE_SIGNATURE:
@@ -141,12 +168,12 @@ void processGuiToMainQueue(void)
 	}
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		: void stateMachineScreens(void)
- ***** Descripción 	: Máquina de estados específica para cada flujo (si procede)
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void stateMachineScreens(void)
 {
 	switch(cuvex.screen)
@@ -211,11 +238,31 @@ void stateMachineScreens(void)
 				cuvex.nfc.flag_notify_init = true;
 			}
 
+			/*** Lectura de tag NFC desde NFC (si solicitada) ***/
+			if((cuvex.nfc.tag.action == NFC_TAG_READ_FROM_NFC) && (cuvex.nfc.tag.flag_readed_from_nfc == true))
+			{
+				if(osMessageQueueGetSpace(mainToGuiQueueHandle) > 0){
+					osMessageQueuePut(mainToGuiQueueHandle, (void*)&(int){MAIN_TO_GUI_NFC_TAG_READED_FROM_NFC}, 0, 0);
+				}
+				cuvex.nfc.tag.action = NFC_TAG_NONE;
+				cuvex.nfc.tag.flag_readed_from_nfc = false;
+			}
+
 			/*** Lectura + escritura de tag NFC (si solicitada) ***/
 			if((cuvex.nfc.tag.action == NFC_TAG_READ_WRITE_FLOW_2) && (cuvex.nfc.tag.flag_readed_writed_flow_2 == true))
 			{
 				if(osMessageQueueGetSpace(mainToGuiQueueHandle) > 0){
 					osMessageQueuePut(mainToGuiQueueHandle, (void*)&(int){MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2}, 0, 0);
+				}
+				cuvex.nfc.tag.action = NFC_TAG_NONE;
+				cuvex.nfc.tag.flag_readed_writed_flow_2 = false;
+			}
+
+			/*** Lectura + escritura de tag NFC (si solicitada) ***/
+			if((cuvex.nfc.tag.action == NFC_TAG_READ_WRITE_FLOW_2_T4T_8K) && (cuvex.nfc.tag.flag_readed_writed_flow_2 == true))
+			{
+				if(osMessageQueueGetSpace(mainToGuiQueueHandle) > 0){
+					osMessageQueuePut(mainToGuiQueueHandle, (void*)&(int){MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2_T4T_8K}, 0, 0);
 				}
 				cuvex.nfc.tag.action = NFC_TAG_NONE;
 				cuvex.nfc.tag.flag_readed_writed_flow_2 = false;
@@ -287,23 +334,27 @@ void stateMachineScreens(void)
 				cuvex.nfc.tag.action = NFC_TAG_NONE;
 				cuvex.nfc.tag.flag_readed_writed_flow_4 = false;
 			}
+
+			/*** Lectura + escritura de tag NFC (si solicitada) ***/
+			if((cuvex.nfc.tag.action == NFC_TAG_READ_WRITE_FLOW_4_T4T_8K) && (cuvex.nfc.tag.flag_readed_writed_flow_4 == true))
+			{
+				if(osMessageQueueGetSpace(mainToGuiQueueHandle) > 0){
+					osMessageQueuePut(mainToGuiQueueHandle, (void*)&(int){MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_4_T4T_8K}, 0, 0);
+				}
+				cuvex.nfc.tag.action = NFC_TAG_NONE;
+				cuvex.nfc.tag.flag_readed_writed_flow_4 = false;
+			}
 		}
 		break;
 	}
 }
 
-/*
- *
- * FUNCIONES DE INICIALIZACIÓN/BORRADO DE FLAGS/VARIABLES "NFC"
- *
- */
-
-/******************************************************************************************************************************************************************************
- ***** Función 		: void clearNfc_all(void)
- ***** Descripción 	: Borrado de datos en RAM del lector/escritor NFC, de los flags del tag NFC y de la información del tag NFC
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void clearNfc_all(void)
 {
 	clearNfc_readerFlags();
@@ -311,12 +362,12 @@ void clearNfc_all(void)
 	clearNfc_tagInfo();
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		: void clearNfc_readerFlags(void)
- ***** Descripción 	: Borrado de datos en RAM del lector/escritor NFC
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void clearNfc_readerFlags(void)
 {
 	cuvex.nfc.flag_enabled     = false;
@@ -324,57 +375,61 @@ void clearNfc_readerFlags(void)
 	cuvex.nfc.flag_notify_init = false;
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		: void clearNfc_tagFlags(void)
- ***** Descripción 	: Borrado de los flags en RAM del tag NFC
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void clearNfc_tagFlags(void)
 {
 	cuvex.nfc.tag.action 	  				= NFC_TAG_NONE;
+	cuvex.nfc.tag.type		 				= NFC_TAG_TYPE_NONE;
 	cuvex.nfc.tag.flag_readed 				= false;
+	cuvex.nfc.tag.flag_readed_from_nfc		= false;
 	cuvex.nfc.tag.flag_readed_writed_flow_1 = false;
 	cuvex.nfc.tag.flag_readed_writed_flow_2 = false;
 	cuvex.nfc.tag.flag_readed_writed_flow_4 = false;
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		: void clearNfc_tagInfo(void)
- ***** Descripción 	: Borrado de la información en RAM del tag NFC (buffers y variables)
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void clearNfc_tagInfo(void)
 {
 	memset(cuvex.nfc.tag.uid, 0x00, sizeof(cuvex.nfc.tag.uid));
 	memset(cuvex.nfc.tag.alias, 0x00, sizeof(cuvex.nfc.tag.alias));
 	memset(cuvex.nfc.tag.cryptogram, 0x00, sizeof(cuvex.nfc.tag.cryptogram));
 	memset(cuvex.nfc.tag.information, 0x00, sizeof(cuvex.nfc.tag.information));
+	memset(cuvex.nfc.tag.multisignature, 0x00, sizeof(cuvex.nfc.tag.multisignature));
 	memset(cuvex.nfc.tag.new_uid, 0x00, sizeof(cuvex.nfc.tag.new_uid));
 	memset(cuvex.nfc.tag.new_alias, 0x00, sizeof(cuvex.nfc.tag.new_alias));
 	memset(cuvex.nfc.tag.new_cryptogram, 0x00, sizeof(cuvex.nfc.tag.new_cryptogram));
 	memset(cuvex.nfc.tag.new_information, 0x00, sizeof(cuvex.nfc.tag.new_information));
-	cuvex.nfc.tag.encripted	  = 0;
-	cuvex.nfc.tag.multisigned = 0;
-	cuvex.nfc.tag.packed	  = 0;
-	cuvex.nfc.tag.cloned	  = 0;
+	memset(cuvex.nfc.tag.new_multisignature, 0x00, sizeof(cuvex.nfc.tag.new_multisignature));
+	cuvex.nfc.tag.encripted	  			= 0;
+	cuvex.nfc.tag.multisigned_total 	= 0;
+	cuvex.nfc.tag.multisigned_mandatory = 0;
+	cuvex.nfc.tag.packed	  			= 0;
+	cuvex.nfc.tag.cloned	  			= 0;
+	/***/
+	cuvex.nfc.tag.from_nfc_type	= 0;
+	memset(cuvex.nfc.tag.from_nfc_seed, 0x00, sizeof(cuvex.nfc.tag.from_nfc_seed));
+	memset(cuvex.nfc.tag.from_nfc_private_key, 0x00, sizeof(cuvex.nfc.tag.from_nfc_private_key));
+	memset(cuvex.nfc.tag.from_nfc_public_key, 0x00, sizeof(cuvex.nfc.tag.from_nfc_public_key));
+	memset(cuvex.nfc.tag.from_nfc_pass_deriv, 0x00, sizeof(cuvex.nfc.tag.from_nfc_pass_deriv));
+	memset(cuvex.nfc.tag.from_nfc_plain_text, 0x00, sizeof(cuvex.nfc.tag.from_nfc_plain_text));
 }
 
-/*
- *
- * FUNCIONES DE INTERACCIÓN CON LA MEMORIA FLASH PARA "EEPROM" SIMULADA
- *
- */
-
-/******************************************************************************************************************************************************************************
- ***** Función 		: void readFlash(uint32_t address, char* data, size_t data_size)
- ***** Descripción 	: Lectura de la memoria flash
- ***** Parámetros 	: 	- address	--> dirección de memoria
- ***** 					- data		--> puntero a array
- ***** 					- data_size	--> tamaño del array
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void readFlash(uint32_t address, char* data, size_t data_size)
 {
 	uint32_t i=0;
@@ -384,14 +439,12 @@ void readFlash(uint32_t address, char* data, size_t data_size)
 	}
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		: void writeFlash(uint32_t address, char* data, size_t data_size)
- ***** Descripción 	: Escritura de la memoria flash
- ***** Parámetros 	: 	- address	--> dirección de memoria
- ***** 					- data		--> puntero a array
- ***** 					- data_size	--> tamaño del array
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void writeFlash(uint32_t address, char* data, size_t data_size)
 {
 	uint32_t *data_p = (uint32_t*)data;
@@ -409,14 +462,12 @@ void writeFlash(uint32_t address, char* data, size_t data_size)
 	HAL_FLASH_Lock();
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		: void eraseFlash(uint32_t Banks, uint32_t Page, uint32_t NbPages)
- ***** Descripción 	: Borrado de la memoria flash
- ***** Parámetros 	:	- banks		--> banco de memoria
- ***** 					- page		--> página
- ***** 					- NbPages	--> nº de páginas
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void eraseFlash(uint32_t Banks, uint32_t Page, uint32_t NbPages)
 {
 	FLASH_EraseInitTypeDef EraseInitStruct;
@@ -439,12 +490,12 @@ void eraseFlash(uint32_t Banks, uint32_t Page, uint32_t NbPages)
 	HAL_FLASH_Lock();
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		: void initEEPROM(void)
- ***** Descripción 	: Inicialización del sector de memoria donde se simula la "EEPROM" y guardado en flash
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void initEEPROM(void)
 {
 	/*** Reseteo del buffer ***/
@@ -467,12 +518,12 @@ void initEEPROM(void)
 	writeFlash(EEPROM_ADDR, cuvex.eeprom_buffer, EEPROM_SIZE);
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		: void loadEEPROM(void)
- ***** Descripción 	: Carga en RAM de los valores almacenados en el sector que simula la "EEPROM"
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void loadEEPROM(void)
 {
 	char brightness_str[5] = {0};
@@ -510,12 +561,12 @@ void loadEEPROM(void)
 	}
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		: void editEEPROM(void)
- ***** Descripción 	: Edición del sector de memoria donde se simula la "EEPROM" y guardado en flash
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void editEEPROM(void)
 {
 	static uint8_t last_brightness = 0, last_mode = 0, last_language = 0, last_errors = 0;
@@ -562,11 +613,11 @@ void editEEPROM(void)
 			memcpy(cuvex.eeprom_buffer + 64, "#E:0", 4);
 		}
 
-		/*** Guardado en memoria flash ***/
+		/*** Save in flash memory ***/
 		eraseFlash(FLASH_BANK_2, EEPROM_PAGE, 1);
 		writeFlash(EEPROM_ADDR, cuvex.eeprom_buffer, EEPROM_SIZE);
 
-		/*** Guardado en RAM de valores pasados ***/
+		/*** Save last values in RAM memory ***/
 		last_brightness = cuvex.info.brightness;
 		last_mode 		= cuvex.info.mode;
 		last_language 	= cuvex.info.language;
@@ -574,37 +625,44 @@ void editEEPROM(void)
 	}
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		: void eraseSignature(void)
- ***** Descripción 	: Borrado completo del sector de memoria que almacena la firma y reseteo del mcu
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void saveDeviceAlias(void)
+{
+	eraseFlash(FLASH_BANK_2, DEV_ALIAS_PAGE, 1);
+	writeFlash(DEV_ALIAS_ADDR, cuvex.device_alias_buffer, DEV_ALIAS_SIZE);
+	NVIC_SystemReset();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void eraseSignature(void)
 {
 	eraseFlash(FLASH_BANK_2, SIGNATURE_PAGE, 1);
 	NVIC_SystemReset();
 }
 
-/*
- *
- * FUNCIONES AUXILIARES
- *
- */
-
-/******************************************************************************************************************************************************************************
- ***** Función 		: void getCuvexVersions(void)
- ***** Descripción 	: Obtención de las versiones de firmware/hardware del dispositivo
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void getCuvexVersions(void)
 {
-	/*** Obtención de la versión de firmware ***/
+	/*** Get firmware version ***/
 	memset(cuvex.info.fw_version, 0x00, sizeof(cuvex.info.fw_version));
 	memcpy(cuvex.info.fw_version, FIRMWARE_VERSION, strlen(FIRMWARE_VERSION));
 
-	/*** Obtención de la versión de hardware ***/
+	/*** Get hardware version ***/
 	memset(cuvex.info.hw_version, 0x00, sizeof(cuvex.info.hw_version));
 
 	if((HAL_GPIO_ReadPin(HW_VER_3_GPIO_Port, HW_VER_3_Pin) == GPIO_PIN_RESET) && (HAL_GPIO_ReadPin(HW_VER_2_GPIO_Port, HW_VER_2_Pin) == GPIO_PIN_RESET) && (HAL_GPIO_ReadPin(HW_VER_1_GPIO_Port, HW_VER_1_Pin) == GPIO_PIN_RESET)){

@@ -1,5 +1,18 @@
-/*
- * mainTask.h
+/**
+ ******************************************************************************
+ * @file           : mainTask.h
+ * @brief          : Header for mainTask.c file.
+ *                   This file contains the common defines of the mainTask.
+ ******************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
  */
 
 #ifndef INC_MAINTASK_H_
@@ -23,18 +36,13 @@ void eraseFlash(uint32_t Banks, uint32_t Page, uint32_t NbPages);
 void initEEPROM(void);
 void loadEEPROM(void);
 void editEEPROM(void);
+void saveDeviceAlias(void);
 void eraseSignature(void);
 void getCuvexVersions(void);
 
-/********************************************************************** Defines's **********************************************************************/
-
-/****************************************************************** Enum's + Struct's ******************************************************************/
-
-/********************************************************************* Variable's **********************************************************************/
-
 /********************************************************************** Extern's ***********************************************************************/
-extern osMessageQueueId_t guiToMainQueueHandle;	//RX --> guiTask a mainTask
-extern osMessageQueueId_t mainToGuiQueueHandle;	//TX --> mainTask a guiTask
+extern osMessageQueueId_t guiToMainQueueHandle;	//RX --> guiTask to mainTask
+extern osMessageQueueId_t mainToGuiQueueHandle;	//TX --> mainTask to guiTask
 extern CRYP_HandleTypeDef hcryp;
 extern struct cuvex cuvex;
 

@@ -1,0 +1,43 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Application.hpp:91:18:virtual void touchgfx::Application::appSwitchScreen(uint8_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Application.hpp:104:18:virtual void touchgfx::Application::requestRedraw(touchgfx::Rect&)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp:72:18:virtual void touchgfx::Transition::tearDown()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp:80:18:virtual void touchgfx::Transition::init()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp:100:18:virtual void touchgfx::Transition::setScreenContainer(touchgfx::Container&)	1
+../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:59:18:virtual void touchgfx::MVPApplication::handlePendingScreenTransition()	3
+../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp:16:13:FrontendApplicationBase::~FrontendApplicationBase()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/NoTransition.hpp:35:18:virtual void touchgfx::NoTransition::handleTickEvent()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/NoTransition.hpp:31:7:touchgfx::NoTransition::~NoTransition()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:424:8:touchgfx::Callback<FrontendApplicationBase>::~Callback()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:449:18:void touchgfx::Callback<dest_type, void, void, void>::execute() [with dest_type = FrontendApplicationBase]	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:459:18:bool touchgfx::Callback<dest_type, void, void, void>::isValid() const [with dest_type = FrontendApplicationBase]	3
+../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/NoTransition.hpp:31:7:virtual touchgfx::NoTransition::~NoTransition()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:424:8:virtual touchgfx::Callback<FrontendApplicationBase>::~Callback()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp:16:13:virtual FrontendApplicationBase::~FrontendApplicationBase()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/transitions/Transition.hpp:89:18:virtual void touchgfx::Transition::invalidate()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp:18:18:virtual void FrontendApplicationBase::changeToStartScreen()	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:31:1:FrontendApplicationBase::FrontendApplicationBase(Model&, FrontendHeap&)	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:51:6:void FrontendApplicationBase::gotoscreen_initScreenNoTransition()	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:64:6:void FrontendApplicationBase::gotoscreen_menuScreenNoTransition()	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:77:6:void FrontendApplicationBase::gotoscreen_flow_1ScreenNoTransition()	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:90:6:void FrontendApplicationBase::gotoscreen_flow_2ScreenNoTransition()	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:103:6:void FrontendApplicationBase::gotoscreen_flow_3ScreenNoTransition()	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:116:6:void FrontendApplicationBase::gotoscreen_flow_4ScreenNoTransition()	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:129:6:void FrontendApplicationBase::gotoscreen_flow_5ScreenNoTransition()	1
+../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, ModelType*) [with ScreenType = screen_initView; PresenterType = screen_initPresenter; TransType = touchgfx::NoTransition; ModelType = Model]	10
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:57:6:void FrontendApplicationBase::gotoscreen_initScreenNoTransitionImpl()	1
+../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, ModelType*) [with ScreenType = screen_menuView; PresenterType = screen_menuPresenter; TransType = touchgfx::NoTransition; ModelType = Model]	10
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:70:6:void FrontendApplicationBase::gotoscreen_menuScreenNoTransitionImpl()	1
+../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, ModelType*) [with ScreenType = screen_flow_1View; PresenterType = screen_flow_1Presenter; TransType = touchgfx::NoTransition; ModelType = Model]	10
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:83:6:void FrontendApplicationBase::gotoscreen_flow_1ScreenNoTransitionImpl()	1
+../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, ModelType*) [with ScreenType = screen_flow_2View; PresenterType = screen_flow_2Presenter; TransType = touchgfx::NoTransition; ModelType = Model]	10
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:96:6:void FrontendApplicationBase::gotoscreen_flow_2ScreenNoTransitionImpl()	1
+../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, ModelType*) [with ScreenType = screen_flow_3View; PresenterType = screen_flow_3Presenter; TransType = touchgfx::NoTransition; ModelType = Model]	10
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:109:6:void FrontendApplicationBase::gotoscreen_flow_3ScreenNoTransitionImpl()	1
+../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, ModelType*) [with ScreenType = screen_flow_4View; PresenterType = screen_flow_4Presenter; TransType = touchgfx::NoTransition; ModelType = Model]	10
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:122:6:void FrontendApplicationBase::gotoscreen_flow_4ScreenNoTransitionImpl()	1
+../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(touchgfx::Screen**, touchgfx::Presenter**, touchgfx::MVPHeap&, touchgfx::Transition**, ModelType*) [with ScreenType = screen_flow_5View; PresenterType = screen_flow_5Presenter; TransType = touchgfx::NoTransition; ModelType = Model]	10
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:135:6:void FrontendApplicationBase::gotoscreen_flow_5ScreenNoTransitionImpl()	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:138:1:cpp)	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:138:1:cpp)	1

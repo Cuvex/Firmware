@@ -2,7 +2,7 @@
 /******************************************************************************
   * @attention
   *
-  * Portion Copyright (C) 2023 Semilla3 OÜ.  All Rights Reserved.
+  * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
   *
   *
   * Unless required by applicable law or agreed to in writing, software 

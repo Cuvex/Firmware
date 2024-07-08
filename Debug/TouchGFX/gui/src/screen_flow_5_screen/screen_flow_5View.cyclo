@@ -1,0 +1,23 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:144:18:virtual void touchgfx::Screen::handleTickEvent()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:32:6:virtual void screen_flow_5View::tearDownScreen()	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:49:6:virtual void screen_flow_5View::changeScreen(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:60:6:virtual void screen_flow_5View::changeFlash(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:214:6:virtual void screen_flow_5View::sliderSetDutyCicle(int)	1
+../TouchGFX/gui/include/gui/screen_flow_5_screen/screen_flow_5View.hpp:26:13:screen_flow_5View::~screen_flow_5View()	1
+../TouchGFX/gui/include/gui/screen_flow_5_screen/screen_flow_5View.hpp:26:13:virtual screen_flow_5View::~screen_flow_5View()	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:19:1:screen_flow_5View::screen_flow_5View()	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:77:6:virtual void screen_flow_5View::menuVersionPressed()	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:123:6:virtual void screen_flow_5View::menuLanguagePressed()	2
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:147:6:virtual void screen_flow_5View::menuAppearancePressed()	2
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:171:6:virtual void screen_flow_5View::versionUpdatePressed()	5
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:290:6:virtual void screen_flow_5View::backPressed()	2
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:326:6:virtual void screen_flow_5View::setScreenMode()	2
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:258:6:virtual void screen_flow_5View::appearanceLightPressed()	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:274:6:virtual void screen_flow_5View::appearanceDarkPressed()	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:446:6:virtual void screen_flow_5View::setScreenLanguage()	2
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:24:6:virtual void screen_flow_5View::setupScreen()	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:226:6:virtual void screen_flow_5View::languageEnglishPressed()	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:242:6:virtual void screen_flow_5View::languageSpanishPressed()	1
+../TouchGFX/gui/src/screen_flow_5_screen/screen_flow_5View.cpp:105:6:virtual void screen_flow_5View::menuBrightnessPressed()	1

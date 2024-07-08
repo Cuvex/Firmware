@@ -1,0 +1,127 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:121:18:virtual void touchgfx::Drawable::invalidateContent() const	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:147:23:virtual touchgfx::Drawable* touchgfx::Drawable::getFirstChild()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:315:18:virtual void touchgfx::Drawable::setX(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:327:18:virtual void touchgfx::Drawable::setY(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:356:18:virtual void touchgfx::Drawable::setWidth(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:368:18:virtual void touchgfx::Drawable::setHeight(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:378:18:virtual void touchgfx::Drawable::childGeometryChanged()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:389:18:virtual void touchgfx::Drawable::handleClickEvent(const touchgfx::ClickEvent&)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:401:18:virtual void touchgfx::Drawable::handleGestureEvent(const touchgfx::GestureEvent&)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:490:18:virtual void touchgfx::Drawable::handleDragEvent(const touchgfx::DragEvent&)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:501:18:virtual void touchgfx::Drawable::handleTickEvent()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:588:18:virtual void touchgfx::Drawable::moveTo(int16_t, int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:703:18:virtual void touchgfx::Drawable::setupDrawChain(const touchgfx::Rect&, touchgfx::Drawable**)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Widget.hpp:45:18:virtual void touchgfx::Widget::getLastChild(int16_t, int16_t, touchgfx::Drawable**)	3
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/Container.hpp:165:23:virtual touchgfx::Drawable* touchgfx::Container::getFirstChild()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:115:18:virtual void touchgfx::Screen::tearDownScreen()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/AbstractButtonContainer.hpp:99:18:virtual void touchgfx::AbstractButtonContainer::executeAction()	3
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/AbstractButtonContainer.hpp:114:18:virtual void touchgfx::AbstractButtonContainer::handlePressedUpdated()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/AbstractButtonContainer.hpp:119:18:virtual void touchgfx::AbstractButtonContainer::handleAlphaUpdated()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/ClickButtonTrigger.hpp:47:18:virtual void touchgfx::ClickButtonTrigger::handleClickEvent(const touchgfx::ClickEvent&)	5
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/RepeatButtonTrigger.hpp:117:18:virtual void touchgfx::RepeatButtonTrigger::handleTickEvent()	3
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:48:18:virtual void touchgfx::TextArea::setWidth(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:54:18:virtual void touchgfx::TextArea::setHeight(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:60:18:virtual touchgfx::Rect touchgfx::TextArea::getSolidRect() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:89:18:virtual void touchgfx::TextArea::setAlpha(uint8_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:127:18:virtual void touchgfx::TextArea::setXBaselineY(int16_t, int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:403:41:virtual const UnicodeChar* touchgfx::TextArea::getWildcard2() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:43:18:virtual void touchgfx::TextAreaWithWildcardBase::invalidateContent() const	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:49:36:virtual touchgfx::TextArea::BoundingArea touchgfx::TextAreaWithWildcardBase::calculateBoundingArea() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:84:41:virtual const UnicodeChar* touchgfx::TextAreaWithOneWildcard::getWildcard1() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:147:41:virtual const UnicodeChar* touchgfx::TextAreaWithTwoWildcards::getWildcard1() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:166:41:virtual const UnicodeChar* touchgfx::TextAreaWithTwoWildcards::getWildcard2() const	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:41:18:virtual void screen_flow_2ViewBase::tickEventScreen()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:45:18:virtual void screen_flow_2ViewBase::menuBip39Pressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:49:18:virtual void screen_flow_2ViewBase::menuPlainTextPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:53:18:virtual void screen_flow_2ViewBase::hideKeyboard1SeedPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:57:18:virtual void screen_flow_2ViewBase::showKeyboard1SeedPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:61:18:virtual void screen_flow_2ViewBase::enterKeyboard1SeedPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:65:18:virtual void screen_flow_2ViewBase::hideKeyboard2SeedPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:69:18:virtual void screen_flow_2ViewBase::showKeyboard2SeedPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:73:18:virtual void screen_flow_2ViewBase::enterKeyboard2SeedPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:77:18:virtual void screen_flow_2ViewBase::hideKeyboard3SeedPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:81:18:virtual void screen_flow_2ViewBase::showKeyboard3SeedPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:85:18:virtual void screen_flow_2ViewBase::enterKeyboard3SeedPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:89:18:virtual void screen_flow_2ViewBase::hideKeyboardPlainTextPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:93:18:virtual void screen_flow_2ViewBase::showKeyboardPlainTextPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:97:18:virtual void screen_flow_2ViewBase::enterKeyboardPlainTextPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:101:18:virtual void screen_flow_2ViewBase::hideKeyboardPasswordPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:105:18:virtual void screen_flow_2ViewBase::enterKeyboardPasswordPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:109:18:virtual void screen_flow_2ViewBase::encryptPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:113:18:virtual void screen_flow_2ViewBase::multisignedYesPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:117:18:virtual void screen_flow_2ViewBase::multisignedNoPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:121:18:virtual void screen_flow_2ViewBase::passwordSuccessPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:125:18:virtual void screen_flow_2ViewBase::successPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:129:18:virtual void screen_flow_2ViewBase::btnUpPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:133:18:virtual void screen_flow_2ViewBase::btnDownPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:137:18:virtual void screen_flow_2ViewBase::eye1Pressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:141:18:virtual void screen_flow_2ViewBase::eye2Pressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:145:18:virtual void screen_flow_2ViewBase::show1KeyboardPasswordPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:149:18:virtual void screen_flow_2ViewBase::show2KeyboardPasswordPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:153:18:virtual void screen_flow_2ViewBase::multisignedPlusPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:157:18:virtual void screen_flow_2ViewBase::multisignedMinusPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:161:18:virtual void screen_flow_2ViewBase::multisignedSelectPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:165:18:virtual void screen_flow_2ViewBase::btnScrollUpPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:169:18:virtual void screen_flow_2ViewBase::btnScrollDownPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:173:18:virtual void screen_flow_2ViewBase::retryPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:177:18:virtual void screen_flow_2ViewBase::hideKeyboardAliasPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:181:18:virtual void screen_flow_2ViewBase::showKeyboardAliasPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:185:18:virtual void screen_flow_2ViewBase::enterKeyboardAliasPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:189:18:virtual void screen_flow_2ViewBase::menuSlip39Pressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:193:18:virtual void screen_flow_2ViewBase::menuXmrPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:197:18:virtual void screen_flow_2ViewBase::menuTextFromNfcPressed()	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:201:18:virtual void screen_flow_2ViewBase::btnFromNfcErrorPressed()	1
+../TouchGFX/generated/gui_generated/src/screen_flow_2_screen/screen_flow_2ViewBase.cpp:1013:6:void screen_flow_2ViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer&)	44
+../TouchGFX/generated/gui_generated/src/screen_flow_2_screen/screen_flow_2ViewBase.cpp:1318:6:void screen_flow_2ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton&)	3
+../TouchGFX/generated/gui_generated/src/screen_flow_2_screen/screen_flow_2ViewBase.cpp:1336:6:virtual void screen_flow_2ViewBase::handleTickEvent()	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:41:7:touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>::~BoxWithBorderButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/RepeatButtonTrigger.hpp:34:7:touchgfx::RepeatButtonTrigger::~RepeatButtonTrigger()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:123:18:void touchgfx::BoxWithBorderButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::ClickButtonTrigger]	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:138:18:void touchgfx::TextButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/WildcardTextButtonStyle.hpp:156:18:void touchgfx::WildcardTextButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:touchgfx::Callback<screen_flow_2ViewBase, const touchgfx::AbstractButton&>::~Callback()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:touchgfx::Callback<screen_flow_2ViewBase, const touchgfx::AbstractButtonContainer&>::~Callback()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/WildcardTextButtonStyle.hpp:51:7:touchgfx::WildcardTextButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >::~WildcardTextButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:44:7:touchgfx::IconButtonStyle<touchgfx::RepeatButtonTrigger>::~IconButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:44:7:touchgfx::IconButtonStyle<touchgfx::ClickButtonTrigger>::~IconButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:43:7:touchgfx::TextButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >::~TextButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:125:7:touchgfx::TextAreaWithTwoWildcards::~TextAreaWithTwoWildcards()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:62:7:touchgfx::TextAreaWithOneWildcard::~TextAreaWithOneWildcard()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:386:18:void touchgfx::Callback<dest_type, T1, void, void>::execute(T1) [with dest_type = screen_flow_2ViewBase; T1 = const touchgfx::AbstractButton&]	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:396:18:bool touchgfx::Callback<dest_type, T1, void, void>::isValid() const [with dest_type = screen_flow_2ViewBase; T1 = const touchgfx::AbstractButton&]	3
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:386:18:void touchgfx::Callback<dest_type, T1, void, void>::execute(T1) [with dest_type = screen_flow_2ViewBase; T1 = const touchgfx::AbstractButtonContainer&]	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:396:18:bool touchgfx::Callback<dest_type, T1, void, void>::isValid() const [with dest_type = screen_flow_2ViewBase; T1 = const touchgfx::AbstractButtonContainer&]	3
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/WildcardTextButtonStyle.hpp:163:18:void touchgfx::WildcardTextButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:144:18:void touchgfx::IconButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::RepeatButtonTrigger]	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:144:18:void touchgfx::IconButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::ClickButtonTrigger]	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:145:18:void touchgfx::TextButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:131:18:void touchgfx::BoxWithBorderButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::ClickButtonTrigger]	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:137:18:void touchgfx::IconButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::RepeatButtonTrigger]	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:137:18:void touchgfx::IconButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::ClickButtonTrigger]	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/RepeatButtonTrigger.hpp:34:7:virtual touchgfx::RepeatButtonTrigger::~RepeatButtonTrigger()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:44:7:virtual touchgfx::IconButtonStyle<touchgfx::RepeatButtonTrigger>::~IconButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:44:7:virtual touchgfx::IconButtonStyle<touchgfx::ClickButtonTrigger>::~IconButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:125:7:virtual touchgfx::TextAreaWithTwoWildcards::~TextAreaWithTwoWildcards()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:62:7:virtual touchgfx::TextAreaWithOneWildcard::~TextAreaWithOneWildcard()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:41:7:virtual touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>::~BoxWithBorderButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/WildcardTextButtonStyle.hpp:51:7:virtual touchgfx::WildcardTextButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >::~WildcardTextButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:43:7:virtual touchgfx::TextButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >::~TextButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:virtual touchgfx::Callback<screen_flow_2ViewBase, const touchgfx::AbstractButtonContainer&>::~Callback()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:virtual touchgfx::Callback<screen_flow_2ViewBase, const touchgfx::AbstractButton&>::~Callback()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:111:18:virtual void touchgfx::TextArea::setBaselineY(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/RepeatButtonTrigger.hpp:93:18:virtual void touchgfx::RepeatButtonTrigger::handleClickEvent(const touchgfx::ClickEvent&)	5
+../TouchGFX/generated/gui_generated/src/screen_flow_2_screen/screen_flow_2ViewBase.cpp:987:1:screen_flow_2ViewBase::~screen_flow_2ViewBase()	1
+../TouchGFX/generated/gui_generated/src/screen_flow_2_screen/screen_flow_2ViewBase.cpp:987:1:virtual screen_flow_2ViewBase::~screen_flow_2ViewBase()	1
+../TouchGFX/generated/gui_generated/src/screen_flow_2_screen/screen_flow_2ViewBase.cpp:992:6:virtual void screen_flow_2ViewBase::setupScreen()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:59:18:void touchgfx::IconButtonStyle<T>::setIconBitmaps(const touchgfx::Bitmap&, const touchgfx::Bitmap&) [with T = touchgfx::ClickButtonTrigger]	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:59:18:void touchgfx::IconButtonStyle<T>::setIconBitmaps(const touchgfx::Bitmap&, const touchgfx::Bitmap&) [with T = touchgfx::RepeatButtonTrigger]	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:343:10:void touchgfx::Drawable::setXY(int16_t, int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:413:10:void touchgfx::Drawable::setWidthHeight(int16_t, int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:46:5:touchgfx::TextButtonStyle<T>::TextButtonStyle() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	1
+../TouchGFX/generated/gui_generated/src/screen_flow_2_screen/screen_flow_2ViewBase.cpp:10:1:screen_flow_2ViewBase::screen_flow_2ViewBase()	1
+../TouchGFX/generated/gui_generated/src/screen_flow_2_screen/screen_flow_2ViewBase.cpp:1347:1:cpp)	1
+../TouchGFX/generated/gui_generated/src/screen_flow_2_screen/screen_flow_2ViewBase.cpp:1347:1:cpp)	1

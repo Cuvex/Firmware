@@ -1,0 +1,22 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:121:18:virtual void touchgfx::Drawable::invalidateContent() const	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:147:23:virtual touchgfx::Drawable* touchgfx::Drawable::getFirstChild()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:315:18:virtual void touchgfx::Drawable::setX(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:327:18:virtual void touchgfx::Drawable::setY(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:356:18:virtual void touchgfx::Drawable::setWidth(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:368:18:virtual void touchgfx::Drawable::setHeight(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:378:18:virtual void touchgfx::Drawable::childGeometryChanged()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:389:18:virtual void touchgfx::Drawable::handleClickEvent(const touchgfx::ClickEvent&)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:401:18:virtual void touchgfx::Drawable::handleGestureEvent(const touchgfx::GestureEvent&)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:490:18:virtual void touchgfx::Drawable::handleDragEvent(const touchgfx::DragEvent&)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:501:18:virtual void touchgfx::Drawable::handleTickEvent()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:588:18:virtual void touchgfx::Drawable::moveTo(int16_t, int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:703:18:virtual void touchgfx::Drawable::setupDrawChain(const touchgfx::Rect&, touchgfx::Drawable**)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Widget.hpp:45:18:virtual void touchgfx::Widget::getLastChild(int16_t, int16_t, touchgfx::Drawable**)	3
+../TouchGFX/gui/src/widgets/qrcode/QRCodeWidget.cpp:60:16:virtual touchgfx::Rect QRCodeWidget::getSolidRect() const	1
+../TouchGFX/gui/include/gui/widgets/qrcode/QRCodeWidget.hpp:32:7:QRCodeWidget::~QRCodeWidget()	1
+../TouchGFX/gui/src/widgets/qrcode/QRCodeWidget.cpp:32:6:virtual void QRCodeWidget::draw(const touchgfx::Rect&) const	9
+../TouchGFX/gui/include/gui/widgets/qrcode/QRCodeWidget.hpp:32:7:virtual QRCodeWidget::~QRCodeWidget()	1
+../TouchGFX/gui/src/widgets/qrcode/QRCodeWidget.cpp:21:1:QRCodeWidget::QRCodeWidget()	1
+../TouchGFX/gui/src/widgets/qrcode/QRCodeWidget.cpp:71:6:void QRCodeWidget::updateSize()	2
+../TouchGFX/gui/src/widgets/qrcode/QRCodeWidget.cpp:26:6:void QRCodeWidget::setQRCode(QR*)	1
+../TouchGFX/gui/src/widgets/qrcode/QRCodeWidget.cpp:65:6:void QRCodeWidget::setScale(uint8_t)	1

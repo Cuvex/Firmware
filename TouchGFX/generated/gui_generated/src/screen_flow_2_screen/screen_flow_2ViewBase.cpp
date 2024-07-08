@@ -8,7 +8,7 @@
 #include <images/BitmapDatabase.hpp>
 
 screen_flow_2ViewBase::screen_flow_2ViewBase() :
-    frameCountInteraction1Interval(0),
+    frameCountTickEventInterval(0),
     flexButtonCallback(this, &screen_flow_2ViewBase::flexButtonCallbackHandler),
     buttonCallback(this, &screen_flow_2ViewBase::buttonCallbackHandler)
 {
@@ -22,16 +22,16 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
     background.setColor(touchgfx::Color::getColorFromRGB(237, 237, 237));
     add(background);
 
-    s0_menu.setPosition(0, 0, 320, 240);
-    btn_seed.setBoxWithBorderPosition(0, 0, 320, 30);
-    btn_seed.setBorderSize(0);
-    btn_seed.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    btn_seed.setText(TypedText(T_SF2_S0_MENU_BTN_SEED_BIP39));
-    btn_seed.setTextPosition(0, 5, 320, 30);
-    btn_seed.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    btn_seed.setAction(flexButtonCallback);
-    btn_seed.setPosition(0, 90, 320, 30);
-    s0_menu.add(btn_seed);
+    s0_menuSelection.setPosition(0, 0, 320, 240);
+    btn_text_from_nfc.setBoxWithBorderPosition(0, 0, 320, 30);
+    btn_text_from_nfc.setBorderSize(0);
+    btn_text_from_nfc.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    btn_text_from_nfc.setText(TypedText(T_SF2_S0_MENU_BTN_TEXT_FROM_NFC));
+    btn_text_from_nfc.setTextPosition(0, 5, 320, 30);
+    btn_text_from_nfc.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_text_from_nfc.setAction(flexButtonCallback);
+    btn_text_from_nfc.setPosition(0, 165, 320, 30);
+    s0_menuSelection.add(btn_text_from_nfc);
 
     btn_plain_text.setBoxWithBorderPosition(0, 0, 320, 30);
     btn_plain_text.setBorderSize(0);
@@ -40,375 +40,461 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
     btn_plain_text.setTextPosition(0, 5, 320, 30);
     btn_plain_text.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
     btn_plain_text.setAction(flexButtonCallback);
-    btn_plain_text.setPosition(0, 120, 320, 30);
-    s0_menu.add(btn_plain_text);
+    btn_plain_text.setPosition(0, 135, 320, 30);
+    s0_menuSelection.add(btn_plain_text);
 
-    add(s0_menu);
+    btn_seed_xmr.setBoxWithBorderPosition(0, 0, 320, 30);
+    btn_seed_xmr.setBorderSize(0);
+    btn_seed_xmr.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    btn_seed_xmr.setText(TypedText(T_SF2_S0_MENU_BTN_SEED_XMR));
+    btn_seed_xmr.setTextPosition(0, 5, 320, 30);
+    btn_seed_xmr.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_seed_xmr.setAction(flexButtonCallback);
+    btn_seed_xmr.setPosition(0, 105, 320, 30);
+    s0_menuSelection.add(btn_seed_xmr);
 
-    s1_seedBip39.setPosition(0, 0, 320, 240);
-    s1_seedBip39.setVisible(false);
-    s1_1_typeNumWords.setPosition(0, 0, 320, 240);
-    keyboard1_numeric.setXY(0, 117);
-    keyboard1_numeric.setVisible(false);
-    s1_1_typeNumWords.add(keyboard1_numeric);
+    btn_seed_slip39.setBoxWithBorderPosition(0, 0, 320, 30);
+    btn_seed_slip39.setBorderSize(0);
+    btn_seed_slip39.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    btn_seed_slip39.setText(TypedText(T_SF2_S0_MENU_BTN_SEED_SLIP39));
+    btn_seed_slip39.setTextPosition(0, 5, 320, 30);
+    btn_seed_slip39.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_seed_slip39.setAction(flexButtonCallback);
+    btn_seed_slip39.setPosition(0, 75, 320, 30);
+    s0_menuSelection.add(btn_seed_slip39);
 
-    keyboard1_text_area.setXY(45, 120);
-    s1_1_typeNumWords.add(keyboard1_text_area);
+    btn_seed_bip39.setBoxWithBorderPosition(0, 0, 320, 30);
+    btn_seed_bip39.setBorderSize(0);
+    btn_seed_bip39.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    btn_seed_bip39.setText(TypedText(T_SF2_S0_MENU_BTN_SEED_BIP39));
+    btn_seed_bip39.setTextPosition(0, 5, 320, 30);
+    btn_seed_bip39.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_seed_bip39.setAction(flexButtonCallback);
+    btn_seed_bip39.setPosition(0, 45, 320, 30);
+    s0_menuSelection.add(btn_seed_bip39);
 
-    keyboard1_btn_hide.setIconBitmaps(Bitmap(BITMAP_KEYBOARDNUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDNUM_HIDE_PRESSED_ID));
-    keyboard1_btn_hide.setIconXY(0, 0);
-    keyboard1_btn_hide.setVisible(false);
-    keyboard1_btn_hide.setAction(flexButtonCallback);
-    keyboard1_btn_hide.setPosition(214, 209, 104, 28);
-    s1_1_typeNumWords.add(keyboard1_btn_hide);
+    add(s0_menuSelection);
 
-    keyboard1_btn_show.setBoxWithBorderPosition(0, 0, 169, 30);
-    keyboard1_btn_show.setBorderSize(5);
-    keyboard1_btn_show.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard1_btn_show.setAlpha(0);
-    keyboard1_btn_show.setAction(flexButtonCallback);
-    keyboard1_btn_show.setPosition(76, 120, 169, 30);
-    s1_1_typeNumWords.add(keyboard1_btn_show);
+    s1_menuContent.setPosition(0, 0, 320, 240);
+    s1_menuContent.setVisible(false);
+    s1_seed.setPosition(0, 0, 320, 240);
+    s1_seed.setVisible(false);
+    s1_seed_1_typeNumWords.setPosition(0, 0, 320, 240);
+    keyboard1_seed.setXY(0, 117);
+    keyboard1_seed.setVisible(false);
+    s1_seed_1_typeNumWords.add(keyboard1_seed);
 
-    keyboard1_btn_enter.setIconBitmaps(Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID), Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID));
-    keyboard1_btn_enter.setIconXY(1, 1);
-    keyboard1_btn_enter.setAction(flexButtonCallback);
-    keyboard1_btn_enter.setPosition(245, 120, 30, 30);
-    s1_1_typeNumWords.add(keyboard1_btn_enter);
+    keyboard1_text_area_seed.setXY(45, 120);
+    s1_seed_1_typeNumWords.add(keyboard1_text_area_seed);
 
-    keyboard1_text_typed.setPosition(76, 125, 169, 20);
-    keyboard1_text_typed.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard1_text_typed.setLinespacing(0);
-    Unicode::snprintf(keyboard1_text_typedBuffer, KEYBOARD1_TEXT_TYPED_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD1_TYPED_VALUE).getText());
-    keyboard1_text_typed.setWildcard(keyboard1_text_typedBuffer);
-    keyboard1_text_typed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD1_TYPED));
-    s1_1_typeNumWords.add(keyboard1_text_typed);
+    keyboard1_btn_hide_seed.setIconBitmaps(Bitmap(BITMAP_KEYBOARDNUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDNUM_HIDE_PRESSED_ID));
+    keyboard1_btn_hide_seed.setIconXY(0, 0);
+    keyboard1_btn_hide_seed.setVisible(false);
+    keyboard1_btn_hide_seed.setAction(flexButtonCallback);
+    keyboard1_btn_hide_seed.setPosition(214, 209, 104, 28);
+    s1_seed_1_typeNumWords.add(keyboard1_btn_hide_seed);
 
-    keyboard1_text_info.setPosition(0, 90, 320, 20);
-    keyboard1_text_info.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard1_text_info.setLinespacing(0);
-    keyboard1_text_info.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD1_INFO));
-    s1_1_typeNumWords.add(keyboard1_text_info);
+    keyboard1_btn_show_seed.setBoxWithBorderPosition(0, 0, 169, 30);
+    keyboard1_btn_show_seed.setBorderSize(5);
+    keyboard1_btn_show_seed.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    keyboard1_btn_show_seed.setAlpha(0);
+    keyboard1_btn_show_seed.setAction(flexButtonCallback);
+    keyboard1_btn_show_seed.setPosition(76, 120, 169, 30);
+    s1_seed_1_typeNumWords.add(keyboard1_btn_show_seed);
 
-    s1_seedBip39.add(s1_1_typeNumWords);
+    keyboard1_btn_enter_seed.setIconBitmaps(Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID), Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID));
+    keyboard1_btn_enter_seed.setIconXY(1, 1);
+    keyboard1_btn_enter_seed.setAction(flexButtonCallback);
+    keyboard1_btn_enter_seed.setPosition(245, 120, 30, 30);
+    s1_seed_1_typeNumWords.add(keyboard1_btn_enter_seed);
 
-    s1_2_typeWords.setPosition(0, 0, 320, 240);
-    s1_2_typeWords.setVisible(false);
-    keyboard2_BIP39.setXY(0, 117);
-    keyboard2_BIP39.setVisible(false);
-    s1_2_typeWords.add(keyboard2_BIP39);
+    keyboard1_text_typed_seed.setPosition(76, 125, 169, 20);
+    keyboard1_text_typed_seed.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    keyboard1_text_typed_seed.setLinespacing(0);
+    Unicode::snprintf(keyboard1_text_typed_seedBuffer, KEYBOARD1_TEXT_TYPED_SEED_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD1_TYPED_VALUE).getText());
+    keyboard1_text_typed_seed.setWildcard(keyboard1_text_typed_seedBuffer);
+    keyboard1_text_typed_seed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD1_TYPED));
+    s1_seed_1_typeNumWords.add(keyboard1_text_typed_seed);
 
-    keyboard2_text_area.setXY(45, 120);
-    s1_2_typeWords.add(keyboard2_text_area);
+    keyboard1_text_info_seed.setPosition(0, 90, 320, 20);
+    keyboard1_text_info_seed.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    keyboard1_text_info_seed.setLinespacing(0);
+    keyboard1_text_info_seed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD1_INFO));
+    s1_seed_1_typeNumWords.add(keyboard1_text_info_seed);
 
-    keyboard2_btn_hide.setIconBitmaps(Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_PRESSED_ID));
-    keyboard2_btn_hide.setIconXY(0, 0);
-    keyboard2_btn_hide.setVisible(false);
-    keyboard2_btn_hide.setAction(flexButtonCallback);
-    keyboard2_btn_hide.setPosition(242, 210, 75, 25);
-    s1_2_typeWords.add(keyboard2_btn_hide);
+    s1_seed.add(s1_seed_1_typeNumWords);
 
-    keyboard2_btn_show.setBoxWithBorderPosition(0, 0, 169, 30);
-    keyboard2_btn_show.setBorderSize(5);
-    keyboard2_btn_show.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard2_btn_show.setAlpha(0);
-    keyboard2_btn_show.setAction(flexButtonCallback);
-    keyboard2_btn_show.setPosition(76, 120, 169, 30);
-    s1_2_typeWords.add(keyboard2_btn_show);
+    s1_seed_2_typeWords.setPosition(0, 0, 320, 240);
+    s1_seed_2_typeWords.setVisible(false);
+    keyboard2_seed.setXY(0, 117);
+    keyboard2_seed.setVisible(false);
+    s1_seed_2_typeWords.add(keyboard2_seed);
 
-    keyboard2_btn_enter.setIconBitmaps(Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID), Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID));
-    keyboard2_btn_enter.setIconXY(1, 1);
-    keyboard2_btn_enter.setAction(flexButtonCallback);
-    keyboard2_btn_enter.setPosition(245, 120, 30, 30);
-    s1_2_typeWords.add(keyboard2_btn_enter);
+    keyboard2_text_area_seed.setXY(45, 120);
+    s1_seed_2_typeWords.add(keyboard2_text_area_seed);
 
-    keyboard2_text_typed.setPosition(76, 125, 169, 20);
-    keyboard2_text_typed.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard2_text_typed.setLinespacing(0);
-    Unicode::snprintf(keyboard2_text_typedBuffer, KEYBOARD2_TEXT_TYPED_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD2_TYPED_VALUE).getText());
-    keyboard2_text_typed.setWildcard(keyboard2_text_typedBuffer);
-    keyboard2_text_typed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD2_TYPED));
-    s1_2_typeWords.add(keyboard2_text_typed);
+    keyboard2_btn_hide_seed.setIconBitmaps(Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_PRESSED_ID));
+    keyboard2_btn_hide_seed.setIconXY(0, 0);
+    keyboard2_btn_hide_seed.setVisible(false);
+    keyboard2_btn_hide_seed.setAction(flexButtonCallback);
+    keyboard2_btn_hide_seed.setPosition(242, 210, 75, 25);
+    s1_seed_2_typeWords.add(keyboard2_btn_hide_seed);
 
-    keyboard2_text_predicted.setPosition(76, 125, 169, 20);
-    keyboard2_text_predicted.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard2_text_predicted.setLinespacing(0);
-    Unicode::snprintf(keyboard2_text_predictedBuffer, KEYBOARD2_TEXT_PREDICTED_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD2_TYPED_VALUE).getText());
-    keyboard2_text_predicted.setWildcard(keyboard2_text_predictedBuffer);
-    keyboard2_text_predicted.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD2_PREDICTED));
-    keyboard2_text_predicted.setVisible(false);
-    s1_2_typeWords.add(keyboard2_text_predicted);
+    keyboard2_btn_show_seed.setBoxWithBorderPosition(0, 0, 169, 30);
+    keyboard2_btn_show_seed.setBorderSize(5);
+    keyboard2_btn_show_seed.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    keyboard2_btn_show_seed.setAlpha(0);
+    keyboard2_btn_show_seed.setAction(flexButtonCallback);
+    keyboard2_btn_show_seed.setPosition(76, 120, 169, 30);
+    s1_seed_2_typeWords.add(keyboard2_btn_show_seed);
 
-    keyboard2_text_info.setPosition(0, 90, 320, 20);
-    keyboard2_text_info.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard2_text_info.setLinespacing(0);
-    touchgfx::Unicode::snprintf(keyboard2_text_infoBuffer1, KEYBOARD2_TEXT_INFOBUFFER1_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD2_INFO_ACTUAL_WORD_VALUE).getText());
-    keyboard2_text_info.setWildcard1(keyboard2_text_infoBuffer1);
-    touchgfx::Unicode::snprintf(keyboard2_text_infoBuffer2, KEYBOARD2_TEXT_INFOBUFFER2_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD2_INFO_TOTAL_WORDS_VALUE).getText());
-    keyboard2_text_info.setWildcard2(keyboard2_text_infoBuffer2);
-    keyboard2_text_info.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD2_INFO));
-    s1_2_typeWords.add(keyboard2_text_info);
+    keyboard2_btn_enter_seed.setIconBitmaps(Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID), Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID));
+    keyboard2_btn_enter_seed.setIconXY(1, 1);
+    keyboard2_btn_enter_seed.setAction(flexButtonCallback);
+    keyboard2_btn_enter_seed.setPosition(245, 120, 30, 30);
+    s1_seed_2_typeWords.add(keyboard2_btn_enter_seed);
 
-    s1_seedBip39.add(s1_2_typeWords);
+    keyboard2_text_typed_seed.setPosition(76, 125, 169, 20);
+    keyboard2_text_typed_seed.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    keyboard2_text_typed_seed.setLinespacing(0);
+    Unicode::snprintf(keyboard2_text_typed_seedBuffer, KEYBOARD2_TEXT_TYPED_SEED_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD2_TYPED_VALUE).getText());
+    keyboard2_text_typed_seed.setWildcard(keyboard2_text_typed_seedBuffer);
+    keyboard2_text_typed_seed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD2_TYPED));
+    s1_seed_2_typeWords.add(keyboard2_text_typed_seed);
 
-    s1_3_typePassphrase.setPosition(0, 0, 320, 240);
-    s1_3_typePassphrase.setVisible(false);
-    keyboard3_passphrase.setXY(0, 117);
-    keyboard3_passphrase.setVisible(false);
-    s1_3_typePassphrase.add(keyboard3_passphrase);
+    keyboard2_text_predicted_seed.setPosition(76, 125, 169, 20);
+    keyboard2_text_predicted_seed.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    keyboard2_text_predicted_seed.setLinespacing(0);
+    Unicode::snprintf(keyboard2_text_predicted_seedBuffer, KEYBOARD2_TEXT_PREDICTED_SEED_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD2_TYPED_VALUE).getText());
+    keyboard2_text_predicted_seed.setWildcard(keyboard2_text_predicted_seedBuffer);
+    keyboard2_text_predicted_seed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD2_PREDICTED));
+    keyboard2_text_predicted_seed.setVisible(false);
+    s1_seed_2_typeWords.add(keyboard2_text_predicted_seed);
 
-    keyboard3_text_area.setPosition(20, 40, 280, 160);
-    keyboard3_text_area.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    s1_3_typePassphrase.add(keyboard3_text_area);
+    keyboard2_text_info_seed.setPosition(0, 90, 320, 20);
+    keyboard2_text_info_seed.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    keyboard2_text_info_seed.setLinespacing(0);
+    touchgfx::Unicode::snprintf(keyboard2_text_info_seedBuffer1, KEYBOARD2_TEXT_INFO_SEEDBUFFER1_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD2_INFO_ACTUAL_WORD_VALUE).getText());
+    keyboard2_text_info_seed.setWildcard1(keyboard2_text_info_seedBuffer1);
+    touchgfx::Unicode::snprintf(keyboard2_text_info_seedBuffer2, KEYBOARD2_TEXT_INFO_SEEDBUFFER2_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD2_INFO_TOTAL_WORDS_VALUE).getText());
+    keyboard2_text_info_seed.setWildcard2(keyboard2_text_info_seedBuffer2);
+    keyboard2_text_info_seed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD2_INFO));
+    s1_seed_2_typeWords.add(keyboard2_text_info_seed);
 
-    keyboard3_btn_hide.setIconBitmaps(Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_PRESSED_ID));
-    keyboard3_btn_hide.setIconXY(0, 0);
-    keyboard3_btn_hide.setVisible(false);
-    keyboard3_btn_hide.setAction(flexButtonCallback);
-    keyboard3_btn_hide.setPosition(242, 210, 75, 25);
-    s1_3_typePassphrase.add(keyboard3_btn_hide);
+    s1_seed.add(s1_seed_2_typeWords);
 
-    keyboard3_btn_show.setBoxWithBorderPosition(0, 0, 240, 160);
-    keyboard3_btn_show.setBorderSize(5);
-    keyboard3_btn_show.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard3_btn_show.setAlpha(0);
-    keyboard3_btn_show.setAction(flexButtonCallback);
-    keyboard3_btn_show.setPosition(60, 40, 240, 160);
-    s1_3_typePassphrase.add(keyboard3_btn_show);
+    s1_seed_3_typePassphrase.setPosition(0, 0, 320, 240);
+    s1_seed_3_typePassphrase.setVisible(false);
+    keyboard3_seed.setXY(0, 117);
+    keyboard3_seed.setVisible(false);
+    s1_seed_3_typePassphrase.add(keyboard3_seed);
 
-    keyboard3_btn_enter.setBoxWithBorderPosition(0, 0, 320, 30);
-    keyboard3_btn_enter.setBorderSize(0);
-    keyboard3_btn_enter.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard3_btn_enter.setText(TypedText(T_SF2_S1_KEYBOARD3_BTN_ENTER));
-    keyboard3_btn_enter.setTextPosition(0, 5, 320, 30);
-    keyboard3_btn_enter.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    keyboard3_btn_enter.setAction(flexButtonCallback);
-    keyboard3_btn_enter.setPosition(0, 210, 320, 30);
-    s1_3_typePassphrase.add(keyboard3_btn_enter);
+    keyboard3_text_area_seed.setPosition(20, 40, 280, 160);
+    keyboard3_text_area_seed.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    s1_seed_3_typePassphrase.add(keyboard3_text_area_seed);
 
-    keyboard3_text_typed.setPosition(60, 50, 230, 150);
-    keyboard3_text_typed.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard3_text_typed.setLinespacing(0);
-    Unicode::snprintf(keyboard3_text_typedBuffer, KEYBOARD3_TEXT_TYPED_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD3_TYPED_VALUE).getText());
-    keyboard3_text_typed.setWildcard(keyboard3_text_typedBuffer);
-    keyboard3_text_typed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD3_TYPED));
-    s1_3_typePassphrase.add(keyboard3_text_typed);
+    keyboard3_btn_hide_seed.setIconBitmaps(Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_PRESSED_ID));
+    keyboard3_btn_hide_seed.setIconXY(0, 0);
+    keyboard3_btn_hide_seed.setVisible(false);
+    keyboard3_btn_hide_seed.setAction(flexButtonCallback);
+    keyboard3_btn_hide_seed.setPosition(242, 210, 75, 25);
+    s1_seed_3_typePassphrase.add(keyboard3_btn_hide_seed);
 
-    keyboard3_text_info_1.setPosition(0, 0, 320, 20);
-    keyboard3_text_info_1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard3_text_info_1.setLinespacing(0);
-    keyboard3_text_info_1.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD3_INFO_1));
-    s1_3_typePassphrase.add(keyboard3_text_info_1);
+    keyboard3_btn_show_seed.setBoxWithBorderPosition(0, 0, 240, 160);
+    keyboard3_btn_show_seed.setBorderSize(5);
+    keyboard3_btn_show_seed.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    keyboard3_btn_show_seed.setAlpha(0);
+    keyboard3_btn_show_seed.setAction(flexButtonCallback);
+    keyboard3_btn_show_seed.setPosition(60, 40, 240, 160);
+    s1_seed_3_typePassphrase.add(keyboard3_btn_show_seed);
 
-    keyboard3_text_info_2.setPosition(0, 20, 320, 20);
-    keyboard3_text_info_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard3_text_info_2.setLinespacing(0);
-    keyboard3_text_info_2.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD3_INFO_2));
-    s1_3_typePassphrase.add(keyboard3_text_info_2);
+    keyboard3_btn_enter_seed.setBoxWithBorderPosition(0, 0, 320, 30);
+    keyboard3_btn_enter_seed.setBorderSize(0);
+    keyboard3_btn_enter_seed.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    keyboard3_btn_enter_seed.setText(TypedText(T_SF2_S1_KEYBOARD3_BTN_ENTER));
+    keyboard3_btn_enter_seed.setTextPosition(0, 5, 320, 30);
+    keyboard3_btn_enter_seed.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    keyboard3_btn_enter_seed.setAction(flexButtonCallback);
+    keyboard3_btn_enter_seed.setPosition(0, 210, 320, 30);
+    s1_seed_3_typePassphrase.add(keyboard3_btn_enter_seed);
 
-    keyboard3_btn_up.setIconBitmaps(Bitmap(BITMAP_ARROW_UP_ID), Bitmap(BITMAP_ARROW_UP_ID));
-    keyboard3_btn_up.setIconXY(0, 0);
-    keyboard3_btn_up.setAction(flexButtonCallback);
-    keyboard3_btn_up.setPosition(30, 50, 20, 20);
-    s1_3_typePassphrase.add(keyboard3_btn_up);
+    keyboard3_text_typed_seed.setPosition(60, 50, 230, 150);
+    keyboard3_text_typed_seed.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    keyboard3_text_typed_seed.setLinespacing(0);
+    Unicode::snprintf(keyboard3_text_typed_seedBuffer, KEYBOARD3_TEXT_TYPED_SEED_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD3_TYPED_VALUE).getText());
+    keyboard3_text_typed_seed.setWildcard(keyboard3_text_typed_seedBuffer);
+    keyboard3_text_typed_seed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD3_TYPED));
+    s1_seed_3_typePassphrase.add(keyboard3_text_typed_seed);
 
-    keyboard3_btn_down.setIconBitmaps(Bitmap(BITMAP_ARROW_DOWN_ID), Bitmap(BITMAP_ARROW_DOWN_ID));
-    keyboard3_btn_down.setIconXY(0, 0);
-    keyboard3_btn_down.setAction(flexButtonCallback);
-    keyboard3_btn_down.setPosition(30, 170, 20, 20);
-    s1_3_typePassphrase.add(keyboard3_btn_down);
+    keyboard3_text_info_1_seed.setPosition(0, 0, 320, 20);
+    keyboard3_text_info_1_seed.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    keyboard3_text_info_1_seed.setLinespacing(0);
+    keyboard3_text_info_1_seed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD3_INFO_1));
+    s1_seed_3_typePassphrase.add(keyboard3_text_info_1_seed);
 
-    keyboard3_char_count.setPosition(250, 188, 50, 12);
-    keyboard3_char_count.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard3_char_count.setLinespacing(0);
-    Unicode::snprintf(keyboard3_char_countBuffer, KEYBOARD3_CHAR_COUNT_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD3_CHAR_COUNT_VALUE).getText());
-    keyboard3_char_count.setWildcard(keyboard3_char_countBuffer);
-    keyboard3_char_count.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD3_CHAR_COUNT));
-    keyboard3_char_count.setAlpha(200);
-    s1_3_typePassphrase.add(keyboard3_char_count);
+    keyboard3_text_info_2_seed.setPosition(0, 20, 320, 20);
+    keyboard3_text_info_2_seed.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    keyboard3_text_info_2_seed.setLinespacing(0);
+    keyboard3_text_info_2_seed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD3_INFO_2));
+    s1_seed_3_typePassphrase.add(keyboard3_text_info_2_seed);
 
-    s1_seedBip39.add(s1_3_typePassphrase);
+    keyboard3_btn_up_seed.setIconBitmaps(Bitmap(BITMAP_ARROW_UP_ID), Bitmap(BITMAP_ARROW_UP_ID));
+    keyboard3_btn_up_seed.setIconXY(0, 0);
+    keyboard3_btn_up_seed.setAction(flexButtonCallback);
+    keyboard3_btn_up_seed.setPosition(30, 50, 20, 20);
+    s1_seed_3_typePassphrase.add(keyboard3_btn_up_seed);
 
-    s1_4_checkSeedInfo.setPosition(0, 0, 320, 240);
-    s1_4_checkSeedInfo.setVisible(false);
-    btn_encrypt1.setBoxWithBorderPosition(0, 0, 320, 30);
-    btn_encrypt1.setBorderSize(0);
-    btn_encrypt1.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    btn_encrypt1.setText(TypedText(T_SF2_S1_BTN_ENCRYPT_SEED));
-    btn_encrypt1.setTextPosition(0, 5, 320, 30);
-    btn_encrypt1.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    btn_encrypt1.setAction(flexButtonCallback);
-    btn_encrypt1.setPosition(0, 210, 320, 30);
-    s1_4_checkSeedInfo.add(btn_encrypt1);
+    keyboard3_btn_down_seed.setIconBitmaps(Bitmap(BITMAP_ARROW_DOWN_ID), Bitmap(BITMAP_ARROW_DOWN_ID));
+    keyboard3_btn_down_seed.setIconXY(0, 0);
+    keyboard3_btn_down_seed.setAction(flexButtonCallback);
+    keyboard3_btn_down_seed.setPosition(30, 170, 20, 20);
+    s1_seed_3_typePassphrase.add(keyboard3_btn_down_seed);
 
-    container_typed_check1.setPosition(0, 50, 320, 120);
-    btn_scroll_down1.setDelay(30);
-    btn_scroll_down1.setInterval(6);
-    btn_scroll_down1.setIconBitmaps(Bitmap(BITMAP_ARROW_DOWN_ID), Bitmap(BITMAP_ARROW_DOWN_ID));
-    btn_scroll_down1.setIconXY(5, 5);
-    btn_scroll_down1.setAction(flexButtonCallback);
-    btn_scroll_down1.setPosition(15, 80, 30, 30);
-    container_typed_check1.add(btn_scroll_down1);
+    keyboard3_char_count_seed.setPosition(250, 188, 50, 12);
+    keyboard3_char_count_seed.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    keyboard3_char_count_seed.setLinespacing(0);
+    Unicode::snprintf(keyboard3_char_count_seedBuffer, KEYBOARD3_CHAR_COUNT_SEED_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_KEYBOARD3_CHAR_COUNT_VALUE).getText());
+    keyboard3_char_count_seed.setWildcard(keyboard3_char_count_seedBuffer);
+    keyboard3_char_count_seed.setTypedText(touchgfx::TypedText(T_SF2_S1_KEYBOARD3_CHAR_COUNT));
+    keyboard3_char_count_seed.setAlpha(200);
+    s1_seed_3_typePassphrase.add(keyboard3_char_count_seed);
 
-    btn_scroll_up1.setDelay(30);
-    btn_scroll_up1.setInterval(6);
-    btn_scroll_up1.setIconBitmaps(Bitmap(BITMAP_ARROW_UP_ID), Bitmap(BITMAP_ARROW_UP_ID));
-    btn_scroll_up1.setIconXY(5, 5);
-    btn_scroll_up1.setAction(flexButtonCallback);
-    btn_scroll_up1.setPosition(15, 10, 30, 30);
-    container_typed_check1.add(btn_scroll_up1);
+    s1_seed.add(s1_seed_3_typePassphrase);
 
-    scrollable_container_typed_check1.setPosition(60, 0, 220, 120);
-    scrollable_container_typed_check1.enableHorizontalScroll(false);
-    scrollable_container_typed_check1.setScrollbarsColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    scrollable_container_typed_check1.setScrollbarsAlpha(255);
-    scrollable_container_typed_check1.setScrollbarsVisible(false);
-    typed_check1.setPosition(0, 0, 220, 120);
-    typed_check1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    typed_check1.setLinespacing(0);
-    Unicode::snprintf(typed_check1Buffer, TYPED_CHECK1_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_TYPED_SEED39_CHECK_VALUE).getText());
-    typed_check1.setWildcard(typed_check1Buffer);
-    typed_check1.setTypedText(touchgfx::TypedText(T_SF2_S1_TYPED_SEED39_CHECK));
-    scrollable_container_typed_check1.add(typed_check1);
+    s1_menuContent.add(s1_seed);
 
-    container_typed_check1.add(scrollable_container_typed_check1);
+    s1_plainText.setPosition(0, 0, 320, 240);
+    s1_plainText.setVisible(false);
+    s1_plainText_1_typePlainText.setPosition(0, 0, 320, 240);
+    keyboard_plain_text.setXY(0, 117);
+    keyboard_plain_text.setVisible(false);
+    s1_plainText_1_typePlainText.add(keyboard_plain_text);
 
-    s1_4_checkSeedInfo.add(container_typed_check1);
+    keyboard_text_area_plain_text.setPosition(20, 40, 280, 160);
+    keyboard_text_area_plain_text.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    s1_plainText_1_typePlainText.add(keyboard_text_area_plain_text);
 
-    s1_seedBip39.add(s1_4_checkSeedInfo);
+    keyboard_btn_hide_plain_text.setIconBitmaps(Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_PRESSED_ID));
+    keyboard_btn_hide_plain_text.setIconXY(0, 0);
+    keyboard_btn_hide_plain_text.setVisible(false);
+    keyboard_btn_hide_plain_text.setAction(flexButtonCallback);
+    keyboard_btn_hide_plain_text.setPosition(242, 210, 75, 25);
+    s1_plainText_1_typePlainText.add(keyboard_btn_hide_plain_text);
 
-    add(s1_seedBip39);
+    keyboard_btn_show_plain_text.setBoxWithBorderPosition(0, 0, 240, 160);
+    keyboard_btn_show_plain_text.setBorderSize(5);
+    keyboard_btn_show_plain_text.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    keyboard_btn_show_plain_text.setAlpha(0);
+    keyboard_btn_show_plain_text.setAction(flexButtonCallback);
+    keyboard_btn_show_plain_text.setPosition(60, 40, 240, 160);
+    s1_plainText_1_typePlainText.add(keyboard_btn_show_plain_text);
 
-    s2_plainText.setPosition(0, 0, 320, 240);
-    s2_plainText.setVisible(false);
-    s2_1_typePlainText.setPosition(0, 0, 320, 240);
-    keyboard4_plain_text.setXY(0, 117);
-    keyboard4_plain_text.setVisible(false);
-    s2_1_typePlainText.add(keyboard4_plain_text);
+    keyboard_btn_enter_plain_text.setBoxWithBorderPosition(0, 0, 320, 30);
+    keyboard_btn_enter_plain_text.setBorderSize(0);
+    keyboard_btn_enter_plain_text.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    keyboard_btn_enter_plain_text.setText(TypedText(T_SF2_S2_KEYBOARD4_BTN_ENTER));
+    keyboard_btn_enter_plain_text.setTextPosition(0, 5, 320, 30);
+    keyboard_btn_enter_plain_text.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    keyboard_btn_enter_plain_text.setAction(flexButtonCallback);
+    keyboard_btn_enter_plain_text.setPosition(0, 210, 320, 30);
+    s1_plainText_1_typePlainText.add(keyboard_btn_enter_plain_text);
 
-    keyboard4_text_area.setPosition(20, 40, 280, 160);
-    keyboard4_text_area.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    s2_1_typePlainText.add(keyboard4_text_area);
+    keyboard_text_typed_plain_text.setPosition(60, 50, 230, 140);
+    keyboard_text_typed_plain_text.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    keyboard_text_typed_plain_text.setLinespacing(0);
+    Unicode::snprintf(keyboard_text_typed_plain_textBuffer, KEYBOARD_TEXT_TYPED_PLAIN_TEXT_SIZE, "%s", touchgfx::TypedText(T_SF2_S2_KEYBOARD4_TYPED_VALUE).getText());
+    keyboard_text_typed_plain_text.setWildcard(keyboard_text_typed_plain_textBuffer);
+    keyboard_text_typed_plain_text.setTypedText(touchgfx::TypedText(T_SF2_S2_KEYBOARD4_TYPED));
+    s1_plainText_1_typePlainText.add(keyboard_text_typed_plain_text);
 
-    keyboard4_btn_hide.setIconBitmaps(Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_PRESSED_ID));
-    keyboard4_btn_hide.setIconXY(0, 0);
-    keyboard4_btn_hide.setVisible(false);
-    keyboard4_btn_hide.setAction(flexButtonCallback);
-    keyboard4_btn_hide.setPosition(242, 210, 75, 25);
-    s2_1_typePlainText.add(keyboard4_btn_hide);
+    keyboard_text_info_plain_text.setPosition(0, 18, 320, 20);
+    keyboard_text_info_plain_text.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    keyboard_text_info_plain_text.setLinespacing(0);
+    keyboard_text_info_plain_text.setTypedText(touchgfx::TypedText(T_SF2_S2_KEYBOARD4_INFO));
+    s1_plainText_1_typePlainText.add(keyboard_text_info_plain_text);
 
-    keyboard4_btn_show.setBoxWithBorderPosition(0, 0, 240, 160);
-    keyboard4_btn_show.setBorderSize(5);
-    keyboard4_btn_show.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard4_btn_show.setAlpha(0);
-    keyboard4_btn_show.setAction(flexButtonCallback);
-    keyboard4_btn_show.setPosition(60, 40, 240, 160);
-    s2_1_typePlainText.add(keyboard4_btn_show);
+    keyboard_btn_up_plain_text.setDelay(30);
+    keyboard_btn_up_plain_text.setInterval(6);
+    keyboard_btn_up_plain_text.setIconBitmaps(Bitmap(BITMAP_ARROW_UP_ID), Bitmap(BITMAP_ARROW_UP_ID));
+    keyboard_btn_up_plain_text.setIconXY(0, 0);
+    keyboard_btn_up_plain_text.setAction(flexButtonCallback);
+    keyboard_btn_up_plain_text.setPosition(30, 50, 20, 20);
+    s1_plainText_1_typePlainText.add(keyboard_btn_up_plain_text);
 
-    keyboard4_btn_enter.setBoxWithBorderPosition(0, 0, 320, 30);
-    keyboard4_btn_enter.setBorderSize(0);
-    keyboard4_btn_enter.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard4_btn_enter.setText(TypedText(T_SF2_S2_KEYBOARD4_BTN_ENTER));
-    keyboard4_btn_enter.setTextPosition(0, 5, 320, 30);
-    keyboard4_btn_enter.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    keyboard4_btn_enter.setAction(flexButtonCallback);
-    keyboard4_btn_enter.setPosition(0, 210, 320, 30);
-    s2_1_typePlainText.add(keyboard4_btn_enter);
+    keyboard_btn_down_plain_text.setDelay(30);
+    keyboard_btn_down_plain_text.setInterval(6);
+    keyboard_btn_down_plain_text.setIconBitmaps(Bitmap(BITMAP_ARROW_DOWN_ID), Bitmap(BITMAP_ARROW_DOWN_ID));
+    keyboard_btn_down_plain_text.setIconXY(0, 0);
+    keyboard_btn_down_plain_text.setAction(flexButtonCallback);
+    keyboard_btn_down_plain_text.setPosition(30, 170, 20, 20);
+    s1_plainText_1_typePlainText.add(keyboard_btn_down_plain_text);
 
-    keyboard4_text_typed.setPosition(60, 50, 230, 140);
-    keyboard4_text_typed.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard4_text_typed.setLinespacing(0);
-    Unicode::snprintf(keyboard4_text_typedBuffer, KEYBOARD4_TEXT_TYPED_SIZE, "%s", touchgfx::TypedText(T_SF2_S2_KEYBOARD4_TYPED_VALUE).getText());
-    keyboard4_text_typed.setWildcard(keyboard4_text_typedBuffer);
-    keyboard4_text_typed.setTypedText(touchgfx::TypedText(T_SF2_S2_KEYBOARD4_TYPED));
-    s2_1_typePlainText.add(keyboard4_text_typed);
+    keyboard_char_count_plain_text.setPosition(250, 188, 50, 12);
+    keyboard_char_count_plain_text.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    keyboard_char_count_plain_text.setLinespacing(0);
+    Unicode::snprintf(keyboard_char_count_plain_textBuffer, KEYBOARD_CHAR_COUNT_PLAIN_TEXT_SIZE, "%s", touchgfx::TypedText(T_SF2_S2_KEYBOARD4_CHAR_COUNT_VALUE).getText());
+    keyboard_char_count_plain_text.setWildcard(keyboard_char_count_plain_textBuffer);
+    keyboard_char_count_plain_text.setTypedText(touchgfx::TypedText(T_SF2_S2_KEYBOARD4_CHAR_COUNT));
+    keyboard_char_count_plain_text.setAlpha(200);
+    s1_plainText_1_typePlainText.add(keyboard_char_count_plain_text);
 
-    keyboard4_text_info.setPosition(0, 18, 320, 20);
-    keyboard4_text_info.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard4_text_info.setLinespacing(0);
-    keyboard4_text_info.setTypedText(touchgfx::TypedText(T_SF2_S2_KEYBOARD4_INFO));
-    s2_1_typePlainText.add(keyboard4_text_info);
+    s1_plainText.add(s1_plainText_1_typePlainText);
 
-    keyboard4_btn_up.setDelay(30);
-    keyboard4_btn_up.setInterval(6);
-    keyboard4_btn_up.setIconBitmaps(Bitmap(BITMAP_ARROW_UP_ID), Bitmap(BITMAP_ARROW_UP_ID));
-    keyboard4_btn_up.setIconXY(0, 0);
-    keyboard4_btn_up.setAction(flexButtonCallback);
-    keyboard4_btn_up.setPosition(30, 50, 20, 20);
-    s2_1_typePlainText.add(keyboard4_btn_up);
+    s1_menuContent.add(s1_plainText);
 
-    keyboard4_btn_down.setDelay(30);
-    keyboard4_btn_down.setInterval(6);
-    keyboard4_btn_down.setIconBitmaps(Bitmap(BITMAP_ARROW_DOWN_ID), Bitmap(BITMAP_ARROW_DOWN_ID));
-    keyboard4_btn_down.setIconXY(0, 0);
-    keyboard4_btn_down.setAction(flexButtonCallback);
-    keyboard4_btn_down.setPosition(30, 170, 20, 20);
-    s2_1_typePlainText.add(keyboard4_btn_down);
+    s1_fromNFC.setPosition(0, 0, 320, 240);
+    s1_fromNFC.setVisible(false);
+    s1_fromNFC_1_initNFC.setPosition(0, 0, 320, 240);
+    s1_fromNFC_1_init_nfc_thinking_circles.setXY(95, 170);
+    s1_fromNFC_1_initNFC.add(s1_fromNFC_1_init_nfc_thinking_circles);
 
-    keyboard4_char_count.setPosition(250, 188, 50, 12);
-    keyboard4_char_count.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard4_char_count.setLinespacing(0);
-    Unicode::snprintf(keyboard4_char_countBuffer, KEYBOARD4_CHAR_COUNT_SIZE, "%s", touchgfx::TypedText(T_SF2_S2_KEYBOARD4_CHAR_COUNT_VALUE).getText());
-    keyboard4_char_count.setWildcard(keyboard4_char_countBuffer);
-    keyboard4_char_count.setTypedText(touchgfx::TypedText(T_SF2_S2_KEYBOARD4_CHAR_COUNT));
-    keyboard4_char_count.setAlpha(200);
-    s2_1_typePlainText.add(keyboard4_char_count);
+    s1_fromNFC_1_init_nfc_image.setXY(124, 44);
+    s1_fromNFC_1_init_nfc_image.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_ACTIVANDO_NFC_CUVEX_ID));
+    s1_fromNFC_1_initNFC.add(s1_fromNFC_1_init_nfc_image);
 
-    s2_plainText.add(s2_1_typePlainText);
+    s1_fromNFC_1_init_nfc_text1.setXY(110, 140);
+    s1_fromNFC_1_init_nfc_text1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    s1_fromNFC_1_init_nfc_text1.setLinespacing(0);
+    s1_fromNFC_1_init_nfc_text1.setTypedText(touchgfx::TypedText(T_SF2_S1_FROMNFC_1_INIT_NFC_TEXT1));
+    s1_fromNFC_1_initNFC.add(s1_fromNFC_1_init_nfc_text1);
 
-    s2_2_checkPlainTextInfo.setPosition(0, 0, 320, 240);
-    s2_2_checkPlainTextInfo.setVisible(false);
-    btn_encrypt2.setBoxWithBorderPosition(0, 0, 320, 30);
-    btn_encrypt2.setBorderSize(0);
-    btn_encrypt2.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    btn_encrypt2.setText(TypedText(T_SF2_S2_BTN_ENCRYPT_PLAIN_TEXT));
-    btn_encrypt2.setTextPosition(0, 5, 320, 30);
-    btn_encrypt2.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    btn_encrypt2.setAction(flexButtonCallback);
-    btn_encrypt2.setPosition(0, 210, 320, 30);
-    s2_2_checkPlainTextInfo.add(btn_encrypt2);
+    s1_fromNFC_1_init_nfc_text2.setXY(178, 140);
+    s1_fromNFC_1_init_nfc_text2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    s1_fromNFC_1_init_nfc_text2.setLinespacing(0);
+    s1_fromNFC_1_init_nfc_text2.setTypedText(touchgfx::TypedText(T_SF2_S1_FROMNFC_1_INIT_NFC_TEXT2));
+    s1_fromNFC_1_initNFC.add(s1_fromNFC_1_init_nfc_text2);
 
-    container_typed_check2.setPosition(0, 50, 320, 120);
-    btn_scroll_down2.setDelay(30);
-    btn_scroll_down2.setInterval(6);
-    btn_scroll_down2.setIconBitmaps(Bitmap(BITMAP_ARROW_DOWN_ID), Bitmap(BITMAP_ARROW_DOWN_ID));
-    btn_scroll_down2.setIconXY(5, 5);
-    btn_scroll_down2.setAction(flexButtonCallback);
-    btn_scroll_down2.setPosition(15, 80, 30, 30);
-    container_typed_check2.add(btn_scroll_down2);
+    s1_fromNFC.add(s1_fromNFC_1_initNFC);
 
-    btn_scroll_up2.setDelay(30);
-    btn_scroll_up2.setInterval(6);
-    btn_scroll_up2.setIconBitmaps(Bitmap(BITMAP_ARROW_UP_ID), Bitmap(BITMAP_ARROW_UP_ID));
-    btn_scroll_up2.setIconXY(5, 5);
-    btn_scroll_up2.setAction(flexButtonCallback);
-    btn_scroll_up2.setPosition(15, 10, 30, 30);
-    container_typed_check2.add(btn_scroll_up2);
+    s1_fromNFC_2_waitReadNFC.setPosition(0, 0, 320, 240);
+    s1_fromNFC_2_waitReadNFC.setVisible(false);
+    s1_fromNFC_wait_read_nfc_image.setXY(112, 49);
+    s1_fromNFC_wait_read_nfc_image.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_NFC_CUVEX_ID));
+    s1_fromNFC_2_waitReadNFC.add(s1_fromNFC_wait_read_nfc_image);
 
-    scrollable_container_typed_check2.setPosition(60, 0, 220, 120);
-    scrollable_container_typed_check2.enableHorizontalScroll(false);
-    scrollable_container_typed_check2.setScrollbarsColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    scrollable_container_typed_check2.setScrollbarsAlpha(255);
-    scrollable_container_typed_check2.setScrollbarsVisible(false);
-    typed_check2.setPosition(0, 0, 220, 120);
-    typed_check2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    typed_check2.setLinespacing(0);
-    Unicode::snprintf(typed_check2Buffer, TYPED_CHECK2_SIZE, "%s", touchgfx::TypedText(T_SF2_S2_TYPED_PLAIN_TEXT_CHECK_VALUE).getText());
-    typed_check2.setWildcard(typed_check2Buffer);
-    typed_check2.setTypedText(touchgfx::TypedText(T_SF2_S2_TYPED_PLAIN_TEXT_CHECK));
-    scrollable_container_typed_check2.add(typed_check2);
+    s1_fromNFC_wait_read_nfc_text.setPosition(0, 140, 320, 40);
+    s1_fromNFC_wait_read_nfc_text.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    s1_fromNFC_wait_read_nfc_text.setLinespacing(0);
+    s1_fromNFC_wait_read_nfc_text.setTypedText(touchgfx::TypedText(T_SF2_S1_FROMNFC_WAIT_READ_NFC_TEXT));
+    s1_fromNFC_2_waitReadNFC.add(s1_fromNFC_wait_read_nfc_text);
 
-    container_typed_check2.add(scrollable_container_typed_check2);
+    s1_fromNFC.add(s1_fromNFC_2_waitReadNFC);
 
-    s2_2_checkPlainTextInfo.add(container_typed_check2);
+    s1_fromNFC_3_error.setPosition(0, 0, 320, 240);
+    s1_fromNFC_3_error.setVisible(false);
+    s1_fromNFC_error_text.setPosition(0, 130, 320, 20);
+    s1_fromNFC_error_text.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    s1_fromNFC_error_text.setLinespacing(0);
+    s1_fromNFC_error_text.setTypedText(touchgfx::TypedText(T_SF2_S1_FROMNFC_ERROR_TEXT));
+    s1_fromNFC_3_error.add(s1_fromNFC_error_text);
 
-    s2_plainText.add(s2_2_checkPlainTextInfo);
+    s1_fromNFC_error_image.setXY(117, 44);
+    s1_fromNFC_error_image.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_ERROR_CUVEX_ID));
+    s1_fromNFC_3_error.add(s1_fromNFC_error_image);
 
-    add(s2_plainText);
+    s1_fromNFC_error_btn.setBoxWithBorderPosition(0, 0, 320, 30);
+    s1_fromNFC_error_btn.setBorderSize(0);
+    s1_fromNFC_error_btn.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    s1_fromNFC_error_btn.setText(TypedText(T_SF2_S1_FROMNFC_BTN_RETRY));
+    s1_fromNFC_error_btn.setTextPosition(0, 5, 320, 30);
+    s1_fromNFC_error_btn.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    s1_fromNFC_error_btn.setAction(flexButtonCallback);
+    s1_fromNFC_error_btn.setPosition(0, 210, 320, 30);
+    s1_fromNFC_3_error.add(s1_fromNFC_error_btn);
 
-    s3_multiSignature.setPosition(0, 0, 320, 240);
-    s3_multiSignature.setVisible(false);
-    s3_1_askMultiSignature.setPosition(0, 0, 320, 240);
+    s1_fromNFC.add(s1_fromNFC_3_error);
+
+    s1_menuContent.add(s1_fromNFC);
+
+    s1_checkInfo.setPosition(0, 0, 320, 240);
+    s1_checkInfo.setVisible(false);
+    btn_encrypt.setBoxWithBorderPosition(0, 0, 320, 30);
+    btn_encrypt.setBorderSize(0);
+    btn_encrypt.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    btn_encrypt.setText(TypedText(T_SF2_S1_BTN_ENCRYPT_SEED));
+    btn_encrypt.setTextPosition(0, 5, 320, 30);
+    btn_encrypt.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_encrypt.setAction(flexButtonCallback);
+    btn_encrypt.setPosition(0, 210, 320, 30);
+    s1_checkInfo.add(btn_encrypt);
+
+    s1_checkInfo_Seed.setPosition(0, 0, 320, 240);
+    s1_checkInfo_Seed.setVisible(false);
+    btn_scroll_down_seed.setDelay(30);
+    btn_scroll_down_seed.setInterval(6);
+    btn_scroll_down_seed.setIconBitmaps(Bitmap(BITMAP_ARROW_DOWN_ID), Bitmap(BITMAP_ARROW_DOWN_ID));
+    btn_scroll_down_seed.setIconXY(5, 5);
+    btn_scroll_down_seed.setAction(flexButtonCallback);
+    btn_scroll_down_seed.setPosition(15, 130, 30, 30);
+    s1_checkInfo_Seed.add(btn_scroll_down_seed);
+
+    btn_scroll_up_seed.setDelay(30);
+    btn_scroll_up_seed.setInterval(6);
+    btn_scroll_up_seed.setIconBitmaps(Bitmap(BITMAP_ARROW_UP_ID), Bitmap(BITMAP_ARROW_UP_ID));
+    btn_scroll_up_seed.setIconXY(5, 5);
+    btn_scroll_up_seed.setAction(flexButtonCallback);
+    btn_scroll_up_seed.setPosition(15, 60, 30, 30);
+    s1_checkInfo_Seed.add(btn_scroll_up_seed);
+
+    scrollable_container_typed_check_seed.setPosition(60, 50, 210, 120);
+    scrollable_container_typed_check_seed.enableHorizontalScroll(false);
+    scrollable_container_typed_check_seed.setScrollbarsColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    scrollable_container_typed_check_seed.setScrollbarsAlpha(255);
+    scrollable_container_typed_check_seed.setScrollbarsVisible(false);
+    typed_check_seed.setPosition(0, 0, 210, 120);
+    typed_check_seed.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    typed_check_seed.setLinespacing(0);
+    Unicode::snprintf(typed_check_seedBuffer, TYPED_CHECK_SEED_SIZE, "%s", touchgfx::TypedText(T_SF2_S1_TYPED_SEED_CHECK_VALUE).getText());
+    typed_check_seed.setWildcard(typed_check_seedBuffer);
+    typed_check_seed.setTypedText(touchgfx::TypedText(T_SF2_S1_TYPED_SEED_CHECK));
+    scrollable_container_typed_check_seed.add(typed_check_seed);
+
+    s1_checkInfo_Seed.add(scrollable_container_typed_check_seed);
+
+    s1_checkInfo.add(s1_checkInfo_Seed);
+
+    s1_checkInfo_PlainText.setPosition(0, 0, 320, 240);
+    s1_checkInfo_PlainText.setVisible(false);
+    btn_scroll_down_plain_text.setDelay(30);
+    btn_scroll_down_plain_text.setInterval(6);
+    btn_scroll_down_plain_text.setIconBitmaps(Bitmap(BITMAP_ARROW_DOWN_ID), Bitmap(BITMAP_ARROW_DOWN_ID));
+    btn_scroll_down_plain_text.setIconXY(5, 5);
+    btn_scroll_down_plain_text.setAction(flexButtonCallback);
+    btn_scroll_down_plain_text.setPosition(15, 130, 30, 30);
+    s1_checkInfo_PlainText.add(btn_scroll_down_plain_text);
+
+    btn_scroll_up_plain_text.setDelay(30);
+    btn_scroll_up_plain_text.setInterval(6);
+    btn_scroll_up_plain_text.setIconBitmaps(Bitmap(BITMAP_ARROW_UP_ID), Bitmap(BITMAP_ARROW_UP_ID));
+    btn_scroll_up_plain_text.setIconXY(5, 5);
+    btn_scroll_up_plain_text.setAction(flexButtonCallback);
+    btn_scroll_up_plain_text.setPosition(15, 60, 30, 30);
+    s1_checkInfo_PlainText.add(btn_scroll_up_plain_text);
+
+    scrollable_container_typed_check_plain_text.setPosition(60, 50, 220, 120);
+    scrollable_container_typed_check_plain_text.enableHorizontalScroll(false);
+    scrollable_container_typed_check_plain_text.setScrollbarsColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    scrollable_container_typed_check_plain_text.setScrollbarsAlpha(255);
+    scrollable_container_typed_check_plain_text.setScrollbarsVisible(false);
+    typed_check_plain_text.setPosition(0, 0, 220, 120);
+    typed_check_plain_text.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    typed_check_plain_text.setLinespacing(0);
+    Unicode::snprintf(typed_check_plain_textBuffer, TYPED_CHECK_PLAIN_TEXT_SIZE, "%s", touchgfx::TypedText(T_SF2_S2_TYPED_PLAIN_TEXT_CHECK_VALUE).getText());
+    typed_check_plain_text.setWildcard(typed_check_plain_textBuffer);
+    typed_check_plain_text.setTypedText(touchgfx::TypedText(T_SF2_S2_TYPED_PLAIN_TEXT_CHECK));
+    scrollable_container_typed_check_plain_text.add(typed_check_plain_text);
+
+    s1_checkInfo_PlainText.add(scrollable_container_typed_check_plain_text);
+
+    s1_checkInfo.add(s1_checkInfo_PlainText);
+
+    s1_menuContent.add(s1_checkInfo);
+
+    add(s1_menuContent);
+
+    s2_multiSignature.setPosition(0, 0, 320, 240);
+    s2_multiSignature.setVisible(false);
+    s2_1_askMultiSignature.setPosition(0, 0, 320, 240);
     btn_multi_yes.setBoxWithBorderPosition(0, 0, 159, 30);
     btn_multi_yes.setBorderSize(0);
     btn_multi_yes.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -417,7 +503,7 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
     btn_multi_yes.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     btn_multi_yes.setAction(flexButtonCallback);
     btn_multi_yes.setPosition(161, 210, 159, 30);
-    s3_1_askMultiSignature.add(btn_multi_yes);
+    s2_1_askMultiSignature.add(btn_multi_yes);
 
     btn_multi_no.setBoxWithBorderPosition(0, 0, 159, 30);
     btn_multi_no.setBorderSize(0);
@@ -427,18 +513,18 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
     btn_multi_no.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     btn_multi_no.setAction(flexButtonCallback);
     btn_multi_no.setPosition(0, 210, 159, 30);
-    s3_1_askMultiSignature.add(btn_multi_no);
+    s2_1_askMultiSignature.add(btn_multi_no);
 
     text_info_multi_1.setPosition(0, 100, 320, 40);
     text_info_multi_1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     text_info_multi_1.setLinespacing(0);
     text_info_multi_1.setTypedText(touchgfx::TypedText(T_SF2_S3_ASK_MULTI_SIGNATURE));
-    s3_1_askMultiSignature.add(text_info_multi_1);
+    s2_1_askMultiSignature.add(text_info_multi_1);
 
-    s3_multiSignature.add(s3_1_askMultiSignature);
+    s2_multiSignature.add(s2_1_askMultiSignature);
 
-    s3_2_numMultiSignature.setPosition(0, 0, 320, 240);
-    s3_2_numMultiSignature.setVisible(false);
+    s2_2_numMultiSignature.setPosition(0, 0, 320, 240);
+    s2_2_numMultiSignature.setVisible(false);
     btn_multi_select.setBoxWithBorderPosition(0, 0, 320, 30);
     btn_multi_select.setBorderSize(0);
     btn_multi_select.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
@@ -447,19 +533,19 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
     btn_multi_select.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     btn_multi_select.setAction(flexButtonCallback);
     btn_multi_select.setPosition(0, 210, 320, 30);
-    s3_2_numMultiSignature.add(btn_multi_select);
+    s2_2_numMultiSignature.add(btn_multi_select);
 
     btn_multi_plus.setIconBitmaps(Bitmap(BITMAP_PLUS_ID), Bitmap(BITMAP_PLUS_ID));
     btn_multi_plus.setIconXY(0, 0);
     btn_multi_plus.setAction(flexButtonCallback);
     btn_multi_plus.setPosition(210, 120, 30, 30);
-    s3_2_numMultiSignature.add(btn_multi_plus);
+    s2_2_numMultiSignature.add(btn_multi_plus);
 
     btn_multi_minus.setIconBitmaps(Bitmap(BITMAP_MINUS_ID), Bitmap(BITMAP_MINUS_ID));
     btn_multi_minus.setIconXY(0, 0);
     btn_multi_minus.setAction(flexButtonCallback);
     btn_multi_minus.setPosition(80, 120, 30, 30);
-    s3_2_numMultiSignature.add(btn_multi_minus);
+    s2_2_numMultiSignature.add(btn_multi_minus);
 
     text_multi_num.setPosition(110, 120, 100, 30);
     text_multi_num.setColor(touchgfx::Color::getColorFromRGB(64, 92, 160));
@@ -467,163 +553,184 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
     Unicode::snprintf(text_multi_numBuffer, TEXT_MULTI_NUM_SIZE, "%s", touchgfx::TypedText(T_SF2_S3_NUM_MULTI_VALUE).getText());
     text_multi_num.setWildcard(text_multi_numBuffer);
     text_multi_num.setTypedText(touchgfx::TypedText(T_SF2_S3_NUM_MULTI));
-    s3_2_numMultiSignature.add(text_multi_num);
+    s2_2_numMultiSignature.add(text_multi_num);
 
-    text_info_multi_2.setPosition(0, 64, 320, 40);
+    text_info_multi_2.setPosition(0, 74, 320, 20);
     text_info_multi_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     text_info_multi_2.setLinespacing(0);
-    text_info_multi_2.setTypedText(touchgfx::TypedText(T_SF2_S3_NUM_MULTI_INFO));
-    s3_2_numMultiSignature.add(text_info_multi_2);
+    text_info_multi_2.setTypedText(touchgfx::TypedText(T_SF2_S3_NUM_MULTI_INFO_2));
+    s2_2_numMultiSignature.add(text_info_multi_2);
 
-    s3_multiSignature.add(s3_2_numMultiSignature);
+    text_info_multi_3.setPosition(0, 64, 320, 40);
+    text_info_multi_3.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    text_info_multi_3.setLinespacing(0);
+    text_info_multi_3.setTypedText(touchgfx::TypedText(T_SF2_S3_NUM_MULTI_INFO_3));
+    text_info_multi_3.setVisible(false);
+    s2_2_numMultiSignature.add(text_info_multi_3);
 
-    add(s3_multiSignature);
+    text_info_multi_4.setPosition(0, 170, 320, 40);
+    text_info_multi_4.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    text_info_multi_4.setLinespacing(0);
+    text_info_multi_4.setTypedText(touchgfx::TypedText(T_SF2_S3_NUM_MULTI_INFO_4));
+    text_info_multi_4.setVisible(false);
+    s2_2_numMultiSignature.add(text_info_multi_4);
 
-    s4_password.setPosition(0, 0, 320, 240);
-    s4_password.setVisible(false);
-    s4_1_typePasword.setPosition(0, 0, 320, 240);
-    keyboard5_password_1.setXY(0, 117);
-    keyboard5_password_1.setVisible(false);
-    s4_1_typePasword.add(keyboard5_password_1);
+    text_info_multi_5.setPosition(0, 170, 320, 40);
+    text_info_multi_5.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    text_info_multi_5.setLinespacing(0);
+    text_info_multi_5.setTypedText(touchgfx::TypedText(T_SF2_S3_NUM_MULTI_INFO_5));
+    text_info_multi_5.setVisible(false);
+    s2_2_numMultiSignature.add(text_info_multi_5);
 
-    keyboard5_password_2.setXY(0, 117);
-    keyboard5_password_2.setVisible(false);
-    s4_1_typePasword.add(keyboard5_password_2);
+    s2_multiSignature.add(s2_2_numMultiSignature);
 
-    keyboard5_text_area_1.setXY(45, 85);
-    s4_1_typePasword.add(keyboard5_text_area_1);
+    add(s2_multiSignature);
 
-    keyboard5_text_area_2.setXY(45, 120);
-    s4_1_typePasword.add(keyboard5_text_area_2);
+    s3_password.setPosition(0, 0, 320, 240);
+    s3_password.setVisible(false);
+    s3_1_typePasword.setPosition(0, 0, 320, 240);
+    keyboard1_password.setXY(0, 117);
+    keyboard1_password.setVisible(false);
+    s3_1_typePasword.add(keyboard1_password);
 
-    keyboard5_text_area_selected_1.setXY(45, 86);
-    keyboard5_text_area_selected_1.setVisible(false);
-    s4_1_typePasword.add(keyboard5_text_area_selected_1);
+    keyboard2_password.setXY(0, 117);
+    keyboard2_password.setVisible(false);
+    s3_1_typePasword.add(keyboard2_password);
 
-    keyboard5_text_area_selected_2.setXY(45, 120);
-    keyboard5_text_area_selected_2.setVisible(false);
-    s4_1_typePasword.add(keyboard5_text_area_selected_2);
+    keyboard1_text_area_password.setXY(45, 85);
+    s3_1_typePasword.add(keyboard1_text_area_password);
 
-    keyboard5_text_typed_1.setPosition(76, 90, 169, 20);
-    keyboard5_text_typed_1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard5_text_typed_1.setLinespacing(0);
-    Unicode::snprintf(keyboard5_text_typed_1Buffer, KEYBOARD5_TEXT_TYPED_1_SIZE, "%s", touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_1_VALUE).getText());
-    keyboard5_text_typed_1.setWildcard(keyboard5_text_typed_1Buffer);
-    keyboard5_text_typed_1.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_1));
-    s4_1_typePasword.add(keyboard5_text_typed_1);
+    keyboard2_text_area_password.setXY(45, 120);
+    s3_1_typePasword.add(keyboard2_text_area_password);
 
-    keyboard5_text_typed_2.setPosition(76, 125, 169, 20);
-    keyboard5_text_typed_2.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard5_text_typed_2.setLinespacing(0);
-    Unicode::snprintf(keyboard5_text_typed_2Buffer, KEYBOARD5_TEXT_TYPED_2_SIZE, "%s", touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_2_VALUE).getText());
-    keyboard5_text_typed_2.setWildcard(keyboard5_text_typed_2Buffer);
-    keyboard5_text_typed_2.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_2));
-    s4_1_typePasword.add(keyboard5_text_typed_2);
+    keyboard1_text_area_selected_password.setXY(45, 86);
+    keyboard1_text_area_selected_password.setVisible(false);
+    s3_1_typePasword.add(keyboard1_text_area_selected_password);
 
-    keyboard5_text_typed_hide_1.setPosition(76, 90, 160, 20);
-    keyboard5_text_typed_hide_1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard5_text_typed_hide_1.setLinespacing(0);
-    Unicode::snprintf(keyboard5_text_typed_hide_1Buffer, KEYBOARD5_TEXT_TYPED_HIDE_1_SIZE, "%s", touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_1_HIDE_VALUE).getText());
-    keyboard5_text_typed_hide_1.setWildcard(keyboard5_text_typed_hide_1Buffer);
-    keyboard5_text_typed_hide_1.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_1_HIDE));
-    keyboard5_text_typed_hide_1.setVisible(false);
-    s4_1_typePasword.add(keyboard5_text_typed_hide_1);
+    keyboard2_text_area_selected_password.setXY(45, 120);
+    keyboard2_text_area_selected_password.setVisible(false);
+    s3_1_typePasword.add(keyboard2_text_area_selected_password);
 
-    keyboard5_text_typed_hide_2.setPosition(76, 125, 160, 20);
-    keyboard5_text_typed_hide_2.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard5_text_typed_hide_2.setLinespacing(0);
-    Unicode::snprintf(keyboard5_text_typed_hide_2Buffer, KEYBOARD5_TEXT_TYPED_HIDE_2_SIZE, "%s", touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_2_HIDE_VALUE).getText());
-    keyboard5_text_typed_hide_2.setWildcard(keyboard5_text_typed_hide_2Buffer);
-    keyboard5_text_typed_hide_2.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_2_HIDE));
-    keyboard5_text_typed_hide_2.setVisible(false);
-    s4_1_typePasword.add(keyboard5_text_typed_hide_2);
+    keyboard1_text_typed_password.setPosition(76, 90, 169, 20);
+    keyboard1_text_typed_password.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    keyboard1_text_typed_password.setLinespacing(0);
+    Unicode::snprintf(keyboard1_text_typed_passwordBuffer, KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE, "%s", touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_1_VALUE).getText());
+    keyboard1_text_typed_password.setWildcard(keyboard1_text_typed_passwordBuffer);
+    keyboard1_text_typed_password.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_1));
+    s3_1_typePasword.add(keyboard1_text_typed_password);
 
-    keyboard5_pwd_eye_1.setXY(245, 85);
-    keyboard5_pwd_eye_1.setBitmaps(touchgfx::Bitmap(BITMAP_OJO_ABIERTO_ID), touchgfx::Bitmap(BITMAP_OJO_CERRADO_ID));
-    keyboard5_pwd_eye_1.setAction(buttonCallback);
-    s4_1_typePasword.add(keyboard5_pwd_eye_1);
+    keyboard2_text_typed_password.setPosition(76, 125, 169, 20);
+    keyboard2_text_typed_password.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    keyboard2_text_typed_password.setLinespacing(0);
+    Unicode::snprintf(keyboard2_text_typed_passwordBuffer, KEYBOARD2_TEXT_TYPED_PASSWORD_SIZE, "%s", touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_2_VALUE).getText());
+    keyboard2_text_typed_password.setWildcard(keyboard2_text_typed_passwordBuffer);
+    keyboard2_text_typed_password.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_2));
+    s3_1_typePasword.add(keyboard2_text_typed_password);
 
-    keyboard5_pwd_eye_2.setXY(245, 120);
-    keyboard5_pwd_eye_2.setBitmaps(touchgfx::Bitmap(BITMAP_OJO_ABIERTO_ID), touchgfx::Bitmap(BITMAP_OJO_CERRADO_ID));
-    keyboard5_pwd_eye_2.setAction(buttonCallback);
-    s4_1_typePasword.add(keyboard5_pwd_eye_2);
+    keyboard1_text_typed_hide_password.setPosition(76, 90, 160, 20);
+    keyboard1_text_typed_hide_password.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    keyboard1_text_typed_hide_password.setLinespacing(0);
+    Unicode::snprintf(keyboard1_text_typed_hide_passwordBuffer, KEYBOARD1_TEXT_TYPED_HIDE_PASSWORD_SIZE, "%s", touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_1_HIDE_VALUE).getText());
+    keyboard1_text_typed_hide_password.setWildcard(keyboard1_text_typed_hide_passwordBuffer);
+    keyboard1_text_typed_hide_password.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_1_HIDE));
+    keyboard1_text_typed_hide_password.setVisible(false);
+    s3_1_typePasword.add(keyboard1_text_typed_hide_password);
 
-    keyboard5_btn_show_1.setBoxWithBorderPosition(0, 0, 169, 30);
-    keyboard5_btn_show_1.setBorderSize(5);
-    keyboard5_btn_show_1.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard5_btn_show_1.setAlpha(0);
-    keyboard5_btn_show_1.setAction(flexButtonCallback);
-    keyboard5_btn_show_1.setPosition(76, 85, 169, 30);
-    s4_1_typePasword.add(keyboard5_btn_show_1);
+    keyboard2_text_typed_hide_password.setPosition(76, 125, 160, 20);
+    keyboard2_text_typed_hide_password.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    keyboard2_text_typed_hide_password.setLinespacing(0);
+    Unicode::snprintf(keyboard2_text_typed_hide_passwordBuffer, KEYBOARD2_TEXT_TYPED_HIDE_PASSWORD_SIZE, "%s", touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_2_HIDE_VALUE).getText());
+    keyboard2_text_typed_hide_password.setWildcard(keyboard2_text_typed_hide_passwordBuffer);
+    keyboard2_text_typed_hide_password.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_TEXT_TYPED_2_HIDE));
+    keyboard2_text_typed_hide_password.setVisible(false);
+    s3_1_typePasword.add(keyboard2_text_typed_hide_password);
 
-    keyboard5_btn_show_2.setBoxWithBorderPosition(0, 0, 169, 30);
-    keyboard5_btn_show_2.setBorderSize(5);
-    keyboard5_btn_show_2.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard5_btn_show_2.setAlpha(0);
-    keyboard5_btn_show_2.setAction(flexButtonCallback);
-    keyboard5_btn_show_2.setPosition(76, 120, 169, 30);
-    s4_1_typePasword.add(keyboard5_btn_show_2);
+    keyboard1_pwd_eye_password.setXY(245, 85);
+    keyboard1_pwd_eye_password.setBitmaps(touchgfx::Bitmap(BITMAP_OJO_ABIERTO_ID), touchgfx::Bitmap(BITMAP_OJO_CERRADO_ID));
+    keyboard1_pwd_eye_password.setAction(buttonCallback);
+    s3_1_typePasword.add(keyboard1_pwd_eye_password);
 
-    keyboard5_btn_hide.setIconBitmaps(Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_PRESSED_ID));
-    keyboard5_btn_hide.setIconXY(0, 0);
-    keyboard5_btn_hide.setVisible(false);
-    keyboard5_btn_hide.setAction(flexButtonCallback);
-    keyboard5_btn_hide.setPosition(242, 210, 75, 25);
-    s4_1_typePasword.add(keyboard5_btn_hide);
+    keyboard2_pwd_eye_password.setXY(245, 120);
+    keyboard2_pwd_eye_password.setBitmaps(touchgfx::Bitmap(BITMAP_OJO_ABIERTO_ID), touchgfx::Bitmap(BITMAP_OJO_CERRADO_ID));
+    keyboard2_pwd_eye_password.setAction(buttonCallback);
+    s3_1_typePasword.add(keyboard2_pwd_eye_password);
 
-    keyboard5_btn_enter.setBoxWithBorderPosition(0, 0, 320, 30);
-    keyboard5_btn_enter.setBorderSize(0);
-    keyboard5_btn_enter.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard5_btn_enter.setText(TypedText(T_SF2_S4_KEYBOARD5_ENTER));
-    keyboard5_btn_enter.setTextPosition(0, 5, 320, 30);
-    keyboard5_btn_enter.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    keyboard5_btn_enter.setAction(flexButtonCallback);
-    keyboard5_btn_enter.setPosition(0, 210, 320, 30);
-    s4_1_typePasword.add(keyboard5_btn_enter);
+    keyboard1_btn_show_password.setBoxWithBorderPosition(0, 0, 169, 30);
+    keyboard1_btn_show_password.setBorderSize(5);
+    keyboard1_btn_show_password.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    keyboard1_btn_show_password.setAlpha(0);
+    keyboard1_btn_show_password.setAction(flexButtonCallback);
+    keyboard1_btn_show_password.setPosition(76, 85, 169, 30);
+    s3_1_typePasword.add(keyboard1_btn_show_password);
 
-    keyboard5_text_info_1.setPosition(0, 60, 320, 20);
-    keyboard5_text_info_1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard5_text_info_1.setLinespacing(0);
-    Unicode::snprintf(keyboard5_text_info_1Buffer, KEYBOARD5_TEXT_INFO_1_SIZE, "%s", touchgfx::TypedText(T_SF2_S4_KEYBOARD5_INFO_1_VALUE).getText());
-    keyboard5_text_info_1.setWildcard(keyboard5_text_info_1Buffer);
-    keyboard5_text_info_1.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_INFO_1));
-    s4_1_typePasword.add(keyboard5_text_info_1);
+    keyboard2_btn_show_password.setBoxWithBorderPosition(0, 0, 169, 30);
+    keyboard2_btn_show_password.setBorderSize(5);
+    keyboard2_btn_show_password.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    keyboard2_btn_show_password.setAlpha(0);
+    keyboard2_btn_show_password.setAction(flexButtonCallback);
+    keyboard2_btn_show_password.setPosition(76, 120, 169, 30);
+    s3_1_typePasword.add(keyboard2_btn_show_password);
 
-    keyboard5_text_info_2.setPosition(0, 152, 320, 13);
-    keyboard5_text_info_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard5_text_info_2.setLinespacing(0);
-    keyboard5_text_info_2.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_INFO_2));
-    s4_1_typePasword.add(keyboard5_text_info_2);
+    keyboard_btn_hide_password.setIconBitmaps(Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_PRESSED_ID));
+    keyboard_btn_hide_password.setIconXY(0, 0);
+    keyboard_btn_hide_password.setVisible(false);
+    keyboard_btn_hide_password.setAction(flexButtonCallback);
+    keyboard_btn_hide_password.setPosition(242, 210, 75, 25);
+    s3_1_typePasword.add(keyboard_btn_hide_password);
 
-    keyboard5_placeholder_1.setPosition(62, 90, 180, 20);
-    keyboard5_placeholder_1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard5_placeholder_1.setLinespacing(0);
-    keyboard5_placeholder_1.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_PLACEHOLDER_1));
-    keyboard5_placeholder_1.setAlpha(75);
-    s4_1_typePasword.add(keyboard5_placeholder_1);
+    keyboard_btn_enter_password.setBoxWithBorderPosition(0, 0, 320, 30);
+    keyboard_btn_enter_password.setBorderSize(0);
+    keyboard_btn_enter_password.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    keyboard_btn_enter_password.setText(TypedText(T_SF2_S4_KEYBOARD5_ENTER));
+    keyboard_btn_enter_password.setTextPosition(0, 5, 320, 30);
+    keyboard_btn_enter_password.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    keyboard_btn_enter_password.setAction(flexButtonCallback);
+    keyboard_btn_enter_password.setPosition(0, 210, 320, 30);
+    s3_1_typePasword.add(keyboard_btn_enter_password);
 
-    keyboard5_placeholder_2.setPosition(62, 125, 180, 20);
-    keyboard5_placeholder_2.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard5_placeholder_2.setLinespacing(0);
-    keyboard5_placeholder_2.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_PLACEHOLDER_2));
-    keyboard5_placeholder_2.setAlpha(75);
-    s4_1_typePasword.add(keyboard5_placeholder_2);
+    text_info_1_password.setPosition(0, 60, 320, 20);
+    text_info_1_password.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    text_info_1_password.setLinespacing(0);
+    Unicode::snprintf(text_info_1_passwordBuffer, TEXT_INFO_1_PASSWORD_SIZE, "%s", touchgfx::TypedText(T_SF2_S4_KEYBOARD5_INFO_1_VALUE).getText());
+    text_info_1_password.setWildcard(text_info_1_passwordBuffer);
+    text_info_1_password.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_INFO_1));
+    s3_1_typePasword.add(text_info_1_password);
 
-    s4_password.add(s4_1_typePasword);
+    text_info_2_password.setPosition(0, 152, 320, 13);
+    text_info_2_password.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    text_info_2_password.setLinespacing(0);
+    text_info_2_password.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_INFO_2));
+    s3_1_typePasword.add(text_info_2_password);
 
-    s4_2_successPassword.setPosition(0, 0, 320, 240);
-    s4_2_successPassword.setVisible(false);
-    btn_store_cryptogram.setBoxWithBorderPosition(0, 0, 320, 30);
-    btn_store_cryptogram.setBorderSize(0);
-    btn_store_cryptogram.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    btn_store_cryptogram.setWildcardText(TypedText(T_SF2_S4_BTN_SAVE_CRYPTOGRAM));
-    Unicode::snprintf(btn_store_cryptogramBuffer, BTN_STORE_CRYPTOGRAM_SIZE, "%s", TypedText(T_SF2_S4_BTN_SAVE_CRYPTOGRAM_VALUE).getText());
-    btn_store_cryptogram.setWildcardTextBuffer(btn_store_cryptogramBuffer);
-    btn_store_cryptogram.setWildcardTextPosition(0, 5, 320, 30);
-    btn_store_cryptogram.setWildcardTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    btn_store_cryptogram.setAction(flexButtonCallback);
-    btn_store_cryptogram.setPosition(0, 210, 320, 30);
-    s4_2_successPassword.add(btn_store_cryptogram);
+    placeholder_1_password.setPosition(62, 90, 180, 20);
+    placeholder_1_password.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    placeholder_1_password.setLinespacing(0);
+    placeholder_1_password.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_PLACEHOLDER_1));
+    placeholder_1_password.setAlpha(75);
+    s3_1_typePasword.add(placeholder_1_password);
+
+    placeholder_2_password.setPosition(62, 125, 180, 20);
+    placeholder_2_password.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    placeholder_2_password.setLinespacing(0);
+    placeholder_2_password.setTypedText(touchgfx::TypedText(T_SF2_S4_KEYBOARD5_PLACEHOLDER_2));
+    placeholder_2_password.setAlpha(75);
+    s3_1_typePasword.add(placeholder_2_password);
+
+    s3_password.add(s3_1_typePasword);
+
+    s3_2_successPassword.setPosition(0, 0, 320, 240);
+    s3_2_successPassword.setVisible(false);
+    btn_pwd_success.setBoxWithBorderPosition(0, 0, 320, 30);
+    btn_pwd_success.setBorderSize(0);
+    btn_pwd_success.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    btn_pwd_success.setWildcardText(TypedText(T_SF2_S4_BTN_SAVE_CRYPTOGRAM));
+    Unicode::snprintf(btn_pwd_successBuffer, BTN_PWD_SUCCESS_SIZE, "%s", TypedText(T_SF2_S4_BTN_SAVE_CRYPTOGRAM_VALUE).getText());
+    btn_pwd_success.setWildcardTextBuffer(btn_pwd_successBuffer);
+    btn_pwd_success.setWildcardTextPosition(0, 5, 320, 30);
+    btn_pwd_success.setWildcardTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_pwd_success.setAction(flexButtonCallback);
+    btn_pwd_success.setPosition(0, 210, 320, 30);
+    s3_2_successPassword.add(btn_pwd_success);
 
     text_pwd_success_info.setPosition(0, 140, 320, 20);
     text_pwd_success_info.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
@@ -631,15 +738,77 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
     Unicode::snprintf(text_pwd_success_infoBuffer, TEXT_PWD_SUCCESS_INFO_SIZE, "%s", touchgfx::TypedText(T_SF2_S4_PASSWORD_SUCCESS_INFO_VALUE).getText());
     text_pwd_success_info.setWildcard(text_pwd_success_infoBuffer);
     text_pwd_success_info.setTypedText(touchgfx::TypedText(T_SF2_S4_PASSWORD_SUCCESS_INFO));
-    s4_2_successPassword.add(text_pwd_success_info);
+    s3_2_successPassword.add(text_pwd_success_info);
 
     image_pwd_success.setXY(117, 44);
     image_pwd_success.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_PROCESO_EXITOSO_CUVEX_ID));
-    s4_2_successPassword.add(image_pwd_success);
+    s3_2_successPassword.add(image_pwd_success);
 
-    s4_password.add(s4_2_successPassword);
+    s3_password.add(s3_2_successPassword);
 
-    add(s4_password);
+    add(s3_password);
+
+    s4_alias.setPosition(0, 0, 320, 240);
+    s4_alias.setVisible(false);
+    btn_assign_alias.setBoxWithBorderPosition(0, 0, 320, 30);
+    btn_assign_alias.setBorderSize(0);
+    btn_assign_alias.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    btn_assign_alias.setText(TypedText(T_SF2_BTN_ASSIGN_ALIAS));
+    btn_assign_alias.setTextPosition(0, 5, 320, 30);
+    btn_assign_alias.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_assign_alias.setAction(flexButtonCallback);
+    btn_assign_alias.setPosition(0, 210, 320, 30);
+    s4_alias.add(btn_assign_alias);
+
+    keyboard_alias.setXY(0, 117);
+    keyboard_alias.setVisible(false);
+    s4_alias.add(keyboard_alias);
+
+    keyboard_text_area_alias.setXY(45, 120);
+    s4_alias.add(keyboard_text_area_alias);
+
+    keyboard_btn_hide_alias.setIconBitmaps(Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_PRESSED_ID));
+    keyboard_btn_hide_alias.setIconXY(0, 0);
+    keyboard_btn_hide_alias.setVisible(false);
+    keyboard_btn_hide_alias.setAction(flexButtonCallback);
+    keyboard_btn_hide_alias.setPosition(242, 210, 75, 25);
+    s4_alias.add(keyboard_btn_hide_alias);
+
+    keyboard_btn_show_alias.setBoxWithBorderPosition(0, 0, 169, 30);
+    keyboard_btn_show_alias.setBorderSize(5);
+    keyboard_btn_show_alias.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    keyboard_btn_show_alias.setAlpha(0);
+    keyboard_btn_show_alias.setAction(flexButtonCallback);
+    keyboard_btn_show_alias.setPosition(76, 120, 169, 30);
+    s4_alias.add(keyboard_btn_show_alias);
+
+    keyboard_btn_enter_alias.setIconBitmaps(Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID), Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID));
+    keyboard_btn_enter_alias.setIconXY(1, 1);
+    keyboard_btn_enter_alias.setAction(flexButtonCallback);
+    keyboard_btn_enter_alias.setPosition(245, 120, 30, 30);
+    s4_alias.add(keyboard_btn_enter_alias);
+
+    keyboard_text_typed_alias.setPosition(76, 125, 169, 20);
+    keyboard_text_typed_alias.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    keyboard_text_typed_alias.setLinespacing(0);
+    Unicode::snprintf(keyboard_text_typed_aliasBuffer, KEYBOARD_TEXT_TYPED_ALIAS_SIZE, "%s", touchgfx::TypedText(T_SF2_KEYBOARD6_TYPED_VALUE).getText());
+    keyboard_text_typed_alias.setWildcard(keyboard_text_typed_aliasBuffer);
+    keyboard_text_typed_alias.setTypedText(touchgfx::TypedText(T_SF2_KEYBOARD6_TYPED));
+    s4_alias.add(keyboard_text_typed_alias);
+
+    keyboard_text_info_1_alias.setPosition(0, 70, 320, 20);
+    keyboard_text_info_1_alias.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    keyboard_text_info_1_alias.setLinespacing(0);
+    keyboard_text_info_1_alias.setTypedText(touchgfx::TypedText(T_SF2_KEYBOAR6_INFO_1));
+    s4_alias.add(keyboard_text_info_1_alias);
+
+    keyboard_text_info_2_alias.setPosition(0, 90, 320, 20);
+    keyboard_text_info_2_alias.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    keyboard_text_info_2_alias.setLinespacing(0);
+    keyboard_text_info_2_alias.setTypedText(touchgfx::TypedText(T_SF2_KEYBOAR6_INFO_2));
+    s4_alias.add(keyboard_text_info_2_alias);
+
+    add(s4_alias);
 
     s5_initNFC.setPosition(0, 0, 320, 240);
     s5_initNFC.setVisible(false);
@@ -678,8 +847,8 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
 
     add(s6_waitReadWriteNFC);
 
-    s7_writeError1.setPosition(0, 0, 320, 240);
-    s7_writeError1.setVisible(false);
+    s7_writeError.setPosition(0, 0, 320, 240);
+    s7_writeError.setVisible(false);
     btn_retry.setBoxWithBorderPosition(0, 0, 320, 30);
     btn_retry.setBorderSize(0);
     btn_retry.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
@@ -688,95 +857,30 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
     btn_retry.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     btn_retry.setAction(flexButtonCallback);
     btn_retry.setPosition(0, 210, 320, 30);
-    s7_writeError1.add(btn_retry);
+    s7_writeError.add(btn_retry);
 
-    text_7.setPosition(0, 90, 320, 60);
-    text_7.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    text_7.setLinespacing(0);
-    text_7.setTypedText(touchgfx::TypedText(T_SF2_S7_ERROR_TAG_WITH_CRYPTOGRAM));
-    s7_writeError1.add(text_7);
+    text_error_cryptogram.setPosition(0, 90, 320, 60);
+    text_error_cryptogram.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    text_error_cryptogram.setLinespacing(0);
+    text_error_cryptogram.setTypedText(touchgfx::TypedText(T_SF2_S7_ERROR_TAG_WITH_CRYPTOGRAM));
+    s7_writeError.add(text_error_cryptogram);
 
-    add(s7_writeError1);
+    text_error_tag_format.setPosition(0, 130, 320, 40);
+    text_error_tag_format.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    text_error_tag_format.setLinespacing(0);
+    text_error_tag_format.setTypedText(touchgfx::TypedText(T_SF2_S7_ERROR_TAG_WITH_BAD_FORMAT));
+    text_error_tag_format.setVisible(false);
+    s7_writeError.add(text_error_tag_format);
 
-    s8_writeError2.setPosition(0, 0, 320, 240);
-    s8_writeError2.setVisible(false);
-    s8_1_viewTagInfo.setPosition(0, 0, 320, 240);
-    btn_assign_alias.setBoxWithBorderPosition(0, 0, 320, 30);
-    btn_assign_alias.setBorderSize(0);
-    btn_assign_alias.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    btn_assign_alias.setText(TypedText(T_SF2_BTN_ASSIGN_ALIAS));
-    btn_assign_alias.setTextPosition(0, 5, 320, 30);
-    btn_assign_alias.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    btn_assign_alias.setAction(flexButtonCallback);
-    btn_assign_alias.setPosition(0, 210, 320, 30);
-    s8_1_viewTagInfo.add(btn_assign_alias);
+    image_error.setXY(117, 44);
+    image_error.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_ERROR_CUVEX_ID));
+    image_error.setVisible(false);
+    s7_writeError.add(image_error);
 
-    text_uid_info.setPosition(0, 100, 320, 20);
-    text_uid_info.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    text_uid_info.setLinespacing(0);
-    text_uid_info.setTypedText(touchgfx::TypedText(T_SF2_TEXT_UID_INFO));
-    s8_1_viewTagInfo.add(text_uid_info);
+    add(s7_writeError);
 
-    text_uid.setPosition(0, 120, 320, 20);
-    text_uid.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    text_uid.setLinespacing(0);
-    Unicode::snprintf(text_uidBuffer, TEXT_UID_SIZE, "%s", touchgfx::TypedText(T_SF2_TEXT_UID_VALUE).getText());
-    text_uid.setWildcard(text_uidBuffer);
-    text_uid.setTypedText(touchgfx::TypedText(T_SF2_TEXT_UID));
-    s8_1_viewTagInfo.add(text_uid);
-
-    s8_writeError2.add(s8_1_viewTagInfo);
-
-    s8_2_typeAlias.setPosition(0, 0, 320, 240);
-    s8_2_typeAlias.setVisible(false);
-    keyboard6_alias.setXY(0, 117);
-    keyboard6_alias.setVisible(false);
-    s8_2_typeAlias.add(keyboard6_alias);
-
-    keyboard6_text_area.setXY(45, 120);
-    s8_2_typeAlias.add(keyboard6_text_area);
-
-    keyboard6_btn_hide.setIconBitmaps(Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_PRESSED_ID));
-    keyboard6_btn_hide.setIconXY(0, 0);
-    keyboard6_btn_hide.setVisible(false);
-    keyboard6_btn_hide.setAction(flexButtonCallback);
-    keyboard6_btn_hide.setPosition(242, 210, 75, 25);
-    s8_2_typeAlias.add(keyboard6_btn_hide);
-
-    keyboard6_btn_show.setBoxWithBorderPosition(0, 0, 169, 30);
-    keyboard6_btn_show.setBorderSize(5);
-    keyboard6_btn_show.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard6_btn_show.setAlpha(0);
-    keyboard6_btn_show.setAction(flexButtonCallback);
-    keyboard6_btn_show.setPosition(76, 120, 169, 30);
-    s8_2_typeAlias.add(keyboard6_btn_show);
-
-    keyboard6_btn_enter.setIconBitmaps(Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID), Bitmap(BITMAP_GRAFISMO_BOTON_FLECHA_ACEPTAR_CUVEX_ID));
-    keyboard6_btn_enter.setIconXY(1, 1);
-    keyboard6_btn_enter.setAction(flexButtonCallback);
-    keyboard6_btn_enter.setPosition(245, 120, 30, 30);
-    s8_2_typeAlias.add(keyboard6_btn_enter);
-
-    keyboard6_text_typed.setPosition(76, 125, 169, 20);
-    keyboard6_text_typed.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard6_text_typed.setLinespacing(0);
-    Unicode::snprintf(keyboard6_text_typedBuffer, KEYBOARD6_TEXT_TYPED_SIZE, "%s", touchgfx::TypedText(T_SF2_KEYBOARD6_TYPED_VALUE).getText());
-    keyboard6_text_typed.setWildcard(keyboard6_text_typedBuffer);
-    keyboard6_text_typed.setTypedText(touchgfx::TypedText(T_SF2_KEYBOARD6_TYPED));
-    s8_2_typeAlias.add(keyboard6_text_typed);
-
-    keyboard6_text_info.setPosition(0, 90, 320, 20);
-    keyboard6_text_info.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard6_text_info.setLinespacing(0);
-    keyboard6_text_info.setTypedText(touchgfx::TypedText(T_SF2_KEYBOAR6_INFO));
-    s8_2_typeAlias.add(keyboard6_text_info);
-
-    s8_writeError2.add(s8_2_typeAlias);
-
-    add(s8_writeError2);
-
-    s9_writeSuccess.setPosition(0, 0, 320, 240);
-    s9_writeSuccess.setVisible(false);
+    s8_writeSuccess.setPosition(0, 0, 320, 240);
+    s8_writeSuccess.setVisible(false);
     btn_success.setBoxWithBorderPosition(0, 0, 320, 30);
     btn_success.setBorderSize(0);
     btn_success.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
@@ -785,11 +889,11 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
     btn_success.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     btn_success.setAction(flexButtonCallback);
     btn_success.setPosition(0, 210, 320, 30);
-    s9_writeSuccess.add(btn_success);
+    s8_writeSuccess.add(btn_success);
 
     image_success.setXY(117, 44);
     image_success.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_PROCESO_EXITOSO_CUVEX_ID));
-    s9_writeSuccess.add(image_success);
+    s8_writeSuccess.add(image_success);
 
     text_cryptogram_success_spanish.setPosition(0, 0, 320, 240);
     text_cryptogram_success_spanish.setVisible(false);
@@ -828,7 +932,7 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
     text_cryptogram_success_spanish_1.setTypedText(touchgfx::TypedText(T_SF2_TEXT_CRYPTOGRAM_SUCCESS_SPANISH_1));
     text_cryptogram_success_spanish.add(text_cryptogram_success_spanish_1);
 
-    s9_writeSuccess.add(text_cryptogram_success_spanish);
+    s8_writeSuccess.add(text_cryptogram_success_spanish);
 
     text_cryptogram_success_english.setPosition(0, 0, 320, 240);
     text_cryptogram_success_english_6.setPosition(0, 173, 320, 18);
@@ -872,9 +976,9 @@ screen_flow_2ViewBase::screen_flow_2ViewBase() :
     text_cryptogram_success_english_1.setTypedText(touchgfx::TypedText(T_SF2_TEXT_CRYPTOGRAM_SUCCESS_ENGLISH_1));
     text_cryptogram_success_english.add(text_cryptogram_success_english_1);
 
-    s9_writeSuccess.add(text_cryptogram_success_english);
+    s8_writeSuccess.add(text_cryptogram_success_english);
 
-    add(s9_writeSuccess);
+    add(s8_writeSuccess);
 
     close_button.setXY(0, 0);
     add(close_button);
@@ -887,321 +991,343 @@ screen_flow_2ViewBase::~screen_flow_2ViewBase()
 
 void screen_flow_2ViewBase::setupScreen()
 {
-    keyboard1_numeric.initialize();
-    keyboard1_text_area.initialize();
-    keyboard2_BIP39.initialize();
-    keyboard2_text_area.initialize();
-    keyboard3_passphrase.initialize();
-    keyboard4_plain_text.initialize();
-    keyboard5_password_1.initialize();
-    keyboard5_password_2.initialize();
-    keyboard5_text_area_1.initialize();
-    keyboard5_text_area_2.initialize();
-    keyboard5_text_area_selected_1.initialize();
-    keyboard5_text_area_selected_2.initialize();
+    keyboard1_seed.initialize();
+    keyboard1_text_area_seed.initialize();
+    keyboard2_seed.initialize();
+    keyboard2_text_area_seed.initialize();
+    keyboard3_seed.initialize();
+    keyboard_plain_text.initialize();
+    s1_fromNFC_1_init_nfc_thinking_circles.initialize();
+    keyboard1_password.initialize();
+    keyboard2_password.initialize();
+    keyboard1_text_area_password.initialize();
+    keyboard2_text_area_password.initialize();
+    keyboard1_text_area_selected_password.initialize();
+    keyboard2_text_area_selected_password.initialize();
+    keyboard_alias.initialize();
+    keyboard_text_area_alias.initialize();
     init_nfc_thinking_circles.initialize();
-    keyboard6_alias.initialize();
-    keyboard6_text_area.initialize();
     close_button.initialize();
 }
 
 void screen_flow_2ViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
 {
-    if (&src == &btn_seed)
+    if (&src == &btn_seed_bip39)
     {
-        //Interaction2
-        //When btn_seed clicked call virtual function
-        //Call seedButtonPressed
-        seedButtonPressed();
+        //menuBip39Pressed
+        //When btn_seed_bip39 clicked call virtual function
+        //Call menuBip39Pressed
+        menuBip39Pressed();
     }
     if (&src == &btn_plain_text)
     {
-        //Interaction3
+        //menuPlainTextPressed
         //When btn_plain_text clicked call virtual function
-        //Call plainTextButtonPressed
-        plainTextButtonPressed();
+        //Call menuPlainTextPressed
+        menuPlainTextPressed();
     }
-    if (&src == &keyboard1_btn_hide)
+    if (&src == &keyboard1_btn_hide_seed)
     {
-        //Interaction4
-        //When keyboard1_btn_hide clicked call virtual function
-        //Call hideKeyboard1Pressed
-        hideKeyboard1Pressed();
+        //hideKeyboard1SeedPressed
+        //When keyboard1_btn_hide_seed clicked call virtual function
+        //Call hideKeyboard1SeedPressed
+        hideKeyboard1SeedPressed();
     }
-    if (&src == &keyboard1_btn_show)
+    if (&src == &keyboard1_btn_show_seed)
     {
-        //Interaction5
-        //When keyboard1_btn_show clicked call virtual function
-        //Call showKeyboard1Pressed
-        showKeyboard1Pressed();
+        //showKeyboard1SeedPressed
+        //When keyboard1_btn_show_seed clicked call virtual function
+        //Call showKeyboard1SeedPressed
+        showKeyboard1SeedPressed();
     }
-    if (&src == &keyboard1_btn_enter)
+    if (&src == &keyboard1_btn_enter_seed)
     {
-        //Interaction6
-        //When keyboard1_btn_enter clicked call virtual function
-        //Call enterKeyboard1Pressed
-        enterKeyboard1Pressed();
+        //enterKeyboard1SeedPressed
+        //When keyboard1_btn_enter_seed clicked call virtual function
+        //Call enterKeyboard1SeedPressed
+        enterKeyboard1SeedPressed();
     }
-    if (&src == &keyboard2_btn_hide)
+    if (&src == &keyboard2_btn_hide_seed)
     {
-        //Interaction7
-        //When keyboard2_btn_hide clicked call virtual function
-        //Call hideKeyboard2Pressed
-        hideKeyboard2Pressed();
+        //hideKeyboard2SeedPressed
+        //When keyboard2_btn_hide_seed clicked call virtual function
+        //Call hideKeyboard2SeedPressed
+        hideKeyboard2SeedPressed();
     }
-    if (&src == &keyboard2_btn_show)
+    if (&src == &keyboard2_btn_show_seed)
     {
-        //Interaction8
-        //When keyboard2_btn_show clicked call virtual function
-        //Call showKeyboard2Pressed
-        showKeyboard2Pressed();
+        //showKeyboard2SeedPressed
+        //When keyboard2_btn_show_seed clicked call virtual function
+        //Call showKeyboard2SeedPressed
+        showKeyboard2SeedPressed();
     }
-    if (&src == &keyboard2_btn_enter)
+    if (&src == &keyboard2_btn_enter_seed)
     {
-        //Interaction9
-        //When keyboard2_btn_enter clicked call virtual function
-        //Call enterKeyboard2Pressed
-        enterKeyboard2Pressed();
+        //enterKeyboard2SeedPressed
+        //When keyboard2_btn_enter_seed clicked call virtual function
+        //Call enterKeyboard2SeedPressed
+        enterKeyboard2SeedPressed();
     }
-    if (&src == &keyboard3_btn_hide)
+    if (&src == &keyboard3_btn_hide_seed)
     {
-        //Interaction10
-        //When keyboard3_btn_hide clicked call virtual function
-        //Call hideKeyboard3Pressed
-        hideKeyboard3Pressed();
+        //hideKeyboard3SeedPressed
+        //When keyboard3_btn_hide_seed clicked call virtual function
+        //Call hideKeyboard3SeedPressed
+        hideKeyboard3SeedPressed();
     }
-    if (&src == &keyboard3_btn_show)
+    if (&src == &keyboard3_btn_show_seed)
     {
-        //Interaction11
-        //When keyboard3_btn_show clicked call virtual function
-        //Call showKeyboard3Pressed
-        showKeyboard3Pressed();
+        //showKeyboard3SeedPressed
+        //When keyboard3_btn_show_seed clicked call virtual function
+        //Call showKeyboard3SeedPressed
+        showKeyboard3SeedPressed();
     }
-    if (&src == &keyboard3_btn_enter)
+    if (&src == &keyboard3_btn_enter_seed)
     {
-        //Interaction12
-        //When keyboard3_btn_enter clicked call virtual function
-        //Call enterKeyboard3Pressed
-        enterKeyboard3Pressed();
+        //enterKeyboard3SeedPressed
+        //When keyboard3_btn_enter_seed clicked call virtual function
+        //Call enterKeyboard3SeedPressed
+        enterKeyboard3SeedPressed();
     }
-    if (&src == &keyboard4_btn_hide)
+    if (&src == &keyboard_btn_hide_plain_text)
     {
-        //Interaction13
-        //When keyboard4_btn_hide clicked call virtual function
-        //Call hideKeyboard4Pressed
-        hideKeyboard4Pressed();
+        //hideKeyboardPlainTextPressed
+        //When keyboard_btn_hide_plain_text clicked call virtual function
+        //Call hideKeyboardPlainTextPressed
+        hideKeyboardPlainTextPressed();
     }
-    if (&src == &keyboard4_btn_show)
+    if (&src == &keyboard_btn_show_plain_text)
     {
-        //Interaction14
-        //When keyboard4_btn_show clicked call virtual function
-        //Call showKeyboard4Pressed
-        showKeyboard4Pressed();
+        //showKeyboardPlainTextPressed
+        //When keyboard_btn_show_plain_text clicked call virtual function
+        //Call showKeyboardPlainTextPressed
+        showKeyboardPlainTextPressed();
     }
-    if (&src == &keyboard4_btn_enter)
+    if (&src == &keyboard_btn_enter_plain_text)
     {
-        //Interaction15
-        //When keyboard4_btn_enter clicked call virtual function
-        //Call enterKeyboard4Pressed
-        enterKeyboard4Pressed();
+        //enterKeyboardPlainTextPressed
+        //When keyboard_btn_enter_plain_text clicked call virtual function
+        //Call enterKeyboardPlainTextPressed
+        enterKeyboardPlainTextPressed();
     }
-    if (&src == &keyboard5_btn_hide)
+    if (&src == &keyboard_btn_hide_password)
     {
-        //Interaction16
-        //When keyboard5_btn_hide clicked call virtual function
-        //Call hideKeyboard5Pressed
-        hideKeyboard5Pressed();
+        //hideKeyboardPasswordPressed
+        //When keyboard_btn_hide_password clicked call virtual function
+        //Call hideKeyboardPasswordPressed
+        hideKeyboardPasswordPressed();
     }
-    if (&src == &keyboard5_btn_enter)
+    if (&src == &keyboard_btn_enter_password)
     {
-        //Interaction18
-        //When keyboard5_btn_enter clicked call virtual function
-        //Call enterKeyboard5Pressed
-        enterKeyboard5Pressed();
+        //enterKeyboardPasswordPressed
+        //When keyboard_btn_enter_password clicked call virtual function
+        //Call enterKeyboardPasswordPressed
+        enterKeyboardPasswordPressed();
     }
-    if (&src == &btn_encrypt1)
+    if (&src == &btn_encrypt)
     {
-        //Interaction19
-        //When btn_encrypt1 clicked call virtual function
+        //encryptSeedPressed
+        //When btn_encrypt clicked call virtual function
         //Call encryptPressed
         encryptPressed();
     }
     if (&src == &btn_multi_yes)
     {
-        //Interaction20
+        //multisignedYesPressed
         //When btn_multi_yes clicked call virtual function
         //Call multisignedYesPressed
         multisignedYesPressed();
     }
     if (&src == &btn_multi_no)
     {
-        //Interaction21
+        //multisignedNoPressed
         //When btn_multi_no clicked call virtual function
         //Call multisignedNoPressed
         multisignedNoPressed();
     }
-    if (&src == &btn_store_cryptogram)
+    if (&src == &btn_pwd_success)
     {
-        //Interaction22
-        //When btn_store_cryptogram clicked call virtual function
-        //Call storeCriptogramPressed
-        storeCriptogramPressed();
+        //passwordSuccessPressed
+        //When btn_pwd_success clicked call virtual function
+        //Call passwordSuccessPressed
+        passwordSuccessPressed();
     }
     if (&src == &btn_success)
     {
-        //Interaction23
+        //successPressed
         //When btn_success clicked call virtual function
         //Call successPressed
         successPressed();
     }
-    if (&src == &btn_encrypt2)
+    if (&src == &keyboard_btn_up_plain_text)
     {
-        //Interaction24
-        //When btn_encrypt2 clicked call virtual function
-        //Call encryptPressed
-        encryptPressed();
-    }
-    if (&src == &keyboard4_btn_up)
-    {
-        //Interaction25
-        //When keyboard4_btn_up clicked call virtual function
+        //btnUpPlainTextPressed
+        //When keyboard_btn_up_plain_text clicked call virtual function
         //Call btnUpPressed
         btnUpPressed();
     }
-    if (&src == &keyboard4_btn_down)
+    if (&src == &keyboard_btn_down_plain_text)
     {
-        //Interaction26
-        //When keyboard4_btn_down clicked call virtual function
+        //btnDownPlainTextPressed
+        //When keyboard_btn_down_plain_text clicked call virtual function
         //Call btnDownPressed
         btnDownPressed();
     }
-    if (&src == &keyboard5_btn_show_1)
+    if (&src == &keyboard1_btn_show_password)
     {
-        //Interaction29
-        //When keyboard5_btn_show_1 clicked call virtual function
-        //Call show1Keyboard5Pressed
-        show1Keyboard5Pressed();
+        //show1KeyboardPasswordPressed
+        //When keyboard1_btn_show_password clicked call virtual function
+        //Call show1KeyboardPasswordPressed
+        show1KeyboardPasswordPressed();
     }
-    if (&src == &keyboard5_btn_show_2)
+    if (&src == &keyboard2_btn_show_password)
     {
-        //Interaction30
-        //When keyboard5_btn_show_2 clicked call virtual function
-        //Call show2Keyboard5Pressed
-        show2Keyboard5Pressed();
+        //show2KeyboardPasswordPressed
+        //When keyboard2_btn_show_password clicked call virtual function
+        //Call show2KeyboardPasswordPressed
+        show2KeyboardPasswordPressed();
     }
-    if (&src == &keyboard3_btn_up)
+    if (&src == &keyboard3_btn_up_seed)
     {
-        //Interaction31
-        //When keyboard3_btn_up clicked call virtual function
+        //btnUpSeedPressed
+        //When keyboard3_btn_up_seed clicked call virtual function
         //Call btnUpPressed
         btnUpPressed();
     }
-    if (&src == &keyboard3_btn_down)
+    if (&src == &keyboard3_btn_down_seed)
     {
-        //Interaction32
-        //When keyboard3_btn_down clicked call virtual function
+        //btnDownSeedPressed
+        //When keyboard3_btn_down_seed clicked call virtual function
         //Call btnDownPressed
         btnDownPressed();
     }
     if (&src == &btn_multi_plus)
     {
-        //Interaction33
+        //multisignedPlusPressed
         //When btn_multi_plus clicked call virtual function
         //Call multisignedPlusPressed
         multisignedPlusPressed();
     }
     if (&src == &btn_multi_minus)
     {
-        //Interaction34
+        //multisignedMinusPressed
         //When btn_multi_minus clicked call virtual function
         //Call multisignedMinusPressed
         multisignedMinusPressed();
     }
     if (&src == &btn_multi_select)
     {
-        //Interaction35
+        //multisignedSelectPressed
         //When btn_multi_select clicked call virtual function
         //Call multisignedSelectPressed
         multisignedSelectPressed();
     }
-    if (&src == &btn_scroll_up1)
+    if (&src == &btn_scroll_up_seed)
     {
-        //Interaction36
-        //When btn_scroll_up1 clicked call virtual function
+        //btnScrollUpSeedPressed
+        //When btn_scroll_up_seed clicked call virtual function
         //Call btnScrollUpPressed
         btnScrollUpPressed();
     }
-    if (&src == &btn_scroll_down1)
+    if (&src == &btn_scroll_down_seed)
     {
-        //Interaction37
-        //When btn_scroll_down1 clicked call virtual function
+        //btnScrollDownSeedPressed
+        //When btn_scroll_down_seed clicked call virtual function
         //Call btnScrollDownPressed
         btnScrollDownPressed();
     }
-    if (&src == &btn_scroll_up2)
+    if (&src == &btn_scroll_up_plain_text)
     {
-        //Interaction38
-        //When btn_scroll_up2 clicked call virtual function
+        //btnScrollUpPressed
+        //When btn_scroll_up_plain_text clicked call virtual function
         //Call btnScrollUpPressed
         btnScrollUpPressed();
     }
-    if (&src == &btn_scroll_down2)
+    if (&src == &btn_scroll_down_plain_text)
     {
-        //Interaction39
-        //When btn_scroll_down2 clicked call virtual function
+        //btnScrollDownPressed
+        //When btn_scroll_down_plain_text clicked call virtual function
         //Call btnScrollDownPressed
         btnScrollDownPressed();
     }
     if (&src == &btn_retry)
     {
-        //Interaction40
+        //retryPressed
         //When btn_retry clicked call virtual function
         //Call retryPressed
         retryPressed();
     }
-    if (&src == &keyboard6_btn_hide)
+    if (&src == &keyboard_btn_hide_alias)
     {
-        //Interaction41
-        //When keyboard6_btn_hide clicked call virtual function
-        //Call hideKeyboard6Pressed
-        hideKeyboard6Pressed();
+        //hideKeyboardAliasPressed
+        //When keyboard_btn_hide_alias clicked call virtual function
+        //Call hideKeyboardAliasPressed
+        hideKeyboardAliasPressed();
     }
-    if (&src == &keyboard6_btn_show)
+    if (&src == &keyboard_btn_show_alias)
     {
-        //Interaction42
-        //When keyboard6_btn_show clicked call virtual function
-        //Call showKeyboard6Pressed
-        showKeyboard6Pressed();
+        //showKeyboardAliasPressed
+        //When keyboard_btn_show_alias clicked call virtual function
+        //Call showKeyboardAliasPressed
+        showKeyboardAliasPressed();
     }
-    if (&src == &keyboard6_btn_enter)
+    if (&src == &keyboard_btn_enter_alias)
     {
-        //Interaction43
-        //When keyboard6_btn_enter clicked call virtual function
-        //Call enterKeyboard6Pressed
-        enterKeyboard6Pressed();
+        //enter1KeyboardAliasPressed
+        //When keyboard_btn_enter_alias clicked call virtual function
+        //Call enterKeyboardAliasPressed
+        enterKeyboardAliasPressed();
     }
     if (&src == &btn_assign_alias)
     {
-        //Interaction44
+        //enter2KeyboardAliasPressed
         //When btn_assign_alias clicked call virtual function
-        //Call assignAliasPressed
-        assignAliasPressed();
+        //Call enterKeyboardAliasPressed
+        enterKeyboardAliasPressed();
+    }
+    if (&src == &btn_seed_slip39)
+    {
+        //menuSlip39Pressed
+        //When btn_seed_slip39 clicked call virtual function
+        //Call menuSlip39Pressed
+        menuSlip39Pressed();
+    }
+    if (&src == &btn_seed_xmr)
+    {
+        //menuXmrPressed
+        //When btn_seed_xmr clicked call virtual function
+        //Call menuXmrPressed
+        menuXmrPressed();
+    }
+    if (&src == &btn_text_from_nfc)
+    {
+        //menuTextFromNfcPressed
+        //When btn_text_from_nfc clicked call virtual function
+        //Call menuTextFromNfcPressed
+        menuTextFromNfcPressed();
+    }
+    if (&src == &s1_fromNFC_error_btn)
+    {
+        //Interaction1
+        //When s1_fromNFC_error_btn clicked call virtual function
+        //Call btnFromNfcErrorPressed
+        btnFromNfcErrorPressed();
     }
 }
 
 void screen_flow_2ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
-    if (&src == &keyboard5_pwd_eye_1)
+    if (&src == &keyboard1_pwd_eye_password)
     {
-        //Interaction27
-        //When keyboard5_pwd_eye_1 clicked call virtual function
+        //eye1Pressed
+        //When keyboard1_pwd_eye_password clicked call virtual function
         //Call eye1Pressed
         eye1Pressed();
     }
-    if (&src == &keyboard5_pwd_eye_2)
+    if (&src == &keyboard2_pwd_eye_password)
     {
-        //Interaction28
-        //When keyboard5_pwd_eye_2 clicked call virtual function
+        //eye2Pressed
+        //When keyboard2_pwd_eye_password clicked call virtual function
         //Call eye2Pressed
         eye2Pressed();
     }
@@ -1209,13 +1335,13 @@ void screen_flow_2ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton
 
 void screen_flow_2ViewBase::handleTickEvent()
 {
-    frameCountInteraction1Interval++;
-    if(frameCountInteraction1Interval == TICK_INTERACTION1_INTERVAL)
+    frameCountTickEventInterval++;
+    if(frameCountTickEventInterval == TICK_TICKEVENT_INTERVAL)
     {
-        //Interaction1
+        //tickEvent
         //When every N tick call virtual function
         //Call tickEventScreen
         tickEventScreen();
-        frameCountInteraction1Interval = 0;
+        frameCountTickEventInterval = 0;
     }
 }

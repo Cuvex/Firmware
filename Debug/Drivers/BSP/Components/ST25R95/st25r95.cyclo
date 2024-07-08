@@ -1,0 +1,5 @@
+../Drivers/BSP/Components/ST25R95/st25r95.c:92:6:st25r95Deinitialize	1
+../Drivers/BSP/Components/ST25R95/st25r95.c:116:6:st25r95UART_nIRQ_IN_Pulse	1
+../Drivers/BSP/Components/ST25R95/st25r95.c:64:12:st25r95Initialize	3
+../Drivers/BSP/Components/ST25R95/st25r95.c:149:12:st25r95FieldOn	1
+../Drivers/BSP/Components/ST25R95/st25r95.c:158:12:st25r95FieldOff	1

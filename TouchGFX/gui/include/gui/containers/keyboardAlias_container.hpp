@@ -1,3 +1,16 @@
+/*
+ *****************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+
 #ifndef KEYBOARDALIAS_CONTAINER_HPP
 #define KEYBOARDALIAS_CONTAINER_HPP
 
@@ -11,14 +24,6 @@
 #include <gui/common/KeyboardLayout.hpp>
 
 using namespace touchgfx;
-
-/*
- * An alphanumeric keyboard with backspace, space-bar and delete functionality.
- * Keyboard mappings for the keyboard are defined in gui/include/gui/common/KeyboardKeyMapping.hpp.
- * Keyboard layout for the keyboard is defined in gui/include/gui/common/KeyboardLayout.hpp.
- * Please note that the ApplicationFontProvider is initialized and set with the FontManager in main.cpp
- * The fonts and the characters used by the keyboard have to be defined in the assets/texts/texts.xlsx file.
- */
 
 class keyboardAlias_container : public keyboardAlias_containerBase
 {

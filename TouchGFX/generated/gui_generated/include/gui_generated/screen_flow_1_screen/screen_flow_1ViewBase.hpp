@@ -102,7 +102,8 @@ protected:
     touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_show;
     touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_enter;
     touchgfx::TextAreaWithOneWildcard keyboard_text_typed;
-    touchgfx::TextArea keyboard_text_info;
+    touchgfx::TextArea keyboard_text_info_2;
+    touchgfx::TextArea keyboard_text_info_1;
     touchgfx::Container s4_waitReadWriteNFC;
     touchgfx::TextArea wait_read_write_nfc_text1;
     touchgfx::TextArea wait_read_write_nfc_text2;
@@ -134,8 +135,8 @@ private:
     /*
      * Tick Counter Declarations
      */
-    static const uint32_t TICK_INTERACTION1_INTERVAL = 10;
-    uint32_t frameCountInteraction1Interval;
+    static const uint32_t TICK_TICKEVENT_INTERVAL = 10;
+    uint32_t frameCountTickEventInterval;
 
     /*
      * Callback Declarations

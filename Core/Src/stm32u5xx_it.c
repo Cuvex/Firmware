@@ -6,7 +6,7 @@
  ******************************************************************************
  * @attention
  *
- * Portion Copyright (C) 2023 Semilla3 OÜ.  All Rights Reserved.
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
  *
  * This software is licensed under terms that can be found in the LICENSE file
  * in the root directory of this software component.

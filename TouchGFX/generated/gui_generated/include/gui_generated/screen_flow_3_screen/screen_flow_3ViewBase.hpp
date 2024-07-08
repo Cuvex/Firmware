@@ -93,6 +93,22 @@ public:
     {
         // Override and implement this function in screen_flow_3
     }
+    virtual void btnCautionMsgPressed()
+    {
+        // Override and implement this function in screen_flow_3
+    }
+    virtual void btnQrSeedPressed()
+    {
+        // Override and implement this function in screen_flow_3
+    }
+    virtual void btnQrPrivateKeyPressed()
+    {
+        // Override and implement this function in screen_flow_3
+    }
+    virtual void btnQrPublicKeyPressed()
+    {
+        // Override and implement this function in screen_flow_3
+    }
 
 protected:
     FrontendApplication& application() {
@@ -189,6 +205,20 @@ protected:
     touchgfx::IconButtonStyle< touchgfx::RepeatButtonTrigger >  btn_up;
     touchgfx::ScrollableContainer scrollable_container_typed_check;
     touchgfx::TextAreaWithOneWildcard text_secret_check;
+    touchgfx::Container container_caution_msg;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_caution_msg;
+    touchgfx::Container text_caution_msg_spanish;
+    touchgfx::TextArea caution_msg_spanish_1;
+    touchgfx::TextArea caution_msg_spanish_2;
+    touchgfx::TextArea caution_msg_spanish_3;
+    touchgfx::Container text_caution_msg_english;
+    touchgfx::TextArea caution_msg_english_1;
+    touchgfx::TextArea caution_msg_english_2;
+    touchgfx::TextArea caution_msg_english_3;
+    touchgfx::Container container_qr_to_check_menu;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_1_qr_seed;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_2_qr_private_key;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_3_qr_public_key;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_more_time;
     touchgfx::TextAreaWithOneWildcard text_timeout;
     touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_back;
@@ -213,7 +243,7 @@ protected:
     touchgfx::Unicode::UnicodeChar keyboard_text_typed_hideBuffer[KEYBOARD_TEXT_TYPED_HIDE_SIZE];
     static const uint16_t KEYBOARD_TEXT_INFO_SIZE = 50;
     touchgfx::Unicode::UnicodeChar keyboard_text_infoBuffer[KEYBOARD_TEXT_INFO_SIZE];
-    static const uint16_t TEXT_SECRET_CHECK_SIZE = 1005;
+    static const uint16_t TEXT_SECRET_CHECK_SIZE = 2005;
     touchgfx::Unicode::UnicodeChar text_secret_checkBuffer[TEXT_SECRET_CHECK_SIZE];
     static const uint16_t TEXT_TIMEOUT_SIZE = 5;
     touchgfx::Unicode::UnicodeChar text_timeoutBuffer[TEXT_TIMEOUT_SIZE];
@@ -229,8 +259,8 @@ private:
     /*
      * Tick Counter Declarations
      */
-    static const uint32_t TICK_INTERACTION1_INTERVAL = 10;
-    uint32_t frameCountInteraction1Interval;
+    static const uint32_t TICK_TICKEVENT_INTERVAL = 10;
+    uint32_t frameCountTickEventInterval;
 
     /*
      * Callback Declarations

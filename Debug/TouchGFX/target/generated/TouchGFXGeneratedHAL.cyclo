@@ -1,0 +1,35 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:124:18:virtual void touchgfx::HAL::setDisplayOrientation(touchgfx::DisplayOrientation)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:320:28:virtual touchgfx::BlitOperations touchgfx::HAL::getBlitCaps()	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:670:18:virtual bool touchgfx::HAL::sampleKey(uint8_t&)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:737:18:virtual void touchgfx::HAL::setAnimationStorage(void*)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:876:30:virtual touchgfx::FlashDataReader* touchgfx::HAL::getFlashDataReader() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:1025:18:virtual void touchgfx::HAL::taskDelay(uint16_t)	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:1063:21:virtual touchgfx::DMAType touchgfx::HAL::getDMAType()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:1162:18:virtual void touchgfx::HAL::performDisplayOrientationChange()	4
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:1189:18:virtual void touchgfx::HAL::InvalidateCache()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:1199:18:virtual void touchgfx::HAL::FlushCache()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:30:32:void __tcf_1()	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:59:6:virtual void TouchGFXGeneratedHAL::configureInterrupts()	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:66:6:virtual void TouchGFXGeneratedHAL::enableInterrupts()	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:73:6:virtual void TouchGFXGeneratedHAL::disableInterrupts()	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:80:6:virtual void TouchGFXGeneratedHAL::enableLCDControllerInterrupt()	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:101:11:virtual uint16_t* TouchGFXGeneratedHAL::getTFTFrameBuffer() const	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:106:6:virtual void TouchGFXGeneratedHAL::setTFTFrameBuffer(uint16_t*)	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:124:10:virtual uint16_t TouchGFXGeneratedHAL::getTFTCurrentLine()	2
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.hpp:30:7:TouchGFXGeneratedHAL::~TouchGFXGeneratedHAL()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.hpp:30:7:virtual TouchGFXGeneratedHAL::~TouchGFXGeneratedHAL()	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:50:6:virtual void TouchGFXGeneratedHAL::initialize()	3
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:91:6:virtual bool TouchGFXGeneratedHAL::beginFrame()	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:96:6:virtual void TouchGFXGeneratedHAL::endFrame()	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:114:6:virtual void TouchGFXGeneratedHAL::flushFrameBuffer(const touchgfx::Rect&)	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:119:6:virtual bool TouchGFXGeneratedHAL::blockCopy(void*, const void*, uint32_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:638:18:virtual void touchgfx::HAL::backPorchExited()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:720:18:virtual void touchgfx::HAL::setFrameBufferStartAddresses(void*, void*, void*)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:156:18:virtual void touchgfx::HAL::setFrameBufferSize(uint16_t, uint16_t)	2
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.hpp:106:18:virtual void TouchGFXGeneratedHAL::flushFrameBuffer()	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:28:17:static touchgfx::VectorRenderer* touchgfx::VectorRenderer::getInstance()	3
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:140:10:void HAL_LTDC_LineEventCallback(LTDC_HandleTypeDef*)	3
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:170:1:cpp)	1
+../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:170:1:cpp)	1

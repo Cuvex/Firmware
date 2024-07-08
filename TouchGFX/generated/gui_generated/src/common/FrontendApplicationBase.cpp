@@ -9,7 +9,7 @@
 #include <touchgfx/Texts.hpp>
 #include <touchgfx/hal/HAL.hpp>
 #ifdef SIMULATOR
-#include<platform/driver/lcd/LCD24bpp.hpp>
+#include <platform/driver/lcd/LCD24bpp.hpp>
 #endif
 #include <gui/screen_init_screen/screen_initView.hpp>
 #include <gui/screen_init_screen/screen_initPresenter.hpp>
@@ -38,6 +38,7 @@ FrontendApplicationBase::FrontendApplicationBase(Model& m, FrontendHeap& heap)
     touchgfx::Texts::setLanguage(SP);
 #ifdef SIMULATOR
     reinterpret_cast<touchgfx::LCD24bpp&>(touchgfx::HAL::lcd()).enableTextureMapperAll();
+    reinterpret_cast<touchgfx::LCD24bpp&>(touchgfx::HAL::lcd()).enableDecompressorL8_All();
 #endif
 }
 
@@ -49,7 +50,7 @@ FrontendApplicationBase::FrontendApplicationBase(Model& m, FrontendHeap& heap)
 
 void FrontendApplicationBase::gotoscreen_initScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoscreen_initScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_initScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
@@ -62,7 +63,7 @@ void FrontendApplicationBase::gotoscreen_initScreenNoTransitionImpl()
 
 void FrontendApplicationBase::gotoscreen_menuScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoscreen_menuScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_menuScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
@@ -75,7 +76,7 @@ void FrontendApplicationBase::gotoscreen_menuScreenNoTransitionImpl()
 
 void FrontendApplicationBase::gotoscreen_flow_1ScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoscreen_flow_1ScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_1ScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
@@ -88,7 +89,7 @@ void FrontendApplicationBase::gotoscreen_flow_1ScreenNoTransitionImpl()
 
 void FrontendApplicationBase::gotoscreen_flow_2ScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoscreen_flow_2ScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_2ScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
@@ -101,7 +102,7 @@ void FrontendApplicationBase::gotoscreen_flow_2ScreenNoTransitionImpl()
 
 void FrontendApplicationBase::gotoscreen_flow_3ScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoscreen_flow_3ScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_3ScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
@@ -114,7 +115,7 @@ void FrontendApplicationBase::gotoscreen_flow_3ScreenNoTransitionImpl()
 
 void FrontendApplicationBase::gotoscreen_flow_4ScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoscreen_flow_4ScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_4ScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
@@ -127,7 +128,7 @@ void FrontendApplicationBase::gotoscreen_flow_4ScreenNoTransitionImpl()
 
 void FrontendApplicationBase::gotoscreen_flow_5ScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoscreen_flow_5ScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_5ScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 

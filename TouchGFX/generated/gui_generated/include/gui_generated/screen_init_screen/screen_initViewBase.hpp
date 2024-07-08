@@ -8,9 +8,13 @@
 #include <mvp/View.hpp>
 #include <gui/screen_init_screen/screen_initPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/Container.hpp>
 #include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
+#include <gui/containers/keyboardDeviceAlias_container.hpp>
+#include <gui/containers/textArea_container.hpp>
 
 class screen_initViewBase : public touchgfx::View<screen_initPresenter>
 {
@@ -18,6 +22,43 @@ public:
     screen_initViewBase();
     virtual ~screen_initViewBase();
     virtual void setupScreen();
+    virtual void handleTickEvent();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void tickEventScreen()
+    {
+        // Override and implement this function in screen_init
+    }
+    virtual void settingsPressed()
+    {
+        // Override and implement this function in screen_init
+    }
+    virtual void languageEnglishPressed()
+    {
+        // Override and implement this function in screen_init
+    }
+    virtual void languageSpanishPressed()
+    {
+        // Override and implement this function in screen_init
+    }
+    virtual void languageConfirmPressed()
+    {
+        // Override and implement this function in screen_init
+    }
+    virtual void hideKeyboardPressed()
+    {
+        // Override and implement this function in screen_init
+    }
+    virtual void showKeyboardPressed()
+    {
+        // Override and implement this function in screen_init
+    }
+    virtual void enterKeyboardPressed()
+    {
+        // Override and implement this function in screen_init
+    }
 
 protected:
     FrontendApplication& application() {
@@ -29,17 +70,55 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box background;
-    touchgfx::TextAreaWithOneWildcard fw_version;
+    touchgfx::Container s0_logo;
     touchgfx::Image logo;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  flexButton;
+    touchgfx::TextAreaWithOneWildcard device_alias;
+    touchgfx::TextAreaWithOneWildcard fw_version;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  btn_menu;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  btn_settings;
+    touchgfx::Container s1_settings;
+    touchgfx::Container s1_1_language;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_confirm_lan;
+    touchgfx::TextButtonStyle< touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_select_lan_spanish;
+    touchgfx::TextButtonStyle< touchgfx::IconButtonStyle< touchgfx::TouchButtonTrigger >  >  btn_select_lan_english;
+    touchgfx::Image image_english;
+    touchgfx::Image image_spanish;
+    touchgfx::Image check_language;
+    touchgfx::TextArea text_language;
+    touchgfx::Container s1_2_typeDeviceAlias;
+    keyboardDeviceAlias_container keyboard_device_alias;
+    textArea_container keyboard_text_area;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_hide;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_show;
+    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_enter;
+    touchgfx::TextAreaWithOneWildcard keyboard_text_typed;
+    touchgfx::TextArea keyboard_text_info_2;
+    touchgfx::TextArea keyboard_text_info_1;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_confirm_dev_alias;
 
     /*
      * Wildcard Buffers
      */
+    static const uint16_t DEVICE_ALIAS_SIZE = 35;
+    touchgfx::Unicode::UnicodeChar device_aliasBuffer[DEVICE_ALIAS_SIZE];
     static const uint16_t FW_VERSION_SIZE = 25;
     touchgfx::Unicode::UnicodeChar fw_versionBuffer[FW_VERSION_SIZE];
+    static const uint16_t KEYBOARD_TEXT_TYPED_SIZE = 35;
+    touchgfx::Unicode::UnicodeChar keyboard_text_typedBuffer[KEYBOARD_TEXT_TYPED_SIZE];
 
 private:
+
+    /*
+     * Canvas Buffer Size
+     */
+    static const uint32_t CANVAS_BUFFER_SIZE = 4800;
+    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
+
+    /*
+     * Tick Counter Declarations
+     */
+    static const uint32_t TICK_TICKEVENT_INTERVAL = 10;
+    uint32_t frameCountTickEventInterval;
 
     /*
      * Callback Declarations

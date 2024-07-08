@@ -1,0 +1,11 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:144:18:virtual void touchgfx::Screen::handleTickEvent()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
+../TouchGFX/gui/src/screen_menu_screen/screen_menuView.cpp:33:6:virtual void screen_menuView::tearDownScreen()	1
+../TouchGFX/gui/src/screen_menu_screen/screen_menuView.cpp:50:6:virtual void screen_menuView::changeScreen(uint8_t)	1
+../TouchGFX/gui/include/gui/screen_menu_screen/screen_menuView.hpp:25:13:screen_menuView::~screen_menuView()	1
+../TouchGFX/gui/include/gui/screen_menu_screen/screen_menuView.hpp:25:13:virtual screen_menuView::~screen_menuView()	1
+../TouchGFX/gui/src/screen_menu_screen/screen_menuView.cpp:20:1:screen_menuView::screen_menuView()	1
+../TouchGFX/gui/src/screen_menu_screen/screen_menuView.cpp:66:6:virtual void screen_menuView::setScreenMode()	2
+../TouchGFX/gui/src/screen_menu_screen/screen_menuView.cpp:94:6:virtual void screen_menuView::setScreenLanguage()	2
+../TouchGFX/gui/src/screen_menu_screen/screen_menuView.cpp:25:6:virtual void screen_menuView::setupScreen()	1

@@ -1,0 +1,5 @@
+../TouchGFX/gui/src/widgets/qrcode/QRCode.cpp:17:1:QR::QR(const char*, uint8_t)	1
+../TouchGFX/gui/src/widgets/qrcode/QRCode.cpp:24:1:QR::~QR()	2
+../TouchGFX/gui/src/widgets/qrcode/QRCode.cpp:30:6:bool QR::at(uint16_t, uint16_t) const	1
+../TouchGFX/gui/src/widgets/qrcode/QRCode.cpp:35:10:uint16_t QR::getWidth() const	1
+../TouchGFX/gui/src/widgets/qrcode/QRCode.cpp:40:10:uint16_t QR::getHeight() const	1

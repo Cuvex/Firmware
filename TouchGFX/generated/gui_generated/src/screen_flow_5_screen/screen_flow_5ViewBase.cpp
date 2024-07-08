@@ -394,70 +394,70 @@ void screen_flow_5ViewBase::flexButtonCallbackHandler(const touchgfx::AbstractBu
 {
     if (&src == &btn_1_version)
     {
-        //Interaction1
+        //menuVersionPressed
         //When btn_1_version clicked call virtual function
         //Call menuVersionPressed
         menuVersionPressed();
     }
     if (&src == &btn_2_brightness)
     {
-        //Interaction2
+        //menuBrightnessPressed
         //When btn_2_brightness clicked call virtual function
         //Call menuBrightnessPressed
         menuBrightnessPressed();
     }
     if (&src == &btn_3_language)
     {
-        //Interaction3
+        //menuLanguagePressed
         //When btn_3_language clicked call virtual function
         //Call menuLanguagePressed
         menuLanguagePressed();
     }
     if (&src == &btn_4_appearance)
     {
-        //Interaction4
+        //menuAppearancePressed
         //When btn_4_appearance clicked call virtual function
         //Call menuAppearancePressed
         menuAppearancePressed();
     }
     if (&src == &btn_select_update)
     {
-        //Interaction5
+        //versionUpdatePressed
         //When btn_select_update clicked call virtual function
         //Call versionUpdatePressed
         versionUpdatePressed();
     }
     if (&src == &btn_select_lan_english)
     {
-        //Interaction7
+        //languageEnglishPressed
         //When btn_select_lan_english clicked call virtual function
         //Call languageEnglishPressed
         languageEnglishPressed();
     }
     if (&src == &btn_select_lan_spanish)
     {
-        //Interaction8
+        //languageSpanishPressed
         //When btn_select_lan_spanish clicked call virtual function
         //Call languageSpanishPressed
         languageSpanishPressed();
     }
     if (&src == &btn_select_mode_light)
     {
-        //Interaction9
+        //appearanceLightPressed
         //When btn_select_mode_light clicked call virtual function
         //Call appearanceLightPressed
         appearanceLightPressed();
     }
     if (&src == &btn_select_mode_dark)
     {
-        //Interaction10
+        //appearanceDarkPressed
         //When btn_select_mode_dark clicked call virtual function
         //Call appearanceDarkPressed
         appearanceDarkPressed();
     }
     if (&src == &back_button)
     {
-        //Interaction11
+        //backPressed
         //When back_button clicked call virtual function
         //Call backPressed
         backPressed();
@@ -468,7 +468,7 @@ void screen_flow_5ViewBase::sliderValueChangedCallbackHandler(const touchgfx::Sl
 {
     if (&src == &slider_brightness)
     {
-        //Interaction6
+        //sliderSetDutyCicle
         //When slider_brightness value changed call virtual function
         //Call sliderSetDutyCicle
         sliderSetDutyCicle(value);

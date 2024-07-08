@@ -7,8 +7,7 @@
  ******************************************************************************
  * @attention
  *
- * Portion Copyright (C) 2023 Semilla3 OÜ.  All Rights Reserved.
- * All rights reserved.
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
  *
  * This software is licensed under terms that can be found in the LICENSE file
  * in the root directory of this software component.
@@ -33,8 +32,6 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 /*********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************/
 
 #include <string.h>
@@ -43,10 +40,10 @@ extern "C" {
 #include "stdlib.h"
 #include "cmsis_os2.h"
 #include "bip39_lib.h"
+#include "slip39_lib.h"
+#include "xmr_lib.h"
 
 /*********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************/
 /* USER CODE END Includes */
@@ -74,20 +71,16 @@ void Error_Handler(void);
 /* USER CODE BEGIN EFP */
 /*********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************/
 
-///*** Printf's ***/
-//#ifdef __GNUC__
-//#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-//#else
-//#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-//#endif
+/*** Printf's ***/
+#ifdef __GNUC__
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif
 
 /*********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************/
 /* USER CODE END EFP */
@@ -127,29 +120,38 @@ void Error_Handler(void);
 /* USER CODE BEGIN Private defines */
 /*********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************/
 
 /*
  * DEFINE's
  */
 
-#define FIRMWARE_VERSION	"1.0.0"			//Versión de firmware
-//#define DEBUG_NFC_PRINTF					//Macro para depurar con printf's "nfcTask"
+#define FIRMWARE_VERSION		"1.0.3"			//Firmware version
+//#define DEBUG_PRINTF
+//#define DEBUG_NFC_PRINTF
 
-#define SIZE_UID 			25				//14B siempre
-#define SIZE_ALIAS 			25				//20B máx.
-#define SIZE_INFORMATION	50				//30B aprox.
-#define SIZE_CRYPT			768				//(128*4B)+128B+100B+19B = 759B máx. ...(words*bytes/word)+delimitador+passphrase+cabeceras... Múltiplo de 16B
-#define SIZE_CRYPT_MSG		SIZE_CRYPT/4	//...
+#define SIZE_UID 				25
+#define SIZE_ALIAS 				25
+#define SIZE_INFORMATION		50
+#define SIZE_MULTISIGN			700
+#define SIZE_CRYPT				768
+#define SIZE_CRYPT_MSG			SIZE_CRYPT/4
 
-#define EEPROM_ADDR			0x083FC000		//Dirección de memoria sector "EEPROM" (bank 2)
-#define EEPROM_PAGE			254				//Página de memoria sector "EEPROM" (bank 2)
-#define EEPROM_SIZE			112				//Tamaño máximo ocupado en sector "EEPROM"
-#define SIGNATURE_ADDR		0x083FE000		//Dirección de memoria sector "SIGNATURE" (bank 2)
-#define SIGNATURE_PAGE		255				//Página de memoria sector "SIGNATURE" (bank 2)
-#define SIGNATURE_SIZE		62				//Tamaño máximo ocupado en sector "SIGNATURE"
+#define DEV_ALIAS_ADDR			0x083FA000		//"DEV_ALIAS" (bank 2) 	--> Address
+#define DEV_ALIAS_PAGE			253				//"DEV_ALIAS" (bank 2) 	--> Page number
+#define DEV_ALIAS_SIZE			30				//"DEV_ALIAS" (bank 2) 	--> Máx size
+#define EEPROM_ADDR				0x083FC000		//"EEPROM" (bank 2) 	--> Address
+#define EEPROM_PAGE				254				//"EEPROM" (bank 2) 	--> Page number
+#define EEPROM_SIZE				112				//"EEPROM" (bank 2)		--> Máx size
+#define SIGNATURE_ADDR			0x083FE000		//"SIGNATURE" (bank 2) 	--> Address
+#define SIGNATURE_PAGE			255				//"SIGNATURE" (bank 2) 	--> Page number
+#define SIGNATURE_SIZE			62				//"SIGNATURE" (bank 2) 	--> Máx size
+
+#define FROM_NFC_SEED			250
+#define FROM_NFC_PASS_DERIV		250
+#define FROM_NFC_PRIVATE_KEY	250
+#define FROM_NFC_PUBLIC_KEY		250
+#define FROM_NFC_PLAIN_TEXT		500
 
 /*
  * STRUCT's
@@ -158,8 +160,10 @@ void Error_Handler(void);
 struct tag
 {
 	uint8_t action;
+	uint8_t type;
 	/***/
 	bool flag_readed;
+	bool flag_readed_from_nfc;
 	bool flag_readed_writed_flow_1;
 	bool flag_readed_writed_flow_2;
 	bool flag_readed_writed_flow_4;
@@ -167,17 +171,27 @@ struct tag
 	uint8_t uid[SIZE_UID];
 	uint8_t alias[SIZE_ALIAS];
 	uint8_t cryptogram[SIZE_CRYPT];
-	uint8_t information[SIZE_INFORMATION];	//"ENC,vXX.XX.XX(Y),M-X,P-X,C-X"
+	uint8_t information[SIZE_INFORMATION];		//"ENC,vXX.XX.XX(Y),M-X,P-X,C-X"
+	uint8_t multisignature[SIZE_MULTISIGN];		//"Num.Comb.+comb1+comb2+...+combN"
 	/***/
 	uint8_t new_uid[SIZE_UID];
 	uint8_t new_alias[SIZE_ALIAS];
 	uint8_t new_cryptogram[SIZE_CRYPT];
 	uint8_t new_information[SIZE_INFORMATION];
+	uint8_t new_multisignature[SIZE_MULTISIGN];
 	/***/
-	uint8_t encripted;		//0:no, 1:yes
-	uint8_t multisigned;	//1-6
-	uint8_t packed;			//0:no, 1:yes
-	uint8_t cloned;			//0:no, 1:yes
+	uint8_t encripted;
+	uint8_t multisigned_total;
+	uint8_t multisigned_mandatory;
+	uint8_t packed;
+	uint8_t cloned;
+	/***/
+	uint8_t from_nfc_type;
+	uint8_t from_nfc_seed[FROM_NFC_SEED];
+	uint8_t from_nfc_pass_deriv[FROM_NFC_PASS_DERIV];
+	uint8_t from_nfc_private_key[FROM_NFC_PRIVATE_KEY];
+	uint8_t from_nfc_public_key[FROM_NFC_PUBLIC_KEY];
+	uint8_t from_nfc_plain_text[FROM_NFC_PLAIN_TEXT];
 };
 
 struct nfc
@@ -201,6 +215,7 @@ struct info
 struct cuvex
 {
 	uint8_t screen;
+	char device_alias_buffer[DEV_ALIAS_SIZE];
 	char eeprom_buffer[EEPROM_SIZE];
 	char signature_buffer[SIGNATURE_SIZE];
 	struct nfc nfc;
@@ -227,12 +242,16 @@ enum gui_to_main_queue_msg
 	GUI_TO_MAIN_NFC_ENABLE,
 	GUI_TO_MAIN_NFC_TAG_NONE,
 	GUI_TO_MAIN_NFC_TAG_READ,
+	GUI_TO_MAIN_NFC_TAG_READ_FROM_NFC,
 	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_1,
 	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_2,
+	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_2_T4T_8K,
 	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_4,
+	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_4_T4T_8K,
 
 	/*** Flash actions ***/
 	GUI_TO_MAIN_FLASH_SAVE_SETTINGS,
+	GUI_TO_MAIN_FLASH_SAVE_SETTINGS_AND_DEVICE_ALIAS,
 	GUI_TO_MAIN_FLASH_ERASE_SIGNATURE
 };
 
@@ -241,17 +260,12 @@ enum main_to_gui_queue_msg
 	MAIN_TO_GUI_NFC_ERROR = 0,
 	MAIN_TO_GUI_NFC_INITIALIZED,
 	MAIN_TO_GUI_NFC_TAG_READED,
+	MAIN_TO_GUI_NFC_TAG_READED_FROM_NFC,
 	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_1,
 	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2,
-	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_4
-};
-
-enum led_colour_state
-{
-	NONE = 0,
-	RED,
-	GREEN,
-	YELLOW
+	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2_T4T_8K,
+	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_4,
+	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_4_T4T_8K
 };
 
 enum screen_state
@@ -269,9 +283,19 @@ enum nfc_tag_actions
 {
 	NFC_TAG_NONE = 0,
 	NFC_TAG_READ,
+	NFC_TAG_READ_FROM_NFC,
 	NFC_TAG_READ_WRITE_FLOW_1,
 	NFC_TAG_READ_WRITE_FLOW_2,
-	NFC_TAG_READ_WRITE_FLOW_4
+	NFC_TAG_READ_WRITE_FLOW_2_T4T_8K,
+	NFC_TAG_READ_WRITE_FLOW_4,
+	NFC_TAG_READ_WRITE_FLOW_4_T4T_8K
+};
+
+enum nfc_tag_type
+{
+	NFC_TAG_TYPE_NONE = 0,
+	NFC_TAG_TYPE_T2T_NTAG216,	//NTAG216
+	NFC_TAG_TYPE_T4T_8K			//MIFARE DESFire EV1 8K
 };
 
 enum mode
@@ -286,9 +310,18 @@ enum language
 	SPANISH
 };
 
+enum text_type
+{
+	TEXT_TYPE_NONE = 0,
+	TEXT_TYPE_BIP39,
+	TEXT_TYPE_SLIP39,
+	TEXT_TYPE_XMR,
+	TEXT_TYPE_PLAINTEXT,
+	TEXT_TYPE_FROM_NFC_BIP39,
+	TEXT_TYPE_FROM_NFC_PLAINTEXT
+};
+
 /*********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
- *********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************
  *********************************************************************************************************************************************************************************************************/
 /* USER CODE END Private defines */
