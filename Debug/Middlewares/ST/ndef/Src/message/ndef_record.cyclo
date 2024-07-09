@@ -1,0 +1,16 @@
+../Middlewares/ST/ndef/Src/message/ndef_record.c:126:10:ndefRecordGetHeaderLength	3
+../Middlewares/ST/ndef/Src/message/ndef_record.c:174:12:ndefRecordSetType	5
+../Middlewares/ST/ndef/Src/message/ndef_record.c:193:12:ndefRecordGetType	4
+../Middlewares/ST/ndef/Src/message/ndef_record.c:209:6:ndefRecordTypeMatch	5
+../Middlewares/ST/ndef/Src/message/ndef_record.c:228:12:ndefRecordSetId	5
+../Middlewares/ST/ndef/Src/message/ndef_record.c:254:12:ndefRecordGetId	3
+../Middlewares/ST/ndef/Src/message/ndef_record.c:269:12:ndefRecordSetPayload	5
+../Middlewares/ST/ndef/Src/message/ndef_record.c:78:12:ndefRecordReset	2
+../Middlewares/ST/ndef/Src/message/ndef_record.c:106:12:ndefRecordInit	4
+../Middlewares/ST/ndef/Src/message/ndef_record.c:303:12:ndefRecordDecode	19
+../Middlewares/ST/ndef/Src/message/ndef_record.c:581:10:ndefRecordGetPayloadLength	4
+../Middlewares/ST/ndef/Src/message/ndef_record.c:157:10:ndefRecordGetLength	2
+../Middlewares/ST/ndef/Src/message/ndef_record.c:288:12:ndefRecordGetPayload	3
+../Middlewares/ST/ndef/Src/message/ndef_record.c:424:12:ndefRecordEncodeHeader	7
+../Middlewares/ST/ndef/Src/message/ndef_record.c:604:16:ndefRecordGetPayloadItem	6
+../Middlewares/ST/ndef/Src/message/ndef_record.c:522:12:ndefRecordEncode	11

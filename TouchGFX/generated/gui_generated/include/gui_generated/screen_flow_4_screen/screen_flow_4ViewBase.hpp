@@ -81,7 +81,8 @@ protected:
     touchgfx::Image image4;
     touchgfx::Container s5_writeError;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_exit_fail;
-    touchgfx::TextArea text5;
+    touchgfx::TextArea text_error_cryptogram;
+    touchgfx::TextArea text_error_nfc_type;
     touchgfx::Container s6_writeSuccess;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_exit_success;
     touchgfx::TextArea text6;
@@ -107,8 +108,8 @@ private:
     /*
      * Tick Counter Declarations
      */
-    static const uint32_t TICK_INTERACTION1_INTERVAL = 10;
-    uint32_t frameCountInteraction1Interval;
+    static const uint32_t TICK_TICKEVENT_INTERVAL = 10;
+    uint32_t frameCountTickEventInterval;
 
     /*
      * Callback Declarations

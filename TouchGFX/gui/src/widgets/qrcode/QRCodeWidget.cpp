@@ -1,12 +1,22 @@
+/*
+ *****************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 
 #include <gui/widgets/qrcode/QRCodeWidget.hpp>
 #include <touchgfx/hal/HAL.hpp>
 #include <touchgfx/lcd/LCD.hpp>
-
-/*******************************/
 #include "main.h"
+
 extern struct cuvex cuvex;
-/*******************************/
 
 QRCodeWidget::QRCodeWidget() : code(0), scale(1)
 {
@@ -36,10 +46,10 @@ void QRCodeWidget::draw(const touchgfx::Rect& invalidatedArea) const
 			translateRectToAbsolute(rect);
 
 			if(cuvex.info.mode == DARK){
-				touchgfx::HAL::lcd().fillRect(rect, result ? 0xFFEDEDED : 0xFF3F3F51, 255);	//Alpha...rojo...verde...azul
+				touchgfx::HAL::lcd().fillRect(rect, result ? 0xFFEDEDED : 0xFF3F3F51, 255);	//Alpha...red...green...blue
 			}
 			else{
-				touchgfx::HAL::lcd().fillRect(rect, result ? 0xFF405CA0 : 0xFFEDEDED, 255);	//Alpha...rojo...verde...azul
+				touchgfx::HAL::lcd().fillRect(rect, result ? 0xFF405CA0 : 0xFFEDEDED, 255);	//Alpha...red...green...blue
 			}
 		}
 	}

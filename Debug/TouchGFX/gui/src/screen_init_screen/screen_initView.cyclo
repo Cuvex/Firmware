@@ -1,0 +1,23 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:53:6:virtual void screen_initView::tearDownScreen()	1
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:104:6:virtual void screen_initView::changeScreen(uint8_t)	1
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:115:6:virtual void screen_initView::changeFlash(uint8_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/include/gui/screen_init_screen/screen_initView.hpp:25:13:screen_initView::~screen_initView()	1
+../TouchGFX/gui/include/gui/screen_init_screen/screen_initView.hpp:25:13:virtual screen_initView::~screen_initView()	1
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:20:1:screen_initView::screen_initView()	1
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:337:1:cpp)	1
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:337:1:cpp)	1
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:132:6:virtual void screen_initView::settingsPressed()	1
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:183:6:virtual void screen_initView::languageConfirmPressed()	1
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:305:6:virtual void screen_initView::setScreenMode()	2
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:325:6:virtual void screen_initView::setScreenLanguage()	2
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:25:6:virtual void screen_initView::setupScreen()	2
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:149:6:virtual void screen_initView::languageEnglishPressed()	1
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:166:6:virtual void screen_initView::languageSpanishPressed()	1
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:70:6:virtual void screen_initView::tickEventScreen()	4
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:205:6:virtual void screen_initView::hideKeyboardPressed()	2
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:236:6:virtual void screen_initView::showKeyboardPressed()	2
+../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:267:6:virtual void screen_initView::enterKeyboardPressed()	2

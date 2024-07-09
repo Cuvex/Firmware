@@ -8,7 +8,7 @@
 #include <images/BitmapDatabase.hpp>
 
 screen_flow_4ViewBase::screen_flow_4ViewBase() :
-    frameCountInteraction1Interval(0),
+    frameCountTickEventInterval(0),
     flexButtonCallback(this, &screen_flow_4ViewBase::flexButtonCallbackHandler)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
@@ -151,11 +151,18 @@ screen_flow_4ViewBase::screen_flow_4ViewBase() :
     btn_exit_fail.setPosition(0, 210, 320, 30);
     s5_writeError.add(btn_exit_fail);
 
-    text5.setPosition(0, 90, 320, 60);
-    text5.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    text5.setLinespacing(0);
-    text5.setTypedText(touchgfx::TypedText(T_SF4_WRITE_ERROR_INFO));
-    s5_writeError.add(text5);
+    text_error_cryptogram.setPosition(0, 90, 320, 60);
+    text_error_cryptogram.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    text_error_cryptogram.setLinespacing(0);
+    text_error_cryptogram.setTypedText(touchgfx::TypedText(T_SF4_WRITE_ERROR_INFO));
+    s5_writeError.add(text_error_cryptogram);
+
+    text_error_nfc_type.setPosition(0, 90, 320, 60);
+    text_error_nfc_type.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    text_error_nfc_type.setLinespacing(0);
+    text_error_nfc_type.setTypedText(touchgfx::TypedText(T_SF4_WRITE_ERROR_INFO2));
+    text_error_nfc_type.setVisible(false);
+    s5_writeError.add(text_error_nfc_type);
 
     add(s5_writeError);
 
@@ -202,28 +209,28 @@ void screen_flow_4ViewBase::flexButtonCallbackHandler(const touchgfx::AbstractBu
 {
     if (&src == &btn_clone)
     {
-        //Interaction2
+        //clonePressed
         //When btn_clone clicked call virtual function
         //Call clonePressed
         clonePressed();
     }
     if (&src == &btn_retry)
     {
-        //Interaction3
+        //retryPressed
         //When btn_retry clicked call virtual function
         //Call retryPressed
         retryPressed();
     }
     if (&src == &btn_exit_success)
     {
-        //Interaction4
+        //exitSuccessPressed
         //When btn_exit_success clicked call virtual function
         //Call exitSuccessPressed
         exitSuccessPressed();
     }
     if (&src == &btn_exit_fail)
     {
-        //Interaction5
+        //exitFailPressed
         //When btn_exit_fail clicked call virtual function
         //Call exitFailPressed
         exitFailPressed();
@@ -232,13 +239,13 @@ void screen_flow_4ViewBase::flexButtonCallbackHandler(const touchgfx::AbstractBu
 
 void screen_flow_4ViewBase::handleTickEvent()
 {
-    frameCountInteraction1Interval++;
-    if(frameCountInteraction1Interval == TICK_INTERACTION1_INTERVAL)
+    frameCountTickEventInterval++;
+    if(frameCountTickEventInterval == TICK_TICKEVENT_INTERVAL)
     {
-        //Interaction1
+        //tickEvent
         //When every N tick call virtual function
         //Call tickEventScreen
         tickEventScreen();
-        frameCountInteraction1Interval = 0;
+        frameCountTickEventInterval = 0;
     }
 }

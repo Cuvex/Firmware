@@ -1,0 +1,5 @@
+../TouchGFX/gui/src/model/Model.cpp:17:1:Model::Model()	1
+../TouchGFX/gui/src/model/Model.cpp:22:6:void Model::tick()	12
+../TouchGFX/gui/src/model/Model.cpp:88:6:void Model::changeScreen(uint16_t)	2
+../TouchGFX/gui/src/model/Model.cpp:103:6:void Model::changeStateNfc(uint16_t)	2
+../TouchGFX/gui/src/model/Model.cpp:118:6:void Model::changeFlash(uint16_t)	2

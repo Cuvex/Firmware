@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.21.3">
+<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.23.0">
   <Languages>
     <Language Id="SP" />
     <Language Id="GB" />
@@ -42,9 +42,53 @@
       </Text>
     </TextGroup>
     <TextGroup Id="screen_init">
+      <Text Id="si_dev_alias_btn_confirm" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">ACEPTAR</Translation>
+        <Translation Language="GB">ACCEPT</Translation>
+      </Text>
+      <Text Id="si_keyboard_info_1" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Asigna un Alias a tu dispositivo.</Translation>
+        <Translation Language="GB">Assign an Alias to your device.</Translation>
+      </Text>
+      <Text Id="si_keyboard_info_2" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">*Obligatorio.</Translation>
+        <Translation Language="GB">*Mandatory.</Translation>
+      </Text>
+      <Text Id="si_keyboard_typed_value" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="sfi_keyboard_typed" Alignment="Right" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="si_language_text_info" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Idioma</Translation>
+        <Translation Language="GB">Language</Translation>
+      </Text>
+      <Text Id="si_language_btn_english" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Inglés</Translation>
+        <Translation Language="GB">English</Translation>
+      </Text>
+      <Text Id="si_language_btn_spanish" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Español</Translation>
+        <Translation Language="GB">Spanish</Translation>
+      </Text>
+      <Text Id="si_language_btn_confirm" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CONTINUAR</Translation>
+        <Translation Language="GB">CONTINUE</Translation>
+      </Text>
+      <Text Id="si_device_alias_value" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="si_device_alias" Alignment="Center" TypographyId="Neue_bold_12px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
       <Text Id="si_fw_version_value" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="si_fw_version" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">Cuvex V.&lt;value&gt;</Translation>
@@ -94,17 +138,21 @@
         <Translation Language="SP">Acerca la tarjera para ser </Translation>
         <Translation Language="GB">Approach the card to be </Translation>
       </Text>
-      <Text Id="sf1_keyboard_info" Alignment="Center" TypographyId="Neue_bold_15px">
-        <Translation Language="SP">Alias de la tarjeta.</Translation>
-        <Translation Language="GB">Card alias.</Translation>
+      <Text Id="sf1_keyboard_info_2" Alignment="Center" TypographyId="Neue_medium_11px">
+        <Translation Language="SP">Ejemplo: Wallet BTC/20240115</Translation>
+        <Translation Language="GB">Example: Wallet BTC/20240115</Translation>
+      </Text>
+      <Text Id="sf1_keyboard_info_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Alias y fecha de la tarjeta.</Translation>
+        <Translation Language="GB">Alias and card date.</Translation>
       </Text>
       <Text Id="sf1_btn_enter" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">ACEPTAR</Translation>
         <Translation Language="GB">ACCEPT</Translation>
       </Text>
       <Text Id="sf1_keyboard_typed_value" Alignment="Right" TypographyId="Neue_bold_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf1_keyboard_typed" Alignment="Right" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -115,8 +163,8 @@
         <Translation Language="GB">See</Translation>
       </Text>
       <Text Id="sf1_text_alias_value" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf1_text_alias" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -127,8 +175,8 @@
         <Translation Language="GB">Alias</Translation>
       </Text>
       <Text Id="sf1_text_uid_value" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf1_text_uid" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -156,33 +204,29 @@
       </Text>
     </TextGroup>
     <TextGroup Id="screen_flow_2">
-      <Text Id="sf2_keyboar6_info" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">Alias de la tarjeta.</Translation>
-        <Translation Language="GB">Card alias.</Translation>
+      <Text Id="sf2_s7_error_tag_with_bad_format" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Error formato de tarjeta no válido.&#10;Se requiere tarjeta de 8K.</Translation>
+        <Translation Language="GB">Invalid card format error.&#10;8K card required.</Translation>
+      </Text>
+      <Text Id="sf2_keyboar6_info_2" Alignment="Center" TypographyId="Neue_medium_11px">
+        <Translation Language="SP">Ejemplo: Wallet BTC/20240115</Translation>
+        <Translation Language="GB">Example: Wallet BTC/20240115</Translation>
+      </Text>
+      <Text Id="sf2_keyboar6_info_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Alias y fecha de la tarjeta.</Translation>
+        <Translation Language="GB">Alias and card date.</Translation>
       </Text>
       <Text Id="sf2_keyboard6_typed_value" Alignment="Left" TypographyId="Neue_bold_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_keyboard6_typed" Alignment="Right" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="sf2_text_uid_value" Alignment="Center" TypographyId="Neue_bold_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
-      </Text>
-      <Text Id="sf2_text_uid" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">&lt;value&gt;</Translation>
-        <Translation Language="GB">&lt;value&gt;</Translation>
-      </Text>
-      <Text Id="sf2_text_uid_info" Alignment="Center" TypographyId="Neue_bold_15px">
-        <Translation Language="SP">UIDI</Translation>
-        <Translation Language="GB">UIDI</Translation>
-      </Text>
       <Text Id="sf2_btn_assign_alias" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">ASIGNAR ALIAS</Translation>
-        <Translation Language="GB">ASSIGN ALIAS</Translation>
+        <Translation Language="SP">ACEPTAR</Translation>
+        <Translation Language="GB">ACCEPT</Translation>
       </Text>
       <Text Id="sf2_s8_btn_accept" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">ACEPTAR</Translation>
@@ -195,6 +239,10 @@
       <Text Id="sf2_s7_error_tag_with_cryptogram" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">Esta tarjeta ya tiene un criptograma&#10;almacenado.&#10;Por favor, utiliza una nueva.</Translation>
         <Translation Language="GB">This card already has a cryptogram&#10;stored.&#10;Please use a new card.</Translation>
+      </Text>
+      <Text Id="sf2_s6_wait_read_nfc_fromNFC_text" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Acerca de nuevo, la tarjeta grabada &#10;con la App Cuvex.</Translation>
+        <Translation Language="GB">Bring again your recorded card &#10;with the Cuvex App.</Translation>
       </Text>
       <Text Id="sf2_s6_wait_read_nfc_text" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">Acerca una tarjeta nueva &#10;para grabar el criptograma.</Translation>
@@ -221,8 +269,8 @@
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="sf2_s4_password_success_info_value" Alignment="Center" TypographyId="Neue_bold_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s4_password_success_info" Alignment="Center" TypographyId="Neue_bold_15px">
         <Translation Language="SP">¡Ok! Password&lt;value&gt;.</Translation>
@@ -241,40 +289,40 @@
         <Translation Language="GB">ENCRYPT</Translation>
       </Text>
       <Text Id="sf2_s4_keyboard5_text_typed_2_hide_value" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s4_keyboard5_text_typed_2_hide" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="sf2_s4_keyboard5_text_typed_2_value" Alignment="Right" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s4_keyboard5_text_typed_2" Alignment="Right" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="sf2_s4_keyboard5_text_typed_1_hide_value" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s4_keyboard5_text_typed_1_hide" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="sf2_s4_keyboard5_text_typed_1_value" Alignment="Right" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s4_keyboard5_text_typed_1" Alignment="Right" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="sf2_s4_keyboard5_info_1_value2" Alignment="Center" TypographyId="Neue_bold_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s4_keyboard5_info_1_value" Alignment="Center" TypographyId="Neue_bold_15px">
         <Translation Language="SP">Password para cifrar.</Translation>
@@ -296,9 +344,21 @@
         <Translation Language="SP">&lt;value&gt;</Translation>
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="sf2_s3_num_multi_info" Alignment="Center" TypographyId="Neue_medium_15px">
+      <Text Id="sf2_s3_num_multi_info_5" Alignment="Center" TypographyId="Neue_medium_12px">
+        <Translation Language="SP">                                Esta configuración &#10;necesita tarjetas 8K.</Translation>
+        <Translation Language="GB">                             This setup requires &#10;8K cards.</Translation>
+      </Text>
+      <Text Id="sf2_s3_num_multi_info_4" Alignment="Center" TypographyId="Neue_bold_12px">
+        <Translation Language="SP">Importante:                                                  </Translation>
+        <Translation Language="GB">Important:                                                   </Translation>
+      </Text>
+      <Text Id="sf2_s3_num_multi_info_3" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">Personas obligatorias para &#10;acceder.</Translation>
         <Translation Language="GB">Mandatory persons to &#10;access.</Translation>
+      </Text>
+      <Text Id="sf2_s3_num_multi_info_2" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Número total de firmantes.</Translation>
+        <Translation Language="GB">Total number of signatories.</Translation>
       </Text>
       <Text Id="sf2_s3_btn_yes" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">SI</Translation>
@@ -317,8 +377,8 @@
         <Translation Language="GB">ENCRYPT</Translation>
       </Text>
       <Text Id="sf2_s2_typed_plain_text_check_value" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s2_typed_plain_text_check" Alignment="Left" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -337,8 +397,8 @@
         <Translation Language="GB">VERIFY SECRET</Translation>
       </Text>
       <Text Id="sf2_s2_keyboard4_typed_value" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s2_keyboard4_typed" Alignment="Left" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -348,11 +408,39 @@
         <Translation Language="SP">Texto a cifrar.</Translation>
         <Translation Language="GB">Text to be encrypted.</Translation>
       </Text>
-      <Text Id="sf2_s1_typed_seed39_check_value" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+      <Text Id="sf2_s1_fromNFC_btn_retry" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">REINTENTAR</Translation>
+        <Translation Language="GB">RETRY</Translation>
       </Text>
-      <Text Id="sf2_s1_typed_seed39_check" Alignment="Center" TypographyId="Neue_medium_15px">
+      <Text Id="sf2_s1_fromNFC_error_text" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Error formato de tarjeta no válido.</Translation>
+        <Translation Language="GB">Invalid card format error.</Translation>
+      </Text>
+      <Text Id="sf2_s1_fromNFC_typed_check_plain_text_text" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sf2_s1_fromNFC_typed_check_seed_text" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sf2_s1_fromNFC_wait_read_nfc_text" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Acerca la tarjeta grabada &#10;con la App Cuvex.</Translation>
+        <Translation Language="GB">Bring your recorded card &#10;with the Cuvex App.</Translation>
+      </Text>
+      <Text Id="sf2_s1_fromNFC_1_init_nfc_text2" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">NFC.</Translation>
+        <Translation Language="GB">NFC.</Translation>
+      </Text>
+      <Text Id="sf2_s1_fromNFC_1_init_nfc_text1" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Activando </Translation>
+        <Translation Language="GB">Activating </Translation>
+      </Text>
+      <Text Id="sf2_s1_typed_seed_check_value" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="sf2_s1_typed_seed_check" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
@@ -373,8 +461,8 @@
         <Translation Language="GB">&lt;value&gt;/100 </Translation>
       </Text>
       <Text Id="sf2_s1_keyboard3_typed_value" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s1_keyboard3_typed" Alignment="Left" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -389,8 +477,8 @@
         <Translation Language="GB">Passphrase / Derivation Path</Translation>
       </Text>
       <Text Id="sf2_s1_keyboard2_typed_value" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s1_keyboard2_predicted" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -401,20 +489,20 @@
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="sf2_s1_keyboard2_info_actual_word_value" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s1_keyboard2_info_total_words_value" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s1_keyboard2_info" Alignment="Center" TypographyId="Neue_bold_15px">
         <Translation Language="SP">Palabra &lt;value&gt;/&lt;value&gt;</Translation>
         <Translation Language="GB">Word &lt;value&gt;/&lt;value&gt;</Translation>
       </Text>
       <Text Id="sf2_s1_keyboard1_typed_value" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf2_s1_keyboard1_typed" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -424,9 +512,21 @@
         <Translation Language="SP">¿Cuántas palabras tiene tu semilla?</Translation>
         <Translation Language="GB">How many words does your seed have?</Translation>
       </Text>
+      <Text Id="sf2_s0_menu_btn_text_from_nfc" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">TEXTO DESDE NFC</Translation>
+        <Translation Language="GB">TEXT FROM NFC</Translation>
+      </Text>
       <Text Id="sf2_s0_menu_btn_plain_text" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">TEXTO PLANO</Translation>
         <Translation Language="GB">PLAIN TEXT</Translation>
+      </Text>
+      <Text Id="sf2_s0_menu_btn_seed_xmr" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">SEMILLA XMR (MONERO)</Translation>
+        <Translation Language="GB">SEED XMR (MONERO)</Translation>
+      </Text>
+      <Text Id="sf2_s0_menu_btn_seed_slip39" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">SEMILLA SLIP39 (SHAMIR)</Translation>
+        <Translation Language="GB">SEED SLIP39 (SHAMIR)</Translation>
       </Text>
       <Text Id="sf2_s0_menu_btn_seed_bip39" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">SEMILLA BIP39</Translation>
@@ -443,7 +543,7 @@
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="sf2_text_cryptogram_success_english_5_value" Alignment="Left" TypographyId="Neue_bold_15px">
-        <Translation Language="SP">Alias</Translation>
+        <Translation Language="SP">Alias </Translation>
         <Translation Language="GB">Alias</Translation>
       </Text>
       <Text Id="sf2_text_cryptogram_success_english_5" Alignment="Left" TypographyId="Neue_bold_15px">
@@ -496,6 +596,18 @@
       </Text>
     </TextGroup>
     <TextGroup Id="screen_flow_3">
+      <Text Id="__SingleUse_LBE1" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">QR FRASE SEMILLA</Translation>
+        <Translation Language="GB">QR SEED PHRASE</Translation>
+      </Text>
+      <Text Id="__SingleUse_YWP1" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">QR CLAVE PRIVADA MASTER</Translation>
+        <Translation Language="GB">QR MASTER PRIVATE KEY</Translation>
+      </Text>
+      <Text Id="__SingleUse_4MCQ" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">QR CLAVE PÚBLICA MASTER</Translation>
+        <Translation Language="GB">QR MASTER PUBLIC KEY</Translation>
+      </Text>
       <Text Id="sf3_timeout_excceded" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">Se ha eliminado la información del &#10;dispositivo Cuvex.&#10;Para volver a verla, inicia el proceso &#10;nuevamente.</Translation>
         <Translation Language="GB">The information on the Cuvex device &#10;has been deleted.&#10;To see it again, start the proccess &#10;again.</Translation>
@@ -537,16 +649,16 @@
         <Translation Language="GB">Ko Password.</Translation>
       </Text>
       <Text Id="sf3_keyboard_text_typed_hide_value" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf3_keyboard_text_typed_hide" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
       <Text Id="sf3_keyboard_text_typed_value" Alignment="Right" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf3_keyboard_text_typed" Alignment="Right" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -585,8 +697,8 @@
         <Translation Language="GB">DECRYPT</Translation>
       </Text>
       <Text Id="sf3_text_alias_value" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf3_text_alias" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -597,8 +709,8 @@
         <Translation Language="GB">Alias</Translation>
       </Text>
       <Text Id="sf3_text_uid_value" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf3_text_uid" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -619,6 +731,36 @@
       <Text Id="sf3_init_nfc_text1" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">Activando </Translation>
         <Translation Language="GB">Activating </Translation>
+      </Text>
+    </TextGroup>
+    <TextGroup Id="screen_flow_3_caution_msg">
+      <Text Id="sf3_caution_msg_spanish_3" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">muestra tu secreto sin cifrar. Jamás &#10;lo leas con la cámara de tu &#10;Smartphone o con Apps genéricas &#10;de lectura de QR. Está información &#10;solo debe ser leída con tu Hardware &#10;Wallet de confianza.</Translation>
+        <Translation Language="GB">muestra tu secreto sin cifrar. Jamás &#10;lo leas con la cámara de tu &#10;Smartphone o con Apps genéricas &#10;de lectura de QR. Está información &#10;solo debe ser leída con tu Hardware &#10;Wallet de confianza.</Translation>
+      </Text>
+      <Text Id="sf3_caution_msg_spanish_2" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">El siguiente QR </Translation>
+        <Translation Language="GB">El siguiente QR </Translation>
+      </Text>
+      <Text Id="sf3_caution_msg_spanish_1" Alignment="Right" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">IMPORTANTE: </Translation>
+        <Translation Language="GB">IMPORTANTE: </Translation>
+      </Text>
+      <Text Id="sf3_caution_msg_english_3" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">shows your unencrypted secret. Never &#10;read it with your Smartphone camera &#10;or with generic QR reading Apps. &#10;This information must only be read with your &#10;trusted Hardware Wallet.</Translation>
+        <Translation Language="GB">shows your unencrypted secret. Never &#10;read it with your Smartphone camera &#10;or with generic QR reading Apps. &#10;This information must only be read with your &#10;trusted Hardware Wallet.</Translation>
+      </Text>
+      <Text Id="sf3_caution_msg_english_2" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">The following QR </Translation>
+        <Translation Language="GB">The following QR </Translation>
+      </Text>
+      <Text Id="sf3_caution_msg_english_1" Alignment="Right" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">IMPORTANT: </Translation>
+        <Translation Language="GB">IMPORTANT: </Translation>
+      </Text>
+      <Text Id="sf3_btn_caution_msg" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CONTINUAR</Translation>
+        <Translation Language="GB">CONTINUE</Translation>
       </Text>
     </TextGroup>
     <TextGroup Id="screen_flow_3_temporal_block">
@@ -760,6 +902,10 @@
       </Text>
     </TextGroup>
     <TextGroup Id="screen_flow_4">
+      <Text Id="sf4_write_error_info2" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Error formato de tarjeta no válido,&#10;necesitas una tarjeta de 8K.</Translation>
+        <Translation Language="GB">Invalid card format error,&#10;you need an 8K card.</Translation>
+      </Text>
       <Text Id="sf4_btn_exit_success" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">ACEPTAR</Translation>
         <Translation Language="GB">ACEPT</Translation>
@@ -781,8 +927,8 @@
         <Translation Language="GB">Move the receiver card closer.&#10;Do not remove it until indicated.</Translation>
       </Text>
       <Text Id="sf4_read_error_btn_retry" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">REINTENTAR</Translation>
-        <Translation Language="GB">RETRY</Translation>
+        <Translation Language="SP">SALIR</Translation>
+        <Translation Language="GB">EXIT</Translation>
       </Text>
       <Text Id="sf4_read_error_info" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">Tarjeta emisora elegida no tiene&#10;Criptograma grabado.</Translation>
@@ -793,8 +939,8 @@
         <Translation Language="GB">CLONE</Translation>
       </Text>
       <Text Id="sf4_text_alias_value" Alignment="Left" TypographyId="Neue_bold_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf4_text_alias" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -805,8 +951,8 @@
         <Translation Language="GB">Alias</Translation>
       </Text>
       <Text Id="sf4_text_uid_value" Alignment="Left" TypographyId="Neue_bold_15px">
-        <Translation Language="SP" />
-        <Translation Language="GB" />
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf4_text_uid" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -860,7 +1006,7 @@
       </Text>
       <Text Id="sf5_update_click_value" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">3</Translation>
-        <Translation Language="GB" />
+        <Translation Language="GB"></Translation>
       </Text>
       <Text Id="sf5_update_click" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
@@ -972,19 +1118,19 @@
     <TextGroup Id="Unsorted" />
   </Texts>
   <Typographies>
-    <Typography Id="Neue_bold_15px" Font="NeueMontreal-Bold.otf" Size="15" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
-    <Typography Id="Neue_bold_20px" Font="NeueMontreal-Bold.otf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
-    <Typography Id="Neue_bold_25px" Font="NeueMontreal-Bold.otf" Size="25" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
-    <Typography Id="Neue_medium_15px" Font="NeueMontreal-Medium.otf" Size="15" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
-    <Typography Id="Neue_medium_20px" Font="NeueMontreal-Medium.otf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
-    <Typography Id="Neue_medium_25px" Font="NeueMontreal-Medium.otf" Size="25" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
-    <Typography Id="Display" Font="NeueMontreal-Medium.otf" Size="18" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="a-z,A-Z,0-9" />
-    <Typography Id="Mode" Font="NeueMontreal-Medium.otf" Size="18" Bpp="4" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Keyboard" Font="NeueMontreal-Medium.otf" Size="18" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="a-z,A-Z,0-9" />
-    <Typography Id="Neue_medium_10px" Font="NeueMontreal-Medium.otf" Size="10" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
-    <Typography Id="Neue_bold_10px" Font="NeueMontreal-Bold.otf" Size="10" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
-    <Typography Id="Neue_medium_12px" Font="NeueMontreal-Medium.otf" Size="12" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
-    <Typography Id="Neue_bold_12px" Font="NeueMontreal-Bold.otf" Size="12" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
-    <Typography Id="Neue_medium_11px" Font="NeueMontreal-Medium.otf" Size="11" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
+    <Typography Id="Neue_bold_15px" Font="NeueMontreal-Bold.otf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
+    <Typography Id="Neue_bold_20px" Font="NeueMontreal-Bold.otf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
+    <Typography Id="Neue_bold_25px" Font="NeueMontreal-Bold.otf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
+    <Typography Id="Neue_medium_15px" Font="NeueMontreal-Medium.otf" Size="15" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
+    <Typography Id="Neue_medium_20px" Font="NeueMontreal-Medium.otf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
+    <Typography Id="Neue_medium_25px" Font="NeueMontreal-Medium.otf" Size="25" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
+    <Typography Id="Display" Font="NeueMontreal-Medium.otf" Size="18" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="a-z,A-Z,0-9" />
+    <Typography Id="Mode" Font="NeueMontreal-Medium.otf" Size="18" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Keyboard" Font="NeueMontreal-Medium.otf" Size="18" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="a-z,A-Z,0-9" />
+    <Typography Id="Neue_medium_10px" Font="NeueMontreal-Medium.otf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
+    <Typography Id="Neue_bold_10px" Font="NeueMontreal-Bold.otf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
+    <Typography Id="Neue_medium_12px" Font="NeueMontreal-Medium.otf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
+    <Typography Id="Neue_bold_12px" Font="NeueMontreal-Bold.otf" Size="12" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
+    <Typography Id="Neue_medium_11px" Font="NeueMontreal-Medium.otf" Size="11" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />
   </Typographies>
 </TextDatabase>

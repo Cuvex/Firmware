@@ -1,3 +1,16 @@
+/*
+ *****************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+
 #ifndef SCREEN_FLOW_3PRESENTER_HPP
 #define SCREEN_FLOW_3PRESENTER_HPP
 
@@ -27,12 +40,10 @@ public:
 
     virtual ~screen_flow_3Presenter() {};
 
-	/*********** Custom public *************/
     virtual void changeScreen(uint16_t screen);
     virtual void changeFlash(uint16_t state);
     virtual void changeStateNfc(uint16_t state);
     virtual void updateStateNfc(uint16_t state);
-	/***************************************/
 
 private:
     screen_flow_3Presenter();

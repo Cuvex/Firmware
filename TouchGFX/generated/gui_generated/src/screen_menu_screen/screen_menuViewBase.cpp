@@ -84,35 +84,35 @@ void screen_menuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButt
 {
     if (&src == &btn_1_admin)
     {
-        //Interaction1
+        //adminButtonPressed
         //When btn_1_admin clicked change screen to screen_flow_1
         //Go to screen_flow_1 with no screen transition
         application().gotoscreen_flow_1ScreenNoTransition();
     }
     if (&src == &btn_2_encrypt)
     {
-        //Interaction2
+        //encryptButtonPressed
         //When btn_2_encrypt clicked change screen to screen_flow_2
         //Go to screen_flow_2 with no screen transition
         application().gotoscreen_flow_2ScreenNoTransition();
     }
     if (&src == &btn_3_decrypt)
     {
-        //Interaction3
+        //decryptButtonPressed
         //When btn_3_decrypt clicked change screen to screen_flow_3
         //Go to screen_flow_3 with no screen transition
         application().gotoscreen_flow_3ScreenNoTransition();
     }
     if (&src == &btn_4_clone)
     {
-        //Interaction4
+        //cloneButtonPressed
         //When btn_4_clone clicked change screen to screen_flow_4
         //Go to screen_flow_4 with no screen transition
         application().gotoscreen_flow_4ScreenNoTransition();
     }
     if (&src == &btn_5_settings)
     {
-        //Interaction5
+        //settingsButtonPressed
         //When btn_5_settings clicked change screen to screen_flow_5
         //Go to screen_flow_5 with no screen transition
         application().gotoscreen_flow_5ScreenNoTransition();

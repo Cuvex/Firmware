@@ -8,7 +8,7 @@
 #include <texts/TextKeysAndLanguages.hpp>
 
 screen_flow_3ViewBase::screen_flow_3ViewBase() :
-    frameCountInteraction1Interval(0),
+    frameCountTickEventInterval(0),
     flexButtonCallback(this, &screen_flow_3ViewBase::flexButtonCallbackHandler),
     buttonCallback(this, &screen_flow_3ViewBase::buttonCallbackHandler)
 {
@@ -357,7 +357,7 @@ screen_flow_3ViewBase::screen_flow_3ViewBase() :
     password_error1_english_3.setTypedText(touchgfx::TypedText(T_SF3_PASSWORD_ERROR1_ENGLISH_3));
     text_password_error1_english.add(password_error1_english_3);
 
-    password_error1_english_4.setXY(201, 93);
+    password_error1_english_4.setXY(203, 93);
     password_error1_english_4.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     password_error1_english_4.setLinespacing(0);
     password_error1_english_4.setTypedText(touchgfx::TypedText(T_SF3_PASSWORD_ERROR1_ENGLISH_4));
@@ -511,6 +511,97 @@ screen_flow_3ViewBase::screen_flow_3ViewBase() :
     container_typed_check.add(scrollable_container_typed_check);
 
     s8_viewSecret.add(container_typed_check);
+
+    container_caution_msg.setPosition(0, 0, 320, 240);
+    container_caution_msg.setVisible(false);
+    btn_caution_msg.setBoxWithBorderPosition(0, 0, 320, 30);
+    btn_caution_msg.setBorderSize(0);
+    btn_caution_msg.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    btn_caution_msg.setText(TypedText(T_SF3_BTN_CAUTION_MSG));
+    btn_caution_msg.setTextPosition(0, 5, 320, 30);
+    btn_caution_msg.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_caution_msg.setAction(flexButtonCallback);
+    btn_caution_msg.setPosition(0, 210, 320, 30);
+    container_caution_msg.add(btn_caution_msg);
+
+    text_caution_msg_spanish.setPosition(0, 0, 320, 240);
+    text_caution_msg_spanish.setVisible(false);
+    caution_msg_spanish_1.setPosition(0, 45, 160, 18);
+    caution_msg_spanish_1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    caution_msg_spanish_1.setLinespacing(0);
+    caution_msg_spanish_1.setTypedText(touchgfx::TypedText(T_SF3_CAUTION_MSG_SPANISH_1));
+    text_caution_msg_spanish.add(caution_msg_spanish_1);
+
+    caution_msg_spanish_2.setPosition(160, 44, 160, 19);
+    caution_msg_spanish_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    caution_msg_spanish_2.setLinespacing(0);
+    caution_msg_spanish_2.setTypedText(touchgfx::TypedText(T_SF3_CAUTION_MSG_SPANISH_2));
+    text_caution_msg_spanish.add(caution_msg_spanish_2);
+
+    caution_msg_spanish_3.setPosition(0, 63, 320, 147);
+    caution_msg_spanish_3.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    caution_msg_spanish_3.setLinespacing(0);
+    caution_msg_spanish_3.setTypedText(touchgfx::TypedText(T_SF3_CAUTION_MSG_SPANISH_3));
+    text_caution_msg_spanish.add(caution_msg_spanish_3);
+
+    container_caution_msg.add(text_caution_msg_spanish);
+
+    text_caution_msg_english.setPosition(0, 0, 320, 240);
+    caution_msg_english_1.setPosition(0, 45, 160, 18);
+    caution_msg_english_1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    caution_msg_english_1.setLinespacing(0);
+    caution_msg_english_1.setTypedText(touchgfx::TypedText(T_SF3_CAUTION_MSG_ENGLISH_1));
+    text_caution_msg_english.add(caution_msg_english_1);
+
+    caution_msg_english_2.setPosition(160, 44, 160, 19);
+    caution_msg_english_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    caution_msg_english_2.setLinespacing(0);
+    caution_msg_english_2.setTypedText(touchgfx::TypedText(T_SF3_CAUTION_MSG_ENGLISH_2));
+    text_caution_msg_english.add(caution_msg_english_2);
+
+    caution_msg_english_3.setPosition(0, 63, 320, 147);
+    caution_msg_english_3.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    caution_msg_english_3.setLinespacing(0);
+    caution_msg_english_3.setTypedText(touchgfx::TypedText(T_SF3_CAUTION_MSG_ENGLISH_3));
+    text_caution_msg_english.add(caution_msg_english_3);
+
+    container_caution_msg.add(text_caution_msg_english);
+
+    s8_viewSecret.add(container_caution_msg);
+
+    container_qr_to_check_menu.setPosition(0, 0, 320, 240);
+    container_qr_to_check_menu.setVisible(false);
+    btn_1_qr_seed.setBoxWithBorderPosition(0, 0, 320, 30);
+    btn_1_qr_seed.setBorderSize(0);
+    btn_1_qr_seed.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
+    btn_1_qr_seed.setText(TypedText(T___SINGLEUSE_LBE1));
+    btn_1_qr_seed.setTextPosition(0, 5, 320, 30);
+    btn_1_qr_seed.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_1_qr_seed.setAction(flexButtonCallback);
+    btn_1_qr_seed.setPosition(0, 75, 320, 30);
+    container_qr_to_check_menu.add(btn_1_qr_seed);
+
+    btn_2_qr_private_key.setBoxWithBorderPosition(0, 0, 320, 30);
+    btn_2_qr_private_key.setBorderSize(0);
+    btn_2_qr_private_key.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
+    btn_2_qr_private_key.setText(TypedText(T___SINGLEUSE_YWP1));
+    btn_2_qr_private_key.setTextPosition(0, 5, 320, 30);
+    btn_2_qr_private_key.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_2_qr_private_key.setAction(flexButtonCallback);
+    btn_2_qr_private_key.setPosition(0, 105, 320, 30);
+    container_qr_to_check_menu.add(btn_2_qr_private_key);
+
+    btn_3_qr_public_key.setBoxWithBorderPosition(0, 0, 320, 30);
+    btn_3_qr_public_key.setBorderSize(0);
+    btn_3_qr_public_key.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
+    btn_3_qr_public_key.setText(TypedText(T___SINGLEUSE_4MCQ));
+    btn_3_qr_public_key.setTextPosition(0, 5, 320, 30);
+    btn_3_qr_public_key.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_3_qr_public_key.setAction(flexButtonCallback);
+    btn_3_qr_public_key.setPosition(0, 135, 320, 30);
+    container_qr_to_check_menu.add(btn_3_qr_public_key);
+
+    s8_viewSecret.add(container_qr_to_check_menu);
 
     btn_more_time.setBoxWithBorderPosition(0, 0, 320, 30);
     btn_more_time.setBorderSize(0);
@@ -674,6 +765,34 @@ void screen_flow_3ViewBase::flexButtonCallbackHandler(const touchgfx::AbstractBu
         //Call btnError2Pressed
         btnError2Pressed();
     }
+    if (&src == &btn_caution_msg)
+    {
+        //Interaction17
+        //When btn_caution_msg clicked call virtual function
+        //Call btnCautionMsgPressed
+        btnCautionMsgPressed();
+    }
+    if (&src == &btn_1_qr_seed)
+    {
+        //btnQrSeedPressed
+        //When btn_1_qr_seed clicked call virtual function
+        //Call btnQrSeedPressed
+        btnQrSeedPressed();
+    }
+    if (&src == &btn_2_qr_private_key)
+    {
+        //btnQrPrivateKeyPressed
+        //When btn_2_qr_private_key clicked call virtual function
+        //Call btnQrPrivateKeyPressed
+        btnQrPrivateKeyPressed();
+    }
+    if (&src == &btn_3_qr_public_key)
+    {
+        //btnQrPublicKeyPressed
+        //When btn_3_qr_public_key clicked call virtual function
+        //Call btnQrPublicKeyPressed
+        btnQrPublicKeyPressed();
+    }
 }
 
 void screen_flow_3ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
@@ -689,13 +808,13 @@ void screen_flow_3ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton
 
 void screen_flow_3ViewBase::handleTickEvent()
 {
-    frameCountInteraction1Interval++;
-    if(frameCountInteraction1Interval == TICK_INTERACTION1_INTERVAL)
+    frameCountTickEventInterval++;
+    if(frameCountTickEventInterval == TICK_TICKEVENT_INTERVAL)
     {
-        //Interaction1
+        //tickEvent
         //When every N tick call virtual function
         //Call tickEventScreen
         tickEventScreen();
-        frameCountInteraction1Interval = 0;
+        frameCountTickEventInterval = 0;
     }
 }

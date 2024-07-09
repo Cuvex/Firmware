@@ -8,7 +8,7 @@
 #include <images/BitmapDatabase.hpp>
 
 screen_flow_1ViewBase::screen_flow_1ViewBase() :
-    frameCountInteraction1Interval(0),
+    frameCountTickEventInterval(0),
     flexButtonCallback(this, &screen_flow_1ViewBase::flexButtonCallbackHandler)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
@@ -179,11 +179,17 @@ screen_flow_1ViewBase::screen_flow_1ViewBase() :
     keyboard_text_typed.setTypedText(touchgfx::TypedText(T_SF1_KEYBOARD_TYPED));
     s3_typeAlias.add(keyboard_text_typed);
 
-    keyboard_text_info.setPosition(0, 90, 320, 20);
-    keyboard_text_info.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard_text_info.setLinespacing(0);
-    keyboard_text_info.setTypedText(touchgfx::TypedText(T_SF1_KEYBOARD_INFO));
-    s3_typeAlias.add(keyboard_text_info);
+    keyboard_text_info_2.setPosition(0, 90, 320, 20);
+    keyboard_text_info_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    keyboard_text_info_2.setLinespacing(0);
+    keyboard_text_info_2.setTypedText(touchgfx::TypedText(T_SF1_KEYBOARD_INFO_2));
+    s3_typeAlias.add(keyboard_text_info_2);
+
+    keyboard_text_info_1.setPosition(0, 70, 320, 20);
+    keyboard_text_info_1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    keyboard_text_info_1.setLinespacing(0);
+    keyboard_text_info_1.setTypedText(touchgfx::TypedText(T_SF1_KEYBOARD_INFO_1));
+    s3_typeAlias.add(keyboard_text_info_1);
 
     add(s3_typeAlias);
 
@@ -252,49 +258,49 @@ void screen_flow_1ViewBase::flexButtonCallbackHandler(const touchgfx::AbstractBu
 {
     if (&src == &btn_assign_alias)
     {
-        //Interaction2
+        //assignAliasPressed
         //When btn_assign_alias clicked call virtual function
         //Call assignAliasPressed
         assignAliasPressed();
     }
     if (&src == &keyboard_btn_hide)
     {
-        //Interaction3
+        //hideKeyboardPressed
         //When keyboard_btn_hide clicked call virtual function
         //Call hideKeyboardPressed
         hideKeyboardPressed();
     }
     if (&src == &keyboard_btn_show)
     {
-        //Interaction4
+        //showKeyboardPressed
         //When keyboard_btn_show clicked call virtual function
         //Call showKeyboardPressed
         showKeyboardPressed();
     }
     if (&src == &keyboard_btn_enter)
     {
-        //Interaction5
+        //enterKeyboardPressed
         //When keyboard_btn_enter clicked call virtual function
         //Call enterKeyboardPressed
         enterKeyboardPressed();
     }
     if (&src == &btn_accept_success)
     {
-        //Interaction6
+        //acceptSuccessPressed
         //When btn_accept_success clicked call virtual function
         //Call acceptSuccessPressed
         acceptSuccessPressed();
     }
     if (&src == &btn_qr_small)
     {
-        //Interaction7
+        //qrSmallPressed
         //When btn_qr_small clicked call virtual function
         //Call qrSmallPressed
         qrSmallPressed();
     }
     if (&src == &btn_back)
     {
-        //Interaction8
+        //qrBackPressed
         //When btn_back clicked call virtual function
         //Call qrBackPressed
         qrBackPressed();
@@ -303,13 +309,13 @@ void screen_flow_1ViewBase::flexButtonCallbackHandler(const touchgfx::AbstractBu
 
 void screen_flow_1ViewBase::handleTickEvent()
 {
-    frameCountInteraction1Interval++;
-    if(frameCountInteraction1Interval == TICK_INTERACTION1_INTERVAL)
+    frameCountTickEventInterval++;
+    if(frameCountTickEventInterval == TICK_TICKEVENT_INTERVAL)
     {
-        //Interaction1
+        //tickEvent
         //When every N tick call virtual function
         //Call tickEventScreen
         tickEventScreen();
-        frameCountInteraction1Interval = 0;
+        frameCountTickEventInterval = 0;
     }
 }

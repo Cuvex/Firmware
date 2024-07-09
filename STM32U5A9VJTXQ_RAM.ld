@@ -3,7 +3,7 @@
 **
 **  File        : LinkerScript.ld (debug in RAM dedicated)
 **
-**  Author      : Cuvex Team.
+**  Author      : STM32CubeIDE
 **
 **  Abstract    : Linker script for STM32U5A9xJ Device from STM32U5 series
 **                      2512Kbytes RAM
@@ -21,7 +21,8 @@
 *****************************************************************************
 ** @attention
 **
-** Portion Copyright (C) 2023 Semilla3 OÜ.  All Rights Reserved.
+** Copyright (c) 2023 STMicroelectronics.
+** All rights reserved.
 **
 ** This software is licensed under terms that can be found in the LICENSE file
 ** in the root directory of this software component.

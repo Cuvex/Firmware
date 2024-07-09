@@ -1,0 +1,14 @@
+../TouchGFX/gui/include/gui/screen_flow_2_screen/screen_flow_2Presenter.hpp:41:13:screen_flow_2Presenter::~screen_flow_2Presenter()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2Presenter.cpp:23:6:virtual void screen_flow_2Presenter::activate()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2Presenter.cpp:28:6:virtual void screen_flow_2Presenter::deactivate()	1
+../TouchGFX/gui/include/gui/screen_flow_2_screen/screen_flow_2Presenter.hpp:41:13:virtual screen_flow_2Presenter::~screen_flow_2Presenter()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2Presenter.cpp:40:6:virtual void screen_flow_2Presenter::changeScreen(uint16_t)	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2Presenter.cpp:48:6:virtual void screen_flow_2Presenter::changeStateNfc(uint16_t)	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2Presenter.cpp:60:6:virtual void screen_flow_2Presenter::updateStateNfc(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_flow_2_screen/screen_flow_2Presenter.hpp:41:13:virtual void* screen_flow_2Presenter::_ZThn4_N22screen_flow_2PresenterD1Ev()	1
+../TouchGFX/gui/include/gui/screen_flow_2_screen/screen_flow_2Presenter.hpp:41:13:virtual void* screen_flow_2Presenter::_ZThn4_N22screen_flow_2PresenterD0Ev()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2Presenter.cpp:17:1:screen_flow_2Presenter::screen_flow_2Presenter(screen_flow_2View&)	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2Presenter.cpp:63:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2Presenter.cpp:63:1:cpp)	1

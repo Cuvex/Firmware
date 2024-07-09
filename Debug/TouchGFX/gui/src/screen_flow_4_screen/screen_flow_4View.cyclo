@@ -1,0 +1,17 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_4_screen/screen_flow_4ViewBase.hpp:30:18:virtual void screen_flow_4ViewBase::tickEventScreen()	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:52:6:virtual void screen_flow_4View::changeScreen(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:63:6:virtual void screen_flow_4View::changeStateNfc(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:34:6:virtual void screen_flow_4View::tearDownScreen()	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:201:6:virtual void screen_flow_4View::retryPressed()	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:212:6:virtual void screen_flow_4View::exitFailPressed()	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:223:6:virtual void screen_flow_4View::exitSuccessPressed()	1
+../TouchGFX/gui/include/gui/screen_flow_4_screen/screen_flow_4View.hpp:25:10:screen_flow_4View::~screen_flow_4View()	1
+../TouchGFX/gui/include/gui/screen_flow_4_screen/screen_flow_4View.hpp:25:10:virtual screen_flow_4View::~screen_flow_4View()	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:19:1:screen_flow_4View::screen_flow_4View()	1
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:74:6:virtual void screen_flow_4View::updateStateNfc(uint16_t)	14
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:170:6:virtual void screen_flow_4View::clonePressed()	3
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:240:6:virtual void screen_flow_4View::setScreenMode()	2
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:278:6:virtual void screen_flow_4View::setScreenLanguage()	2
+../TouchGFX/gui/src/screen_flow_4_screen/screen_flow_4View.cpp:24:6:virtual void screen_flow_4View::setupScreen()	1

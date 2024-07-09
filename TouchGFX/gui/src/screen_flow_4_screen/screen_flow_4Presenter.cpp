@@ -1,3 +1,16 @@
+/*
+ *****************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+
 #include <gui/screen_flow_4_screen/screen_flow_4View.hpp>
 #include <gui/screen_flow_4_screen/screen_flow_4Presenter.hpp>
 
@@ -18,9 +31,7 @@ void screen_flow_4Presenter::deactivate()
 }
 
 /*
- *
- * Comunicación: "view -> presenter -> model"
- *
+ * view -> presenter -> model
  */
 
 /**************************************************************************************************************************************************
@@ -40,9 +51,7 @@ void screen_flow_4Presenter::changeStateNfc(uint16_t state)
 }
 
 /*
- *
- * Comunicación: "model -> presenter -> view"
- *
+ * model -> presenter -> view
  */
 
 /**************************************************************************************************************************************************
@@ -52,3 +61,4 @@ void screen_flow_4Presenter::updateStateNfc(uint16_t state)
 {
 	view.updateStateNfc(state);
 }
+

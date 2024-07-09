@@ -1,5 +1,18 @@
-/*
- * nfcTask.h
+/**
+ ******************************************************************************
+ * @file           : nfcTask.h
+ * @brief          : Header for nfcTask.c file.
+ *                   This file contains the common defines of the nfcTask.
+ ******************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
  */
 
 #ifndef INC_NFCTASK_H_
@@ -18,16 +31,22 @@ void enableNFC(void);
 void disableNFC(void);
 bool nfcInitialize(void);
 void nfcCycle(void);
-void nfcActionNdef(rfalNfcDevice *pNfcDevice);
-void setLedColour(uint8_t colour);
+int nfcActionNdef(rfalNfcDevice *pNfcDevice);
+int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *ndefCtx, ndefInfo *info);
+int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *ndefCtx, ndefInfo *info);
+int ndefMessageGetInfoT2T_NTAG216(const ndefMessage* message);
+int ndefRecordGetInfoT2T_NTAG216(const ndefRecord* record);
+int ndefMessageGetInfoT4T_8K(const ndefMessage* message);
+int ndefRecordGetInfoT4T_8K(const ndefRecord* record);
+int ndefMessageGetInfo_fromNFC(const ndefMessage* message);
+int ndefRecordGetInfo_fromNFC(const ndefRecord* record);
+int getVersionT2T_NTAG216(rfalNfcDevice *nfcDevice);
+int getVersionT4T_8K(ndefContext *ctx, ndefInfo *info);
 
 /********************************************************************** Defines's **********************************************************************/
-#define NFC_NOINIT         		0	//Not initialized
-#define NFC_START_DISCOVERY		1	//Start Discovery
-#define NFC_DISCOVERY     		2	//Discovery
-
-/****************************************************************** Enum's + Struct's ******************************************************************/
-
+#define NFC_NOINIT         		0
+#define NFC_START_DISCOVERY		1
+#define NFC_DISCOVERY     		2
 
 /********************************************************************* Variable's **********************************************************************/
 static rfalNfcDiscoverParam discParam;

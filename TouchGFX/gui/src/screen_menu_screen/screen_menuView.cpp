@@ -1,10 +1,21 @@
+/*
+ *****************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+
 #include <gui/screen_menu_screen/screen_menuView.hpp>
 #include <touchgfx/Color.hpp>
-
-/*******************************/
 #include "main.h"
+
 extern struct cuvex cuvex;
-/*******************************/
 
 screen_menuView::screen_menuView()
 {
@@ -30,18 +41,12 @@ void screen_menuView::tearDownScreen()
  *************************************************************************************************************************************************************************************************************
  *************************************************************************************************************************************************************************************************************/
 
-/*
- *
- * Comunicación: "view -> presenter -> model"
- *
- */
-
-/***************************************************************************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- ***************************************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void screen_menuView::changeScreen(uint8_t screen)
 {
 	presenter->changeScreen(screen);
@@ -52,25 +57,18 @@ void screen_menuView::changeScreen(uint8_t screen)
  *************************************************************************************************************************************************************************************************************
  *************************************************************************************************************************************************************************************************************/
 
-/*
- *
- * Funciones auxiliares
- *
- */
-
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void screen_menuView::setScreenMode()
 {
-	/*** Configuración de elementos de pantalla en función al modo (oscuro/claro) ***/
+	/*** Setting screen elements based on mode (dark/light) ***/
 	if(cuvex.info.mode == DARK)
 	{
 		background.setColor(touchgfx::Color::getColorFromRGB(0x3F, 0x3F, 0x51));
-		/***/
 		btn_1_admin.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
 		btn_1_admin.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
 		btn_2_encrypt.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
@@ -83,26 +81,19 @@ void screen_menuView::setScreenMode()
 		btn_5_settings.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
 	}
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
-
-	/*** Paleta de colores ***/
-	//0xED,0xED,0xED  	--> Blanco principal
-	//0x3F,0x3F,0x51  	--> Negro principal
-	//0x40,0x5C,0xA0	--> Azul auxiliar (noche)
-	//0x6B,0x6B,0x7D  	--> Gris auxiliar (noche)
-	//0,0,0  			--> N/A
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void screen_menuView::setScreenLanguage()
 {
-	/*** Configuración del texto en base al idioma seleccionado (español/ingles) ***/
+	/*** Text configuration based on selected language (Spanish/English) ***/
 	if(cuvex.info.language == SPANISH){
 		Texts::setLanguage(SP);
 	}
@@ -110,7 +101,7 @@ void screen_menuView::setScreenLanguage()
 		Texts::setLanguage(GB);
 	}
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 

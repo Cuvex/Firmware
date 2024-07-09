@@ -1,25 +1,38 @@
+/*
+ *****************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+
 #include <gui/containers/keyboardPasswordCheck_container.hpp>
 #include <touchgfx/Color.hpp>
 #include <string.h>
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 keyboardPasswordCheck_container::keyboardPasswordCheck_container(): keyboard(), modeBtnTextArea(), submodeBtnTextArea(), capslockPressed(this, &keyboardPasswordCheck_container::capslockPressedHandler), backspacePressed(this, &keyboardPasswordCheck_container::backspacePressedHandler),
 modePressed(this, &keyboardPasswordCheck_container::modePressedHandler), keyPressed(this, &keyboardPasswordCheck_container::keyPressedhandler), alphaKeys(true), uppercaseKeys(false), firstCharacterEntry(false)
 {
-	/*** Inicialización buffer ***/
+	/*** Buffer Initialization ***/
 	memset(buffer, 0, sizeof(buffer));
 
-	/*** Asignación de callback de teclas especiales ***/
+	/*** Assignment of callback for special keys ***/
 	layout_1.callbackAreaArray[0].callback = &capslockPressed;
 	layout_1.callbackAreaArray[1].callback = &backspacePressed;
 	layout_1.callbackAreaArray[2].callback = &modePressed;
 
-	/*** Inicialización del custom widget "keyboard" ***/
+	/*** Initialization of the custom widget "keyboard" ***/
 	keyboard.setLayout(&layout_1);
 	keyboard.setKeyListener(keyPressed);
 	keyboard.setPosition(0, 0, 320, 240);
@@ -27,29 +40,29 @@ modePressed(this, &keyboardPasswordCheck_container::modePressedHandler), keyPres
 	keyboard.setBuffer(buffer, BUFFER_SIZE);
 	add(keyboard);
 
-	/*** Variables auxiliares ***/
+	/*** Auxiliary variables ***/
 	uppercaseKeys = true;
 	firstCharacterEntry = true;
 
-	/*** Inicialización tecla "mode" ***/
+	/*** Key initialization "mode" ***/
 	modeBtnTextArea.setPosition(3, 95, 76, 25);
 	modeBtnTextArea.setColor(Color::getColorFromRGB(0x00, 0x00, 0x00));
 	add(modeBtnTextArea);
 
-	/*** Inicialización tecla "sub-mode" ***/
+	/*** Key initialization "sub-mode" ***/
 	submodeBtnTextArea.setPosition(3, 66, 60, 25);
 	submodeBtnTextArea.setColor(Color::getColorFromRGB(0x00, 0x00, 0x00));
 	add(submodeBtnTextArea);
 
-	/*** Mapeado inicial ***/
+	/*** Initial mapping ***/
 	setKeyMappingList();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardPasswordCheck_container::initialize()
 {
@@ -57,10 +70,10 @@ void keyboardPasswordCheck_container::initialize()
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardPasswordCheck_container::setKeyMappingList()
 {
@@ -93,10 +106,10 @@ void keyboardPasswordCheck_container::setKeyMappingList()
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardPasswordCheck_container::backspacePressedHandler()
 {
@@ -104,11 +117,11 @@ void keyboardPasswordCheck_container::backspacePressedHandler()
 
 	if(pos > 0)
 	{
-		/*** Borrado de la entrada previa en el buffer y decremento de la posición ***/
+		/*** Clearing the previous input in the buffer and decrementing the position ***/
 		buffer[pos - 1] = 0;
 		keyboard.setBufferPosition(pos - 1);
 
-		/*** Cambio del mapeado de las teclas si se ha introducido el primer caracter ***/
+		/*** Changing the key mapping if the first character has been entered ***/
 		if(pos == 1)
 		{
 			firstCharacterEntry = true;
@@ -119,10 +132,10 @@ void keyboardPasswordCheck_container::backspacePressedHandler()
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardPasswordCheck_container::capslockPressedHandler()
 {
@@ -131,10 +144,10 @@ void keyboardPasswordCheck_container::capslockPressedHandler()
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardPasswordCheck_container::modePressedHandler()
 {
@@ -168,14 +181,14 @@ void keyboardPasswordCheck_container::modePressedHandler()
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardPasswordCheck_container::keyPressedhandler(Unicode::UnicodeChar keyChar)
 {
-	/*** Después de la primera pulsación el teclado se va a minúsculas ***/
+	/*** After the first keystroke, the keyboard switches to lowercase ***/
 	if((firstCharacterEntry == true) && (keyChar != 0))
 	{
 		firstCharacterEntry = false;
@@ -185,10 +198,10 @@ void keyboardPasswordCheck_container::keyPressedhandler(Unicode::UnicodeChar key
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardPasswordCheck_container::setTouchable(bool touch)
 {
@@ -197,10 +210,10 @@ void keyboardPasswordCheck_container::setTouchable(bool touch)
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 Unicode:: UnicodeChar* keyboardPasswordCheck_container::getBuffer()
 {
@@ -208,10 +221,10 @@ Unicode:: UnicodeChar* keyboardPasswordCheck_container::getBuffer()
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void keyboardPasswordCheck_container::clearBuffer()
 {

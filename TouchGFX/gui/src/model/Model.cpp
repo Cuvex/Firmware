@@ -1,3 +1,16 @@
+/*
+ *****************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+
 #include <gui/model/Model.hpp>
 #include <gui/model/ModelListener.hpp>
 
@@ -16,7 +29,6 @@ void Model::tick()
 	{
 		switch(rcv_data)
 		{
-			/*************************************************************************************/
 		case MAIN_TO_GUI_NFC_ERROR:
 			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_ERROR);
 			break;
@@ -29,6 +41,10 @@ void Model::tick()
 			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED);
 			break;
 
+		case MAIN_TO_GUI_NFC_TAG_READED_FROM_NFC:
+			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED_FROM_NFC);
+			break;
+
 		case MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_1:
 			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_1);
 			break;
@@ -37,11 +53,18 @@ void Model::tick()
 			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2);
 			break;
 
+		case MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2_T4T_8K:
+			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2_T4T_8K);
+			break;
+
 		case MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_4:
 			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_4);
 			break;
 
-			/*************************************************************************************/
+		case MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_4_T4T_8K:
+			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_4_T4T_8K);
+			break;
+
 		default:
 			break;
 		}
@@ -56,17 +79,11 @@ void Model::tick()
  *************************************************************************************************************************************************************************************************************
  *************************************************************************************************************************************************************************************************************/
 
-/*
- *
- *
- *
- */
-
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void Model::changeScreen(uint16_t screen)
 {
@@ -78,10 +95,10 @@ void Model::changeScreen(uint16_t screen)
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void Model::changeStateNfc(uint16_t state)
 {
@@ -93,10 +110,10 @@ void Model::changeStateNfc(uint16_t state)
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void Model::changeFlash(uint16_t state)
 {

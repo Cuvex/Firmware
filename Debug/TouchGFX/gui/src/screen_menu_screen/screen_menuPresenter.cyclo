@@ -1,0 +1,9 @@
+../TouchGFX/gui/include/gui/model/ModelListener.hpp:32:15:virtual void ModelListener::updateStateNfc(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_menu_screen/screen_menuPresenter.hpp:41:13:screen_menuPresenter::~screen_menuPresenter()	1
+../TouchGFX/gui/src/screen_menu_screen/screen_menuPresenter.cpp:23:6:virtual void screen_menuPresenter::activate()	1
+../TouchGFX/gui/src/screen_menu_screen/screen_menuPresenter.cpp:28:6:virtual void screen_menuPresenter::deactivate()	1
+../TouchGFX/gui/include/gui/screen_menu_screen/screen_menuPresenter.hpp:41:13:virtual screen_menuPresenter::~screen_menuPresenter()	1
+../TouchGFX/gui/src/screen_menu_screen/screen_menuPresenter.cpp:40:6:virtual void screen_menuPresenter::changeScreen(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_menu_screen/screen_menuPresenter.hpp:41:13:virtual void* screen_menuPresenter::_ZThn4_N20screen_menuPresenterD1Ev()	1
+../TouchGFX/gui/include/gui/screen_menu_screen/screen_menuPresenter.hpp:41:13:virtual void* screen_menuPresenter::_ZThn4_N20screen_menuPresenterD0Ev()	1
+../TouchGFX/gui/src/screen_menu_screen/screen_menuPresenter.cpp:17:1:screen_menuPresenter::screen_menuPresenter(screen_menuView&)	1

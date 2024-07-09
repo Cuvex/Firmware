@@ -1,0 +1,16 @@
+../Core/Src/nfcTask.c:62:6:enableNFC	1
+../Core/Src/nfcTask.c:76:6:disableNFC	1
+../Core/Src/nfcTask.c:90:6:nfcInitialize	2
+../Core/Src/nfcTask.c:1189:5:ndefRecordGetInfoT2T_NTAG216	35
+../Core/Src/nfcTask.c:1166:5:ndefMessageGetInfoT2T_NTAG216	5
+../Core/Src/nfcTask.c:1402:5:ndefRecordGetInfoT4T_8K	39
+../Core/Src/nfcTask.c:1379:5:ndefMessageGetInfoT4T_8K	5
+../Core/Src/nfcTask.c:1632:5:ndefRecordGetInfo_fromNFC	33
+../Core/Src/nfcTask.c:1609:5:ndefMessageGetInfo_fromNFC	5
+../Core/Src/nfcTask.c:269:5:stateMachineTagActionT2T_NTAG216	42
+../Core/Src/nfcTask.c:698:5:stateMachineTagActionT4T_8K	40
+../Core/Src/nfcTask.c:1770:5:getVersionT2T_NTAG216	8
+../Core/Src/nfcTask.c:189:5:nfcActionNdef	9
+../Core/Src/nfcTask.c:124:6:nfcCycle	13
+../Core/Src/nfcTask.c:28:6:nfc_Task	4
+../Core/Src/nfcTask.c:1792:5:getVersionT4T_8K	1

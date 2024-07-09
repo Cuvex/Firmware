@@ -1,13 +1,24 @@
-#include <gui/screen_flow_2_screen/screen_flow_2View.hpp>
+/*
+ *****************************************************************************
+ * @attention
+ *
+ * Portion Copyright (C) 2024 Semilla3 OÜ.  All Rights Reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 
-/*******************************/
+#include <gui/screen_flow_2_screen/screen_flow_2View.hpp>
 #include "main.h"
+
 extern struct cuvex cuvex;
 extern HASH_HandleTypeDef hhash;
 extern CRYP_HandleTypeDef hcryp;
-/*******************************/
 
-screen_flow_2View::screen_flow_2View(): text_type(0), total_words(0), actual_word(0), valid_word(0), num_pwds(1), actual_pwd(0), flag_refresh_text_area(0), words_to_encrypt{0}, words_to_check{0}, buff_passphrase{0}, buff_plain_text{0}, pwds{0}, pwd_raw{0}, pwd_sha256{0}
+screen_flow_2View::screen_flow_2View(): text_type(0), total_words(0), actual_word(0), index_words(0), valid_word(0), actual_pwd(0), total_pwds(1), mandatory_pwds(1), flag_refresh_text_area(0), words_to_encrypt{0}, words_to_check{0}, buff_passphrase{0}, buff_plain_text{0}, pwds{0}, pwd_raw{0}, pwd_sha256{0}, pwd_combined_sha256{0}, header_aes_gcm{0}, iv_aes_gcm{0}
 {
 
 }
@@ -19,21 +30,20 @@ void screen_flow_2View::setupScreen()
 	screen_flow_2View::setScreenLanguage();
 	screen_flow_2View::changeScreen(GUI_TO_MAIN_SCREEN_FLOW_2);
 
-	/*** Borrado de buffer's ***/
-	memset(keyboard1_text_typedBuffer,   0x00, sizeof(keyboard1_text_typedBuffer));
-	memset(keyboard2_text_typedBuffer,   0x00, sizeof(keyboard2_text_typedBuffer));
-	memset(keyboard3_text_typedBuffer,   0x00, sizeof(keyboard3_text_typedBuffer));
-	memset(keyboard4_text_typedBuffer,   0x00, sizeof(keyboard4_text_typedBuffer));
-	memset(keyboard5_text_typed_1Buffer, 0x00, sizeof(keyboard5_text_typed_1Buffer));
-	memset(keyboard5_text_typed_2Buffer, 0x00, sizeof(keyboard5_text_typed_2Buffer));
-	memset(keyboard6_text_typedBuffer, 	 0x00, sizeof(keyboard6_text_typedBuffer));
-	keyboard1_numeric.clearBuffer();
-	keyboard2_BIP39.clearBuffer();
-	keyboard3_passphrase.clearBuffer();
-	keyboard4_plain_text.clearBuffer();
-	keyboard5_password_1.clearBuffer();
-	keyboard5_password_2.clearBuffer();
-	keyboard6_alias.clearBuffer();
+	memset(keyboard1_text_typed_seedBuffer,   		0x00, sizeof(keyboard1_text_typed_seedBuffer));
+	memset(keyboard2_text_typed_seedBuffer,   		0x00, sizeof(keyboard2_text_typed_seedBuffer));
+	memset(keyboard3_text_typed_seedBuffer,   		0x00, sizeof(keyboard3_text_typed_seedBuffer));
+	memset(keyboard_text_typed_plain_textBuffer,	0x00, sizeof(keyboard_text_typed_plain_textBuffer));
+	memset(keyboard1_text_typed_passwordBuffer, 	0x00, sizeof(keyboard1_text_typed_passwordBuffer));
+	memset(keyboard2_text_typed_passwordBuffer, 	0x00, sizeof(keyboard2_text_typed_passwordBuffer));
+	memset(keyboard_text_typed_aliasBuffer, 	 	0x00, sizeof(keyboard_text_typed_aliasBuffer));
+	keyboard1_seed.clearBuffer();
+	keyboard2_seed.clearBuffer();
+	keyboard3_seed.clearBuffer();
+	keyboard_plain_text.clearBuffer();
+	keyboard1_password.clearBuffer();
+	keyboard2_password.clearBuffer();
+	keyboard_alias.clearBuffer();
 }
 
 void screen_flow_2View::tearDownScreen()
@@ -48,256 +58,270 @@ void screen_flow_2View::tearDownScreen()
  *************************************************************************************************************************************************************************************************************
  *************************************************************************************************************************************************************************************************************/
 
-/*
- *
- * Función que se llama periódicamente desde evento de tick (cada 10 ticks)
- *
- */
-
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void screen_flow_2View::tickEventScreen()
 {
 	uint8_t num_of_lines = 0;
-	uint8_t str_prediction[KEYBOARD2_TEXT_PREDICTED_SIZE] = {0};
+	uint8_t str_prediction[KEYBOARD2_TEXT_PREDICTED_SEED_SIZE] = {0};
 
-	/*** Gestión del teclado 1 (númerico) ***/
-	if(keyboard1_numeric.isVisible() == true)
+	/*** Seed's - Keyboard 1 (numeric) ***/
+	if(keyboard1_seed.isVisible() == true)
 	{
-		if(Unicode::strncmp(keyboard1_text_typedBuffer, keyboard1_numeric.getBuffer(), KEYBOARD1_TEXT_TYPED_SIZE) != 0)
+		if(Unicode::strncmp(keyboard1_text_typed_seedBuffer, keyboard1_seed.getBuffer(), KEYBOARD1_TEXT_TYPED_SEED_SIZE) != 0)
 		{
-			if(Unicode::atoi(keyboard1_numeric.getBuffer()) == 0){
-				memset(keyboard1_text_typedBuffer, 0x00, sizeof(keyboard1_text_typedBuffer));
-				keyboard1_numeric.clearBuffer();
+			if(Unicode::atoi(keyboard1_seed.getBuffer()) == 0){
+				memset(keyboard1_text_typed_seedBuffer, 0x00, sizeof(keyboard1_text_typed_seedBuffer));
+				keyboard1_seed.clearBuffer();
 			}
-			else if(Unicode::atoi(keyboard1_numeric.getBuffer()) > 48){
-				keyboard1_text_typed.setColor(touchgfx::Color::getColorFromRGB(0xE7,0x44,0x3E));	//#e7443e
+			else if(Unicode::atoi(keyboard1_seed.getBuffer()) > 54){
+				keyboard1_text_typed_seed.setColor(touchgfx::Color::getColorFromRGB(0xE7,0x44,0x3E));
 			}
 			else{
-				keyboard1_text_typed.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
+				keyboard1_text_typed_seed.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
 			}
 
-			Unicode::snprintf(keyboard1_text_typedBuffer, KEYBOARD1_TEXT_TYPED_SIZE, keyboard1_numeric.getBuffer());
-			keyboard1_text_area.invalidate();
+			Unicode::snprintf(keyboard1_text_typed_seedBuffer, KEYBOARD1_TEXT_TYPED_SEED_SIZE, keyboard1_seed.getBuffer());
+			keyboard1_text_area_seed.invalidate();
 		}
 	}
 
-	/*** Gestión del teclado 2 (semilla BIP39) ***/
-	if(keyboard2_BIP39.isVisible() == true)
+	/*** Seed's - Keyboard 2 (words) ***/
+	if(keyboard2_seed.isVisible() == true)
 	{
-		if(Unicode::strncmp(keyboard2_text_typedBuffer, keyboard2_BIP39.getBuffer(), KEYBOARD2_TEXT_TYPED_SIZE) != 0)
+		if(Unicode::strncmp(keyboard2_text_typed_seedBuffer, keyboard2_seed.getBuffer(), KEYBOARD2_TEXT_TYPED_SEED_SIZE) != 0)
 		{
-			Unicode::snprintf(keyboard2_text_typedBuffer, KEYBOARD2_TEXT_TYPED_SIZE, keyboard2_BIP39.getBuffer());
-			Unicode::snprintf(keyboard2_text_predictedBuffer, KEYBOARD2_TEXT_PREDICTED_SIZE, keyboard2_BIP39.getBuffer());
+			Unicode::snprintf(keyboard2_text_typed_seedBuffer, KEYBOARD2_TEXT_TYPED_SEED_SIZE, keyboard2_seed.getBuffer());
+			Unicode::snprintf(keyboard2_text_predicted_seedBuffer, KEYBOARD2_TEXT_PREDICTED_SEED_SIZE, keyboard2_seed.getBuffer());
 
-			if(Unicode::strlen(keyboard2_text_typedBuffer) >= 3){
-				Unicode::toUTF8(keyboard2_text_predictedBuffer, str_prediction, KEYBOARD2_TEXT_PREDICTED_SIZE);
-				valid_word = getBip39Word((char *) str_prediction);
-				Unicode::snprintf(keyboard2_text_predictedBuffer, KEYBOARD2_TEXT_PREDICTED_SIZE, (char *) str_prediction);
-				keyboard2_text_predicted.setVisible(true);
-				keyboard2_text_typed.setVisible(false);
+			if(Unicode::strlen(keyboard2_text_typed_seedBuffer) >= 3){
+				Unicode::toUTF8(keyboard2_text_predicted_seedBuffer, str_prediction, KEYBOARD2_TEXT_PREDICTED_SEED_SIZE);
+
+				switch(text_type)
+				{
+				case TEXT_TYPE_NONE:
+				default:
+					valid_word = false;
+					break;
+
+				case TEXT_TYPE_BIP39:
+					valid_word = getBip39Word((char *) str_prediction);
+					break;
+
+				case TEXT_TYPE_SLIP39:
+					valid_word = getSlip39Word((char *) str_prediction);
+					break;
+
+				case TEXT_TYPE_XMR:
+					valid_word = getXmrWord((char *) str_prediction);
+					break;
+				}
+
+				Unicode::snprintf(keyboard2_text_predicted_seedBuffer, KEYBOARD2_TEXT_PREDICTED_SEED_SIZE, (char *) str_prediction);
+				keyboard2_text_predicted_seed.setVisible(true);
+				keyboard2_text_typed_seed.setVisible(false);
 			}
 			else{
-				keyboard2_text_predicted.setVisible(false);
-				keyboard2_text_typed.setVisible(true);
+				keyboard2_text_predicted_seed.setVisible(false);
+				keyboard2_text_typed_seed.setVisible(true);
 				valid_word = false;
 			}
 
 			if(valid_word == true){
-				keyboard2_text_predicted.setColor(touchgfx::Color::getColorFromRGB(0x14,0x8E,0x53));
+				keyboard2_text_predicted_seed.setColor(touchgfx::Color::getColorFromRGB(0x14,0x8E,0x53));
 			}
 			else{
-				keyboard2_text_predicted.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
+				keyboard2_text_predicted_seed.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
 			}
 
-			keyboard2_text_area.invalidate();
+			keyboard2_text_area_seed.invalidate();
 		}
 	}
 
-	/*** Gestión del teclado 3 (passphrase) ***/
-	if(keyboard3_passphrase.isVisible() == true)
+	/*** Seed's - Keyboard 3 (passphrase) ***/
+	if(keyboard3_seed.isVisible() == true)
 	{
-		if(Unicode::strncmp(keyboard3_text_typedBuffer, keyboard3_passphrase.getBuffer(), KEYBOARD3_TEXT_TYPED_SIZE) != 0)
+		if(Unicode::strncmp(keyboard3_text_typed_seedBuffer, keyboard3_seed.getBuffer(), KEYBOARD3_TEXT_TYPED_SEED_SIZE) != 0)
 		{
-			Unicode::snprintf(keyboard3_text_typedBuffer, KEYBOARD3_TEXT_TYPED_SIZE, keyboard3_passphrase.getBuffer());
-			keyboard3_text_typed.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
+			Unicode::snprintf(keyboard3_text_typed_seedBuffer, KEYBOARD3_TEXT_TYPED_SEED_SIZE, keyboard3_seed.getBuffer());
+			keyboard3_text_typed_seed.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
 
-			num_of_lines = keyboard3_text_typed.getTextWidth()/230;
+			num_of_lines = keyboard3_text_typed_seed.getTextWidth()/230;
 
 			if(num_of_lines > 1){
-				keyboard3_text_typed.setPosition(60, 50-((num_of_lines-1)*20), 230, 60+((num_of_lines-1)*20));
+				keyboard3_text_typed_seed.setPosition(60, 50-((num_of_lines-1)*20), 230, 60+((num_of_lines-1)*20));
 			}
 			else{
-				keyboard3_text_typed.setPosition(60, 50, 230, 60);
+				keyboard3_text_typed_seed.setPosition(60, 50, 230, 60);
 			}
 
-			Unicode::itoa(Unicode::strlen(keyboard3_text_typedBuffer), keyboard3_char_countBuffer, KEYBOARD3_CHAR_COUNT_SIZE, 10);
+			Unicode::itoa(Unicode::strlen(keyboard3_text_typed_seedBuffer), keyboard3_char_count_seedBuffer, KEYBOARD3_CHAR_COUNT_SEED_SIZE, 10);
 
-			keyboard3_text_area.invalidate();
+			keyboard3_text_area_seed.invalidate();
 		}
 
 		if(flag_refresh_text_area == 1)
 		{
-			num_of_lines = keyboard3_text_typed.getTextWidth()/230;
+			num_of_lines = keyboard3_text_typed_seed.getTextWidth()/230;
 
 			if(num_of_lines > 1){
-				keyboard3_text_typed.setPosition(60, 50-((num_of_lines-1)*20), 230, 60+((num_of_lines-1)*20));
-				keyboard3_text_area.invalidate();
+				keyboard3_text_typed_seed.setPosition(60, 50-((num_of_lines-1)*20), 230, 60+((num_of_lines-1)*20));
+				keyboard3_text_area_seed.invalidate();
 			}
 
 			flag_refresh_text_area = 0;
 		}
 	}
 
-	/*** Gestión del teclado 4 (plain text) ***/
-	if(keyboard4_plain_text.isVisible() == true)
+	/*** PlainText - Keyboard (plain text) ***/
+	if(keyboard_plain_text.isVisible() == true)
 	{
-		if(Unicode::strncmp(keyboard4_text_typedBuffer, keyboard4_plain_text.getBuffer(), KEYBOARD4_TEXT_TYPED_SIZE) != 0)
+		if(Unicode::strncmp(keyboard_text_typed_plain_textBuffer, keyboard_plain_text.getBuffer(), KEYBOARD_TEXT_TYPED_PLAIN_TEXT_SIZE) != 0)
 		{
-			Unicode::snprintf(keyboard4_text_typedBuffer, KEYBOARD4_TEXT_TYPED_SIZE, keyboard4_plain_text.getBuffer());
-			keyboard4_text_typed.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
+			Unicode::snprintf(keyboard_text_typed_plain_textBuffer, KEYBOARD_TEXT_TYPED_PLAIN_TEXT_SIZE, keyboard_plain_text.getBuffer());
+			keyboard_text_typed_plain_text.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
 
-			num_of_lines = keyboard4_text_typed.getTextWidth()/230;
+			num_of_lines = keyboard_text_typed_plain_text.getTextWidth()/230;
 
 			if(num_of_lines > 1){
-				keyboard4_text_typed.setPosition(60, 50-((num_of_lines-1)*20), 230, 60+((num_of_lines-1)*20));
+				keyboard_text_typed_plain_text.setPosition(60, 50-((num_of_lines-1)*20), 230, 60+((num_of_lines-1)*20));
 			}
 			else{
-				keyboard4_text_typed.setPosition(60, 50, 230, 60);
+				keyboard_text_typed_plain_text.setPosition(60, 50, 230, 60);
 			}
 
-			Unicode::itoa(Unicode::strlen(keyboard4_text_typedBuffer), keyboard4_char_countBuffer, KEYBOARD4_CHAR_COUNT_SIZE, 10);
+			Unicode::itoa(Unicode::strlen(keyboard_text_typed_plain_textBuffer), keyboard_char_count_plain_textBuffer, KEYBOARD_CHAR_COUNT_PLAIN_TEXT_SIZE, 10);
 
-			keyboard4_text_area.invalidate();
+			keyboard_text_area_plain_text.invalidate();
 		}
 
 		if(flag_refresh_text_area == 1)
 		{
-			num_of_lines = keyboard4_text_typed.getTextWidth()/230;
+			num_of_lines = keyboard_text_typed_plain_text.getTextWidth()/230;
 
 			if(num_of_lines > 1){
-				keyboard4_text_typed.setPosition(60, 50-((num_of_lines-1)*20), 230, 60+((num_of_lines-1)*20));
-				keyboard4_text_area.invalidate();
+				keyboard_text_typed_plain_text.setPosition(60, 50-((num_of_lines-1)*20), 230, 60+((num_of_lines-1)*20));
+				keyboard_text_area_plain_text.invalidate();
 			}
 
 			flag_refresh_text_area = 0;
 		}
 	}
 
-	/*** Gestión del teclado 5 - password 1 ***/
-	if(keyboard5_password_1.isVisible() == true)
+	/*** Password - Keyboard 1 (password field 1) ***/
+	if(keyboard1_password.isVisible() == true)
 	{
-		if(Unicode::strncmp(keyboard5_text_typed_1Buffer, keyboard5_password_1.getBuffer(), KEYBOARD5_TEXT_TYPED_1_SIZE) != 0)
+		if(Unicode::strncmp(keyboard1_text_typed_passwordBuffer, keyboard1_password.getBuffer(), KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE) != 0)
 		{
-			/*** Obtención de texto tecleado en widget ***/
-			Unicode::snprintf(keyboard5_text_typed_1Buffer, KEYBOARD5_TEXT_TYPED_1_SIZE, keyboard5_password_1.getBuffer());
-			keyboard5_text_typed_1.setWideTextAction(touchgfx::WIDE_TEXT_NONE);
+			/*** Obtaining typed text in widget ***/
+			Unicode::snprintf(keyboard1_text_typed_passwordBuffer, KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE, keyboard1_password.getBuffer());
+			keyboard1_text_typed_password.setWideTextAction(touchgfx::WIDE_TEXT_NONE);
 
-			/*** Alineamiento de texto dentro de área ***/
-			if(keyboard5_text_typed_1.getTextWidth() <= 160){
-				keyboard5_text_typed_1.setPosition(160-(keyboard5_text_typed_1.getTextWidth()/2), 40, keyboard5_text_typed_1.getTextWidth(), 20);
+			/*** Text alignment within area ***/
+			if(keyboard1_text_typed_password.getTextWidth() <= 160){
+				keyboard1_text_typed_password.setPosition(160-(keyboard1_text_typed_password.getTextWidth()/2), 40, keyboard1_text_typed_password.getTextWidth(), 20);
 			}
 			else{
-				keyboard5_text_typed_1.setPosition(76, 40, 160, 20);
+				keyboard1_text_typed_password.setPosition(76, 40, 160, 20);
 			}
 
-			/*** Reseteo y relleno de buffer con contraseña oculta ***/
-			for(int i=0; i<KEYBOARD5_TEXT_TYPED_HIDE_1_SIZE; i++){
-				keyboard5_text_typed_hide_1Buffer[i] = 0x00;
+			/*** Reset and filling of buffer with hidden password ***/
+			for(int i=0; i<KEYBOARD1_TEXT_TYPED_HIDE_PASSWORD_SIZE; i++){
+				keyboard1_text_typed_hide_passwordBuffer[i] = 0x00;
 			}
-			for(int i=0; i<Unicode::strlen(keyboard5_text_typed_1Buffer); i++){
-				keyboard5_text_typed_hide_1Buffer[i] = 8226;	//U+8226 (bullet '•')
+			for(int i=0; i<Unicode::strlen(keyboard1_text_typed_passwordBuffer); i++){
+				keyboard1_text_typed_hide_passwordBuffer[i] = 8226;	//U+8226 (bullet '•')
 			}
 
-			/*** Estado del placeholder (visible o no visible) ***/
-			if(keyboard5_text_typed_1Buffer[0] == 0x00){
-				keyboard5_placeholder_1.setVisible(true);
+			/*** Placeholder status (visible or hidden) ***/
+			if(keyboard1_text_typed_passwordBuffer[0] == 0x00){
+				placeholder_1_password.setVisible(true);
 			}
 			else{
-				keyboard5_placeholder_1.setVisible(false);
+				placeholder_1_password.setVisible(false);
 			}
 
-			/*** Color del texto con información de instrucciones de contraseña ***/
+			/*** Color of text with password instruction information ***/
 			if(cuvex.info.mode == DARK){
-				keyboard5_text_info_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+				text_info_2_password.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 			}
 			else{
-				keyboard5_text_info_2.setColor(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+				text_info_2_password.setColor(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
 			}
 
-			/*** Actualización del área ***/
-			keyboard5_text_area_1.invalidate();
-			keyboard5_text_info_2.invalidate();
+			/*** Area update ***/
+			keyboard1_text_area_password.invalidate();
+			text_info_2_password.invalidate();
 		}
 	}
 
-	/*** Gestión del teclado 5 - password 2 ***/
-	if(keyboard5_password_2.isVisible() == true)
+	/*** Password - Keyboard 2 (password field 2) ***/
+	if(keyboard2_password.isVisible() == true)
 	{
-		if(Unicode::strncmp(keyboard5_text_typed_2Buffer, keyboard5_password_2.getBuffer(), KEYBOARD5_TEXT_TYPED_2_SIZE) != 0)
+		if(Unicode::strncmp(keyboard2_text_typed_passwordBuffer, keyboard2_password.getBuffer(), KEYBOARD2_TEXT_TYPED_PASSWORD_SIZE) != 0)
 		{
-			/*** Obtención de texto tecleado en widget ***/
-			Unicode::snprintf(keyboard5_text_typed_2Buffer, KEYBOARD5_TEXT_TYPED_2_SIZE, keyboard5_password_2.getBuffer());
-			keyboard5_text_typed_2.setWideTextAction(touchgfx::WIDE_TEXT_NONE);
+			/*** Obtaining typed text in widget ***/
+			Unicode::snprintf(keyboard2_text_typed_passwordBuffer, KEYBOARD2_TEXT_TYPED_PASSWORD_SIZE, keyboard2_password.getBuffer());
+			keyboard2_text_typed_password.setWideTextAction(touchgfx::WIDE_TEXT_NONE);
 
-			/*** Alineamiento de texto dentro de área ***/
-			if(keyboard5_text_typed_2.getTextWidth() <= 160){
-				keyboard5_text_typed_2.setPosition(160-(keyboard5_text_typed_2.getTextWidth()/2), 75, keyboard5_text_typed_2.getTextWidth(), 20);
+			/*** Text alignment within area ***/
+			if(keyboard2_text_typed_password.getTextWidth() <= 160){
+				keyboard2_text_typed_password.setPosition(160-(keyboard2_text_typed_password.getTextWidth()/2), 75, keyboard2_text_typed_password.getTextWidth(), 20);
 			}
 			else{
-				keyboard5_text_typed_2.setPosition(76, 75, 160, 20);
+				keyboard2_text_typed_password.setPosition(76, 75, 160, 20);
 			}
 
-			/*** Reseteo y relleno de buffer con contraseña oculta ***/
-			for(int i=0; i<KEYBOARD5_TEXT_TYPED_HIDE_2_SIZE; i++){
-				keyboard5_text_typed_hide_2Buffer[i] = 0x00;
+			/*** Reset and filling of buffer with hidden password ***/
+			for(int i=0; i<KEYBOARD2_TEXT_TYPED_HIDE_PASSWORD_SIZE; i++){
+				keyboard2_text_typed_hide_passwordBuffer[i] = 0x00;
 			}
-			for(int i=0; i<Unicode::strlen(keyboard5_text_typed_2Buffer); i++){
-				keyboard5_text_typed_hide_2Buffer[i] = 8226;	//U+8226 (bullet '•')
+			for(int i=0; i<Unicode::strlen(keyboard2_text_typed_passwordBuffer); i++){
+				keyboard2_text_typed_hide_passwordBuffer[i] = 8226;	//U+8226 (bullet '•')
 			}
 
-			/*** Estado del placeholder (visible o no visible) ***/
-			if(keyboard5_text_typed_2Buffer[0] == 0x00){
-				keyboard5_placeholder_2.setVisible(true);
+			/*** Placeholder status (visible or hidden) ***/
+			if(keyboard2_text_typed_passwordBuffer[0] == 0x00){
+				placeholder_2_password.setVisible(true);
 			}
 			else{
-				keyboard5_placeholder_2.setVisible(false);
+				placeholder_2_password.setVisible(false);
 			}
 
-			/*** Color del texto con información de instrucciones de contraseña ***/
+			/*** Color of text with password instruction information ***/
 			if(cuvex.info.mode == DARK){
-				keyboard5_text_info_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+				text_info_2_password.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 			}
 			else{
-				keyboard5_text_info_2.setColor(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+				text_info_2_password.setColor(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
 			}
 
-			/*** Actualización del área ***/
-			keyboard5_text_area_2.invalidate();
-			keyboard5_text_info_2.invalidate();
+			/*** Area update ***/
+			keyboard2_text_area_password.invalidate();
+			text_info_2_password.invalidate();
 		}
 	}
 
-	/*** Gestión del teclado 6 (alias) ***/
-	if(keyboard6_alias.isVisible() == true)
+	/*** Alias - Keyboard (card alias) ***/
+	if(keyboard_alias.isVisible() == true)
 	{
-		if(Unicode::strncmp(keyboard6_text_typedBuffer, keyboard6_alias.getBuffer(), KEYBOARD6_TEXT_TYPED_SIZE) != 0)
+		if(Unicode::strncmp(keyboard_text_typed_aliasBuffer, keyboard_alias.getBuffer(), KEYBOARD_TEXT_TYPED_ALIAS_SIZE) != 0)
 		{
-			Unicode::snprintf(keyboard6_text_typedBuffer, KEYBOARD6_TEXT_TYPED_SIZE, keyboard6_alias.getBuffer());
-			keyboard6_text_typed.setWideTextAction(touchgfx::WIDE_TEXT_NONE);
+			Unicode::snprintf(keyboard_text_typed_aliasBuffer, KEYBOARD_TEXT_TYPED_ALIAS_SIZE, keyboard_alias.getBuffer());
+			keyboard_text_typed_alias.setWideTextAction(touchgfx::WIDE_TEXT_NONE);
 
-			if(keyboard6_text_typed.getTextWidth() <= 160){
-				keyboard6_text_typed.setPosition(160-(keyboard6_text_typed.getTextWidth()/2), 75, keyboard6_text_typed.getTextWidth(), 20);
+			if(keyboard_text_typed_alias.getTextWidth() <= 160){
+				keyboard_text_typed_alias.setPosition(160-(keyboard_text_typed_alias.getTextWidth()/2), 75, keyboard_text_typed_alias.getTextWidth(), 20);
 			}
 			else{
-				keyboard6_text_typed.setPosition(76, 75, 160, 20);
+				keyboard_text_typed_alias.setPosition(76, 75, 160, 20);
 			}
 
-			keyboard6_text_area.invalidate();
+			keyboard_text_area_alias.invalidate();
 		}
 	}
 }
@@ -308,17 +332,11 @@ void screen_flow_2View::tickEventScreen()
  *************************************************************************************************************************************************************************************************************
  *************************************************************************************************************************************************************************************************************/
 
-/*
- *
- * Comunicación: "view -> presenter -> model"
- *
- */
-
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void screen_flow_2View::changeScreen(uint8_t screen)
 {
@@ -326,37 +344,24 @@ void screen_flow_2View::changeScreen(uint8_t screen)
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void screen_flow_2View::changeStateNfc(uint8_t state)
 {
 	presenter->changeStateNfc(state);
 }
 
-/*************************************************************************************************************************************************************************************************************
- *************************************************************************************************************************************************************************************************************
- *************************************************************************************************************************************************************************************************************
- *************************************************************************************************************************************************************************************************************
- *************************************************************************************************************************************************************************************************************/
-
-/*
- *
- * Comunicación: "model -> presenter -> view"
- *
- */
-
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void screen_flow_2View::updateStateNfc(uint16_t state)
 {
-	/*** Seleccion de los elementos visibles/ocultos en la pantalla ***/
 	switch(state)
 	{
 	case MAIN_TO_GUI_NFC_ERROR:
@@ -369,85 +374,90 @@ void screen_flow_2View::updateStateNfc(uint16_t state)
 		{
 			s5_initNFC.setVisible(false);
 			s6_waitReadWriteNFC.setVisible(true);
-			screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_2);
+
+			if(text_type == TEXT_TYPE_FROM_NFC_BIP39){
+				wait_read_write_nfc_text.setTypedText(touchgfx::TypedText(T_SF2_S6_WAIT_READ_NFC_FROMNFC_TEXT));
+			}
+
+			if(total_pwds != mandatory_pwds){
+				screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_2_T4T_8K);
+			}
+			else{
+				screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_2);
+			}
+		}
+		else if(s1_fromNFC_1_initNFC.isVisible())
+		{
+			s1_fromNFC_1_initNFC.setVisible(false);
+			s1_fromNFC_2_waitReadNFC.setVisible(true);
+			s1_fromNFC_3_error.setVisible(false);
+			screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_TAG_READ_FROM_NFC);
 		}
 		break;
 
 	case MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2:
+	case MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2_T4T_8K:
 		if(s6_waitReadWriteNFC.isVisible())
 		{
-			if(cuvex.nfc.tag.encripted == true)						//Error 1, la tarjeta que se intentó grabar ya tiene un criptograma almacenado
+			if((state == MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2_T4T_8K) && (cuvex.nfc.tag.type != NFC_TAG_TYPE_T4T_8K))	//Error 1, the card being written has not correct format
 			{
 				s6_waitReadWriteNFC.setVisible(false);
-				s7_writeError1.setVisible(true);
+				s7_writeError.setVisible(true);
+				text_error_cryptogram.setVisible(false);
+				text_error_tag_format.setVisible(true);
+				image_error.setVisible(true);
 				screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_DISABLE);
 			}
-			else
+			else if(cuvex.nfc.tag.encripted == true)		//Error 2, the card being written to already has a stored cryptogram
 			{
-				if(cuvex.nfc.tag.alias[0] == 0x00)					//Error 2, la tarjeta que se intentó grabar no tiene ningún alias asignado
-				{
-					s6_waitReadWriteNFC.setVisible(false);
-					s8_writeError2.setVisible(true);
-					s8_1_viewTagInfo.setVisible(true);
-					s8_2_typeAlias.setVisible(false);
-					memset(text_uidBuffer, 0x00, TEXT_UID_SIZE);
-					Unicode::snprintf(text_uidBuffer, TEXT_UID_SIZE, (const char*) cuvex.nfc.tag.uid);
-					screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_DISABLE);
-				}
-				else												//Success, tarjeta grabada correctamente
-				{
-
-					if(cuvex.nfc.tag.alias[0] == 0x00){
-						memset(text_cryptogram_success_english_5Buffer, 0x00, TEXT_CRYPTOGRAM_SUCCESS_ENGLISH_5_SIZE);
-						memset(text_cryptogram_success_english_6Buffer, 0x00, TEXT_CRYPTOGRAM_SUCCESS_ENGLISH_6_SIZE);
-						memset(text_cryptogram_success_spanish_4Buffer, 0x00, TEXT_CRYPTOGRAM_SUCCESS_SPANISH_4_SIZE);
-						memset(text_cryptogram_success_spanish_5Buffer, 0x00, TEXT_CRYPTOGRAM_SUCCESS_SPANISH_5_SIZE);
-
-						Unicode::snprintf(text_cryptogram_success_english_5Buffer, TEXT_CRYPTOGRAM_SUCCESS_ENGLISH_5_SIZE, (const char*) "UIDI ");
-						Unicode::snprintf(text_cryptogram_success_english_6Buffer, TEXT_CRYPTOGRAM_SUCCESS_ENGLISH_6_SIZE, (const char*) cuvex.nfc.tag.uid);
-						Unicode::snprintf(text_cryptogram_success_spanish_4Buffer, TEXT_CRYPTOGRAM_SUCCESS_SPANISH_4_SIZE, (const char*) "UIDI ");
-						Unicode::snprintf(text_cryptogram_success_spanish_5Buffer, TEXT_CRYPTOGRAM_SUCCESS_SPANISH_5_SIZE, (const char*) cuvex.nfc.tag.uid);
-					}
-					else{
-						memset(text_cryptogram_success_english_5Buffer, 0x00, TEXT_CRYPTOGRAM_SUCCESS_ENGLISH_5_SIZE);
-						memset(text_cryptogram_success_english_6Buffer, 0x00, TEXT_CRYPTOGRAM_SUCCESS_ENGLISH_6_SIZE);
-						memset(text_cryptogram_success_spanish_4Buffer, 0x00, TEXT_CRYPTOGRAM_SUCCESS_SPANISH_4_SIZE);
-						memset(text_cryptogram_success_spanish_5Buffer, 0x00, TEXT_CRYPTOGRAM_SUCCESS_SPANISH_5_SIZE);
-
-						Unicode::snprintf(text_cryptogram_success_english_5Buffer, TEXT_CRYPTOGRAM_SUCCESS_ENGLISH_5_SIZE, (const char*) "Alias ");
-						Unicode::snprintf(text_cryptogram_success_spanish_4Buffer, TEXT_CRYPTOGRAM_SUCCESS_SPANISH_4_SIZE, (const char*) "Alias ");
-
-						for(int i=0; i<TEXT_CRYPTOGRAM_SUCCESS_ENGLISH_6_SIZE; i++)
-						{
-							if(cuvex.nfc.tag.alias[i] == 182){	//Si '¶' (182) se convierte al caracter '€' (8364) para visualización en pantalla
-								text_cryptogram_success_english_6Buffer[i] = 8364;
-								text_cryptogram_success_spanish_5Buffer[i] = 8364;
-							}
-							else{
-								text_cryptogram_success_english_6Buffer[i] = cuvex.nfc.tag.alias[i];
-								text_cryptogram_success_spanish_5Buffer[i] = cuvex.nfc.tag.alias[i];
-							}
-						}
-					}
-
-					if(cuvex.info.language == SPANISH){
-						text_cryptogram_success_spanish.setVisible(true);
-						text_cryptogram_success_english.setVisible(false);
-					}
-					else{
-						text_cryptogram_success_spanish.setVisible(false);
-						text_cryptogram_success_english.setVisible(true);
-					}
-
-					s6_waitReadWriteNFC.setVisible(false);
-					s9_writeSuccess.setVisible(true);
-				}
+				s6_waitReadWriteNFC.setVisible(false);
+				s7_writeError.setVisible(true);
+				text_error_cryptogram.setVisible(true);
+				text_error_tag_format.setVisible(false);
+				image_error.setVisible(false);
+				screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_DISABLE);
 			}
+			else	//Success, card successfully written
+			{
+				for(int i=0; i<TEXT_CRYPTOGRAM_SUCCESS_ENGLISH_6_SIZE; i++)
+				{
+					if(cuvex.nfc.tag.alias[i] == 182){	//If '¶' (182) is converted to the character '€' (8364) for display on screen
+						text_cryptogram_success_english_6Buffer[i] = 8364;
+						text_cryptogram_success_spanish_5Buffer[i] = 8364;
+					}
+					else{
+						text_cryptogram_success_english_6Buffer[i] = cuvex.nfc.tag.alias[i];
+						text_cryptogram_success_spanish_5Buffer[i] = cuvex.nfc.tag.alias[i];
+					}
+				}
+
+				if(cuvex.info.language == SPANISH){
+					text_cryptogram_success_spanish.setVisible(true);
+					text_cryptogram_success_english.setVisible(false);
+				}
+				else{
+					text_cryptogram_success_spanish.setVisible(false);
+					text_cryptogram_success_english.setVisible(true);
+				}
+
+				close_button.setVisible(false);
+				s6_waitReadWriteNFC.setVisible(false);
+				s8_writeSuccess.setVisible(true);
+				screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_DISABLE);
+			}
+		}
+		break;
+
+	case MAIN_TO_GUI_NFC_TAG_READED_FROM_NFC:
+		if(s1_fromNFC_2_waitReadNFC.isVisible())
+		{
+			screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_DISABLE);
+			checkDataFromNFC();
 		}
 		break;
 	}
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
@@ -457,86 +467,78 @@ void screen_flow_2View::updateStateNfc(uint16_t state)
  *************************************************************************************************************************************************************************************************************
  *************************************************************************************************************************************************************************************************************/
 
-/*
- *
- * Gestión de pulsaciones de los teclados
- *
- */
-
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::hideKeyboard1Pressed()
+void screen_flow_2View::hideKeyboard1SeedPressed()
 {
-	/*** Se bajan los elementos de la pantalla ***/
-	keyboard1_text_info.setPosition(0, 90, 320, 20);
-	keyboard1_text_typed.setPosition(76, 125, 169, 20);
-	keyboard1_text_area.setXY(45, 120);
-	keyboard1_btn_enter.setPosition(245, 120, 30, 30);
+	keyboard1_text_info_seed.setPosition(0, 90, 320, 20);
+	keyboard1_text_typed_seed.setPosition(76, 125, 169, 20);
+	keyboard1_text_area_seed.setXY(45, 120);
+	keyboard1_btn_enter_seed.setPosition(245, 120, 30, 30);
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard1_numeric.setVisible(false);
-	keyboard1_btn_hide.setVisible(false);
-	keyboard1_btn_show.setVisible(true);
-	keyboard1_btn_enter.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard1_seed.setVisible(false);
+	keyboard1_btn_hide_seed.setVisible(false);
+	keyboard1_btn_show_seed.setVisible(true);
+	keyboard1_btn_enter_seed.setVisible(true);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::showKeyboard1Pressed()
+void screen_flow_2View::showKeyboard1SeedPressed()
 {
-	/*** Se suben los elementos de la pantalla ***/
-	keyboard1_text_info.setPosition(0, 40, 320, 20);
-	keyboard1_text_typed.setPosition(76, 75, 169, 20);
-	keyboard1_text_area.setXY(45, 70);
-	keyboard1_btn_enter.setPosition(245, 70, 30, 30);
+	keyboard1_text_info_seed.setPosition(0, 40, 320, 20);
+	keyboard1_text_typed_seed.setPosition(76, 75, 169, 20);
+	keyboard1_text_area_seed.setXY(45, 70);
+	keyboard1_btn_enter_seed.setPosition(245, 70, 30, 30);
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard1_numeric.setVisible(true);
-	keyboard1_btn_hide.setVisible(true);
-	keyboard1_btn_show.setVisible(false);
-	keyboard1_btn_enter.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard1_seed.setVisible(true);
+	keyboard1_btn_hide_seed.setVisible(true);
+	keyboard1_btn_show_seed.setVisible(false);
+	keyboard1_btn_enter_seed.setVisible(true);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::enterKeyboard1Pressed()
+void screen_flow_2View::enterKeyboard1SeedPressed()
 {
-	total_words = Unicode::atoi(keyboard1_text_typedBuffer);
+	total_words = Unicode::atoi(keyboard1_text_typed_seedBuffer);
 	actual_word = 1;
 
-	if((total_words > 0) && (total_words <= 48))
+	if((total_words > 0) && (total_words <= 54))
 	{
-		/*** Edición de información en siguiente sub-pantalla ***/
-		Unicode::snprintf(keyboard2_text_infoBuffer1, KEYBOARD2_TEXT_INFOBUFFER1_SIZE, "%d", actual_word);
-		Unicode::snprintf(keyboard2_text_infoBuffer2, KEYBOARD2_TEXT_INFOBUFFER2_SIZE, "%d", total_words);
+		/*** Editing information in the next sub-screen ***/
+		Unicode::snprintf(keyboard2_text_info_seedBuffer1, KEYBOARD2_TEXT_INFO_SEEDBUFFER1_SIZE, "%d", actual_word);
+		Unicode::snprintf(keyboard2_text_info_seedBuffer2, KEYBOARD2_TEXT_INFO_SEEDBUFFER2_SIZE, "%d", total_words);
 
-		/*** Edición de los elementos visibles/ocultos en la pantalla ***/
-		s1_1_typeNumWords.setVisible(false);
-		s1_2_typeWords.setVisible(true);
+		/*** Clearing keyboard and display buffers ***/
+		memset(keyboard1_text_typed_seedBuffer, 0x00, sizeof(keyboard1_text_typed_seedBuffer));
+		keyboard1_seed.clearBuffer();
 
-		/*** Borrado de los buffers del teclado y de visualización ***/
-		memset(keyboard1_text_typedBuffer, 0x00, sizeof(keyboard1_text_typedBuffer));
-		keyboard1_numeric.clearBuffer();
+		/*** Selecting visible/hidden elements on the screen ***/
+		s1_seed_1_typeNumWords.setVisible(false);
+		s1_seed_2_typeWords.setVisible(true);
 
-		/*** Actualización de la pantalla ***/
+		/*** Screen update ***/
 		background.invalidate();
 	}
 }
@@ -548,85 +550,83 @@ void screen_flow_2View::enterKeyboard1Pressed()
  */
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::hideKeyboard2Pressed()
+void screen_flow_2View::hideKeyboard2SeedPressed()
 {
-	/*** Se bajan los elementos de la pantalla ***/
-	keyboard2_text_info.setPosition(0, 90, 320, 20);
-	keyboard2_text_typed.setPosition(76, 125, 169, 20);
-	keyboard2_text_predicted.setPosition(76, 125, 169, 20);
-	keyboard2_text_area.setXY(45, 120);
-	keyboard2_btn_enter.setPosition(245, 120, 30, 30);
+	keyboard2_text_info_seed.setPosition(0, 90, 320, 20);
+	keyboard2_text_typed_seed.setPosition(76, 125, 169, 20);
+	keyboard2_text_predicted_seed.setPosition(76, 125, 169, 20);
+	keyboard2_text_area_seed.setXY(45, 120);
+	keyboard2_btn_enter_seed.setPosition(245, 120, 30, 30);
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard2_BIP39.setVisible(false);
-	keyboard2_btn_hide.setVisible(false);
-	keyboard2_btn_show.setVisible(true);
-	keyboard2_btn_enter.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard2_seed.setVisible(false);
+	keyboard2_btn_hide_seed.setVisible(false);
+	keyboard2_btn_show_seed.setVisible(true);
+	keyboard2_btn_enter_seed.setVisible(true);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::showKeyboard2Pressed()
+void screen_flow_2View::showKeyboard2SeedPressed()
 {
-	/*** Se suben los elementos de la pantalla ***/
-	keyboard2_text_info.setPosition(0, 40, 320, 20);
-	keyboard2_text_typed.setPosition(76, 75, 169, 20);
-	keyboard2_text_predicted.setPosition(76, 75, 169, 20);
-	keyboard2_text_area.setXY(45, 70);
-	keyboard2_btn_enter.setPosition(245, 70, 30, 30);
+	keyboard2_text_info_seed.setPosition(0, 40, 320, 20);
+	keyboard2_text_typed_seed.setPosition(76, 75, 169, 20);
+	keyboard2_text_predicted_seed.setPosition(76, 75, 169, 20);
+	keyboard2_text_area_seed.setXY(45, 70);
+	keyboard2_btn_enter_seed.setPosition(245, 70, 30, 30);
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard2_BIP39.setVisible(true);
-	keyboard2_btn_hide.setVisible(true);
-	keyboard2_btn_show.setVisible(false);
-	keyboard2_btn_enter.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard2_seed.setVisible(true);
+	keyboard2_btn_hide_seed.setVisible(true);
+	keyboard2_btn_show_seed.setVisible(false);
+	keyboard2_btn_enter_seed.setVisible(true);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::enterKeyboard2Pressed()
+void screen_flow_2View::enterKeyboard2SeedPressed()
 {
-	if((keyboard2_text_typedBuffer[0] != 0x00) && (valid_word == true))
+	if((keyboard2_text_typed_seedBuffer[0] != 0x00) && (valid_word == true))
 	{
-		/*** Obtención de las palabras tecleadas (formato UTF8) ***/
-		Unicode::toUTF8(keyboard2_text_typedBuffer, words_to_encrypt[actual_word-1], KEYBOARD2_TEXT_TYPED_SIZE);
-		Unicode::toUTF8(keyboard2_text_predictedBuffer, words_to_check[actual_word-1], KEYBOARD2_TEXT_PREDICTED_SIZE);
+		/*** Obtaining the typed text (seed words.. UTF-8 format...) ***/
+		Unicode::toUTF8(keyboard2_text_typed_seedBuffer, words_to_encrypt[actual_word-1], KEYBOARD2_TEXT_TYPED_SEED_SIZE);
+		Unicode::toUTF8(keyboard2_text_predicted_seedBuffer, words_to_check[actual_word-1], KEYBOARD2_TEXT_PREDICTED_SEED_SIZE);
 
-		/*** Edición de los elementos visibles/ocultos en la pantalla ***/
+		/*** Clearing keyboard and display buffers ***/
+		memset(keyboard2_text_typed_seedBuffer, 0x00, sizeof(keyboard2_text_typed_seedBuffer));
+		memset(keyboard2_text_predicted_seedBuffer, 0x00, sizeof(keyboard2_text_predicted_seedBuffer));
+		keyboard2_seed.clearBuffer();
+
+		/*** Selecting visible/hidden elements on the screen ***/
 		if(actual_word == total_words){
-			s1_2_typeWords.setVisible(false);
-			s1_3_typePassphrase.setVisible(true);
+			s1_seed_2_typeWords.setVisible(false);
+			s1_seed_3_typePassphrase.setVisible(true);
 		}
 		else{
-			Unicode::snprintf(keyboard2_text_infoBuffer1, KEYBOARD2_TEXT_INFOBUFFER1_SIZE, "%d", ++actual_word);
-			Unicode::snprintf(keyboard2_text_infoBuffer2, KEYBOARD2_TEXT_INFOBUFFER2_SIZE, "%d", total_words);
+			Unicode::snprintf(keyboard2_text_info_seedBuffer1, KEYBOARD2_TEXT_INFO_SEEDBUFFER1_SIZE, "%d", ++actual_word);
+			Unicode::snprintf(keyboard2_text_info_seedBuffer2, KEYBOARD2_TEXT_INFO_SEEDBUFFER2_SIZE, "%d", total_words);
 		}
 
-		/*** Borrado de los buffers del teclado y de visualización ***/
-		memset(keyboard2_text_typedBuffer, 0x00, sizeof(keyboard2_text_typedBuffer));
-		memset(keyboard2_text_predictedBuffer, 0x00, sizeof(keyboard2_text_predictedBuffer));
-		keyboard2_BIP39.clearBuffer();
-
-		/*** Actualización de la pantalla ***/
+		/*** Screen update ***/
 		background.invalidate();
 	}
 }
@@ -638,86 +638,84 @@ void screen_flow_2View::enterKeyboard2Pressed()
  */
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::hideKeyboard3Pressed()
+void screen_flow_2View::hideKeyboard3SeedPressed()
 {
-	/*** Se bajan los elementos de la pantalla ***/
-	keyboard3_text_area.setPosition(20, 40, 280, 160);
-	keyboard3_text_typed.setPosition(60, 50, 230, 140);
-	keyboard3_btn_up.setPosition(30, 50, 20, 20);
-	keyboard3_btn_down.setPosition(30, 170, 20, 20);
-	keyboard3_char_count.setPosition(250, 188, 50, 12);
+	keyboard3_text_area_seed.setPosition(20, 40, 280, 160);
+	keyboard3_text_typed_seed.setPosition(60, 50, 230, 140);
+	keyboard3_btn_up_seed.setPosition(30, 50, 20, 20);
+	keyboard3_btn_down_seed.setPosition(30, 170, 20, 20);
+	keyboard3_char_count_seed.setPosition(250, 188, 50, 12);
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard3_passphrase.setVisible(false);
-	keyboard3_btn_hide.setVisible(false);
-	keyboard3_btn_show.setVisible(true);
-	keyboard3_btn_enter.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard3_seed.setVisible(false);
+	keyboard3_btn_hide_seed.setVisible(false);
+	keyboard3_btn_show_seed.setVisible(true);
+	keyboard3_btn_enter_seed.setVisible(true);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::showKeyboard3Pressed()
+void screen_flow_2View::showKeyboard3SeedPressed()
 {
-	/*** Se suben los elementos de la pantalla ***/
-	keyboard3_text_area.setPosition(20, 40, 280, 70);
-	keyboard3_text_typed.setPosition(60, 50, 230, 60);
-	keyboard3_btn_up.setPosition(30, 50, 20, 20);
-	keyboard3_btn_down.setPosition(30, 80, 20, 20);
-	keyboard3_char_count.setPosition(250, 98, 50, 12);
+	keyboard3_text_area_seed.setPosition(20, 40, 280, 70);
+	keyboard3_text_typed_seed.setPosition(60, 50, 230, 60);
+	keyboard3_btn_up_seed.setPosition(30, 50, 20, 20);
+	keyboard3_btn_down_seed.setPosition(30, 80, 20, 20);
+	keyboard3_char_count_seed.setPosition(250, 98, 50, 12);
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard3_passphrase.setVisible(true);
-	keyboard3_btn_hide.setVisible(true);
-	keyboard3_btn_show.setVisible(false);
-	keyboard3_btn_enter.setVisible(false);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard3_seed.setVisible(true);
+	keyboard3_btn_hide_seed.setVisible(true);
+	keyboard3_btn_show_seed.setVisible(false);
+	keyboard3_btn_enter_seed.setVisible(false);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 
-	/*** Flag auxiliar ***/
+	/*** Auxiliar flag ***/
 	flag_refresh_text_area = 1;
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::enterKeyboard3Pressed()
+void screen_flow_2View::enterKeyboard3SeedPressed()
 {
-	/*** Variables de la función ***/
-	char buff_aux1[TYPED_CHECK1_SIZE] = {0}, buff_aux2[10] = {0};
+	char buff_aux1[TYPED_CHECK_SEED_SIZE] = {0}, buff_aux2[15] = {0};
 
-	/*** Obtención del texto tecleado (passphrase) ***/
-	memset(buff_passphrase, 0x00, KEYBOARD3_TEXT_TYPED_SIZE);
+	memset(buff_passphrase, 0x00, KEYBOARD3_TEXT_TYPED_SEED_SIZE);
+	memset(typed_check_seedBuffer, 0x00, TYPED_CHECK_SEED_SIZE);
 
-	for(int i=0; i<KEYBOARD3_TEXT_TYPED_SIZE; i++)
+	/*** Obtaining the typed text (passphrase) ***/
+	for(int i=0; i<KEYBOARD3_TEXT_TYPED_SEED_SIZE; i++)
 	{
-		if(keyboard3_text_typedBuffer[i] == 8364){	//Si '€' (8364) se convierte al caracter '¶' (182) para sólo ocupar 1 byte
+		if(keyboard3_text_typed_seedBuffer[i] == 8364){	//If '€' (8364) is converted to the character '¶' (182) to only occupy 1 byte
 			buff_passphrase[i] = 182;
 		}
 		else{
-			buff_passphrase[i] = (uint8_t) keyboard3_text_typedBuffer[i];
+			buff_passphrase[i] = (uint8_t) keyboard3_text_typed_seedBuffer[i];
 		}
 	}
 
-	/*** Generación de array para visualización de words + passphrase ***/
+	/*** Generating an array for displaying words + passphrase ***/
 	for(int i=0; i<total_words; i++)
 	{
-		snprintf(buff_aux2, 10, "%d. ", i+1);
+		snprintf(buff_aux2, 15, "%d. ", i+1);
 		strcat(buff_aux1, (char *) buff_aux2);
 		strcat(buff_aux1, (char *) words_to_check[i]);
 		strcat(buff_aux1, (char *) "\n");
@@ -726,31 +724,30 @@ void screen_flow_2View::enterKeyboard3Pressed()
 	strcat(buff_aux1, (char*) "\nPassphrase:\n");
 	strcat(buff_aux1, (char*) buff_passphrase);
 
-	/*** Asignación de words + passprashe a visualizar en texto "scrollable" ***/
-	memset(typed_check1Buffer, 0x00, TYPED_CHECK1_SIZE);
-
-	for(int i=0; i<TYPED_CHECK1_SIZE; i++)
+	/*** Assignment of words + passphrase to be displayed in "scrollable" field ***/
+	for(int i=0; i<TYPED_CHECK_SEED_SIZE; i++)
 	{
-		if(buff_aux1[i] == 182){	//Si '¶' (182) se convierte al caracter '€' (8364) para visualización en pantalla
-			typed_check1Buffer[i] = 8364;
+		if(buff_aux1[i] == 182){	//If '¶' (182) is converted to the character '€' (8364) for display on screen
+			typed_check_seedBuffer[i] = 8364;
 		}
 		else{
-			typed_check1Buffer[i] = buff_aux1[i];
+			typed_check_seedBuffer[i] = buff_aux1[i];
 		}
 	}
 
-	typed_check1.setPosition(0, 0, 220, (20*(total_words+1))+(20*7));
-	typed_check1.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
+	typed_check_seed.setPosition(0, 0, 210, (20*(total_words+1))+(20*7));
+	typed_check_seed.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
 
-	/*** Edición de los elementos visibles/ocultos en la pantalla ***/
-	s1_3_typePassphrase.setVisible(false);
-	s1_4_checkSeedInfo.setVisible(true);
+	/*** Clearing keyboard and display buffers ***/
+	memset(keyboard3_text_typed_seedBuffer, 0x00, sizeof(keyboard3_text_typed_seedBuffer));
+	keyboard3_seed.clearBuffer();
 
-	/*** Borrado de los buffers del teclado y de visualización ***/
-	memset(keyboard3_text_typedBuffer, 0x00, sizeof(keyboard3_text_typedBuffer));
-	keyboard3_passphrase.clearBuffer();
+	/*** Selecting visible/hidden elements on the screen ***/
+	s1_seed_3_typePassphrase.setVisible(false);
+	s1_checkInfo.setVisible(true);
+	s1_checkInfo_Seed.setVisible(true);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
@@ -761,106 +758,104 @@ void screen_flow_2View::enterKeyboard3Pressed()
  */
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::hideKeyboard4Pressed()
+void screen_flow_2View::hideKeyboardPlainTextPressed()
 {
-	/*** Se bajan los elementos de la pantalla ***/
-	keyboard4_text_area.setPosition(20, 40, 280, 160);
-	keyboard4_text_typed.setPosition(60, 50, 230, 140);
-	keyboard4_btn_up.setPosition(30, 50, 20, 20);
-	keyboard4_btn_down.setPosition(30, 170, 20, 20);
-	keyboard4_char_count.setPosition(250, 188, 50, 12);
+	keyboard_text_area_plain_text.setPosition(20, 40, 280, 160);
+	keyboard_text_typed_plain_text.setPosition(60, 50, 230, 140);
+	keyboard_btn_up_plain_text.setPosition(30, 50, 20, 20);
+	keyboard_btn_down_plain_text.setPosition(30, 170, 20, 20);
+	keyboard_char_count_plain_text.setPosition(250, 188, 50, 12);
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard4_plain_text.setVisible(false);
-	keyboard4_btn_hide.setVisible(false);
-	keyboard4_btn_show.setVisible(true);
-	keyboard4_btn_enter.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard_plain_text.setVisible(false);
+	keyboard_btn_hide_plain_text.setVisible(false);
+	keyboard_btn_show_plain_text.setVisible(true);
+	keyboard_btn_enter_plain_text.setVisible(true);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::showKeyboard4Pressed()
+void screen_flow_2View::showKeyboardPlainTextPressed()
 {
-	/*** Se suben los elementos de la pantalla ***/
-	keyboard4_text_area.setPosition(20, 40, 280, 70);
-	keyboard4_text_typed.setPosition(60, 50, 230, 60);
-	keyboard4_btn_up.setPosition(30, 50, 20, 20);
-	keyboard4_btn_down.setPosition(30, 80, 20, 20);
-	keyboard4_char_count.setPosition(250, 98, 50, 12);
+	keyboard_text_area_plain_text.setPosition(20, 40, 280, 70);
+	keyboard_text_typed_plain_text.setPosition(60, 50, 230, 60);
+	keyboard_btn_up_plain_text.setPosition(30, 50, 20, 20);
+	keyboard_btn_down_plain_text.setPosition(30, 80, 20, 20);
+	keyboard_char_count_plain_text.setPosition(250, 98, 50, 12);
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard4_plain_text.setVisible(true);
-	keyboard4_btn_hide.setVisible(true);
-	keyboard4_btn_show.setVisible(false);
-	keyboard4_btn_enter.setVisible(false);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard_plain_text.setVisible(true);
+	keyboard_btn_hide_plain_text.setVisible(true);
+	keyboard_btn_show_plain_text.setVisible(false);
+	keyboard_btn_enter_plain_text.setVisible(false);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 
-	/*** Flag auxiliar ***/
+	/*** Auxiliar flag ***/
 	flag_refresh_text_area = 1;
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::enterKeyboard4Pressed()
+void screen_flow_2View::enterKeyboardPlainTextPressed()
 {
-	if(keyboard4_text_typedBuffer[0] != 0x00)
+	if(keyboard_text_typed_plain_textBuffer[0] != 0x00)
 	{
-		/*** Obtención del texto tecleado (texto plano) ***/
-		memset(buff_plain_text, 0x00, KEYBOARD4_TEXT_TYPED_SIZE);
+		memset(buff_plain_text, 0x00, KEYBOARD_TEXT_TYPED_PLAIN_TEXT_SIZE);
+		memset(typed_check_plain_textBuffer, 0x00, TYPED_CHECK_PLAIN_TEXT_SIZE);
 
-		for(int i=0; i<KEYBOARD4_TEXT_TYPED_SIZE; i++)
+		/*** Obtaining the typed text (plain text) ***/
+		for(int i=0; i<KEYBOARD_TEXT_TYPED_PLAIN_TEXT_SIZE; i++)
 		{
-			if(keyboard4_text_typedBuffer[i] == 8364){	//Si '€' (8364) se convierte al caracter '¶' (182) para sólo ocupar 1 byte
+			if(keyboard_text_typed_plain_textBuffer[i] == 8364){	//If '€' (8364) is converted to the character '¶' (182) to only occupy 1 byte
 				buff_plain_text[i] = 182;
 			}
 			else{
-				buff_plain_text[i] = (uint8_t) keyboard4_text_typedBuffer[i];
+				buff_plain_text[i] = (uint8_t) keyboard_text_typed_plain_textBuffer[i];
 			}
 		}
 
-		/*** Asignación del texto plano a visualizar en texto "scrollable" ***/
-		memset(typed_check2Buffer, 0x00, TYPED_CHECK2_SIZE);
-
-		for(int i=0; i<TYPED_CHECK2_SIZE; i++)
+		/*** Assignment of plain text to be displayed in "scrollable" field ***/
+		for(int i=0; i<KEYBOARD_TEXT_TYPED_PLAIN_TEXT_SIZE; i++)
 		{
-			if(buff_plain_text[i] == 182){	//Si '¶' (182) se convierte al caracter '€' (8364) para visualización en pantalla
-				typed_check2Buffer[i] = 8364;
+			if(buff_plain_text[i] == 182){	//If '¶' (182) is converted to the character '€' (8364) for display on screen
+				typed_check_plain_textBuffer[i] = 8364;
 			}
 			else{
-				typed_check2Buffer[i] = buff_plain_text[i];
+				typed_check_plain_textBuffer[i] = buff_plain_text[i];
 			}
 		}
 
-		typed_check2.setPosition(0, 0, 220, 20*(typed_check2.getTextWidth()/220)+1*20);
-		typed_check2.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
+		typed_check_plain_text.setPosition(0, 0, 220, 20*(typed_check_plain_text.getTextWidth()/220)+2*20);
+		typed_check_plain_text.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
 
-		/*** Edición de los elementos visibles/ocultos en la pantalla ***/
-		s2_1_typePlainText.setVisible(false);
-		s2_2_checkPlainTextInfo.setVisible(true);
+		/*** Clearing keyboard and display buffers ***/
+		memset(keyboard_text_typed_plain_textBuffer, 0x00, sizeof(keyboard_text_typed_plain_textBuffer));
+		keyboard_plain_text.clearBuffer();
 
-		/*** Borrado de los buffers del teclado y de visualización ***/
-		memset(keyboard4_text_typedBuffer, 0x00, sizeof(keyboard4_text_typedBuffer));
-		keyboard4_plain_text.clearBuffer();
+		/*** Selecting visible/hidden elements on the screen ***/
+		s1_plainText_1_typePlainText.setVisible(false);
+		s1_checkInfo.setVisible(true);
+		s1_checkInfo_PlainText.setVisible(true);
 
-		/*** Actualización de la pantalla ***/
+		/*** Screen update ***/
 		background.invalidate();
 	}
 }
@@ -872,286 +867,283 @@ void screen_flow_2View::enterKeyboard4Pressed()
  */
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::hideKeyboard5Pressed()
+void screen_flow_2View::hideKeyboardPasswordPressed()
 {
-	/*** Se bajan los elementos de la pantalla ***/
-	keyboard5_text_info_1.setPosition(0, 60, 320, 20);
-	keyboard5_text_info_2.setPosition(0, 152, 320, 13);
-	keyboard5_text_typed_hide_1.setPosition(76, 90, 160, 20);
-	keyboard5_text_typed_hide_2.setPosition(76, 125, 160, 20);
-	keyboard5_text_area_1.setXY(45, 85);
-	keyboard5_text_area_2.setXY(45, 120);
-	keyboard5_text_area_selected_1.setXY(45, 85);
-	keyboard5_text_area_selected_2.setXY(45, 120);
-	keyboard5_pwd_eye_1.setXY(245, 85);
-	keyboard5_pwd_eye_2.setXY(245, 120);
-	keyboard5_btn_show_1.setPosition(76, 85, 169, 30);
-	keyboard5_btn_show_2.setPosition(76, 120, 169, 30);
-	keyboard5_placeholder_1.setPosition(62, 90, 180, 20);
-	keyboard5_placeholder_2.setPosition(62, 125, 180, 20);
+	text_info_1_password.setPosition(0, 60, 320, 20);
+	text_info_2_password.setPosition(0, 152, 320, 13);
+	keyboard1_text_typed_hide_password.setPosition(76, 90, 160, 20);
+	keyboard2_text_typed_hide_password.setPosition(76, 125, 160, 20);
+	keyboard1_text_area_password.setXY(45, 85);
+	keyboard2_text_area_password.setXY(45, 120);
+	keyboard1_text_area_selected_password.setXY(45, 85);
+	keyboard2_text_area_selected_password.setXY(45, 120);
+	keyboard1_pwd_eye_password.setXY(245, 85);
+	keyboard2_pwd_eye_password.setXY(245, 120);
+	keyboard1_btn_show_password.setPosition(76, 85, 169, 30);
+	keyboard2_btn_show_password.setPosition(76, 120, 169, 30);
+	placeholder_1_password.setPosition(62, 90, 180, 20);
+	placeholder_2_password.setPosition(62, 125, 180, 20);
 
-	if(keyboard5_text_typed_1.getTextWidth() <= 160){
-		keyboard5_text_typed_1.setPosition(160-(keyboard5_text_typed_1.getTextWidth()/2), 90, keyboard5_text_typed_1.getTextWidth(), 20);
+	if(keyboard1_text_typed_password.getTextWidth() <= 160){
+		keyboard1_text_typed_password.setPosition(160-(keyboard1_text_typed_password.getTextWidth()/2), 90, keyboard1_text_typed_password.getTextWidth(), 20);
 	}
 	else{
-		keyboard5_text_typed_1.setPosition(76, 90, 160, 20);
+		keyboard1_text_typed_password.setPosition(76, 90, 160, 20);
 	}
 
-	if(keyboard5_text_typed_2.getTextWidth() <= 160){
-		keyboard5_text_typed_2.setPosition(160-(keyboard5_text_typed_2.getTextWidth()/2), 125, keyboard5_text_typed_2.getTextWidth(), 20);
+	if(keyboard2_text_typed_password.getTextWidth() <= 160){
+		keyboard2_text_typed_password.setPosition(160-(keyboard2_text_typed_password.getTextWidth()/2), 125, keyboard2_text_typed_password.getTextWidth(), 20);
 	}
 	else{
-		keyboard5_text_typed_2.setPosition(76, 125, 160, 20);
+		keyboard2_text_typed_password.setPosition(76, 125, 160, 20);
 	}
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard5_password_1.setVisible(false);
-	keyboard5_btn_show_1.setVisible(true);
-	keyboard5_text_area_selected_1.setVisible(false);
-	keyboard5_password_2.setVisible(false);
-	keyboard5_btn_show_2.setVisible(true);
-	keyboard5_text_area_selected_2.setVisible(false);
-	keyboard5_btn_hide.setVisible(false);
-	keyboard5_btn_enter.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard1_password.setVisible(false);
+	keyboard1_btn_show_password.setVisible(true);
+	keyboard1_text_area_selected_password.setVisible(false);
+	keyboard2_password.setVisible(false);
+	keyboard2_btn_show_password.setVisible(true);
+	keyboard2_text_area_selected_password.setVisible(false);
+	keyboard_btn_hide_password.setVisible(false);
+	keyboard_btn_enter_password.setVisible(true);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::show1Keyboard5Pressed()
+void screen_flow_2View::show1KeyboardPasswordPressed()
 {
-	/*** Se suben los elementos de la pantalla ***/
-	keyboard5_text_info_1.setPosition(0, 10, 320, 20);
-	keyboard5_text_info_2.setPosition(0, 102, 320, 13);
-	keyboard5_text_typed_hide_1.setPosition(76, 40, 160, 20);
-	keyboard5_text_typed_hide_2.setPosition(76, 75, 160, 20);
-	keyboard5_text_area_1.setXY(45, 35);
-	keyboard5_text_area_2.setXY(45, 70);
-	keyboard5_text_area_selected_1.setXY(45, 35);
-	keyboard5_text_area_selected_2.setXY(45, 70);
-	keyboard5_pwd_eye_1.setXY(245, 35);
-	keyboard5_pwd_eye_2.setXY(245, 70);
-	keyboard5_btn_show_1.setPosition(76, 35, 169, 30);
-	keyboard5_btn_show_2.setPosition(76, 70, 169, 30);
-	keyboard5_placeholder_1.setPosition(62, 40, 180, 20);
-	keyboard5_placeholder_2.setPosition(62, 75, 180, 20);
+	text_info_1_password.setPosition(0, 10, 320, 20);
+	text_info_2_password.setPosition(0, 102, 320, 13);
+	keyboard1_text_typed_hide_password.setPosition(76, 40, 160, 20);
+	keyboard2_text_typed_hide_password.setPosition(76, 75, 160, 20);
+	keyboard1_text_area_password.setXY(45, 35);
+	keyboard2_text_area_password.setXY(45, 70);
+	keyboard1_text_area_selected_password.setXY(45, 35);
+	keyboard2_text_area_selected_password.setXY(45, 70);
+	keyboard1_pwd_eye_password.setXY(245, 35);
+	keyboard2_pwd_eye_password.setXY(245, 70);
+	keyboard1_btn_show_password.setPosition(76, 35, 169, 30);
+	keyboard2_btn_show_password.setPosition(76, 70, 169, 30);
+	placeholder_1_password.setPosition(62, 40, 180, 20);
+	placeholder_2_password.setPosition(62, 75, 180, 20);
 
-	if(keyboard5_text_typed_1.getTextWidth() <= 160){
-		keyboard5_text_typed_1.setPosition(160-(keyboard5_text_typed_1.getTextWidth()/2), 40, keyboard5_text_typed_1.getTextWidth(), 20);
+	if(keyboard1_text_typed_password.getTextWidth() <= 160){
+		keyboard1_text_typed_password.setPosition(160-(keyboard1_text_typed_password.getTextWidth()/2), 40, keyboard1_text_typed_password.getTextWidth(), 20);
 	}
 	else{
-		keyboard5_text_typed_1.setPosition(76, 40, 160, 20);
+		keyboard1_text_typed_password.setPosition(76, 40, 160, 20);
 	}
 
-	if(keyboard5_text_typed_2.getTextWidth() <= 160){
-		keyboard5_text_typed_2.setPosition(160-(keyboard5_text_typed_2.getTextWidth()/2), 75, keyboard5_text_typed_2.getTextWidth(), 20);
+	if(keyboard2_text_typed_password.getTextWidth() <= 160){
+		keyboard2_text_typed_password.setPosition(160-(keyboard2_text_typed_password.getTextWidth()/2), 75, keyboard2_text_typed_password.getTextWidth(), 20);
 	}
 	else{
-		keyboard5_text_typed_2.setPosition(76, 75, 160, 20);
+		keyboard2_text_typed_password.setPosition(76, 75, 160, 20);
 	}
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard5_password_1.setVisible(true);
-	keyboard5_btn_show_1.setVisible(false);
-	keyboard5_text_area_selected_1.setVisible(true);
-	keyboard5_password_2.setVisible(false);
-	keyboard5_btn_show_2.setVisible(true);
-	keyboard5_text_area_selected_2.setVisible(false);
-	keyboard5_btn_hide.setVisible(true);
-	keyboard5_btn_enter.setVisible(false);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard1_password.setVisible(true);
+	keyboard1_btn_show_password.setVisible(false);
+	keyboard1_text_area_selected_password.setVisible(true);
+	keyboard2_password.setVisible(false);
+	keyboard2_btn_show_password.setVisible(true);
+	keyboard2_text_area_selected_password.setVisible(false);
+	keyboard_btn_hide_password.setVisible(true);
+	keyboard_btn_enter_password.setVisible(false);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::show2Keyboard5Pressed()
+void screen_flow_2View::show2KeyboardPasswordPressed()
 {
-	/*** Se suben los elementos de la pantalla ***/
-	keyboard5_text_info_1.setPosition(0, 10, 320, 20);
-	keyboard5_text_info_2.setPosition(0, 102, 320, 13);
-	keyboard5_text_typed_hide_1.setPosition(76, 40, 160, 20);
-	keyboard5_text_typed_hide_2.setPosition(76, 75, 160, 20);
-	keyboard5_text_area_1.setXY(45, 35);
-	keyboard5_text_area_2.setXY(45, 70);
-	keyboard5_text_area_selected_1.setXY(45, 35);
-	keyboard5_text_area_selected_2.setXY(45, 70);
-	keyboard5_pwd_eye_1.setXY(245, 35);
-	keyboard5_pwd_eye_2.setXY(245, 70);
-	keyboard5_btn_show_1.setPosition(76, 35, 169, 30);
-	keyboard5_btn_show_2.setPosition(76, 70, 169, 30);
-	keyboard5_placeholder_1.setPosition(62, 40, 180, 20);
-	keyboard5_placeholder_2.setPosition(62, 75, 180, 20);
+	text_info_1_password.setPosition(0, 10, 320, 20);
+	text_info_2_password.setPosition(0, 102, 320, 13);
+	keyboard1_text_typed_hide_password.setPosition(76, 40, 160, 20);
+	keyboard2_text_typed_hide_password.setPosition(76, 75, 160, 20);
+	keyboard1_text_area_password.setXY(45, 35);
+	keyboard2_text_area_password.setXY(45, 70);
+	keyboard1_text_area_selected_password.setXY(45, 35);
+	keyboard2_text_area_selected_password.setXY(45, 70);
+	keyboard1_pwd_eye_password.setXY(245, 35);
+	keyboard2_pwd_eye_password.setXY(245, 70);
+	keyboard1_btn_show_password.setPosition(76, 35, 169, 30);
+	keyboard2_btn_show_password.setPosition(76, 70, 169, 30);
+	placeholder_1_password.setPosition(62, 40, 180, 20);
+	placeholder_2_password.setPosition(62, 75, 180, 20);
 
-	if(keyboard5_text_typed_1.getTextWidth() <= 160){
-		keyboard5_text_typed_1.setPosition(160-(keyboard5_text_typed_1.getTextWidth()/2), 40, keyboard5_text_typed_1.getTextWidth(), 20);
+	if(keyboard1_text_typed_password.getTextWidth() <= 160){
+		keyboard1_text_typed_password.setPosition(160-(keyboard1_text_typed_password.getTextWidth()/2), 40, keyboard1_text_typed_password.getTextWidth(), 20);
 	}
 	else{
-		keyboard5_text_typed_1.setPosition(76, 40, 160, 20);
+		keyboard1_text_typed_password.setPosition(76, 40, 160, 20);
 	}
 
-	if(keyboard5_text_typed_2.getTextWidth() <= 160){
-		keyboard5_text_typed_2.setPosition(160-(keyboard5_text_typed_2.getTextWidth()/2), 75, keyboard5_text_typed_2.getTextWidth(), 20);
+	if(keyboard2_text_typed_password.getTextWidth() <= 160){
+		keyboard2_text_typed_password.setPosition(160-(keyboard2_text_typed_password.getTextWidth()/2), 75, keyboard2_text_typed_password.getTextWidth(), 20);
 	}
 	else{
-		keyboard5_text_typed_2.setPosition(76, 75, 160, 20);
+		keyboard2_text_typed_password.setPosition(76, 75, 160, 20);
 	}
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard5_password_1.setVisible(false);
-	keyboard5_btn_show_1.setVisible(true);
-	keyboard5_text_area_selected_1.setVisible(false);
-	keyboard5_password_2.setVisible(true);
-	keyboard5_btn_show_2.setVisible(false);
-	keyboard5_text_area_selected_2.setVisible(true);
-	keyboard5_btn_hide.setVisible(true);
-	keyboard5_btn_enter.setVisible(false);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard1_password.setVisible(false);
+	keyboard1_btn_show_password.setVisible(true);
+	keyboard1_text_area_selected_password.setVisible(false);
+	keyboard2_password.setVisible(true);
+	keyboard2_btn_show_password.setVisible(false);
+	keyboard2_text_area_selected_password.setVisible(true);
+	keyboard_btn_hide_password.setVisible(true);
+	keyboard_btn_enter_password.setVisible(false);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::enterKeyboard5Pressed()
+void screen_flow_2View::enterKeyboardPasswordPressed()
 {
 	bool flag_upercase = false, flag_lowercase = false, flag_simbol = false, flag_number = false;
 	bool flag_passwords_ok = false;
 
-	/*** Comprobación que textos tecleados cumplen con las condiciones (12 caracteres mínimo, mayúsculas, minúsculas, números y símbolos) ***/
-	if((Unicode::strlen(keyboard5_text_typed_1Buffer) >= 12) && (Unicode::strlen(keyboard5_text_typed_2Buffer) >= 12)) 	//Contraseñas 1 y 2 de al menos 12 caracteres
+	/*** Checking that typed texts meet the conditions (minimum 12 characters, uppercase, lowercase, numbers, and symbols) ***/
+	if((Unicode::strlen(keyboard1_text_typed_passwordBuffer) >= 12) && (Unicode::strlen(keyboard2_text_typed_passwordBuffer) >= 12))
 	{
-		if(Unicode::strncmp(keyboard5_text_typed_1Buffer, keyboard5_text_typed_2Buffer, KEYBOARD5_TEXT_TYPED_1_SIZE) == 0)	//Contraseñas 1 y 2 iguales
+		if(Unicode::strncmp(keyboard1_text_typed_passwordBuffer, keyboard2_text_typed_passwordBuffer, KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE) == 0)
 		{
-			for(int i=0; i<KEYBOARD5_TEXT_TYPED_1_SIZE; i++)
+			for(int i=0; i<KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE; i++)
 			{
-				if((keyboard5_text_typed_1Buffer[i] >= 32) && (keyboard5_text_typed_1Buffer[i] <= 47)){			//Símbolo (Unicode: 32-47)
+				if((keyboard1_text_typed_passwordBuffer[i] >= 32) && (keyboard1_text_typed_passwordBuffer[i] <= 47)){			//Symbol (Unicode: 32-47)
 					flag_simbol = true;
 				}
-				else if((keyboard5_text_typed_1Buffer[i] >= 48) && (keyboard5_text_typed_1Buffer[i] <= 57)){	//Números (Unicode: 48-57)
+				else if((keyboard1_text_typed_passwordBuffer[i] >= 48) && (keyboard1_text_typed_passwordBuffer[i] <= 57)){		//Number (Unicode: 48-57)
 					flag_number = true;
 				}
-				else if((keyboard5_text_typed_1Buffer[i] >= 58) && (keyboard5_text_typed_1Buffer[i] <= 64)){	//Símbolo (Unicode: 58-64)
+				else if((keyboard1_text_typed_passwordBuffer[i] >= 58) && (keyboard1_text_typed_passwordBuffer[i] <= 64)){		//Symbol (Unicode: 58-64)
 					flag_simbol = true;
 				}
-				else if((keyboard5_text_typed_1Buffer[i] >= 65) && (keyboard5_text_typed_1Buffer[i] <= 90)){	//Mayúsculas (Unicode: 65-90)
+				else if((keyboard1_text_typed_passwordBuffer[i] >= 65) && (keyboard1_text_typed_passwordBuffer[i] <= 90)){		//Uppercase (Unicode: 65-90)
 					flag_upercase = true;
 				}
-				else if((keyboard5_text_typed_1Buffer[i] >= 91) && (keyboard5_text_typed_1Buffer[i] <= 96)){	//Símbolo (Unicode: 91-96)
+				else if((keyboard1_text_typed_passwordBuffer[i] >= 91) && (keyboard1_text_typed_passwordBuffer[i] <= 96)){		//Symbol (Unicode: 91-96)
 					flag_simbol = true;
 				}
-				else if((keyboard5_text_typed_1Buffer[i] >= 97) && (keyboard5_text_typed_1Buffer[i] <= 122)){	//Minúsculas (Unicode: 97-122)
+				else if((keyboard1_text_typed_passwordBuffer[i] >= 97) && (keyboard1_text_typed_passwordBuffer[i] <= 122)){		//Lowercase (Unicode: 97-122)
 					flag_lowercase = true;
 				}
-				else if((keyboard5_text_typed_1Buffer[i] >= 123) && (keyboard5_text_typed_1Buffer[i] <= 126)){	//Símbolo (Unicode: 123-126)
+				else if((keyboard1_text_typed_passwordBuffer[i] >= 123) && (keyboard1_text_typed_passwordBuffer[i] <= 126)){	//Symbol (Unicode: 123-126)
 					flag_simbol = true;
 				}
-				else if((keyboard5_text_typed_1Buffer[i] >= 160) && (keyboard5_text_typed_1Buffer[i] <= 191)){	//Símbolo (Unicode: 160-191)
+				else if((keyboard1_text_typed_passwordBuffer[i] >= 160) && (keyboard1_text_typed_passwordBuffer[i] <= 191)){	//Symbol (Unicode: 160-191)
 					flag_simbol = true;
 				}
-				else if(keyboard5_text_typed_1Buffer[i] == 8364){	//Símbolo '€' (Unicode: 8364)
+				else if(keyboard1_text_typed_passwordBuffer[i] == 8364){	//Symbol '€' (Unicode: 8364)
 					flag_simbol = true;
 				}
 			}
 
-			if((flag_upercase == true) && (flag_lowercase == true) && (flag_number == true) && (flag_simbol == true))	//Contraseñas contienen "mayúsculas", "minúsculas", "números" y "símbolos"
+			if((flag_upercase == true) && (flag_lowercase == true) && (flag_number == true) && (flag_simbol == true))	//Passwords contain "uppercase", "lowercase", "numbers", and "symbols"
 			{
 				flag_passwords_ok = true;
 			}
 		}
 	}
 
-	/*** Si todas las condiciones de las contraseñas son correctas ***/
+	/*** If both passwords meet the conditions ***/
 	if(flag_passwords_ok == true)
 	{
-		/*** Obtención del texto tecleado (contraseña) ***/
-		memset(pwds[actual_pwd], 0x00, KEYBOARD5_TEXT_TYPED_1_SIZE);
+		/*** Obtaining the typed text (password) ***/
+		memset(pwds[actual_pwd], 0x00, KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE);
 
-		for(int i=0; i<KEYBOARD5_TEXT_TYPED_1_SIZE; i++)
+		for(int i=0; i<KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE; i++)
 		{
-			if(keyboard5_text_typed_1Buffer[i] == 8364){	//Si '€' (8364) se convierte al caracter '¶' (182) para sólo ocupar 1 byte
+			if(keyboard1_text_typed_passwordBuffer[i] == 8364){	//If '€' (8364) is converted to the character '¶' (182) to only occupy 1 byte
 				pwds[actual_pwd][i] = 182;
 			}
 			else{
-				pwds[actual_pwd][i] = (uint8_t) keyboard5_text_typed_1Buffer[i];
+				pwds[actual_pwd][i] = (uint8_t) keyboard1_text_typed_passwordBuffer[i];
 			}
 		}
 
-		/*** Selección de los textos a visualizar en el campo de información de password correcta (en función del idioma y del número de firmantes) ***/
+		/*** Selection of texts to display in the field of correct password information (based on language and number of signers) ***/
 		if(cuvex.info.language == SPANISH)
 		{
-			if(num_pwds > 1)
+			if(total_pwds > 1)
 			{
 				Unicode::snprintf(text_pwd_success_infoBuffer, TEXT_PWD_SUCCESS_INFO_SIZE, " %d", actual_pwd+1);
 
-				if(num_pwds != actual_pwd+1){
-					Unicode::snprintf(btn_store_cryptogramBuffer, BTN_STORE_CRYPTOGRAM_SIZE, "CONTINUAR");
+				if(total_pwds != actual_pwd+1){
+					Unicode::snprintf(btn_pwd_successBuffer, BTN_PWD_SUCCESS_SIZE, "CONTINUAR");
 				}
 				else{
-					Unicode::snprintf(btn_store_cryptogramBuffer, BTN_STORE_CRYPTOGRAM_SIZE, "GRABAR CRIPTOGRAMA");
+					Unicode::snprintf(btn_pwd_successBuffer, BTN_PWD_SUCCESS_SIZE, "GRABAR CRIPTOGRAMA");
 				}
 			}
 		}
 		else
 		{
-			if(num_pwds > 1)
+			if(total_pwds > 1)
 			{
 				Unicode::snprintf(text_pwd_success_infoBuffer, TEXT_PWD_SUCCESS_INFO_SIZE, " %d", actual_pwd+1);
 
-				if(num_pwds != actual_pwd+1){
-					Unicode::snprintf(btn_store_cryptogramBuffer, BTN_STORE_CRYPTOGRAM_SIZE, "CONTINUE");
+				if(total_pwds != actual_pwd+1){
+					Unicode::snprintf(btn_pwd_successBuffer, BTN_PWD_SUCCESS_SIZE, "CONTINUE");
 				}
 				else{
-					Unicode::snprintf(btn_store_cryptogramBuffer, BTN_STORE_CRYPTOGRAM_SIZE, "RECORD CRYPTOGRAM");
+					Unicode::snprintf(btn_pwd_successBuffer, BTN_PWD_SUCCESS_SIZE, "RECORD CRYPTOGRAM");
 				}
 			}
 		}
 
-		/*** Borrado de los buffers del teclado y de visualización ***/
-		memset(keyboard5_text_typed_1Buffer, 0x00, sizeof(keyboard5_text_typed_1Buffer));
-		memset(keyboard5_text_typed_2Buffer, 0x00, sizeof(keyboard5_text_typed_2Buffer));
-		memset(keyboard5_text_typed_hide_1Buffer, 0x00, sizeof(keyboard5_text_typed_hide_1Buffer));
-		memset(keyboard5_text_typed_hide_2Buffer, 0x00, sizeof(keyboard5_text_typed_hide_2Buffer));
-		keyboard5_password_1.clearBuffer();
-		keyboard5_password_2.clearBuffer();
+		/*** Clearing keyboard and display buffers ***/
+		memset(keyboard1_text_typed_passwordBuffer, 0x00, sizeof(keyboard1_text_typed_passwordBuffer));
+		memset(keyboard2_text_typed_passwordBuffer, 0x00, sizeof(keyboard2_text_typed_passwordBuffer));
+		memset(keyboard1_text_typed_hide_passwordBuffer, 0x00, sizeof(keyboard1_text_typed_hide_passwordBuffer));
+		memset(keyboard2_text_typed_hide_passwordBuffer, 0x00, sizeof(keyboard2_text_typed_hide_passwordBuffer));
+		keyboard1_password.clearBuffer();
+		keyboard2_password.clearBuffer();
 
-		/*** Edición de los elementos visibles/ocultos en la pantalla ***/
-		s4_1_typePasword.setVisible(false);
-		s4_2_successPassword.setVisible(true);
+		/*** Selecting visible/hidden elements on the screen ***/
+		s3_1_typePasword.setVisible(false);
+		s3_2_successPassword.setVisible(true);
 
 		if(cuvex.info.mode == DARK){
-			keyboard5_text_info_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+			text_info_2_password.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		}
 		else{
-			keyboard5_text_info_2.setColor(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+			text_info_2_password.setColor(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
 		}
 	}
 	else
 	{
-		keyboard5_text_info_2.setColor(touchgfx::Color::getColorFromRGB(0xE7,0x44,0x3E));	//#e7443e
+		text_info_2_password.setColor(touchgfx::Color::getColorFromRGB(0xE7,0x44,0x3E));
 	}
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
@@ -1160,101 +1152,100 @@ void screen_flow_2View::enterKeyboard5Pressed()
  *
  *
  */
-/**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- **************************************************************************************************************************************/
-void screen_flow_2View::hideKeyboard6Pressed()
-{
-	/*** Se bajan los elementos de la pantalla ***/
-	keyboard6_text_info.setPosition(0, 90, 320, 20);
-	keyboard6_text_area.setXY(45, 120);
-	keyboard6_btn_enter.setPosition(245, 120, 30, 30);
 
-	if(keyboard6_text_typed.getTextWidth() <= 160){
-		keyboard6_text_typed.setPosition(160-(keyboard6_text_typed.getTextWidth()/2), 125, keyboard6_text_typed.getTextWidth(), 20);
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::hideKeyboardAliasPressed()
+{
+	keyboard_text_info_1_alias.setPosition(0, 70, 320, 20);
+	keyboard_text_info_2_alias.setPosition(0, 90, 320, 20);
+	keyboard_text_area_alias.setXY(45, 120);
+	keyboard_btn_enter_alias.setPosition(245, 120, 30, 30);
+
+	if(keyboard_text_typed_alias.getTextWidth() <= 160){
+		keyboard_text_typed_alias.setPosition(160-(keyboard_text_typed_alias.getTextWidth()/2), 125, keyboard_text_typed_alias.getTextWidth(), 20);
 	}
 	else{
-		keyboard6_text_typed.setPosition(76, 125, 160, 20);
+		keyboard_text_typed_alias.setPosition(76, 125, 160, 20);
 	}
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard6_alias.setVisible(false);
-	keyboard6_btn_hide.setVisible(false);
-	keyboard6_btn_show.setVisible(true);
-	keyboard6_btn_enter.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard_alias.setVisible(false);
+	keyboard_btn_hide_alias.setVisible(false);
+	keyboard_btn_show_alias.setVisible(true);
+	keyboard_btn_enter_alias.setVisible(true);
+	btn_assign_alias.setVisible(true);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::showKeyboard6Pressed()
+void screen_flow_2View::showKeyboardAliasPressed()
 {
-	/*** Se suben los elementos de la pantalla ***/
-	keyboard6_text_info.setPosition(0, 40, 320, 20);
-	keyboard6_text_area.setXY(45, 70);
-	keyboard6_btn_enter.setPosition(245, 70, 30, 30);
+	keyboard_text_info_1_alias.setPosition(0, 20, 320, 20);
+	keyboard_text_info_2_alias.setPosition(0, 40, 320, 20);
+	keyboard_text_area_alias.setXY(45, 70);
+	keyboard_btn_enter_alias.setPosition(245, 70, 30, 30);
 
-	if(keyboard6_text_typed.getTextWidth() <= 160){
-		keyboard6_text_typed.setPosition(160-(keyboard6_text_typed.getTextWidth()/2), 75, keyboard6_text_typed.getTextWidth(), 20);
+	if(keyboard_text_typed_alias.getTextWidth() <= 160){
+		keyboard_text_typed_alias.setPosition(160-(keyboard_text_typed_alias.getTextWidth()/2), 75, keyboard_text_typed_alias.getTextWidth(), 20);
 	}
 	else{
-		keyboard6_text_typed.setPosition(76, 75, 160, 20);
+		keyboard_text_typed_alias.setPosition(76, 75, 160, 20);
 	}
 
-	/*** Actualización pulsadores y teclado ***/
-	keyboard6_alias.setVisible(true);
-	keyboard6_btn_hide.setVisible(true);
-	keyboard6_btn_show.setVisible(false);
-	keyboard6_btn_enter.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	keyboard_alias.setVisible(true);
+	keyboard_btn_hide_alias.setVisible(true);
+	keyboard_btn_show_alias.setVisible(false);
+	keyboard_btn_enter_alias.setVisible(true);
+	btn_assign_alias.setVisible(false);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::enterKeyboard6Pressed()
+void screen_flow_2View::enterKeyboardAliasPressed()
 {
-	if(keyboard6_text_typedBuffer[0] != 0x00)
+	if(keyboard_text_typed_aliasBuffer[0] != 0x00)
 	{
-		/*** Obtención del texto tecleado ***/
-		memset(cuvex.nfc.tag.new_alias, 0x00, SIZE_ALIAS);
+		/*** Generation of the records data ***/
+		screen_flow_2View::generateRecordData1_Alias();
+		screen_flow_2View::generateRecordData2_Cryptogram();
+		screen_flow_2View::generateRecordData3_Information();
 
-		for(int i=0; i<SIZE_ALIAS; i++)
-		{
-			if(keyboard6_text_typedBuffer[i] == 8364){	//Si '€' (8364) se convierte al caracter '¶' (182) para sólo ocupar 1 byte
-				cuvex.nfc.tag.new_alias[i] = 182;
-			}
-			else{
-				cuvex.nfc.tag.new_alias[i] = (uint8_t) keyboard6_text_typedBuffer[i];
-			}
+		if(total_pwds != mandatory_pwds){
+			screen_flow_2View::generateRecordData4_Multisignature();
 		}
 
-		/*** Borrado de los buffers del teclado y de visualización ***/
-		memset(keyboard6_text_typedBuffer, 0x00, sizeof(keyboard6_text_typedBuffer));
-		keyboard6_alias.clearBuffer();
+		/*** Clearing keyboard and display buffers ***/
+		memset(keyboard_text_typed_aliasBuffer, 0x00, sizeof(keyboard_text_typed_aliasBuffer));
+		keyboard_alias.clearBuffer();
 
-		/*** Habilitación del NFC para permitir lectura/escritura ***/
+		/*** Enabling NFC to allow reading/writing ***/
 		screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_ENABLE);
 
-		/*** Selección de los elementos visibles/ocultos en la pantalla ***/
-		s8_writeError2.setVisible(false);
+		/*** Selecting visible/hidden elements on the screen ***/
+		s4_alias.setVisible(false);
 		s5_initNFC.setVisible(true);
 
-		/*** Actualización de la pantalla ***/
+		/*** Screen update ***/
 		background.invalidate();
 	}
 }
@@ -1265,592 +1256,1006 @@ void screen_flow_2View::enterKeyboard6Pressed()
  *************************************************************************************************************************************************************************************************************
  *************************************************************************************************************************************************************************************************************/
 
-/*
- *
- * Gestión de otras pulsaciones
- *
- */
-
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::seedButtonPressed()
+void screen_flow_2View::menuBip39Pressed()
 {
-	/*** Actualización variable de tipo de texto a encriptar ***/
-	text_type = 0;
+	/*** Update variable of type of text to encrypt ***/
+	text_type = TEXT_TYPE_BIP39;
 
-	/*** Selección de los elementos visibles/ocultos en la pantalla ***/
-	s0_menu.setVisible(false);
-	s1_seedBip39.setVisible(true);
-	s1_1_typeNumWords.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	s0_menuSelection.setVisible(false);
+	s1_menuContent.setVisible(true);
+	s1_seed.setVisible(true);
+	s1_plainText.setVisible(false);
+	s1_fromNFC.setVisible(false);
+	s1_checkInfo.setVisible(false);
+	s1_seed_1_typeNumWords.setVisible(true);
+	s1_seed_2_typeWords.setVisible(false);
+	s1_seed_3_typePassphrase.setVisible(false);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::plainTextButtonPressed()
+void screen_flow_2View::menuSlip39Pressed()
 {
-	/*** Actualización variable de tipo de texto a encriptar ***/
-	text_type = 1;
+	/*** Update variable of type of text to encrypt ***/
+	text_type = TEXT_TYPE_SLIP39;
 
-	/*** Selección de los elementos visibles/ocultos en la pantalla ***/
-	s0_menu.setVisible(false);
-	s2_plainText.setVisible(true);
-	s2_1_typePlainText.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	s0_menuSelection.setVisible(false);
+	s1_menuContent.setVisible(true);
+	s1_seed.setVisible(true);
+	s1_plainText.setVisible(false);
+	s1_fromNFC.setVisible(false);
+	s1_checkInfo.setVisible(false);
+	s1_seed_1_typeNumWords.setVisible(true);
+	s1_seed_2_typeWords.setVisible(false);
+	s1_seed_3_typePassphrase.setVisible(false);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
-/*
- *
- *
- *
- */
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::menuXmrPressed()
+{
+	/*** Update variable of type of text to encrypt ***/
+	text_type = TEXT_TYPE_XMR;
+
+	/*** Selecting visible/hidden elements on the screen ***/
+	s0_menuSelection.setVisible(false);
+	s1_menuContent.setVisible(true);
+	s1_seed.setVisible(true);
+	s1_plainText.setVisible(false);
+	s1_fromNFC.setVisible(false);
+	s1_checkInfo.setVisible(false);
+	s1_seed_1_typeNumWords.setVisible(true);
+	s1_seed_2_typeWords.setVisible(false);
+	s1_seed_3_typePassphrase.setVisible(false);
+
+	/*** Screen update ***/
+	background.invalidate();
+}
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::menuPlainTextPressed()
+{
+	/*** Update variable of type of text to encrypt ***/
+	text_type = TEXT_TYPE_PLAINTEXT;
+
+	/*** Selecting visible/hidden elements on the screen ***/
+	s0_menuSelection.setVisible(false);
+	s1_menuContent.setVisible(true);
+	s1_seed.setVisible(false);
+	s1_plainText.setVisible(true);
+	s1_fromNFC.setVisible(false);
+	s1_checkInfo.setVisible(false);
+	s1_plainText_1_typePlainText.setVisible(true);
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::menuTextFromNfcPressed()
+{
+	/*** Enabling NFC to allow reading/writing ***/
+	screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_ENABLE);
+
+	/*** Selecting visible/hidden elements on the screen ***/
+	s0_menuSelection.setVisible(false);
+	s1_menuContent.setVisible(true);
+	s1_seed.setVisible(false);
+	s1_plainText.setVisible(false);
+	s1_fromNFC.setVisible(true);
+	s1_checkInfo.setVisible(false);
+	s1_fromNFC_1_initNFC.setVisible(true);
+	s1_fromNFC_2_waitReadNFC.setVisible(false);
+	s1_fromNFC_3_error.setVisible(false);
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
 void screen_flow_2View::encryptPressed()
 {
-	/*** Selección de los elementos visibles/ocultos en la pantalla ***/
-	s1_seedBip39.setVisible(false);
-	s2_plainText.setVisible(false);
-	s3_multiSignature.setVisible(true);
-	s3_1_askMultiSignature.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	s1_menuContent.setVisible(false);
+	s2_multiSignature.setVisible(true);
+	s2_1_askMultiSignature.setVisible(true);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::multisignedYesPressed()
+void screen_flow_2View::successPressed()
 {
-	/*** Selección de los elementos visibles/ocultos en la pantalla ***/
-	s3_1_askMultiSignature.setVisible(false);
-	s3_2_numMultiSignature.setVisible(true);
-
-	/*** Actualización de la pantalla ***/
-	background.invalidate();
+	NVIC_SystemReset();
 }
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::multisignedNoPressed()
+void screen_flow_2View::eye1Pressed()
 {
-	/*** Selección de los elementos visibles/ocultos en la pantalla ***/
-	s3_multiSignature.setVisible(false);
-	s4_password.setVisible(true);
-	s4_1_typePasword.setVisible(true);
-
-	/*** Actualización de la pantalla ***/
-	background.invalidate();
-}
-
-/**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- **************************************************************************************************************************************/
-void screen_flow_2View::multisignedPlusPressed()
-{
-	/*** Variable auxiliar ***/
-	Unicode::UnicodeChar aux_str[5] = {0};
-
-	/*** Actualización de nº de contraseñas ***/
-	if(num_pwds < 6)
-	{
-		Unicode::itoa(++num_pwds, aux_str, 5, 10);
-		Unicode::snprintf(text_multi_numBuffer, TEXT_MULTI_NUM_SIZE, aux_str);
-	}
-
-	/*** Actualización de la pantalla ***/
-	background.invalidate();
-}
-
-/**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- **************************************************************************************************************************************/
-void screen_flow_2View::multisignedMinusPressed()
-{
-	/*** Variable auxiliar ***/
-	Unicode::UnicodeChar aux_str[5] = {0};
-
-	/*** Actualización de nº de contraseñas ***/
-	if(num_pwds > 1)
-	{
-		Unicode::itoa(--num_pwds, aux_str, 5, 10);
-		Unicode::snprintf(text_multi_numBuffer, TEXT_MULTI_NUM_SIZE, aux_str);
-	}
-
-	/*** Actualización de la pantalla ***/
-	background.invalidate();
-}
-
-/**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
- **************************************************************************************************************************************/
-void screen_flow_2View::multisignedSelectPressed()
-{
-	/*** Selección de los textos a visualizar en los campos de información ***/
-	Unicode::UnicodeChar degree[] = {0x00B0,0};
-
-	if(cuvex.info.language == SPANISH){
-		if(num_pwds > 1){
-			Unicode::snprintf(keyboard5_text_info_1Buffer, KEYBOARD5_TEXT_INFO_1_SIZE, "Persona N%s%d", degree, actual_pwd+1);
-		}
-		else{
-			Unicode::snprintf(keyboard5_text_info_1Buffer, KEYBOARD5_TEXT_INFO_1_SIZE, "Password para cifrar.");
-		}
+	if(keyboard1_pwd_eye_password.getCurrentlyDisplayedBitmap() == BITMAP_OJO_ABIERTO_ID){
+		keyboard1_text_typed_password.setVisible(true);
+		keyboard1_text_typed_hide_password.setVisible(false);
 	}
 	else{
-		if(num_pwds > 1){
-			Unicode::snprintf(keyboard5_text_info_1Buffer, KEYBOARD5_TEXT_INFO_1_SIZE, "Person N%s%d", degree, actual_pwd+1);
-		}
-		else{
-			Unicode::snprintf(keyboard5_text_info_1Buffer, KEYBOARD5_TEXT_INFO_1_SIZE, "Password to encrypt.");
-		}
+		keyboard1_text_typed_password.setVisible(false);
+		keyboard1_text_typed_hide_password.setVisible(true);
 	}
 
-	/*** Selección de los elementos visibles/ocultos en la pantalla ***/
-	s3_multiSignature.setVisible(false);
-	s4_password.setVisible(true);
-	s4_1_typePasword.setVisible(true);
+	keyboard1_text_area_password.invalidate();
+}
 
-	/*** Actualización de la pantalla ***/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::eye2Pressed()
+{
+	if(keyboard2_pwd_eye_password.getCurrentlyDisplayedBitmap() == BITMAP_OJO_ABIERTO_ID){
+		keyboard2_text_typed_password.setVisible(true);
+		keyboard2_text_typed_hide_password.setVisible(false);
+	}
+	else{
+		keyboard2_text_typed_password.setVisible(false);
+		keyboard2_text_typed_hide_password.setVisible(true);
+	}
+
+	keyboard2_text_area_password.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::retryPressed()
+{
+	/*** Enabling NFC to allow reading/writing ***/
+	screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_ENABLE);
+
+	/*** Selecting visible/hidden elements on the screen ***/
+	s7_writeError.setVisible(false);
+	s5_initNFC.setVisible(true);
+
+	/*** Screen update ***/
 	background.invalidate();
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		:
- ***** Descripción 	:
- ***** Parámetros 	:
- ***** Respuesta 	:
- ******************************************************************************************************************************************************************************/
-void screen_flow_2View::storeCriptogramPressed()
-{
-	uint8_t text_to_encrypt[SIZE_CRYPT] = {0};
-	char str_num_pwds[5] = {0};
+/*************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************/
 
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::passwordSuccessPressed()
+{
 	actual_pwd++;
 
-	if(actual_pwd != num_pwds)
+	if(actual_pwd != total_pwds)
 	{
-		/*** Selección de los textos a visualizar en los campos de información ***/
+		/*** Selection of texts to display in the information fields ***/
 		Unicode::UnicodeChar degree[] = {0x00B0,0};
 
 		if(cuvex.info.language == SPANISH){
-			if(num_pwds > 1){
-				Unicode::snprintf(keyboard5_text_info_1Buffer, KEYBOARD5_TEXT_INFO_1_SIZE, "Persona N%s%d", degree, actual_pwd+1);
+			if(total_pwds > 1){
+				Unicode::snprintf(text_info_1_passwordBuffer, TEXT_INFO_1_PASSWORD_SIZE, "Persona N%s%d", degree, actual_pwd+1);
 			}
 			else{
-				Unicode::snprintf(keyboard5_text_info_1Buffer, KEYBOARD5_TEXT_INFO_1_SIZE, "Password para cifrar.");
+				Unicode::snprintf(text_info_1_passwordBuffer, TEXT_INFO_1_PASSWORD_SIZE, "Password para cifrar.");
 			}
 		}
 		else{
-			if(num_pwds > 1){
-				Unicode::snprintf(keyboard5_text_info_1Buffer, KEYBOARD5_TEXT_INFO_1_SIZE, "Person N%s%d", degree, actual_pwd+1);
+			if(total_pwds > 1){
+				Unicode::snprintf(text_info_1_passwordBuffer, TEXT_INFO_1_PASSWORD_SIZE, "Person N%s%d", degree, actual_pwd+1);
 			}
 			else{
-				Unicode::snprintf(keyboard5_text_info_1Buffer, KEYBOARD5_TEXT_INFO_1_SIZE, "Password to encrypt.");
+				Unicode::snprintf(text_info_1_passwordBuffer, TEXT_INFO_1_PASSWORD_SIZE, "Password to encrypt.");
 			}
 		}
 
-		/*** Selección de los elementos visibles/ocultos en la pantalla ***/
-		s4_1_typePasword.setVisible(true);
-		s4_2_successPassword.setVisible(false);
-		keyboard5_placeholder_1.setVisible(true);
-		keyboard5_placeholder_2.setVisible(true);
+		/*** Selecting visible/hidden elements on the screen ***/
+		s3_1_typePasword.setVisible(true);
+		s3_2_successPassword.setVisible(false);
+		placeholder_1_password.setVisible(true);
+		placeholder_2_password.setVisible(true);
 	}
 	else
 	{
-		uint16_t pwd_raw_length=SIGNATURE_SIZE;
-		uint8_t pwd0_length=0;
-		uint8_t pwd1_length=0;
-		uint8_t pwd2_length=0;
-		uint8_t pwd3_length=0;
-		uint8_t pwd4_length=0;
-		uint8_t pwd5_length=0;
-
-		/*** Obtención en string del número de contraseñas usadas ***/
-		itoa(num_pwds, str_num_pwds, 10);
-
-		/*** Concatenación de las contraseñas en crudo (raw) ***/
-		memset(pwd_raw, 0x00, sizeof(pwd_raw));
-		strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
-
-		pwd0_length = strlen((const char *)pwds[0]);
-		strcat((char*) pwd_raw, (const char*) pwds[0]);
-		pwd1_length = strlen((const char *)pwds[1]);
-		strcat((char*) pwd_raw, (const char*) pwds[1]);
-		pwd2_length = strlen((const char *)pwds[2]);
-		strcat((char*) pwd_raw, (const char*) pwds[2]);
-		pwd3_length = strlen((const char *)pwds[3]);
-		strcat((char*) pwd_raw, (const char*) pwds[3]);
-		pwd4_length = strlen((const char *)pwds[4]);
-		strcat((char*) pwd_raw, (const char*) pwds[4]);
-		pwd5_length = strlen((const char *)pwds[5]);
-		strcat((char*) pwd_raw, (const char*) pwds[5]);
-
-		pwd_raw_length = pwd_raw_length+pwd0_length+pwd1_length+pwd2_length+pwd3_length+pwd4_length+pwd5_length;
-
-		/*** Obtención de la contraseña cifrada (SHA-256) ***/
-		HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, pwd_raw_length, pwd_sha256, HAL_MAX_DELAY);
-
-		/*** Generación texto a encriptar (semilla bip39, texto plano) + Encriptación AES-256 ***/
-		switch(text_type)
-		{
-		case 0:
-			strcat((char*) text_to_encrypt, (const char*) "[bip39]");
-
-			for(int i=0; i<total_words; i++){
-				strcat((char*) text_to_encrypt, (const char*) ",");
-				strcat((char*) text_to_encrypt, (const char*) words_to_encrypt[i]);
-			}
-
-			strcat((char*) text_to_encrypt, (const char*) "[passphrase]");
-			strcat((char*) text_to_encrypt, (char*) buff_passphrase);
-
-			changeAESPassword(pwd_sha256);
-			HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
-			break;
-
-		case 1:
-			strcat((char*) text_to_encrypt, (char*) "[plain-text]");
-			strcat((char*) text_to_encrypt, (char*) buff_plain_text);
-
-			changeAESPassword(pwd_sha256);
-			HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
-			break;
-
-		default:
-			break;
-		}
-
-		/*** Generación texto de información con formato "ENC,vXX.XX.XX(Y),M-X,P-X,C-X" ***/
-		strcat((char *) cuvex.nfc.tag.new_information, (char *) "ENC,v");
-		strcat((char *) cuvex.nfc.tag.new_information, (char *) cuvex.info.fw_version);
-		strcat((char *) cuvex.nfc.tag.new_information, (char *) "(");
-		strcat((char *) cuvex.nfc.tag.new_information, (char *) cuvex.info.hw_version);
-		strcat((char *) cuvex.nfc.tag.new_information, (char *) "),M-");
-		strcat((char *) cuvex.nfc.tag.new_information, (char *) str_num_pwds);
-		strcat((char *) cuvex.nfc.tag.new_information, (char *) ",P-0,C-0");
-
-		/*** Habilitación del NFC para permitir lectura/escritura ***/
-		screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_ENABLE);
-
-		/*** Selección de los elementos visibles/ocultos en la pantalla ***/
-		s4_password.setVisible(false);
-		s5_initNFC.setVisible(true);
+		/*** Selecting visible/hidden elements on the screen ***/
+		s3_password.setVisible(false);
+		s4_alias.setVisible(true);
 	}
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		:
- ***** Descripción 	:
- ***** Parámetros 	:
- ***** Respuesta 	:
- ******************************************************************************************************************************************************************************/
-void screen_flow_2View::successPressed()
+/*************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************/
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::multisignedYesPressed()
 {
-	application().gotoscreen_menuScreenNoTransition();
+	/*** Selecting visible/hidden elements on the screen ***/
+	s2_1_askMultiSignature.setVisible(false);
+	s2_2_numMultiSignature.setVisible(true);
+	text_info_multi_2.setVisible(true);
+	text_info_multi_3.setVisible(false);
+	text_info_multi_4.setVisible(false);
+	text_info_multi_5.setVisible(false);
+
+	/*** Screen update ***/
+	background.invalidate();
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		:
- ***** Descripción 	:
- ***** Parámetros 	:
- ***** Respuesta 	:
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::multisignedNoPressed()
+{
+	/*** Selecting visible/hidden elements on the screen ***/
+	s2_multiSignature.setVisible(false);
+	s3_password.setVisible(true);
+	s3_1_typePasword.setVisible(true);
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::multisignedPlusPressed()
+{
+	Unicode::UnicodeChar aux_str[5] = {0};
+
+	/*** Update of the number of passwords ***/
+	if((text_info_multi_2.isVisible() == true) && (text_info_multi_3.isVisible() == false))
+	{
+		if(total_pwds < 6){
+			Unicode::itoa(++total_pwds, aux_str, 5, 10);
+			Unicode::snprintf(text_multi_numBuffer, TEXT_MULTI_NUM_SIZE, aux_str);
+		}
+	}
+	else
+	{
+		if(mandatory_pwds < total_pwds){
+			Unicode::itoa(++mandatory_pwds, aux_str, 5, 10);
+			Unicode::snprintf(text_multi_numBuffer, TEXT_MULTI_NUM_SIZE, aux_str);
+		}
+
+		if(mandatory_pwds == total_pwds){
+			text_info_multi_4.setVisible(false);
+			text_info_multi_5.setVisible(false);
+		}
+		else{
+			text_info_multi_4.setVisible(true);
+			text_info_multi_5.setVisible(true);
+		}
+	}
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::multisignedMinusPressed()
+{
+	Unicode::UnicodeChar aux_str[5] = {0};
+
+	/*** Update of the number of passwords ***/
+	if((text_info_multi_2.isVisible() == true) && (text_info_multi_3.isVisible() == false))
+	{
+		if(total_pwds > 1){
+			Unicode::itoa(--total_pwds, aux_str, 5, 10);
+			Unicode::snprintf(text_multi_numBuffer, TEXT_MULTI_NUM_SIZE, aux_str);
+		}
+	}
+	else
+	{
+		if(mandatory_pwds > 1){
+			Unicode::itoa(--mandatory_pwds, aux_str, 5, 10);
+			Unicode::snprintf(text_multi_numBuffer, TEXT_MULTI_NUM_SIZE, aux_str);
+		}
+
+		if(mandatory_pwds == total_pwds){
+			text_info_multi_4.setVisible(false);
+			text_info_multi_5.setVisible(false);
+		}
+		else{
+			text_info_multi_4.setVisible(true);
+			text_info_multi_5.setVisible(true);
+		}
+	}
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::multisignedSelectPressed()
+{
+	Unicode::UnicodeChar degree[] = {0x00B0,0};
+
+	/*** Selecting visible/hidden elements on the screen ***/
+	if((total_pwds > 1) && (text_info_multi_2.isVisible() == true) && (text_info_multi_3.isVisible() == false))
+	{
+		mandatory_pwds = total_pwds;
+
+		text_info_multi_2.setVisible(false);
+		text_info_multi_3.setVisible(true);
+		text_info_multi_4.setVisible(false);
+		text_info_multi_5.setVisible(false);
+	}
+	else
+	{
+		if(cuvex.info.language == SPANISH){
+			if(total_pwds > 1){
+				Unicode::snprintf(text_info_1_passwordBuffer, TEXT_INFO_1_PASSWORD_SIZE, "Persona N%s%d", degree, actual_pwd+1);
+			}
+			else{
+				Unicode::snprintf(text_info_1_passwordBuffer, TEXT_INFO_1_PASSWORD_SIZE, "Password para cifrar.");
+			}
+		}
+		else{
+			if(total_pwds > 1){
+				Unicode::snprintf(text_info_1_passwordBuffer, TEXT_INFO_1_PASSWORD_SIZE, "Person N%s%d", degree, actual_pwd+1);
+			}
+			else{
+				Unicode::snprintf(text_info_1_passwordBuffer, TEXT_INFO_1_PASSWORD_SIZE, "Password to encrypt.");
+			}
+		}
+
+		s2_multiSignature.setVisible(false);
+		s3_password.setVisible(true);
+		s3_1_typePasword.setVisible(true);
+	}
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/*************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************/
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void screen_flow_2View::btnUpPressed()
 {
 	uint8_t aux = 0;
 
-	if(s1_seedBip39.isVisible() == true)
+	if(s1_seed.isVisible() == true)
 	{
-		aux = keyboard3_text_typed.getTextWidth()/230;
+		aux = keyboard3_text_typed_seed.getTextWidth()/230;
 
-		if(aux != 0)	//Multilinea
+		if(aux != 0)	//Multi-line
 		{
-			if(keyboard3_text_area.getHeight() == 70)		//Recuadro pequeño
+			if(keyboard3_text_area_seed.getHeight() == 70)		//Small box
 			{
-				if(keyboard3_text_typed.getHeight() > 60){
-					keyboard3_text_typed.setPosition(60, keyboard3_text_typed.getY() + 20, 230, keyboard3_text_typed.getHeight() - 20);
+				if(keyboard3_text_typed_seed.getHeight() > 60){
+					keyboard3_text_typed_seed.setPosition(60, keyboard3_text_typed_seed.getY() + 20, 230, keyboard3_text_typed_seed.getHeight() - 20);
 				}
 			}
-			else if(keyboard3_text_area.getHeight() == 160)	//Recuadro grande
+			else if(keyboard3_text_area_seed.getHeight() == 160)	//Big box
 			{
-				if(keyboard3_text_typed.getHeight() > 140){
-					keyboard3_text_typed.setPosition(60, keyboard3_text_typed.getY() + 20, 230, keyboard3_text_typed.getHeight() - 20);
+				if(keyboard3_text_typed_seed.getHeight() > 140){
+					keyboard3_text_typed_seed.setPosition(60, keyboard3_text_typed_seed.getY() + 20, 230, keyboard3_text_typed_seed.getHeight() - 20);
 				}
 			}
 
-			keyboard3_text_area.invalidate();
+			keyboard3_text_area_seed.invalidate();
 		}
 	}
-	else if(s2_plainText.isVisible() == true)
+	else if(s1_plainText.isVisible() == true)
 	{
-		aux = keyboard4_text_typed.getTextWidth()/230;
+		aux = keyboard_text_typed_plain_text.getTextWidth()/230;
 
-		if(aux != 0)	//Multilinea
+		if(aux != 0)	//Multi-line
 		{
-			if(keyboard4_text_area.getHeight() == 70)		//Recuadro pequeño
+			if(keyboard_text_area_plain_text.getHeight() == 70)		//Small box
 			{
-				if(keyboard4_text_typed.getHeight() > 60){
-					keyboard4_text_typed.setPosition(60, keyboard4_text_typed.getY() + 20, 230, keyboard4_text_typed.getHeight() - 20);
+				if(keyboard_text_typed_plain_text.getHeight() > 60){
+					keyboard_text_typed_plain_text.setPosition(60, keyboard_text_typed_plain_text.getY() + 20, 230, keyboard_text_typed_plain_text.getHeight() - 20);
 				}
 			}
-			else if(keyboard4_text_area.getHeight() == 160)	//Recuadro grande
+			else if(keyboard_text_area_plain_text.getHeight() == 160)	//Big box
 			{
-				if(keyboard4_text_typed.getHeight() > 140){
-					keyboard4_text_typed.setPosition(60, keyboard4_text_typed.getY() + 20, 230, keyboard4_text_typed.getHeight() - 20);
+				if(keyboard_text_typed_plain_text.getHeight() > 140){
+					keyboard_text_typed_plain_text.setPosition(60, keyboard_text_typed_plain_text.getY() + 20, 230, keyboard_text_typed_plain_text.getHeight() - 20);
 				}
 			}
 
-			keyboard4_text_area.invalidate();
+			keyboard_text_area_plain_text.invalidate();
 		}
 	}
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		:
- ***** Descripción 	:
- ***** Parámetros 	:
- ***** Respuesta 	:
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void screen_flow_2View::btnDownPressed()
 {
 	uint8_t num_of_lines = 0;
 
-	if(s1_seedBip39.isVisible() == true)
+	if(s1_seed.isVisible() == true)
 	{
-		num_of_lines = keyboard3_text_typed.getTextWidth()/230;
+		num_of_lines = keyboard3_text_typed_seed.getTextWidth()/230;
 
 		if(num_of_lines)
 		{
-			if(keyboard3_text_area.getHeight() == 70)		//Recuadro pequeño
+			if(keyboard3_text_area_seed.getHeight() == 70)		//Small box
 			{
-				if(keyboard3_text_typed.getHeight() < 60+(20*num_of_lines)){
-					keyboard3_text_typed.setPosition(60, keyboard3_text_typed.getY() - 20, 230, keyboard3_text_typed.getHeight() + 20);
+				if(keyboard3_text_typed_seed.getHeight() < 60+(20*num_of_lines)){
+					keyboard3_text_typed_seed.setPosition(60, keyboard3_text_typed_seed.getY() - 20, 230, keyboard3_text_typed_seed.getHeight() + 20);
 				}
 			}
-			else if(keyboard3_text_area.getHeight() == 160)	//Recuadro grande
+			else if(keyboard3_text_area_seed.getHeight() == 160)	//Big box
 			{
-				if(keyboard3_text_typed.getHeight() < 140+(20*num_of_lines)){
-					keyboard3_text_typed.setPosition(60, keyboard3_text_typed.getY() - 20, 230, keyboard3_text_typed.getHeight() + 20);
+				if(keyboard3_text_typed_seed.getHeight() < 140+(20*num_of_lines)){
+					keyboard3_text_typed_seed.setPosition(60, keyboard3_text_typed_seed.getY() - 20, 230, keyboard3_text_typed_seed.getHeight() + 20);
 				}
 			}
-			keyboard3_text_area.invalidate();
+			keyboard3_text_area_seed.invalidate();
 		}
 	}
-	else if(s2_plainText.isVisible() == true)
+	else if(s1_plainText.isVisible() == true)
 	{
-		num_of_lines = keyboard4_text_typed.getTextWidth()/230;
+		num_of_lines = keyboard_text_typed_plain_text.getTextWidth()/230;
 
 		if(num_of_lines != 0)
 		{
-			if(keyboard4_text_area.getHeight() == 70)		//Recuadro pequeño
+			if(keyboard_text_area_plain_text.getHeight() == 70)		//Small box
 			{
-				if(keyboard4_text_typed.getHeight() < 60+(20*num_of_lines)){
-					keyboard4_text_typed.setPosition(60, keyboard4_text_typed.getY() - 20, 230, keyboard4_text_typed.getHeight() + 20);
+				if(keyboard_text_typed_plain_text.getHeight() < 60+(20*num_of_lines)){
+					keyboard_text_typed_plain_text.setPosition(60, keyboard_text_typed_plain_text.getY() - 20, 230, keyboard_text_typed_plain_text.getHeight() + 20);
 				}
 			}
-			else if(keyboard4_text_area.getHeight() == 160)	//Recuadro grande
+			else if(keyboard_text_area_plain_text.getHeight() == 160)	//Big box
 			{
-				if(keyboard4_text_typed.getHeight() < 140+(20*num_of_lines)){
-					keyboard4_text_typed.setPosition(60, keyboard4_text_typed.getY() - 20, 230, keyboard4_text_typed.getHeight() + 20);
+				if(keyboard_text_typed_plain_text.getHeight() < 140+(20*num_of_lines)){
+					keyboard_text_typed_plain_text.setPosition(60, keyboard_text_typed_plain_text.getY() - 20, 230, keyboard_text_typed_plain_text.getHeight() + 20);
 				}
 			}
-			keyboard4_text_area.invalidate();
+			keyboard_text_area_plain_text.invalidate();
 		}
 	}
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		:
- ***** Descripción 	:
- ***** Parámetros 	:
- ***** Respuesta 	:
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void screen_flow_2View::btnScrollUpPressed()
 {
 	switch(text_type)
 	{
-	case 0:
+	case TEXT_TYPE_NONE:
 	default:
-		if(typed_check1.getY() < 0){
-			typed_check1.setPosition(0, typed_check1.getY() + 20, 220, (20*(total_words+1))+(20*7));
-		}
-		container_typed_check1.invalidate();
 		break;
 
-	case 1:
-		if(typed_check2.getY() < 0){
-			typed_check2.setPosition(0, typed_check2.getY() + 20, 220, 20*(typed_check2.getTextWidth()/220)+1*20);
+	case TEXT_TYPE_BIP39:
+	case TEXT_TYPE_SLIP39:
+	case TEXT_TYPE_XMR:
+		if(typed_check_seed.getY() < 0){
+			typed_check_seed.setPosition(0, typed_check_seed.getY() + 20, 210, (20*(total_words+1))+(20*7));
 		}
-		container_typed_check2.invalidate();
+		scrollable_container_typed_check_seed.invalidate();
+		break;
+
+	case TEXT_TYPE_PLAINTEXT:
+	case TEXT_TYPE_FROM_NFC_PLAINTEXT:
+		if(typed_check_plain_text.getY() < 0){
+			typed_check_plain_text.setPosition(0, typed_check_plain_text.getY() + 20, 220, 20*(typed_check_plain_text.getTextWidth()/220)+2*20);
+		}
+		scrollable_container_typed_check_plain_text.invalidate();
+		break;
+
+	case TEXT_TYPE_FROM_NFC_BIP39:
+		if(typed_check_seed.getY() < 0){
+			typed_check_seed.setPosition(0, typed_check_seed.getY() + 20, 210, (20*(total_words+1))+(4*20*7));
+		}
+		scrollable_container_typed_check_seed.invalidate();
 		break;
 	}
-
-
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		:
- ***** Descripción 	:
- ***** Parámetros 	:
- ***** Respuesta 	:
- ******************************************************************************************************************************************************************************/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void screen_flow_2View::btnScrollDownPressed()
 {
 	switch(text_type)
 	{
-	case 0:
+	case TEXT_TYPE_NONE:
 	default:
-		if((typed_check1.getY() + 20*(total_words+1)) > 0){
-			typed_check1.setPosition(0, typed_check1.getY() - 20, 220, (20*(total_words+1))+(20*7));
-		}
-		container_typed_check1.invalidate();
 		break;
 
-	case 1:
-		if((typed_check2.getY() + (20*(typed_check2.getTextWidth()/220))-1*20) > 0){
-			typed_check2.setPosition(0, typed_check2.getY() - 20, 220, 20*(typed_check2.getTextWidth()/220)+1*20);
+	case TEXT_TYPE_BIP39:
+	case TEXT_TYPE_SLIP39:
+	case TEXT_TYPE_XMR:
+		if((typed_check_seed.getY() + 20*(total_words+1)+(20*7)) > 0){
+			typed_check_seed.setPosition(0, typed_check_seed.getY() - 20, 210, (20*(total_words+1))+(20*7));
 		}
-		container_typed_check2.invalidate();
+		scrollable_container_typed_check_seed.invalidate();
+		break;
+
+	case TEXT_TYPE_PLAINTEXT:
+	case TEXT_TYPE_FROM_NFC_PLAINTEXT:
+		if((typed_check_plain_text.getY() + (20*(typed_check_plain_text.getTextWidth()/220))-1*20) > 0){
+			typed_check_plain_text.setPosition(0, typed_check_plain_text.getY() - 20, 220, 20*(typed_check_plain_text.getTextWidth()/220)+2*20);
+		}
+		scrollable_container_typed_check_plain_text.invalidate();
+		break;
+
+	case TEXT_TYPE_FROM_NFC_BIP39:
+		if((typed_check_seed.getY() + 20*(total_words+1))+(4*20*7) > 0){
+			typed_check_seed.setPosition(0, typed_check_seed.getY() - 20, 210, (20*(total_words+1))+(4*20*7));
+		}
+		scrollable_container_typed_check_seed.invalidate();
 		break;
 	}
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		:
- ***** Descripción 	:
- ***** Parámetros 	:
- ***** Respuesta 	:
- ******************************************************************************************************************************************************************************/
-void screen_flow_2View::eye1Pressed()
+/*************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************/
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::btnFromNfcErrorPressed()
 {
-	if(keyboard5_pwd_eye_1.getCurrentlyDisplayedBitmap() == BITMAP_OJO_ABIERTO_ID){
-		keyboard5_text_typed_1.setVisible(true);
-		keyboard5_text_typed_hide_1.setVisible(false);
-	}
-	else{
-		keyboard5_text_typed_1.setVisible(false);
-		keyboard5_text_typed_hide_1.setVisible(true);
-	}
-
-	keyboard5_text_area_1.invalidate();
-}
-
-/******************************************************************************************************************************************************************************
- ***** Función 		:
- ***** Descripción 	:
- ***** Parámetros 	:
- ***** Respuesta 	:
- ******************************************************************************************************************************************************************************/
-void screen_flow_2View::eye2Pressed()
-{
-	if(keyboard5_pwd_eye_2.getCurrentlyDisplayedBitmap() == BITMAP_OJO_ABIERTO_ID){
-		keyboard5_text_typed_2.setVisible(true);
-		keyboard5_text_typed_hide_2.setVisible(false);
-	}
-	else{
-		keyboard5_text_typed_2.setVisible(false);
-		keyboard5_text_typed_hide_2.setVisible(true);
-	}
-
-	keyboard5_text_area_2.invalidate();
-}
-
-/******************************************************************************************************************************************************************************
- ***** Función 		:
- ***** Descripción 	:
- ***** Parámetros 	:
- ***** Respuesta 	:
- ******************************************************************************************************************************************************************************/
-void screen_flow_2View::retryPressed()
-{
-	/*** Habilitación del NFC para permitir lectura/escritura ***/
+	/*** Enabling NFC to allow reading/writing ***/
 	screen_flow_2View::changeStateNfc(GUI_TO_MAIN_NFC_ENABLE);
 
-	/*** Selección de los elementos visibles/ocultos en la pantalla ***/
-	s7_writeError1.setVisible(false);
-	s5_initNFC.setVisible(true);
+	/*** Selecting visible/hidden elements on the screen ***/
+	s1_fromNFC_1_initNFC.setVisible(true);
+	s1_fromNFC_2_waitReadNFC.setVisible(false);
+	s1_fromNFC_3_error.setVisible(false);
 
-	/*** Actualización de la pantalla ***/
+	/*** Screen update ***/
 	background.invalidate();
 }
 
-/******************************************************************************************************************************************************************************
- ***** Función 		:
- ***** Descripción 	:
- ***** Parámetros 	:
- ***** Respuesta 	:
- ******************************************************************************************************************************************************************************/
-void screen_flow_2View::assignAliasPressed()
-{
-	/*** Selección de los elementos visibles/ocultos en la pantalla ***/
-	s8_1_viewTagInfo.setVisible(false);
-	s8_2_typeAlias.setVisible(true);
+/*************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************/
 
-	/*** Actualización de la pantalla ***/
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::setScreenMode()
+{
+	/*** Setting screen elements based on mode (dark/light) ***/
+	if(cuvex.info.mode == DARK)
+	{
+		background.setColor(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_seed_bip39.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_seed_bip39.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_seed_slip39.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_seed_slip39.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_seed_xmr.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_seed_xmr.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_plain_text.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_plain_text.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_text_from_nfc.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_text_from_nfc.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		keyboard1_text_typed_seed.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
+		keyboard1_text_info_seed.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		keyboard2_text_typed_seed.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
+		keyboard2_text_predicted_seed.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
+		keyboard2_text_info_seed.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		keyboard3_text_area_seed.setColor(touchgfx::Color::getColorFromRGB(0xFF,0xFF,0xFF));
+		keyboard3_btn_enter_seed.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		keyboard3_btn_enter_seed.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		keyboard3_text_typed_seed.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
+		typed_check_seed.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		keyboard3_text_info_1_seed.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		keyboard3_text_info_2_seed.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		keyboard_text_area_plain_text.setColor(touchgfx::Color::getColorFromRGB(0xFF,0xFF,0xFF));
+		keyboard_btn_enter_plain_text.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		keyboard_btn_enter_plain_text.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		keyboard_text_typed_plain_text.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
+		keyboard_text_info_plain_text.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		typed_check_plain_text.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		btn_encrypt.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_encrypt.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		btn_multi_yes.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_multi_yes.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		btn_multi_no.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_multi_no.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		btn_multi_select.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_multi_select.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_info_multi_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_info_multi_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_info_multi_3.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_info_multi_4.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_info_multi_5.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_multi_num.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		btn_multi_plus.setIconBitmaps(Bitmap(BITMAP_PLUS_DARK_ID), Bitmap(BITMAP_PLUS_DARK_ID));
+		btn_multi_minus.setIconBitmaps(Bitmap(BITMAP_MINUS_DARK_ID), Bitmap(BITMAP_MINUS_DARK_ID));
+		keyboard_btn_enter_password.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		keyboard_btn_enter_password.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		keyboard1_text_typed_password.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
+		keyboard2_text_typed_password.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
+		keyboard1_text_typed_hide_password.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
+		keyboard2_text_typed_hide_password.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
+		text_info_1_password.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_info_2_password.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		btn_pwd_success.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		text_pwd_success_info.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		init_nfc_text1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		init_nfc_text2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		wait_read_write_nfc_text.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		btn_retry.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_retry.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_error_cryptogram.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_error_tag_format.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		btn_assign_alias.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_assign_alias.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		keyboard_text_info_1_alias.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		keyboard_text_info_2_alias.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		btn_success.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_success.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_cryptogram_success_spanish_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_cryptogram_success_spanish_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_cryptogram_success_spanish_3.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_cryptogram_success_spanish_4.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_cryptogram_success_spanish_5.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_cryptogram_success_english_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_cryptogram_success_english_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_cryptogram_success_english_3.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_cryptogram_success_english_4.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_cryptogram_success_english_5.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_cryptogram_success_english_6.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		s1_fromNFC_1_init_nfc_text1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		s1_fromNFC_1_init_nfc_text2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		s1_fromNFC_wait_read_nfc_text.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		s1_fromNFC_error_text.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		s1_fromNFC_error_btn.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		s1_fromNFC_error_btn.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+	}
+
+	/*** Screen update ***/
 	background.invalidate();
 }
 
-/*
- *
- * Funciones auxiliares
- *
- */
-
-/******************************************************************************************************************************************************************************
- ***** Función 		:
- ***** Descripción 	:
- ***** Parámetros 	:
- ***** Respuesta 	:
- ******************************************************************************************************************************************************************************/
-void screen_flow_2View::changeAESPassword(uint8_t keyAES[])
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::setScreenLanguage()
 {
-	/*** Des-inicialización AES-256 ***/
+	/*** Text configuration based on selected language (Spanish/English) ***/
+	if(cuvex.info.language == SPANISH){
+		Texts::setLanguage(SP);
+	}
+	else{
+		Texts::setLanguage(GB);
+	}
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::generateRecordData1_Alias()
+{
+	memset(cuvex.nfc.tag.new_alias, 0x00, SIZE_ALIAS);
+
+	for(int i=0; i<SIZE_ALIAS; i++)
+	{
+		if(keyboard_text_typed_aliasBuffer[i] == 8364){	//If '€' (8364) is converted to the character '¶' (182) to only occupy 1 byte
+			cuvex.nfc.tag.new_alias[i] = 182;
+		}
+		else{
+			cuvex.nfc.tag.new_alias[i] = (uint8_t) keyboard_text_typed_aliasBuffer[i];
+		}
+	}
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::generateRecordData2_Cryptogram()
+{
+	uint8_t text_to_encrypt[SIZE_CRYPT] = {0};
+	uint16_t pwd_raw_length = SIGNATURE_SIZE;
+	uint8_t pwd0_length = 0, pwd1_length = 0, pwd2_length = 0, pwd3_length = 0, pwd4_length = 0, pwd5_length = 0;
+
+	memset(cuvex.nfc.tag.new_cryptogram, 0x00, SIZE_CRYPT);
+	memset(pwd_raw, 0x00, sizeof(pwd_raw));
+
+	/*** Obtaining the length and concatenation of the complete password (in raw) ***/
+	pwd0_length = strlen((const char *) pwds[0]);
+	pwd1_length = strlen((const char *) pwds[1]);
+	pwd2_length = strlen((const char *) pwds[2]);
+	pwd3_length = strlen((const char *) pwds[3]);
+	pwd4_length = strlen((const char *) pwds[4]);
+	pwd5_length = strlen((const char *) pwds[5]);
+	pwd_raw_length = pwd_raw_length + pwd0_length + pwd1_length + pwd2_length + pwd3_length + pwd4_length + pwd5_length;
+
+	strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
+	strcat((char*) pwd_raw, (const char*) pwds[0]);
+	strcat((char*) pwd_raw, (const char*) pwds[1]);
+	strcat((char*) pwd_raw, (const char*) pwds[2]);
+	strcat((char*) pwd_raw, (const char*) pwds[3]);
+	strcat((char*) pwd_raw, (const char*) pwds[4]);
+	strcat((char*) pwd_raw, (const char*) pwds[5]);
+
+	/*** Obtaining the encrypted password (SHA-256) ***/
+	HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, pwd_raw_length, pwd_sha256, HAL_MAX_DELAY);
+
+	/*** AES-256 peripheral configuration (password + initialization vector + header) ***/
+	HAL_HASH_MD5_Start(&hhash, cuvex.nfc.tag.new_alias, strlen((char *) cuvex.nfc.tag.new_alias), iv_aes_gcm, HAL_MAX_DELAY);
+	memset(header_aes_gcm, 0x00, sizeof(header_aes_gcm));
+	configAESPeripheral(pwd_sha256, iv_aes_gcm, header_aes_gcm);
+
+	/*** Generating text to encrypt (BIP39 seed, plaintext) + AES-256 Encryption ***/
+	switch(text_type)
+	{
+	case TEXT_TYPE_NONE:
+	default:
+		break;
+
+	case TEXT_TYPE_BIP39:
+		strcat((char*) text_to_encrypt, (const char*) "[bip39]");
+
+		for(int i=0; i<total_words; i++){
+			strcat((char*) text_to_encrypt, (const char*) ",");
+			strcat((char*) text_to_encrypt, (const char*) words_to_encrypt[i]);
+		}
+
+		strcat((char*) text_to_encrypt, (const char*) "[passphrase]");
+		strcat((char*) text_to_encrypt, (char*) buff_passphrase);
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+		break;
+
+	case TEXT_TYPE_SLIP39:
+		strcat((char*) text_to_encrypt, (const char*) "[slip39]");
+
+		for(int i=0; i<total_words; i++){
+			strcat((char*) text_to_encrypt, (const char*) ",");
+			strcat((char*) text_to_encrypt, (const char*) words_to_encrypt[i]);
+		}
+
+		strcat((char*) text_to_encrypt, (const char*) "[passphrase]");
+		strcat((char*) text_to_encrypt, (char*) buff_passphrase);
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+		break;
+
+	case TEXT_TYPE_XMR:
+		strcat((char*) text_to_encrypt, (const char*) "[xmr]");
+
+		for(int i=0; i<total_words; i++){
+			strcat((char*) text_to_encrypt, (const char*) ",");
+			strcat((char*) text_to_encrypt, (const char*) words_to_encrypt[i]);
+		}
+
+		strcat((char*) text_to_encrypt, (const char*) "[passphrase]");
+		strcat((char*) text_to_encrypt, (char*) buff_passphrase);
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+		break;
+
+	case TEXT_TYPE_PLAINTEXT:
+		strcat((char*) text_to_encrypt, (char*) "[plain-text]");
+		strcat((char*) text_to_encrypt, (char*) buff_plain_text);
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+		break;
+
+	case TEXT_TYPE_FROM_NFC_PLAINTEXT:
+		strcat((char*) text_to_encrypt, (char*) "{plain-text}");
+		strcat((char*) text_to_encrypt, (char*) buff_plain_text);
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+		break;
+
+	case TEXT_TYPE_FROM_NFC_BIP39:
+		strcat((char*) text_to_encrypt, (const char*) "{bip39}");
+
+		for(int i=0; i<total_words; i++){
+			strcat((char*) text_to_encrypt, (const char*) ",");
+			strcat((char*) text_to_encrypt, (const char*) words_to_encrypt[i]);
+		}
+
+		strcat((char*) text_to_encrypt, (const char*) "{passder}");
+		strcat((char*) text_to_encrypt, (char*) cuvex.nfc.tag.from_nfc_pass_deriv);
+		strcat((char*) text_to_encrypt, (const char*) "{prikey}");
+		strcat((char*) text_to_encrypt, (char*) cuvex.nfc.tag.from_nfc_private_key);
+		strcat((char*) text_to_encrypt, (const char*) "{pubkey}");
+		strcat((char*) text_to_encrypt, (char*) cuvex.nfc.tag.from_nfc_public_key);
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+		break;
+	}
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::generateRecordData3_Information()
+{
+	char str_total_pwds[5] = {0}, str_mandatory_pwds[5] = {0};
+
+	memset(cuvex.nfc.tag.new_information, 0x00, SIZE_INFORMATION);
+	itoa(total_pwds, str_total_pwds, 10);
+	itoa(mandatory_pwds, str_mandatory_pwds, 10);
+
+	/*** Record info format: "ENC,vXX.XX.XX(Y),M-X:X,P-X,C-X" ***/
+	strcat((char *) cuvex.nfc.tag.new_information, (char *) "ENC,v");
+	strcat((char *) cuvex.nfc.tag.new_information, (char *) cuvex.info.fw_version);
+	strcat((char *) cuvex.nfc.tag.new_information, (char *) "(");
+	strcat((char *) cuvex.nfc.tag.new_information, (char *) cuvex.info.hw_version);
+	strcat((char *) cuvex.nfc.tag.new_information, (char *) "),M-");
+	strcat((char *) cuvex.nfc.tag.new_information, (char *) str_total_pwds);
+	strcat((char *) cuvex.nfc.tag.new_information, (char *) ":");
+	strcat((char *) cuvex.nfc.tag.new_information, (char *) str_mandatory_pwds);
+	strcat((char *) cuvex.nfc.tag.new_information, (char *) ",P-0,C-0");
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::generateRecordData4_Multisignature()
+{
+	char comb_buffer[10][KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE] = {0};
+
+	memset(cuvex.nfc.tag.new_multisignature, 0x00, SIZE_MULTISIGN);
+	generateCombinations(0, 0, comb_buffer);
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_2View::configAESPeripheral(uint8_t keyAES[], uint8_t ivAES[], uint8_t headerAES[])
+{
 	HAL_CRYP_DeInit(&hcryp);
 
-	/*** Inicialización AES-256 con nueva contraseña***/
+	for(int i = 0; i < 8; i++){
+		hcryp.Init.pKey[i] = ((keyAES[i*4] << 24) | (keyAES[i*4+1] << 16) | (keyAES[i*4+2] << 8) | keyAES[i*4+3]);
+	}
+
+	for(int i = 0; i < 4; i++){
+		hcryp.Init.pInitVect[i] = ((ivAES[i*4] << 24) | (ivAES[i*4+1] << 16) | (ivAES[i*4+2] << 8) | ivAES[i*4+3]);
+	}
+
+	for(int i = 0; i < 1; i++){
+		hcryp.Init.Header[i] = ((headerAES[i*4] << 24) | (headerAES[i*4+1] << 16) | (headerAES[i*4+2] << 8) | headerAES[i*4+3]);
+	}
+
 	hcryp.Instance = AES;
 	hcryp.Init.DataType = CRYP_NO_SWAP;
 	hcryp.Init.KeySize = CRYP_KEYSIZE_256B;
-	hcryp.Init.pKey = (uint32_t *)keyAES;
-	hcryp.Init.Algorithm = CRYP_AES_ECB;
+	hcryp.Init.Algorithm = CRYP_AES_GCM_GMAC;
+	hcryp.Init.HeaderSize = 1;
 	hcryp.Init.DataWidthUnit = CRYP_DATAWIDTHUNIT_WORD;
 	hcryp.Init.HeaderWidthUnit = CRYP_HEADERWIDTHUNIT_WORD;
 	hcryp.Init.KeyIVConfigSkip = CRYP_KEYIVCONFIG_ALWAYS;
@@ -1867,189 +2272,203 @@ void screen_flow_2View::changeAESPassword(uint8_t keyAES[])
  *************************************************************************************************************************************************************************************************************
  *************************************************************************************************************************************************************************************************************/
 
-/*
- *
- * Funciones auxiliares
- *
- */
-
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::setScreenMode()
+void screen_flow_2View::checkDataFromNFC()
 {
-	/*** Configuración de elementos de pantalla en función al modo (oscuro/claro) ***/
-	if(cuvex.info.mode == DARK)
+	char buff1_check_all[TYPED_CHECK_SEED_SIZE] = {0};
+	char buff2_words_index[15] = {0};
+	char buff3_passphrase[100] = {0};
+	char buff4_derivation1[100] = {0};
+	char buff5_derivation2[100] = {0};
+	int aux = 0, j = 0;
+
+	switch(cuvex.nfc.tag.from_nfc_type)
 	{
-		background.setColor(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
-		/***/
-		btn_seed.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_seed.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
-		btn_plain_text.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_plain_text.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
-		/***/
-		keyboard1_text_typed.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
-		keyboard1_text_info.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		keyboard2_text_typed.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
-		keyboard2_text_predicted.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
-		keyboard2_text_info.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		keyboard3_text_area.setColor(touchgfx::Color::getColorFromRGB(0xFF,0xFF,0xFF));
-		keyboard3_btn_enter.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		keyboard3_btn_enter.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		keyboard3_text_typed.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
-		typed_check1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		btn_encrypt1.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_encrypt1.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		keyboard3_text_info_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		keyboard3_text_info_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		/***/
-		keyboard4_text_area.setColor(touchgfx::Color::getColorFromRGB(0xFF,0xFF,0xFF));
-		keyboard4_btn_enter.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		keyboard4_btn_enter.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		keyboard4_text_typed.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
-		keyboard4_text_info.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		typed_check2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		btn_encrypt2.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_encrypt2.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		/***/
-		btn_multi_yes.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_multi_yes.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		btn_multi_no.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_multi_no.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_info_multi_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		btn_multi_select.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_multi_select.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_info_multi_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_multi_num.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-	    btn_multi_plus.setIconBitmaps(Bitmap(BITMAP_PLUS_DARK_ID), Bitmap(BITMAP_PLUS_DARK_ID));
-	    btn_multi_minus.setIconBitmaps(Bitmap(BITMAP_MINUS_DARK_ID), Bitmap(BITMAP_MINUS_DARK_ID));
-		/***/
-		keyboard5_btn_enter.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		keyboard5_btn_enter.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		keyboard5_text_typed_2.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
-		keyboard5_text_typed_1.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
-		keyboard5_text_typed_hide_2.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
-		keyboard5_text_typed_hide_1.setColor(touchgfx::Color::getColorFromRGB(0,0,0));
-		keyboard5_text_info_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		keyboard5_text_info_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		btn_store_cryptogram.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		text_pwd_success_info.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		/***/
-		init_nfc_text1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		init_nfc_text2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		/***/
-		wait_read_write_nfc_text.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		/***/
-		btn_retry.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_retry.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_7.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		/***/
-	    btn_assign_alias.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-	    btn_assign_alias.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-	    text_uid.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-	    text_uid_info.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-	    /***/
-		keyboard6_text_info.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		/***/
-		btn_success.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_success.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_cryptogram_success_spanish_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_cryptogram_success_spanish_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_cryptogram_success_spanish_3.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_cryptogram_success_spanish_4.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_cryptogram_success_spanish_5.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_cryptogram_success_english_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_cryptogram_success_english_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_cryptogram_success_english_3.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_cryptogram_success_english_4.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_cryptogram_success_english_5.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_cryptogram_success_english_6.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-	}
+	default: //bad format
+	case 0:
+		/*** Selecting visible/hidden elements on the screen ***/
+		s1_fromNFC_2_waitReadNFC.setVisible(false);
+		s1_fromNFC_3_error.setVisible(true);
+		break;
 
-	/*** Actualización de la pantalla ***/
-	background.invalidate();
+	case 1:	//seed bip-39
+		text_type = TEXT_TYPE_FROM_NFC_BIP39;
+
+		/*** Get seed "words" in screen format ***/
+		for(int i=0; i<strlen((char *) cuvex.nfc.tag.from_nfc_seed); i++)
+		{
+			if(cuvex.nfc.tag.from_nfc_seed[i] == ','){
+				total_words++;
+				index_words = 0;
+			}
+			else{
+				words_to_encrypt[total_words][index_words++] = cuvex.nfc.tag.from_nfc_seed[i];
+			}
+		}
+
+		total_words++;
+
+		for(int j=0; j<total_words; j++){
+			for(int i=0; i<5; i++){
+				words_to_check[j][i] = words_to_encrypt[j][i];
+			}
+			getBip39Word((char *) words_to_check[j]);
+		}
+
+		/*** Get seed "passphrase" + "derivation path" + "private key" + "public key" in screen format ***/
+		for(int i=1; i<strlen((char *) cuvex.nfc.tag.from_nfc_pass_deriv); i++)
+		{
+			if(aux == 0)
+			{
+				if((cuvex.nfc.tag.from_nfc_pass_deriv[i] == ',') && (cuvex.nfc.tag.from_nfc_pass_deriv[i+1] == ' ') && (cuvex.nfc.tag.from_nfc_pass_deriv[i+17] == ',') && (cuvex.nfc.tag.from_nfc_pass_deriv[i+18] == ' '))
+				{
+					aux = 1;
+					i = i+18;
+					j = 0;
+				}
+				else{
+					buff3_passphrase[j++] = cuvex.nfc.tag.from_nfc_pass_deriv[i];
+				}
+			}
+			else if(aux == 1)
+			{
+				if((cuvex.nfc.tag.from_nfc_pass_deriv[i] == ',') && (cuvex.nfc.tag.from_nfc_pass_deriv[i+1] == ' ')){
+					aux = 2;
+					i = i+1;
+					j = 0;
+				}
+				else{
+					buff4_derivation1[j++] = cuvex.nfc.tag.from_nfc_pass_deriv[i];
+				}
+			}
+			else if(aux == 2)
+			{
+				if(cuvex.nfc.tag.from_nfc_pass_deriv[i] != '"'){
+					buff5_derivation2[j++] = cuvex.nfc.tag.from_nfc_pass_deriv[i];
+				}
+			}
+		}
+
+		/*** Generating an array for displaying: "words" + "passphrase" + "derivation path" + "private key" + "public key" ***/
+		for(int i=0; i<total_words; i++)
+		{
+			snprintf(buff2_words_index, 15, "%d. ", i+1);
+			strcat(buff1_check_all, (char *) buff2_words_index);
+			strcat(buff1_check_all, (char *) words_to_check[i]);
+			strcat(buff1_check_all, (char *) "\n");
+		}
+
+		strcat(buff1_check_all, (char*) "____________________\n\n");
+		strcat(buff1_check_all, (char*) "Passphrase:\n");
+		strcat(buff1_check_all, (char*) buff3_passphrase);
+
+		strcat(buff1_check_all, (char*) "\n____________________\n\n");
+		strcat(buff1_check_all, (char*) buff4_derivation1);
+		strcat(buff1_check_all, (char*) "\n\nDerivation Path:\n");
+		strcat(buff1_check_all, (char*) buff5_derivation2);
+
+		strcat(buff1_check_all, (char*) "\n____________________\n\n");
+		strcat(buff1_check_all, (char*) "Master Private Key:\n");
+		strcat(buff1_check_all, (char*) cuvex.nfc.tag.from_nfc_private_key);
+
+		strcat(buff1_check_all, (char*) "\n____________________\n\n");
+		strcat(buff1_check_all, (char*) "Master Public Key:\n");
+		strcat(buff1_check_all, (char*) cuvex.nfc.tag.from_nfc_public_key);
+
+		/*** Assignment of "words" + "passphrase" + "derivation path" + "private key" + "public key" to be displayed in "scrollable" field ***/
+		Unicode::snprintf(typed_check_seedBuffer, TYPED_CHECK_SEED_SIZE, buff1_check_all);
+		typed_check_seed.setPosition(0, 0, 210, (20*(total_words+1))+(4*20*7));
+		typed_check_seed.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
+
+		/*** Selecting visible/hidden elements on the screen ***/
+		s1_fromNFC_2_waitReadNFC.setVisible(false);
+		s1_checkInfo.setVisible(true);
+		s1_checkInfo_Seed.setVisible(true);
+
+		break;
+
+	case 2:	//plain-text
+
+		text_type = TEXT_TYPE_FROM_NFC_PLAINTEXT;
+
+		/*** Obtaining the plain text and assignment to be displayed in "scrollable" field ***/
+		memset(buff_plain_text, 0x00, KEYBOARD_TEXT_TYPED_PLAIN_TEXT_SIZE);
+		memset(typed_check_plain_textBuffer, 0x00, TYPED_CHECK_PLAIN_TEXT_SIZE);
+
+		for(int i=0; i<FROM_NFC_PLAIN_TEXT; i++){
+			buff_plain_text[i] = (uint8_t) cuvex.nfc.tag.from_nfc_plain_text[i];
+		}
+
+		for(int i=0; i<FROM_NFC_PLAIN_TEXT; i++){
+			typed_check_plain_textBuffer[i] = buff_plain_text[i];
+		}
+
+		typed_check_plain_text.setPosition(0, 0, 220, 20*(typed_check_plain_text.getTextWidth()/220)+2*20);
+		typed_check_plain_text.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
+
+		/*** Selecting visible/hidden elements on the screen ***/
+		s1_fromNFC_2_waitReadNFC.setVisible(false);
+		s1_checkInfo.setVisible(true);
+		s1_checkInfo_PlainText.setVisible(true);
+
+		break;
+	}
 }
+
+/*************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************/
 
 /**************************************************************************************************************************************
- ***** Función 		: N/A
- ***** Descripción 	: N/A
- ***** Parámetros 	: N/A
- ***** Respuesta 	: N/A
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::setScreenLanguage()
+void screen_flow_2View::generateCombinations(int start, int index, char comb_buffer[][KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE])
 {
-	/*** Configuración del texto en base al idioma seleccionado (español/ingles) ***/
-	if(cuvex.info.language == SPANISH){
-		Texts::setLanguage(SP);
-	}
-	else{
-		Texts::setLanguage(GB);
+	uint8_t pwd_combined_raw[10*KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE] = {0};
+	uint8_t aux_criptogram[32] = {0};
+	static int count_bytes = 0;
+
+	if(index == mandatory_pwds)
+	{
+		/*** Obtaining the raw password combination ***/
+		strncat((char*) pwd_combined_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
+		for(int i=0; i<mandatory_pwds; i++){
+			strcat((char *) pwd_combined_raw, (char *) comb_buffer[i]);
+		}
+
+		/*** Obtaining the encrypted password combination (SHA-256) ***/
+		HAL_HASHEx_SHA256_Start(&hhash, pwd_combined_raw, strlen((char *) pwd_combined_raw) + SIGNATURE_SIZE, pwd_combined_sha256, HAL_MAX_DELAY);
+
+		/*** AES-256 peripheral configuration (password + initialization vector + header) ***/
+		HAL_HASH_MD5_Start(&hhash, cuvex.nfc.tag.new_alias, strlen((char *) cuvex.nfc.tag.new_alias), iv_aes_gcm, HAL_MAX_DELAY);
+		memset(header_aes_gcm, 0x00, sizeof(header_aes_gcm));
+		configAESPeripheral(pwd_combined_sha256, iv_aes_gcm, header_aes_gcm);
+
+		/*** Generating text to encrypt (BIP39 seed, plaintext) + AES-256 Encryption ***/
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) pwd_sha256, 32, (uint32_t *) aux_criptogram, HAL_MAX_DELAY);
+
+		/*** Concatenate combination in buffer ***/
+		memcpy(cuvex.nfc.tag.new_multisignature + count_bytes, aux_criptogram, 32);
+		count_bytes = count_bytes + 32;
+
+		/*** Function return ***/
+		return;
 	}
 
-	/*** Actualización de la pantalla ***/
-	background.invalidate();
+	for(int i=start; i<=total_pwds-(mandatory_pwds-index); i++)
+	{
+		strcpy(comb_buffer[index], (char *) pwds[i]);
+		generateCombinations(i+1, index+1, comb_buffer);
+	}
 }
-
-/*
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- */
-
-//		/*
-// 		* Debug --> Palabras encriptadas
-// 		*/
-//
-//		printf("\r\n\r\n------------------------------------------------------------------\r\n");
-//		printf("Texto a encriptar:\r\n");
-//		for(int i = 0; i < strlen((const char*) text_to_encrypt); i++){
-//			printf("%c", text_to_encrypt[i]);
-//		}
-//		printf("\r\n\r\n");
-//
-//		printf("Password RAW:\r\n");
-//		for(int i = 0; i < strlen((const char*) pwd_raw); i++)
-//		{
-//			printf("%c", pwd_raw[i]);
-//		}
-//		printf("\r\n\r\n");
-//
-//		printf("Password SHA-256:\r\n");
-//		for(int i = 0; i < 32; i++)
-//		{
-//			printf("%c", pwd_sha256[i]);
-//		}
-//		printf("\r\n\r\n");
-//
-//		printf("Texto encriptado:\r\n");
-//		for(int i = 0; i < SIZE_CRYPT; i++)
-//		{
-//			printf("%c", cuvex.nfc.tag.new_cryptogram[i]);
-//		}
-//		printf("\r\n------------------------------------------------------------------\r\n\r\n");
-//		/**********************************************************************************************************************************************************/
-
-
-
-
-
-
-
-
-
-
-
 
