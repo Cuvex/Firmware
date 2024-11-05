@@ -1,5 +1,5 @@
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_dma_ex.c:4084:17:DMA_List_CheckNodesBaseAddresses	2
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_dma_ex.c:4127:17:DMA_List_CheckNodesTypes	6
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_dma_ex.c:4127:17:DMA_List_CheckNodesTypes	7
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_dma_ex.c:4184:13:DMA_List_GetCLLRNodeInfo	6
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_dma_ex.c:4228:17:DMA_List_FindNode	12
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_dma_ex.c:4544:13:DMA_List_UpdateDynamicQueueNodesCLLR	7

@@ -1,6 +1,6 @@
 ../Middlewares/ST/rfal/Src/rfal_nfca.c:178:12:rfalNfcaPollerInitialize	2
 ../Middlewares/ST/rfal/Src/rfal_nfca.c:194:12:rfalNfcaPollerCheckPresence	3
-../Middlewares/ST/rfal/Src/rfal_nfca.c:228:12:rfalNfcaPollerSingleCollisionResolution	34
+../Middlewares/ST/rfal/Src/rfal_nfca.c:228:12:rfalNfcaPollerSingleCollisionResolution	35
 ../Middlewares/ST/rfal/Src/rfal_nfca.c:534:12:rfalNfcaPollerSelect	9
 ../Middlewares/ST/rfal/Src/rfal_nfca.c:594:12:rfalNfcaPollerSleep	1
 ../Middlewares/ST/rfal/Src/rfal_nfca.c:213:12:rfalNfcaPollerTechnologyDetection	5

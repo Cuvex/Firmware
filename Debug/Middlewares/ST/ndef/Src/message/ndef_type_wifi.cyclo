@@ -2,5 +2,5 @@
 ../Middlewares/ST/ndef/Src/message/ndef_type_wifi.c:210:23:ndefWifiToPayloadItem	15
 ../Middlewares/ST/ndef/Src/message/ndef_type_wifi.c:340:12:ndefWifi	3
 ../Middlewares/ST/ndef/Src/message/ndef_type_wifi.c:364:12:ndefGetWifi	4
-../Middlewares/ST/ndef/Src/message/ndef_type_wifi.c:471:12:ndefRecordToWifi	17
+../Middlewares/ST/ndef/Src/message/ndef_type_wifi.c:471:12:ndefRecordToWifi	23
 ../Middlewares/ST/ndef/Src/message/ndef_type_wifi.c:497:12:ndefWifiToRecord	4

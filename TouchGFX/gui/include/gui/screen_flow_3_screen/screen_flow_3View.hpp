@@ -84,6 +84,7 @@ protected:
     virtual void setScreenLanguage();
     virtual void checkTemporalBlock();
 	void configAESPeripheral(uint8_t keyAES[], uint8_t ivAES[], uint8_t headerAES[], uint8_t type);
+	void configAESPeripheral_v2(uint8_t keyAES[], uint8_t ivAES[]);
 	void decryptSecret(uint8_t  decrypted_text[SIZE_CRYPT]);
 	void decryptSecretWithCombinations(uint8_t  decrypted_text[SIZE_CRYPT]);
 	bool checkDecryptedText(uint8_t  decrypted_text[SIZE_CRYPT]);

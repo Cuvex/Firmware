@@ -17,6 +17,6 @@
 ../Middlewares/ST/rfal/Src/rfal_nfcDep.c:2385:12:rfalNfcDepListenStartActivation	9
 ../Middlewares/ST/rfal/Src/rfal_nfcDep.c:2476:12:rfalNfcDepListenGetActivationStatus	17
 ../Middlewares/ST/rfal/Src/rfal_nfcDep.c:2521:12:rfalNfcDepStartTransceive	4
-../Middlewares/ST/rfal/Src/rfal_nfcDep.c:2547:12:rfalNfcDepGetTransceiveStatus	112
+../Middlewares/ST/rfal/Src/rfal_nfcDep.c:2547:12:rfalNfcDepGetTransceiveStatus	114
 ../Middlewares/ST/rfal/Src/rfal_nfcDep.c:2603:12:rfalNfcDepStartPduTransceive	2
 ../Middlewares/ST/rfal/Src/rfal_nfcDep.c:2620:12:rfalNfcDepGetPduTransceiveStatus	10

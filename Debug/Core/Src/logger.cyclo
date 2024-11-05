@@ -1,6 +1,6 @@
 ../Core/Src/logger.c:69:6:logUsartInit	1
 ../Core/Src/logger.c:81:9:logUsartTx	1
 ../Core/Src/logger.c:96:5:logUsart	1
-../Core/Src/logger.c:120:7:hex2Str	5
+../Core/Src/logger.c:120:7:hex2Str	4
 ../Core/Src/logger.c:163:6:logITMTx	1
 ../Core/Src/logger.c:176:5:logITM	1

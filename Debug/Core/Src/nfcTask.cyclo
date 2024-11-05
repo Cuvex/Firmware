@@ -11,6 +11,6 @@
 ../Core/Src/nfcTask.c:698:5:stateMachineTagActionT4T_8K	40
 ../Core/Src/nfcTask.c:1770:5:getVersionT2T_NTAG216	8
 ../Core/Src/nfcTask.c:189:5:nfcActionNdef	9
-../Core/Src/nfcTask.c:124:6:nfcCycle	13
+../Core/Src/nfcTask.c:124:6:nfcCycle	12
 ../Core/Src/nfcTask.c:28:6:nfc_Task	4
 ../Core/Src/nfcTask.c:1792:5:getVersionT4T_8K	1

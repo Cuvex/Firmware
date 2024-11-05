@@ -14,8 +14,8 @@
 ../Middlewares/ST/rfal/Src/rfal_isoDep.c:1874:12:rfalIsoDepRATS	6
 ../Middlewares/ST/rfal/Src/rfal_isoDep.c:1915:12:rfalIsoDepPPS	6
 ../Middlewares/ST/rfal/Src/rfal_isoDep.c:1951:12:rfalIsoDepATTRIB	9
-../Middlewares/ST/rfal/Src/rfal_isoDep.c:2000:12:rfalIsoDepPollAHandleActivation	19
+../Middlewares/ST/rfal/Src/rfal_isoDep.c:2000:12:rfalIsoDepPollAHandleActivation	18
 ../Middlewares/ST/rfal/Src/rfal_isoDep.c:2142:12:rfalIsoDepPollBHandleActivation	9
-../Middlewares/ST/rfal/Src/rfal_isoDep.c:2252:12:rfalIsoDepPollHandleSParameters	24
+../Middlewares/ST/rfal/Src/rfal_isoDep.c:2252:12:rfalIsoDepPollHandleSParameters	26
 ../Middlewares/ST/rfal/Src/rfal_isoDep.c:2505:12:rfalIsoDepStartApduTransceive	2
 ../Middlewares/ST/rfal/Src/rfal_isoDep.c:2526:12:rfalIsoDepGetApduTransceiveStatus	10

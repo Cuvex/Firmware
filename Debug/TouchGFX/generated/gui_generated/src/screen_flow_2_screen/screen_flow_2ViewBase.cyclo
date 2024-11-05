@@ -27,12 +27,12 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:60:18:virtual touchgfx::Rect touchgfx::TextArea::getSolidRect() const	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:89:18:virtual void touchgfx::TextArea::setAlpha(uint8_t)	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:127:18:virtual void touchgfx::TextArea::setXBaselineY(int16_t, int16_t)	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:403:41:virtual const UnicodeChar* touchgfx::TextArea::getWildcard2() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:403:41:virtual const touchgfx::Unicode::UnicodeChar* touchgfx::TextArea::getWildcard2() const	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:43:18:virtual void touchgfx::TextAreaWithWildcardBase::invalidateContent() const	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:49:36:virtual touchgfx::TextArea::BoundingArea touchgfx::TextAreaWithWildcardBase::calculateBoundingArea() const	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:84:41:virtual const UnicodeChar* touchgfx::TextAreaWithOneWildcard::getWildcard1() const	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:147:41:virtual const UnicodeChar* touchgfx::TextAreaWithTwoWildcards::getWildcard1() const	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:166:41:virtual const UnicodeChar* touchgfx::TextAreaWithTwoWildcards::getWildcard2() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:84:41:virtual const touchgfx::Unicode::UnicodeChar* touchgfx::TextAreaWithOneWildcard::getWildcard1() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:147:41:virtual const touchgfx::Unicode::UnicodeChar* touchgfx::TextAreaWithTwoWildcards::getWildcard1() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:166:41:virtual const touchgfx::Unicode::UnicodeChar* touchgfx::TextAreaWithTwoWildcards::getWildcard2() const	1
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:41:18:virtual void screen_flow_2ViewBase::tickEventScreen()	1
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:45:18:virtual void screen_flow_2ViewBase::menuBip39Pressed()	1
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_2_screen/screen_flow_2ViewBase.hpp:49:18:virtual void screen_flow_2ViewBase::menuPlainTextPressed()	1

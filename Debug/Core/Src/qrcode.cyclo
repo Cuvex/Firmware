@@ -8,6 +8,6 @@
 ../Core/Src/qrcode.c:278:13:drawFinderPattern	8
 ../Core/Src/qrcode.c:303:13:drawFormatBits	6
 ../Core/Src/qrcode.c:763:10:qrcode_getBufferSize	1
-../Core/Src/qrcode.c:768:8:qrcode_initBytes	96
+../Core/Src/qrcode.c:768:8:qrcode_initBytes	95
 ../Core/Src/qrcode.c:844:8:qrcode_initText	1
 ../Core/Src/qrcode.c:848:6:qrcode_getModule	3

@@ -91,7 +91,7 @@ protected:
 	uint8_t  pwd_raw[10*KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE];	//6*40 = 240
 	uint8_t  pwd_sha256[32];									//32
 	uint8_t  pwd_combined_sha256[32];							//32
-	uint8_t  header_aes_gcm[4];									//4
+	uint8_t  header_aes_gcm[16];									//4
 	uint8_t  iv_aes_gcm[16];									//16
 	void setScreenMode();
 	void setScreenLanguage();
@@ -99,7 +99,7 @@ protected:
 	void generateRecordData2_Cryptogram();
 	void generateRecordData3_Information();
 	void generateRecordData4_Multisignature();
-	void configAESPeripheral(uint8_t keyAES[], uint8_t ivAES[], uint8_t headerAES[]);
+	void configAESPeripheral(uint8_t keyAES[], uint8_t ivAES[]);
 	void checkDataFromNFC();
 	void generateCombinations(int start, int index, char result[][KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE]);
 };

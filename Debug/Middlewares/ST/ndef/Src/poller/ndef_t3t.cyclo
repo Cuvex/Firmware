@@ -2,11 +2,11 @@
 ../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:302:19:ndefT3TPollerReadAttributeInformationBlock	7
 ../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:486:19:ndefT3TPollerWriteBlocks	5
 ../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:636:19:ndefT3TPollerWriteAttributeInformationBlock	4
-../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:187:12:ndefT3TPollerReadBytes	22
+../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:187:12:ndefT3TPollerReadBytes	23
 ../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:348:12:ndefT3TPollerContextInitialization	4
 ../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:363:12:ndefT3TPollerNdefDetect	12
 ../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:447:12:ndefT3TPollerReadRawMessage	8
-../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:518:12:ndefT3TPollerWriteBytes	22
+../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:518:12:ndefT3TPollerWriteBytes	21
 ../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:760:12:ndefT3TPollerTagFormat	7
 ../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:806:12:ndefT3TPollerCheckPresence	3
 ../Middlewares/ST/ndef/Src/poller/ndef_t3t.c:821:12:ndefT3TPollerCheckAvailableSpace	4

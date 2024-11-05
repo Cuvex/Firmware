@@ -1,7 +1,7 @@
 ../Drivers/BSP/Components/ST25R95/st25r95_com_uart.c:284:13:st25r95UartFlush	2
 ../Drivers/BSP/Components/ST25R95/st25r95_com_uart.c:136:12:st25r95UARTSendCommandTypeAndLen	8
 ../Drivers/BSP/Components/ST25R95/st25r95_com_uart.c:189:12:st25r95UARTCommandEcho	1
-../Drivers/BSP/Components/ST25R95/st25r95_com_uart.c:212:6:st25r95UARTSendData	5
+../Drivers/BSP/Components/ST25R95/st25r95_com_uart.c:212:6:st25r95UARTSendData	4
 ../Drivers/BSP/Components/ST25R95/st25r95_com_uart.c:247:6:st25r95UARTSendTransmitFlag	2
 ../Drivers/BSP/Components/ST25R95/st25r95_com_uart.c:264:6:st25r95UARTPrepareRx	2
 ../Drivers/BSP/Components/ST25R95/st25r95_com_uart.c:299:6:st25r95UartTxCpltCallback	1

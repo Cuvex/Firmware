@@ -1,5 +1,5 @@
 ../Drivers/CMSIS/Include/core_cm33.h:2448:34:__NVIC_SystemReset	1
-../Core/Src/mainTask.c:177:6:stateMachineScreens	48
+../Core/Src/mainTask.c:177:6:stateMachineScreens	40
 ../Core/Src/mainTask.c:371:6:clearNfc_readerFlags	1
 ../Core/Src/mainTask.c:384:6:clearNfc_tagFlags	1
 ../Core/Src/mainTask.c:401:6:clearNfc_tagInfo	1

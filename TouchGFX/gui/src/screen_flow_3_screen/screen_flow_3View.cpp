@@ -1117,6 +1117,44 @@ void screen_flow_3View::configAESPeripheral(uint8_t keyAES[], uint8_t ivAES[], u
 	}
 }
 
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_3View::configAESPeripheral_v2(uint8_t keyAES[], uint8_t ivAES[])
+{
+	__ALIGN_BEGIN uint32_t HeaderAES_aux[1] __ALIGN_END = {0x00000000};
+
+	for(uint8_t a=0; a<8; a++){
+		cuvex.nfc.tag.new_pKeyAES[a] = keyAES[a*4] * 0x1000000 + keyAES[(a*4)+1] * 0x10000 + keyAES[(a*4)+2] * 0x100 + keyAES[(a*4)+3];
+	}
+
+	for(uint8_t b=0; b<4; b++){
+		cuvex.nfc.tag.new_pInitVectAES[b] = ivAES[b*4] * 0x1000000 + ivAES[(b*4)+1] * 0x10000 + ivAES[(b*4)+2] * 0x100 + ivAES[(b*4)+3];
+	}
+
+	HAL_CRYP_DeInit(&hcryp);
+
+	hcryp.Instance = AES;
+	hcryp.Init.DataType = CRYP_NO_SWAP;
+	hcryp.Init.KeySize = CRYP_KEYSIZE_256B;
+	hcryp.Init.pKey = (uint32_t *) cuvex.nfc.tag.new_pKeyAES;
+	hcryp.Init.pInitVect = (uint32_t *) cuvex.nfc.tag.new_pInitVectAES;
+	hcryp.Init.Algorithm = CRYP_AES_GCM_GMAC;
+	hcryp.Init.Header = (uint32_t *) HeaderAES_aux;
+	hcryp.Init.HeaderSize = 1;
+	hcryp.Init.DataWidthUnit = CRYP_DATAWIDTHUNIT_WORD;
+	hcryp.Init.HeaderWidthUnit = CRYP_HEADERWIDTHUNIT_WORD;
+	hcryp.Init.KeyIVConfigSkip = CRYP_KEYIVCONFIG_ALWAYS;
+	hcryp.Init.KeyMode = CRYP_KEYMODE_NORMAL;
+
+	if (HAL_CRYP_Init(&hcryp) != HAL_OK){
+		Error_Handler();
+	}
+}
+
 /*************************************************************************************************************************************************************************************************************
  *************************************************************************************************************************************************************************************************************
  *************************************************************************************************************************************************************************************************************
@@ -1131,37 +1169,93 @@ void screen_flow_3View::configAESPeripheral(uint8_t keyAES[], uint8_t ivAES[], u
  **************************************************************************************************************************************/
 void screen_flow_3View::decryptSecret(uint8_t  decrypted_text[SIZE_CRYPT])
 {
-	uint16_t pwd_raw_length = SIGNATURE_SIZE;
+	uint16_t pwd_raw_length_old = SIGNATURE_SIZE;
+	uint16_t pwd_raw_length = 0;
 	uint8_t  pwd_lengths[6] = {0};
 	uint8_t  iteration_length = 0;
+	uint8_t  decrypted_text_aux[SIZE_CRYPT] = {0};
+	uint16_t pos=0;
 
 	/*** Obtaining the length and concatenation of the complete password (in raw) ***/
 	for(int i=0; i<6; i++){
 		pwd_lengths[i] = strlen((const char *) pwds[i]);
+		pwd_raw_length_old = pwd_raw_length_old + pwd_lengths[i];
 		pwd_raw_length = pwd_raw_length + pwd_lengths[i];
-	}
-
-	memset(pwd_raw, 0x00, sizeof(pwd_raw));
-	strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
-	for(int i=0; i<6; i++){
-		strcat((char*) pwd_raw, (const char*) pwds[i]);
 	}
 
 	if(pwd_lengths[0] != 0)
 	{
-		/*** Obtaining the encrypted password (SHA-256) ***/
-		HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, pwd_raw_length, pwd_sha256, HAL_MAX_DELAY);
-
 		/*** AES-256 peripheral configuration (password + initialization vector + header) + AES-256 Decrypt ***/
 		if(strstr((const char *) cuvex.nfc.tag.information, "v1.0.0") != NULL){
+
+			/*** Obtaining the encrypted password (SHA-256) ***/
+			memset(pwd_raw, 0x00, sizeof(pwd_raw));
+			strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
+			for(int i=0; i<6; i++){
+				strcat((char*) pwd_raw, (const char*) pwds[i]);
+			}
+
+			HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, pwd_raw_length_old, pwd_sha256, HAL_MAX_DELAY);
+
 			configAESPeripheral(pwd_sha256, iv_aes_gcm, header_aes_gcm, 1);
 			HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.cryptogram, SIZE_CRYPT_MSG, (uint32_t *) decrypted_text, HAL_MAX_DELAY);
 		}
-		else{
+		else if((strstr((const char *) cuvex.nfc.tag.information, "v1.0.1") != NULL) || (strstr((const char *) cuvex.nfc.tag.information, "v1.0.2") != NULL) || (strstr((const char *) cuvex.nfc.tag.information, "v1.0.3") != NULL)){
+
+			/*** Obtaining the encrypted password (SHA-256) ***/
+			memset(pwd_raw, 0x00, sizeof(pwd_raw));
+			strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
+			for(int i=0; i<6; i++){
+				strcat((char*) pwd_raw, (const char*) pwds[i]);
+			}
+
+			HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, pwd_raw_length_old, pwd_sha256, HAL_MAX_DELAY);
+
 			HAL_HASH_MD5_Start(&hhash, cuvex.nfc.tag.alias, strlen((char *) cuvex.nfc.tag.alias), iv_aes_gcm, HAL_MAX_DELAY);
 			memset(header_aes_gcm, 0x00, sizeof(header_aes_gcm));
 			configAESPeripheral(pwd_sha256, iv_aes_gcm, header_aes_gcm, 0);
 			HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.cryptogram, SIZE_CRYPT_MSG, (uint32_t *) decrypted_text, HAL_MAX_DELAY);
+		}
+		else
+		{
+			/*** Obtaining the encrypted password (SHA-256) ***/
+			memset(pwd_raw, 0x00, sizeof(pwd_raw));
+			for(int i=0; i<6; i++){
+				strcat((char*) pwd_raw, (const char*) pwds[i]);
+			}
+
+			HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, pwd_raw_length, pwd_sha256, HAL_MAX_DELAY);
+
+			HAL_HASH_MD5_Start(&hhash, cuvex.nfc.tag.alias, strlen((char *) cuvex.nfc.tag.alias), iv_aes_gcm, HAL_MAX_DELAY);
+
+			/*** Init count to 0x02 ***/
+			iv_aes_gcm[12]=0x00;
+			iv_aes_gcm[13]=0x00;
+			iv_aes_gcm[14]=0x00;
+			iv_aes_gcm[15]=0x02;
+
+			configAESPeripheral_v2(pwd_sha256, iv_aes_gcm);
+
+			/*** NFC SAVES DATA IN UINT8_T FORMAT ***/
+			/*** Create new text to dencrypt under format uint32_t ***/
+			for(uint8_t k=0; k<SIZE_CRYPT_MSG; k++){
+				cuvex.nfc.tag.new_text_to_decrypt[k] = cuvex.nfc.tag.cryptogram[k*4] * 0x1000000 + cuvex.nfc.tag.cryptogram[(k*4)+1] * 0x10000 + cuvex.nfc.tag.cryptogram[(k*4)+2] * 0x100 + cuvex.nfc.tag.cryptogram[(k*4)+3];
+			}
+
+			HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.new_text_to_decrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_text_decrypted, HAL_MAX_DELAY);
+
+			pos=0;
+			for(uint8_t z=0; z<SIZE_CRYPT_MSG; z++)
+			{
+				decrypted_text_aux[pos] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[z] / 0x1000000);
+				decrypted_text_aux[pos+1] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[z] / 0x10000);
+				decrypted_text_aux[pos+2] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[z] / 0x100);
+				decrypted_text_aux[pos+3] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[z]);
+				pos+=4;
+			}
+
+			memset(decrypted_text, 0, SIZE_CRYPT);
+			memcpy(decrypted_text, decrypted_text_aux, SIZE_CRYPT);
 		}
 
 		/*** Check if text is decrypted correctly ***/
@@ -1206,26 +1300,81 @@ void screen_flow_3View::decryptSecret(uint8_t  decrypted_text[SIZE_CRYPT])
 						memcpy(&pwds[z], aux, strlen((const char *) aux));
 					}
 
-					/*** Updates 'pwd_raw' by concatenating the signature and the new permutation of passwords in 'pwds' ***/
-					memset(pwd_raw, 0x00, sizeof(pwd_raw));
-					strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
-					for(int i=0; i<6; i++){
-						strcat((char*) pwd_raw, (const char*) pwds[i]);
-					}
-
-					/*** Obtaining the encrypted password (SHA-256) ***/
-					HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, pwd_raw_length, pwd_sha256, HAL_MAX_DELAY);
-
 					/*** AES-256 peripheral configuration (password + initialization vector + header) + AES-256 Decrypt ***/
 					if(strstr((const char *) cuvex.nfc.tag.information, "v1.0.0") != NULL){
+
+						/*** Updates 'pwd_raw' by concatenating the signature and the new permutation of passwords in 'pwds' ***/
+						memset(pwd_raw, 0x00, sizeof(pwd_raw));
+						strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
+						for(int i=0; i<6; i++){
+							strcat((char*) pwd_raw, (const char*) pwds[i]);
+						}
+
+						/*** Obtaining the encrypted password (SHA-256) ***/
+						HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, pwd_raw_length_old, pwd_sha256, HAL_MAX_DELAY);
+
 						configAESPeripheral(pwd_sha256, iv_aes_gcm, header_aes_gcm, 1);
 						HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.cryptogram, SIZE_CRYPT_MSG, (uint32_t *) decrypted_text, HAL_MAX_DELAY);
 					}
-					else{
+					else if((strstr((const char *) cuvex.nfc.tag.information, "v1.0.1") != NULL) || (strstr((const char *) cuvex.nfc.tag.information, "v1.0.2") != NULL) || (strstr((const char *) cuvex.nfc.tag.information, "v1.0.3") != NULL)){
+
+						/*** Updates 'pwd_raw' by concatenating the signature and the new permutation of passwords in 'pwds' ***/
+						memset(pwd_raw, 0x00, sizeof(pwd_raw));
+						strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
+						for(int i=0; i<6; i++){
+							strcat((char*) pwd_raw, (const char*) pwds[i]);
+						}
+
+						/*** Obtaining the encrypted password (SHA-256) ***/
+						HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, pwd_raw_length_old, pwd_sha256, HAL_MAX_DELAY);
+
 						HAL_HASH_MD5_Start(&hhash, cuvex.nfc.tag.alias, strlen((char *) cuvex.nfc.tag.alias), iv_aes_gcm, HAL_MAX_DELAY);
 						memset(header_aes_gcm, 0x00, sizeof(header_aes_gcm));
 						configAESPeripheral(pwd_sha256, iv_aes_gcm, header_aes_gcm, 0);
 						HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.cryptogram, SIZE_CRYPT_MSG, (uint32_t *) decrypted_text, HAL_MAX_DELAY);
+					}
+					else
+					{
+
+						/*** Updates 'pwd_raw' by concatenating the signature and the new permutation of passwords in 'pwds' ***/
+						memset(pwd_raw, 0x00, sizeof(pwd_raw));
+						for(int i=0; i<6; i++){
+							strcat((char*) pwd_raw, (const char*) pwds[i]);
+						}
+
+						/*** Obtaining the encrypted password (SHA-256) ***/
+						HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, pwd_raw_length, pwd_sha256, HAL_MAX_DELAY);
+
+						HAL_HASH_MD5_Start(&hhash, cuvex.nfc.tag.alias, strlen((char *) cuvex.nfc.tag.alias), iv_aes_gcm, HAL_MAX_DELAY);
+
+						/*** Init count to 0x02 ***/
+						iv_aes_gcm[12]=0x00;
+						iv_aes_gcm[13]=0x00;
+						iv_aes_gcm[14]=0x00;
+						iv_aes_gcm[15]=0x02;
+
+						configAESPeripheral_v2(pwd_sha256, iv_aes_gcm);
+
+						/*** NFC SAVES DATA IN UINT8_T FORMAT ***/
+						/*** Create new text to dencrypt under format uint32_t ***/
+						for(uint8_t k=0; k<SIZE_CRYPT_MSG; k++){
+							cuvex.nfc.tag.new_text_to_decrypt[k] = cuvex.nfc.tag.cryptogram[k*4] * 0x1000000 + cuvex.nfc.tag.cryptogram[(k*4)+1] * 0x10000 + cuvex.nfc.tag.cryptogram[(k*4)+2] * 0x100 + cuvex.nfc.tag.cryptogram[(k*4)+3];
+						}
+
+						HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.new_text_to_decrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_text_decrypted, HAL_MAX_DELAY);
+
+						pos=0;
+						for(uint8_t z=0; z<SIZE_CRYPT_MSG; z++)
+						{
+							decrypted_text_aux[pos] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[z] / 0x1000000);
+							decrypted_text_aux[pos+1] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[z] / 0x10000);
+							decrypted_text_aux[pos+2] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[z] / 0x100);
+							decrypted_text_aux[pos+3] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[z]);
+							pos+=4;
+						}
+
+						memset(decrypted_text, 0, SIZE_CRYPT);
+						memcpy(decrypted_text, decrypted_text_aux, SIZE_CRYPT);
 					}
 
 					/*** Check if text is decrypted correctly ***/
@@ -1252,12 +1401,24 @@ void screen_flow_3View::decryptSecret(uint8_t  decrypted_text[SIZE_CRYPT])
 void screen_flow_3View::decryptSecretWithCombinations(uint8_t  decrypted_text[SIZE_CRYPT])
 {
 	uint8_t block_buffer[32] = {0};
+	uint32_t block_buffer_st_format[8] = {0};
+	uint32_t pwd_sha256_st_format[8] = {0};
 	uint8_t pwd_lengths[6] = {0};
 	uint8_t iteration_length = 0;
+	bool is_old = false;
+	uint16_t pos = 0;
+	uint8_t decrypted_text_aux[SIZE_CRYPT] = {0};
+
+	if((strstr((const char *) cuvex.nfc.tag.information, "v1.0.0") != NULL) || (strstr((const char *) cuvex.nfc.tag.information, "v1.0.1") != NULL) || (strstr((const char *) cuvex.nfc.tag.information, "v1.0.2") != NULL) || (strstr((const char *) cuvex.nfc.tag.information, "v1.0.3") != NULL)){
+		is_old = true;
+	}
 
 	/*** Concatenation of the complete password (in raw) ***/
 	memset(pwd_raw, 0x00, sizeof(pwd_raw));
-	strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
+	if(is_old){
+		strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
+	}
+
 	for(int i=0; i<6; i++){
 		strcat((char*) pwd_raw, (const char*) pwds[i]);
 		pwd_lengths[i] = strlen((const char *) pwds[i]);
@@ -1267,7 +1428,12 @@ void screen_flow_3View::decryptSecretWithCombinations(uint8_t  decrypted_text[SI
 	{
 		/*** Obtaining the encrypted password (SHA-256) ***/
 		memset(pwd_combined_sha256, 0x00, sizeof(pwd_combined_sha256));
-		HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, strlen((char *) pwd_raw) + SIGNATURE_SIZE, pwd_combined_sha256, HAL_MAX_DELAY);
+		if(is_old){
+			HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, strlen((char *) pwd_raw) + SIGNATURE_SIZE, pwd_combined_sha256, HAL_MAX_DELAY);
+		}
+		else{
+			HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, strlen((char *) pwd_raw), pwd_combined_sha256, HAL_MAX_DELAY);
+		}
 
 		/*** Check all blocks trying decrypt ***/
 		for(int i=0; i<20; i++)
@@ -1278,15 +1444,69 @@ void screen_flow_3View::decryptSecretWithCombinations(uint8_t  decrypted_text[SI
 
 			/*** AES-256 peripheral configuration (initialization vector + header) ***/
 			HAL_HASH_MD5_Start(&hhash, cuvex.nfc.tag.alias, strlen((char *) cuvex.nfc.tag.alias), iv_aes_gcm, HAL_MAX_DELAY);
-			memset(header_aes_gcm, 0x00, sizeof(header_aes_gcm));
+			if(!is_old)
+			{
+				/*** Init count to 0x02 ***/
+				iv_aes_gcm[12]=0x00;
+				iv_aes_gcm[13]=0x00;
+				iv_aes_gcm[14]=0x00;
+				iv_aes_gcm[15]=0x02;
 
-			/*** AES-256 peripheral configuration (password 1) + AES-256 Decrypt 1 ***/
-			configAESPeripheral(pwd_combined_sha256, iv_aes_gcm, header_aes_gcm, 0);
-			HAL_CRYP_Decrypt(&hcryp, (uint32_t *) block_buffer, 32/4, (uint32_t *) pwd_sha256, HAL_MAX_DELAY);
+				configAESPeripheral_v2(pwd_combined_sha256, iv_aes_gcm);
 
-			/*** AES-256 peripheral configuration (password 2) + AES-256 Decrypt 2 ***/
-			configAESPeripheral(pwd_sha256, iv_aes_gcm, header_aes_gcm, 0);
-			HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.cryptogram, SIZE_CRYPT_MSG, (uint32_t *) decrypted_text, HAL_MAX_DELAY);
+				/*** NFC SAVES DATA IN UINT8_T FORMAT ***/
+				/*** Create new text to dencrypt under format uint32_t ***/
+				for(uint8_t k=0; k<8; k++){
+					block_buffer_st_format[k] = block_buffer[k*4] * 0x1000000 + block_buffer[(k*4)+1] * 0x10000 + block_buffer[(k*4)+2] * 0x100 + block_buffer[(k*4)+3];
+				}
+
+				HAL_CRYP_Decrypt(&hcryp, (uint32_t *) block_buffer_st_format, 8, (uint32_t *) pwd_sha256_st_format, HAL_MAX_DELAY);
+
+				pos=0;
+				for(uint8_t a=0; a<8; a++)
+				{
+					pwd_sha256[pos] = (uint8_t) (pwd_sha256_st_format[a] / 0x1000000);
+					pwd_sha256[pos+1] = (uint8_t) (pwd_sha256_st_format[a] / 0x10000);
+					pwd_sha256[pos+2] = (uint8_t) (pwd_sha256_st_format[a] / 0x100);
+					pwd_sha256[pos+3] = (uint8_t) (pwd_sha256_st_format[a]);
+					pos+=4;
+				}
+
+				/*** AES-256 peripheral configuration (password 2) + AES-256 Decrypt 2 ***/
+				configAESPeripheral_v2(pwd_sha256, iv_aes_gcm);
+
+				/*** Create new text to dencrypt under format uint32_t ***/
+				for(uint8_t b=0; b<SIZE_CRYPT_MSG; b++){
+					cuvex.nfc.tag.new_text_to_decrypt[b] = cuvex.nfc.tag.cryptogram[b*4] * 0x1000000 + cuvex.nfc.tag.cryptogram[(b*4)+1] * 0x10000 + cuvex.nfc.tag.cryptogram[(b*4)+2] * 0x100 + cuvex.nfc.tag.cryptogram[(b*4)+3];
+				}
+
+				HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.new_text_to_decrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_text_decrypted, HAL_MAX_DELAY);
+
+				pos=0;
+				for(uint8_t c=0; c<SIZE_CRYPT_MSG; c++)
+				{
+					decrypted_text_aux[pos] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[c] / 0x1000000);
+					decrypted_text_aux[pos+1] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[c] / 0x10000);
+					decrypted_text_aux[pos+2] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[c] / 0x100);
+					decrypted_text_aux[pos+3] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[c]);
+					pos+=4;
+				}
+
+				memset(decrypted_text, 0, SIZE_CRYPT);
+				memcpy(decrypted_text, decrypted_text_aux, SIZE_CRYPT);
+			}
+			else
+			{
+				memset(header_aes_gcm, 0x00, sizeof(header_aes_gcm));
+
+				/*** AES-256 peripheral configuration (password 1) + AES-256 Decrypt 1 ***/
+				configAESPeripheral(pwd_combined_sha256, iv_aes_gcm, header_aes_gcm, 0);
+				HAL_CRYP_Decrypt(&hcryp, (uint32_t *) block_buffer, 32/4, (uint32_t *) pwd_sha256, HAL_MAX_DELAY);
+
+				/*** AES-256 peripheral configuration (password 2) + AES-256 Decrypt 2 ***/
+				configAESPeripheral(pwd_sha256, iv_aes_gcm, header_aes_gcm, 0);
+				HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.cryptogram, SIZE_CRYPT_MSG, (uint32_t *) decrypted_text, HAL_MAX_DELAY);
+			}
 
 			/*** Check if text is decrypted correctly ***/
 			pwd_ok = checkDecryptedText(decrypted_text);
@@ -1337,14 +1557,22 @@ void screen_flow_3View::decryptSecretWithCombinations(uint8_t  decrypted_text[SI
 
 					/*** Concatenation of the complete password with the new permutation (in raw) ***/
 					memset(pwd_raw, 0x00, sizeof(pwd_raw));
-					strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
+					if(is_old){
+						strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
+					}
+
 					for(int i=0; i<6; i++){
 						strcat((char*) pwd_raw, (const char*) pwds[i]);
 					}
 
 					/*** Obtaining the encrypted password (SHA-256) ***/
 					memset(pwd_combined_sha256, 0x00, sizeof(pwd_combined_sha256));
-					HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, strlen((char *) pwd_raw) + SIGNATURE_SIZE, pwd_combined_sha256, HAL_MAX_DELAY);
+					if(is_old){
+						HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, strlen((char *) pwd_raw) + SIGNATURE_SIZE, pwd_combined_sha256, HAL_MAX_DELAY);
+					}
+					else{
+						HAL_HASHEx_SHA256_Start(&hhash, pwd_raw, strlen((char *) pwd_raw), pwd_combined_sha256, HAL_MAX_DELAY);
+					}
 
 					/*** Check all blocks trying decrypt ***/
 					for(int i=0; i<20; i++)
@@ -1352,18 +1580,72 @@ void screen_flow_3View::decryptSecretWithCombinations(uint8_t  decrypted_text[SI
 						/*** Select block to decrypt ***/
 						memset(block_buffer, 0x00, 32);
 						memcpy(block_buffer, cuvex.nfc.tag.multisignature + (i*32) , 32);
-
-						/*** AES-256 peripheral configuration (initialization vector + header) ***/
 						HAL_HASH_MD5_Start(&hhash, cuvex.nfc.tag.alias, strlen((char *) cuvex.nfc.tag.alias), iv_aes_gcm, HAL_MAX_DELAY);
-						memset(header_aes_gcm, 0x00, sizeof(header_aes_gcm));
 
-						/*** AES-256 peripheral configuration (password 1) + AES-256 Decrypt 1 ***/
-						configAESPeripheral(pwd_combined_sha256, iv_aes_gcm, header_aes_gcm, 0);
-						HAL_CRYP_Decrypt(&hcryp, (uint32_t *) block_buffer, 32/4, (uint32_t *) pwd_sha256, HAL_MAX_DELAY);
+						if(!is_old)
+						{
+							/*Init count to 0x02*/
+							iv_aes_gcm[12]=0x00;
+							iv_aes_gcm[13]=0x00;
+							iv_aes_gcm[14]=0x00;
+							iv_aes_gcm[15]=0x02;
 
-						/*** AES-256 peripheral configuration (password 2) + AES-256 Decrypt 2 ***/
-						configAESPeripheral(pwd_sha256, iv_aes_gcm, header_aes_gcm, 0);
-						HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.cryptogram, SIZE_CRYPT_MSG, (uint32_t *) decrypted_text, HAL_MAX_DELAY);
+							configAESPeripheral_v2(pwd_combined_sha256, iv_aes_gcm);
+
+							/*** NFC SAVES DATA IN UINT8_T FORMAT ***/
+							/*** Create new text to dencrypt under format uint32_t ***/
+							for(uint8_t l=0; l<8; l++){
+								block_buffer_st_format[l] = block_buffer[l*4] * 0x1000000 + block_buffer[(l*4)+1] * 0x10000 + block_buffer[(l*4)+2] * 0x100 + block_buffer[(l*4)+3];
+							}
+
+							HAL_CRYP_Decrypt(&hcryp, (uint32_t *) block_buffer_st_format, 8, (uint32_t *) pwd_sha256_st_format, HAL_MAX_DELAY);
+
+							pos=0;
+							for(uint8_t d=0; d<8; d++)
+							{
+								pwd_sha256[pos] = (uint8_t) (pwd_sha256_st_format[d] / 0x1000000);
+								pwd_sha256[pos+1] = (uint8_t) (pwd_sha256_st_format[d] / 0x10000);
+								pwd_sha256[pos+2] = (uint8_t) (pwd_sha256_st_format[d] / 0x100);
+								pwd_sha256[pos+3] = (uint8_t) (pwd_sha256_st_format[d]);
+								pos+=4;
+							}
+
+							/*** AES-256 peripheral configuration (password 2) + AES-256 Decrypt 2 ***/
+							configAESPeripheral_v2(pwd_sha256, iv_aes_gcm);
+
+							/*** Create new text to dencrypt under format uint32_t ***/
+							for(uint8_t e=0; e<SIZE_CRYPT_MSG; e++){
+								cuvex.nfc.tag.new_text_to_decrypt[e] = cuvex.nfc.tag.cryptogram[e*4] * 0x1000000 + cuvex.nfc.tag.cryptogram[(e*4)+1] * 0x10000 + cuvex.nfc.tag.cryptogram[(e*4)+2] * 0x100 + cuvex.nfc.tag.cryptogram[(e*4)+3];
+							}
+
+							HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.new_text_to_decrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_text_decrypted, HAL_MAX_DELAY);
+
+							pos=0;
+							for(uint8_t f=0; f<SIZE_CRYPT_MSG; f++)
+							{
+								decrypted_text_aux[pos] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[f] / 0x1000000);
+								decrypted_text_aux[pos+1] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[f] / 0x10000);
+								decrypted_text_aux[pos+2] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[f] / 0x100);
+								decrypted_text_aux[pos+3] = (uint8_t) (cuvex.nfc.tag.new_text_decrypted[f]);
+								pos+=4;
+							}
+
+							memset(decrypted_text, 0, SIZE_CRYPT);
+							memcpy(decrypted_text, decrypted_text_aux, SIZE_CRYPT);
+						}
+						else
+						{
+							/*** AES-256 peripheral configuration (initialization vector + header) ***/
+							memset(header_aes_gcm, 0x00, sizeof(header_aes_gcm));
+
+							/*** AES-256 peripheral configuration (password 1) + AES-256 Decrypt 1 ***/
+							configAESPeripheral(pwd_combined_sha256, iv_aes_gcm, header_aes_gcm, 0);
+							HAL_CRYP_Decrypt(&hcryp, (uint32_t *) block_buffer, 32/4, (uint32_t *) pwd_sha256, HAL_MAX_DELAY);
+
+							/*** AES-256 peripheral configuration (password 2) + AES-256 Decrypt 2 ***/
+							configAESPeripheral(pwd_sha256, iv_aes_gcm, header_aes_gcm, 0);
+							HAL_CRYP_Decrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.cryptogram, SIZE_CRYPT_MSG, (uint32_t *) decrypted_text, HAL_MAX_DELAY);
+						}
 
 						/*** Check if text is decrypted correctly ***/
 						pwd_ok = checkDecryptedText(decrypted_text);

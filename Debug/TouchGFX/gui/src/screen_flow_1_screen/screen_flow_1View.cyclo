@@ -6,7 +6,7 @@
 ../TouchGFX/gui/src/screen_flow_1_screen/screen_flow_1View.cpp:37:6:virtual void screen_flow_1View::tearDownScreen()	1
 ../TouchGFX/gui/src/screen_flow_1_screen/screen_flow_1View.cpp:299:6:virtual void screen_flow_1View::assignAliasPressed()	1
 ../TouchGFX/gui/src/screen_flow_1_screen/screen_flow_1View.cpp:364:6:virtual void screen_flow_1View::qrBackPressed()	1
-../TouchGFX/gui/src/screen_flow_1_screen/screen_flow_1View.cpp:111:6:virtual void screen_flow_1View::updateStateNfc(uint16_t)	11
+../TouchGFX/gui/src/screen_flow_1_screen/screen_flow_1View.cpp:111:6:virtual void screen_flow_1View::updateStateNfc(uint16_t)	10
 ../TouchGFX/gui/src/screen_flow_1_screen/screen_flow_1View.cpp:315:6:virtual void screen_flow_1View::acceptSuccessPressed()	1
 ../TouchGFX/gui/src/screen_flow_1_screen/screen_flow_1View.cpp:443:6:virtual void screen_flow_1View::setScreenLanguage()	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
