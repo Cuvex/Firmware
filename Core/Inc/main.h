@@ -126,7 +126,7 @@ void Error_Handler(void);
  * DEFINE's
  */
 
-#define FIRMWARE_VERSION		"1.0.3"			//Firmware version
+#define FIRMWARE_VERSION		"1.1.0"			//Firmware version
 //#define DEBUG_PRINTF
 //#define DEBUG_NFC_PRINTF
 
@@ -192,6 +192,14 @@ struct tag
 	uint8_t from_nfc_private_key[FROM_NFC_PRIVATE_KEY];
 	uint8_t from_nfc_public_key[FROM_NFC_PUBLIC_KEY];
 	uint8_t from_nfc_plain_text[FROM_NFC_PLAIN_TEXT];
+
+	/*** NEW CRYPTO VALUES TO REINITIALIZE AES PERIPHERAL ***/
+	uint32_t new_text_to_encrypt[SIZE_CRYPT_MSG];
+	uint32_t new_text_encrypted[SIZE_CRYPT_MSG];
+	uint32_t new_text_to_decrypt[SIZE_CRYPT_MSG];
+	uint32_t new_text_decrypted[SIZE_CRYPT_MSG];
+	uint32_t new_pKeyAES[8];
+	uint32_t new_pInitVectAES[4];
 };
 
 struct nfc

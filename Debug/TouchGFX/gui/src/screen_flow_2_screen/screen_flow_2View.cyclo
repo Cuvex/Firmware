@@ -1,64 +1,64 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1410:6:virtual void screen_flow_2View::successPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1265:6:virtual void screen_flow_2View::menuBip39Pressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1291:6:virtual void screen_flow_2View::menuSlip39Pressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1317:6:virtual void screen_flow_2View::menuXmrPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1343:6:virtual void screen_flow_2View::menuPlainTextPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1393:6:virtual void screen_flow_2View::encryptPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1541:6:virtual void screen_flow_2View::multisignedYesPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1561:6:virtual void screen_flow_2View::multisignedNoPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1486:6:virtual void screen_flow_2View::passwordSuccessPressed()	5
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1656:6:virtual void screen_flow_2View::multisignedSelectPressed()	6
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1578:6:virtual void screen_flow_2View::multisignedPlusPressed()	6
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1617:6:virtual void screen_flow_2View::multisignedMinusPressed()	6
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1412:6:virtual void screen_flow_2View::successPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1267:6:virtual void screen_flow_2View::menuBip39Pressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1293:6:virtual void screen_flow_2View::menuSlip39Pressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1319:6:virtual void screen_flow_2View::menuXmrPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1345:6:virtual void screen_flow_2View::menuPlainTextPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1395:6:virtual void screen_flow_2View::encryptPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1543:6:virtual void screen_flow_2View::multisignedYesPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1563:6:virtual void screen_flow_2View::multisignedNoPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1488:6:virtual void screen_flow_2View::passwordSuccessPressed()	5
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1658:6:virtual void screen_flow_2View::multisignedSelectPressed()	6
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1580:6:virtual void screen_flow_2View::multisignedPlusPressed()	6
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1619:6:virtual void screen_flow_2View::multisignedMinusPressed()	6
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1441:6:virtual void screen_flow_2View::eye2Pressed()	2
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1443:6:virtual void screen_flow_2View::eye2Pressed()	2
 ../TouchGFX/gui/include/gui/screen_flow_2_screen/screen_flow_2View.hpp:26:10:screen_flow_2View::~screen_flow_2View()	1
 ../TouchGFX/gui/include/gui/screen_flow_2_screen/screen_flow_2View.hpp:26:10:virtual screen_flow_2View::~screen_flow_2View()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1421:6:virtual void screen_flow_2View::eye1Pressed()	2
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:499:6:virtual void screen_flow_2View::showKeyboard1SeedPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:476:6:virtual void screen_flow_2View::hideKeyboard1SeedPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:558:6:virtual void screen_flow_2View::hideKeyboard2SeedPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:582:6:virtual void screen_flow_2View::showKeyboard2SeedPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:646:6:virtual void screen_flow_2View::hideKeyboard3SeedPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:766:6:virtual void screen_flow_2View::hideKeyboardPlainTextPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:670:6:virtual void screen_flow_2View::showKeyboard3SeedPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:790:6:virtual void screen_flow_2View::showKeyboardPlainTextPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1162:6:virtual void screen_flow_2View::hideKeyboardAliasPressed()	2
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1193:6:virtual void screen_flow_2View::showKeyboardAliasPressed()	2
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:875:6:virtual void screen_flow_2View::hideKeyboardPasswordPressed()	3
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:977:6:virtual void screen_flow_2View::show2KeyboardPasswordPressed()	3
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:926:6:virtual void screen_flow_2View::show1KeyboardPasswordPressed()	3
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1860:6:virtual void screen_flow_2View::btnScrollDownPressed()	7
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1820:6:virtual void screen_flow_2View::btnScrollUpPressed()	7
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1710:6:virtual void screen_flow_2View::btnUpPressed()	13
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1766:6:virtual void screen_flow_2View::btnDownPressed()	13
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:21:1:screen_flow_2View::screen_flow_2View()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:341:6:void screen_flow_2View::changeScreen(uint8_t)	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:352:6:void screen_flow_2View::changeStateNfc(uint8_t)	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:49:6:virtual void screen_flow_2View::tearDownScreen()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1367:6:virtual void screen_flow_2View::menuTextFromNfcPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1461:6:virtual void screen_flow_2View::retryPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1906:6:virtual void screen_flow_2View::btnFromNfcErrorPressed()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1932:6:void screen_flow_2View::setScreenMode()	2
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2034:6:void screen_flow_2View::setScreenLanguage()	2
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2054:6:void screen_flow_2View::generateRecordData1_Alias()	2
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2198:6:void screen_flow_2View::generateRecordData3_Information()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2238:6:void screen_flow_2View::configAESPeripheral(uint8_t*, uint8_t*, uint8_t*)	4
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2075:6:void screen_flow_2View::generateRecordData2_Cryptogram()	15
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2281:6:void screen_flow_2View::checkDataFromNFC()	22
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:363:6:void screen_flow_2View::updateStateNfc(uint16_t)	17
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2435:6:void screen_flow_2View::generateCombinations(int, int, char (*)[45])	6
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2224:6:void screen_flow_2View::generateRecordData4_Multisignature()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2473:1:cpp)	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2473:1:cpp)	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:67:6:virtual void screen_flow_2View::tickEventScreen()	34
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:522:6:virtual void screen_flow_2View::enterKeyboard1SeedPressed()	2
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:606:6:virtual void screen_flow_2View::enterKeyboard2SeedPressed()	4
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:697:6:virtual void screen_flow_2View::enterKeyboard3SeedPressed()	6
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:817:6:virtual void screen_flow_2View::enterKeyboardPlainTextPressed()	5
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1028:6:virtual void screen_flow_2View::enterKeyboardPasswordPressed()	24
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:26:6:virtual void screen_flow_2View::setupScreen()	1
-../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1224:6:virtual void screen_flow_2View::enterKeyboardAliasPressed()	3
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1423:6:virtual void screen_flow_2View::eye1Pressed()	2
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:501:6:virtual void screen_flow_2View::showKeyboard1SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:478:6:virtual void screen_flow_2View::hideKeyboard1SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:560:6:virtual void screen_flow_2View::hideKeyboard2SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:584:6:virtual void screen_flow_2View::showKeyboard2SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:648:6:virtual void screen_flow_2View::hideKeyboard3SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:768:6:virtual void screen_flow_2View::hideKeyboardPlainTextPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:672:6:virtual void screen_flow_2View::showKeyboard3SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:792:6:virtual void screen_flow_2View::showKeyboardPlainTextPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1164:6:virtual void screen_flow_2View::hideKeyboardAliasPressed()	2
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1195:6:virtual void screen_flow_2View::showKeyboardAliasPressed()	2
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:877:6:virtual void screen_flow_2View::hideKeyboardPasswordPressed()	3
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:979:6:virtual void screen_flow_2View::show2KeyboardPasswordPressed()	3
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:928:6:virtual void screen_flow_2View::show1KeyboardPasswordPressed()	3
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1862:6:virtual void screen_flow_2View::btnScrollDownPressed()	7
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1822:6:virtual void screen_flow_2View::btnScrollUpPressed()	7
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1712:6:virtual void screen_flow_2View::btnUpPressed()	13
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1768:6:virtual void screen_flow_2View::btnDownPressed()	13
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:23:1:screen_flow_2View::screen_flow_2View()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:343:6:void screen_flow_2View::changeScreen(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:354:6:void screen_flow_2View::changeStateNfc(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:51:6:virtual void screen_flow_2View::tearDownScreen()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1369:6:virtual void screen_flow_2View::menuTextFromNfcPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1463:6:virtual void screen_flow_2View::retryPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1908:6:virtual void screen_flow_2View::btnFromNfcErrorPressed()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1934:6:void screen_flow_2View::setScreenMode()	2
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2036:6:void screen_flow_2View::setScreenLanguage()	2
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2056:6:void screen_flow_2View::generateRecordData1_Alias()	2
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2307:6:void screen_flow_2View::generateRecordData3_Information()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2347:6:void screen_flow_2View::configAESPeripheral(uint8_t*, uint8_t*)	4
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2077:6:void screen_flow_2View::generateRecordData2_Cryptogram()	27
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2390:6:void screen_flow_2View::checkDataFromNFC()	22
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:365:6:void screen_flow_2View::updateStateNfc(uint16_t)	16
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2544:6:void screen_flow_2View::generateCombinations(int, int, char (*)[45])	8
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2333:6:void screen_flow_2View::generateRecordData4_Multisignature()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2606:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:2606:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:69:6:virtual void screen_flow_2View::tickEventScreen()	34
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:524:6:virtual void screen_flow_2View::enterKeyboard1SeedPressed()	2
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:608:6:virtual void screen_flow_2View::enterKeyboard2SeedPressed()	4
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:699:6:virtual void screen_flow_2View::enterKeyboard3SeedPressed()	5
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:819:6:virtual void screen_flow_2View::enterKeyboardPlainTextPressed()	4
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1030:6:virtual void screen_flow_2View::enterKeyboardPasswordPressed()	24
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:28:6:virtual void screen_flow_2View::setupScreen()	1
+../TouchGFX/gui/src/screen_flow_2_screen/screen_flow_2View.cpp:1226:6:virtual void screen_flow_2View::enterKeyboardAliasPressed()	3

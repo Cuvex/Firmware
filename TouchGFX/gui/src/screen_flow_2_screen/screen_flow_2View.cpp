@@ -18,6 +18,8 @@ extern struct cuvex cuvex;
 extern HASH_HandleTypeDef hhash;
 extern CRYP_HandleTypeDef hcryp;
 
+CRYP_ConfigTypeDef pConf;
+
 screen_flow_2View::screen_flow_2View(): text_type(0), total_words(0), actual_word(0), index_words(0), valid_word(0), actual_pwd(0), total_pwds(1), mandatory_pwds(1), flag_refresh_text_area(0), words_to_encrypt{0}, words_to_check{0}, buff_passphrase{0}, buff_plain_text{0}, pwds{0}, pwd_raw{0}, pwd_sha256{0}, pwd_combined_sha256{0}, header_aes_gcm{0}, iv_aes_gcm{0}
 {
 
@@ -2075,7 +2077,7 @@ void screen_flow_2View::generateRecordData1_Alias()
 void screen_flow_2View::generateRecordData2_Cryptogram()
 {
 	uint8_t text_to_encrypt[SIZE_CRYPT] = {0};
-	uint16_t pwd_raw_length = SIGNATURE_SIZE;
+	uint16_t pwd_raw_length = 0, pos = 0;
 	uint8_t pwd0_length = 0, pwd1_length = 0, pwd2_length = 0, pwd3_length = 0, pwd4_length = 0, pwd5_length = 0;
 
 	memset(cuvex.nfc.tag.new_cryptogram, 0x00, SIZE_CRYPT);
@@ -2088,9 +2090,8 @@ void screen_flow_2View::generateRecordData2_Cryptogram()
 	pwd3_length = strlen((const char *) pwds[3]);
 	pwd4_length = strlen((const char *) pwds[4]);
 	pwd5_length = strlen((const char *) pwds[5]);
-	pwd_raw_length = pwd_raw_length + pwd0_length + pwd1_length + pwd2_length + pwd3_length + pwd4_length + pwd5_length;
+	pwd_raw_length = pwd0_length + pwd1_length + pwd2_length + pwd3_length + pwd4_length + pwd5_length;
 
-	strncat((char*) pwd_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
 	strcat((char*) pwd_raw, (const char*) pwds[0]);
 	strcat((char*) pwd_raw, (const char*) pwds[1]);
 	strcat((char*) pwd_raw, (const char*) pwds[2]);
@@ -2103,8 +2104,14 @@ void screen_flow_2View::generateRecordData2_Cryptogram()
 
 	/*** AES-256 peripheral configuration (password + initialization vector + header) ***/
 	HAL_HASH_MD5_Start(&hhash, cuvex.nfc.tag.new_alias, strlen((char *) cuvex.nfc.tag.new_alias), iv_aes_gcm, HAL_MAX_DELAY);
-	memset(header_aes_gcm, 0x00, sizeof(header_aes_gcm));
-	configAESPeripheral(pwd_sha256, iv_aes_gcm, header_aes_gcm);
+
+	/*** Init count to 0x02 ***/
+	iv_aes_gcm[12]=0x00;
+	iv_aes_gcm[13]=0x00;
+	iv_aes_gcm[14]=0x00;
+	iv_aes_gcm[15]=0x02;
+
+	configAESPeripheral(pwd_sha256, iv_aes_gcm);
 
 	/*** Generating text to encrypt (BIP39 seed, plaintext) + AES-256 Encryption ***/
 	switch(text_type)
@@ -2124,7 +2131,24 @@ void screen_flow_2View::generateRecordData2_Cryptogram()
 		strcat((char*) text_to_encrypt, (const char*) "[passphrase]");
 		strcat((char*) text_to_encrypt, (char*) buff_passphrase);
 
-		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+		/*** Create new text to encrypt under format uint32_t ***/
+		for(uint8_t k=0; k<SIZE_CRYPT_MSG; k++){
+			cuvex.nfc.tag.new_text_to_encrypt[k] = text_to_encrypt[k*4] * 0x1000000 + text_to_encrypt[(k*4)+1] * 0x10000 + text_to_encrypt[(k*4)+2] * 0x100 + text_to_encrypt[(k*4)+3];
+		}
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.new_text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_text_encrypted, HAL_MAX_DELAY);
+
+		/*** NFC SAVES DATA IN UINT8_T FORMAT ***/
+		pos=0;
+		for(uint8_t z=0; z<SIZE_CRYPT_MSG; z++)
+		{
+			cuvex.nfc.tag.new_cryptogram[pos] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x1000000);
+			cuvex.nfc.tag.new_cryptogram[pos+1] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x10000);
+			cuvex.nfc.tag.new_cryptogram[pos+2] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x100);
+			cuvex.nfc.tag.new_cryptogram[pos+3] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z]);
+			pos+=4;
+		}
+
 		break;
 
 	case TEXT_TYPE_SLIP39:
@@ -2138,7 +2162,24 @@ void screen_flow_2View::generateRecordData2_Cryptogram()
 		strcat((char*) text_to_encrypt, (const char*) "[passphrase]");
 		strcat((char*) text_to_encrypt, (char*) buff_passphrase);
 
-		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+		/*** Create new text to encrypt under format uint32_t ***/
+		for(uint8_t k=0; k<(SIZE_CRYPT_MSG); k++){
+			cuvex.nfc.tag.new_text_to_encrypt[k] = text_to_encrypt[k*4] * 0x1000000 + text_to_encrypt[(k*4)+1] * 0x10000 + text_to_encrypt[(k*4)+2] * 0x100 + text_to_encrypt[(k*4)+3];
+		}
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.new_text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_text_encrypted, HAL_MAX_DELAY);
+
+		/*** NFC SAVES DATA IN UINT8_T FORMAT ***/
+		pos=0;
+		for(uint8_t z=0; z<(SIZE_CRYPT_MSG); z++)
+		{
+			cuvex.nfc.tag.new_cryptogram[pos] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x1000000);
+			cuvex.nfc.tag.new_cryptogram[pos+1] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x10000);
+			cuvex.nfc.tag.new_cryptogram[pos+2] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x100);
+			cuvex.nfc.tag.new_cryptogram[pos+3] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z]);
+			pos+=4;
+		}
+
 		break;
 
 	case TEXT_TYPE_XMR:
@@ -2152,21 +2193,73 @@ void screen_flow_2View::generateRecordData2_Cryptogram()
 		strcat((char*) text_to_encrypt, (const char*) "[passphrase]");
 		strcat((char*) text_to_encrypt, (char*) buff_passphrase);
 
-		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+
+		/*** Create new text to encrypt under format uint32_t ***/
+		for(uint8_t k=0; k<(SIZE_CRYPT_MSG); k++){
+			cuvex.nfc.tag.new_text_to_encrypt[k] = text_to_encrypt[k*4] * 0x1000000 + text_to_encrypt[(k*4)+1] * 0x10000 + text_to_encrypt[(k*4)+2] * 0x100 + text_to_encrypt[(k*4)+3];
+		}
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.new_text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_text_encrypted, HAL_MAX_DELAY);
+
+		/*** NFC SAVES DATA IN UINT8_T FORMAT ***/
+		pos=0;
+		for(uint8_t z=0; z<(SIZE_CRYPT_MSG); z++)
+		{
+			cuvex.nfc.tag.new_cryptogram[pos] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x1000000);
+			cuvex.nfc.tag.new_cryptogram[pos+1] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x10000);
+			cuvex.nfc.tag.new_cryptogram[pos+2] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x100);
+			cuvex.nfc.tag.new_cryptogram[pos+3] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z]);
+			pos+=4;
+		}
+
 		break;
 
 	case TEXT_TYPE_PLAINTEXT:
 		strcat((char*) text_to_encrypt, (char*) "[plain-text]");
 		strcat((char*) text_to_encrypt, (char*) buff_plain_text);
 
-		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+		/*** Create new text to encrypt under format uint32_t ***/
+		for(uint8_t k=0; k<(SIZE_CRYPT_MSG); k++){
+			cuvex.nfc.tag.new_text_to_encrypt[k] = text_to_encrypt[k*4] * 0x1000000 + text_to_encrypt[(k*4)+1] * 0x10000 + text_to_encrypt[(k*4)+2] * 0x100 + text_to_encrypt[(k*4)+3];
+		}
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.new_text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_text_encrypted, HAL_MAX_DELAY);
+
+		/*** NFC SAVES DATA IN UINT8_T FORMAT ***/
+		pos=0;
+		for(uint8_t z=0; z<(SIZE_CRYPT_MSG); z++)
+		{
+			cuvex.nfc.tag.new_cryptogram[pos] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x1000000);
+			cuvex.nfc.tag.new_cryptogram[pos+1] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x10000);
+			cuvex.nfc.tag.new_cryptogram[pos+2] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x100);
+			cuvex.nfc.tag.new_cryptogram[pos+3] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z]);
+			pos+=4;
+		}
+
 		break;
 
 	case TEXT_TYPE_FROM_NFC_PLAINTEXT:
 		strcat((char*) text_to_encrypt, (char*) "{plain-text}");
 		strcat((char*) text_to_encrypt, (char*) buff_plain_text);
 
-		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+		/*** Create new text to encrypt under format uint32_t ***/
+		for(uint8_t k=0; k<(SIZE_CRYPT_MSG); k++){
+			cuvex.nfc.tag.new_text_to_encrypt[k] = text_to_encrypt[k*4] * 0x1000000 + text_to_encrypt[(k*4)+1] * 0x10000 + text_to_encrypt[(k*4)+2] * 0x100 + text_to_encrypt[(k*4)+3];
+		}
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.new_text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_text_encrypted, HAL_MAX_DELAY);
+
+		/*** NFC SAVES DATA IN UINT8_T FORMAT ***/
+		pos=0;
+		for(uint8_t z=0; z<(SIZE_CRYPT_MSG); z++)
+		{
+			cuvex.nfc.tag.new_cryptogram[pos] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x1000000);
+			cuvex.nfc.tag.new_cryptogram[pos+1] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x10000);
+			cuvex.nfc.tag.new_cryptogram[pos+2] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x100);
+			cuvex.nfc.tag.new_cryptogram[pos+3] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z]);
+			pos+=4;
+		}
+
 		break;
 
 	case TEXT_TYPE_FROM_NFC_BIP39:
@@ -2184,7 +2277,23 @@ void screen_flow_2View::generateRecordData2_Cryptogram()
 		strcat((char*) text_to_encrypt, (const char*) "{pubkey}");
 		strcat((char*) text_to_encrypt, (char*) cuvex.nfc.tag.from_nfc_public_key);
 
-		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_cryptogram, HAL_MAX_DELAY);
+		/*** Create new text to encrypt under format uint32_t ***/
+		for(uint8_t k=0; k<SIZE_CRYPT_MSG; k++){
+			cuvex.nfc.tag.new_text_to_encrypt[k] = text_to_encrypt[k*4] * 0x1000000 + text_to_encrypt[(k*4)+1] * 0x10000 + text_to_encrypt[(k*4)+2] * 0x100 + text_to_encrypt[(k*4)+3];
+		}
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) cuvex.nfc.tag.new_text_to_encrypt, SIZE_CRYPT_MSG, (uint32_t *) cuvex.nfc.tag.new_text_encrypted, HAL_MAX_DELAY);
+
+		/*** NFC SAVES DATA IN UINT8_T FORMAT ***/
+		pos=0;
+		for(uint8_t z=0; z<SIZE_CRYPT_MSG; z++)
+		{
+			cuvex.nfc.tag.new_cryptogram[pos] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x1000000);
+			cuvex.nfc.tag.new_cryptogram[pos+1] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x10000);
+			cuvex.nfc.tag.new_cryptogram[pos+2] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z] / 0x100);
+			cuvex.nfc.tag.new_cryptogram[pos+3] = (uint8_t) (cuvex.nfc.tag.new_text_encrypted[z]);
+			pos+=4;
+		}
 		break;
 	}
 }
@@ -2235,33 +2344,33 @@ void screen_flow_2View::generateRecordData4_Multisignature()
  ***** Parameters 	: N/A
  ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_2View::configAESPeripheral(uint8_t keyAES[], uint8_t ivAES[], uint8_t headerAES[])
+void screen_flow_2View::configAESPeripheral(uint8_t keyAES[], uint8_t ivAES[])
 {
+	__ALIGN_BEGIN uint32_t HeaderAES_aux[1] __ALIGN_END = {0x00000000};
+
+	for(uint8_t a=0; a<8; a++){
+		cuvex.nfc.tag.new_pKeyAES[a] = keyAES[a*4] * 0x1000000 + keyAES[(a*4)+1] * 0x10000 + keyAES[(a*4)+2] * 0x100 + keyAES[(a*4)+3];
+	}
+
+	for(uint8_t b=0; b<4; b++){
+		cuvex.nfc.tag.new_pInitVectAES[b] = ivAES[b*4] * 0x1000000 + ivAES[(b*4)+1] * 0x10000 + ivAES[(b*4)+2] * 0x100 + ivAES[(b*4)+3];
+	}
+
 	HAL_CRYP_DeInit(&hcryp);
 
-	for(int i = 0; i < 8; i++){
-		hcryp.Init.pKey[i] = ((keyAES[i*4] << 24) | (keyAES[i*4+1] << 16) | (keyAES[i*4+2] << 8) | keyAES[i*4+3]);
-	}
-
-	for(int i = 0; i < 4; i++){
-		hcryp.Init.pInitVect[i] = ((ivAES[i*4] << 24) | (ivAES[i*4+1] << 16) | (ivAES[i*4+2] << 8) | ivAES[i*4+3]);
-	}
-
-	for(int i = 0; i < 1; i++){
-		hcryp.Init.Header[i] = ((headerAES[i*4] << 24) | (headerAES[i*4+1] << 16) | (headerAES[i*4+2] << 8) | headerAES[i*4+3]);
-	}
-
-	hcryp.Instance = AES;
 	hcryp.Init.DataType = CRYP_NO_SWAP;
 	hcryp.Init.KeySize = CRYP_KEYSIZE_256B;
+	hcryp.Init.pKey = (uint32_t *) cuvex.nfc.tag.new_pKeyAES;
+	hcryp.Init.pInitVect = (uint32_t *) cuvex.nfc.tag.new_pInitVectAES;
 	hcryp.Init.Algorithm = CRYP_AES_GCM_GMAC;
+	hcryp.Init.Header = (uint32_t *) HeaderAES_aux;
 	hcryp.Init.HeaderSize = 1;
 	hcryp.Init.DataWidthUnit = CRYP_DATAWIDTHUNIT_WORD;
 	hcryp.Init.HeaderWidthUnit = CRYP_HEADERWIDTHUNIT_WORD;
 	hcryp.Init.KeyIVConfigSkip = CRYP_KEYIVCONFIG_ALWAYS;
 	hcryp.Init.KeyMode = CRYP_KEYMODE_NORMAL;
 
-	if(HAL_CRYP_Init(&hcryp) != HAL_OK){
+	if (HAL_CRYP_Init(&hcryp) != HAL_OK){
 		Error_Handler();
 	}
 }
@@ -2435,30 +2544,54 @@ void screen_flow_2View::checkDataFromNFC()
 void screen_flow_2View::generateCombinations(int start, int index, char comb_buffer[][KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE])
 {
 	uint8_t pwd_combined_raw[10*KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE] = {0};
-	uint8_t aux_criptogram[32] = {0};
+	uint32_t pwd_sha256_st_format[8] = {0};
+	uint32_t aux_cryptogram_st_format[8] = {0};
+	uint8_t aux_cryptogram[32] = {0};
 	static int count_bytes = 0;
 
 	if(index == mandatory_pwds)
 	{
 		/*** Obtaining the raw password combination ***/
-		strncat((char*) pwd_combined_raw, (const char*) cuvex.signature_buffer, SIGNATURE_SIZE);
 		for(int i=0; i<mandatory_pwds; i++){
 			strcat((char *) pwd_combined_raw, (char *) comb_buffer[i]);
 		}
 
 		/*** Obtaining the encrypted password combination (SHA-256) ***/
-		HAL_HASHEx_SHA256_Start(&hhash, pwd_combined_raw, strlen((char *) pwd_combined_raw) + SIGNATURE_SIZE, pwd_combined_sha256, HAL_MAX_DELAY);
+		HAL_HASHEx_SHA256_Start(&hhash, pwd_combined_raw, strlen((char *) pwd_combined_raw), pwd_combined_sha256, HAL_MAX_DELAY);
 
 		/*** AES-256 peripheral configuration (password + initialization vector + header) ***/
 		HAL_HASH_MD5_Start(&hhash, cuvex.nfc.tag.new_alias, strlen((char *) cuvex.nfc.tag.new_alias), iv_aes_gcm, HAL_MAX_DELAY);
-		memset(header_aes_gcm, 0x00, sizeof(header_aes_gcm));
-		configAESPeripheral(pwd_combined_sha256, iv_aes_gcm, header_aes_gcm);
+
+		/*** Init count to 0x02 ***/
+		iv_aes_gcm[12]=0x00;
+		iv_aes_gcm[13]=0x00;
+		iv_aes_gcm[14]=0x00;
+		iv_aes_gcm[15]=0x02;
+
+		configAESPeripheral(pwd_combined_sha256, iv_aes_gcm);
 
 		/*** Generating text to encrypt (BIP39 seed, plaintext) + AES-256 Encryption ***/
-		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) pwd_sha256, 32, (uint32_t *) aux_criptogram, HAL_MAX_DELAY);
+		/*** Create new text to encrypt under format uint32_t ***/
+		for(uint8_t k=0; k<8; k++){
+			pwd_sha256_st_format[k] = pwd_sha256[k*4] * 0x1000000 + pwd_sha256[(k*4)+1] * 0x10000 + pwd_sha256[(k*4)+2] * 0x100 + pwd_sha256[(k*4)+3];
+		}
+
+		HAL_CRYP_Encrypt(&hcryp, (uint32_t *) pwd_sha256_st_format, 8, (uint32_t *) aux_cryptogram_st_format, HAL_MAX_DELAY);
 
 		/*** Concatenate combination in buffer ***/
-		memcpy(cuvex.nfc.tag.new_multisignature + count_bytes, aux_criptogram, 32);
+		/*** NFC SAVES DATA IN UINT8_T FORMAT ***/
+		uint16_t pos=0;
+		for(uint8_t z=0; z<8; z++)
+		{
+			aux_cryptogram[pos] = (uint8_t) (aux_cryptogram_st_format[z] / 0x1000000);
+			aux_cryptogram[pos+1] = (uint8_t) (aux_cryptogram_st_format[z] / 0x10000);
+			aux_cryptogram[pos+2] = (uint8_t) (aux_cryptogram_st_format[z] / 0x100);
+			aux_cryptogram[pos+3] = (uint8_t) (aux_cryptogram_st_format[z]);
+			pos+=4;
+		}
+
+		/*** Concatenate combination in buffer ***/
+		memcpy(cuvex.nfc.tag.new_multisignature + count_bytes, aux_cryptogram, 32);
 		count_bytes = count_bytes + 32;
 
 		/*** Function return ***/

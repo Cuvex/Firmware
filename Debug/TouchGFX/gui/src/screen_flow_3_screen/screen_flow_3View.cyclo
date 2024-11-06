@@ -17,7 +17,7 @@
 ../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:490:6:virtual void screen_flow_3View::moreTimePressed()	1
 ../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:428:6:virtual void screen_flow_3View::decryptPressed()	4
 ../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:683:6:virtual void screen_flow_3View::btnError1Pressed()	2
-../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:189:6:virtual void screen_flow_3View::updateStateNfc(uint16_t)	9
+../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:189:6:virtual void screen_flow_3View::updateStateNfc(uint16_t)	8
 ../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:502:6:virtual void screen_flow_3View::eyePressed()	2
 ../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1011:6:virtual void screen_flow_3View::setScreenLanguage()	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
@@ -33,12 +33,13 @@
 ../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:56:6:virtual void screen_flow_3View::tickEventScreen()	13
 ../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:21:1:screen_flow_3View::screen_flow_3View()	1
 ../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1074:6:void screen_flow_3View::configAESPeripheral(uint8_t*, uint8_t*, uint8_t*, uint8_t)	5
-../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1394:6:bool screen_flow_3View::checkDecryptedText(uint8_t*)	7
-../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1132:6:void screen_flow_3View::decryptSecret(uint8_t*)	16
-../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1252:6:void screen_flow_3View::decryptSecretWithCombinations(uint8_t*)	17
-../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1439:6:void screen_flow_3View::passwordSuccess(uint8_t*)	73
-../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1784:6:void screen_flow_3View::passwordWrong()	3
-../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1820:1:cpp)	1
-../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1820:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1126:6:void screen_flow_3View::configAESPeripheral_v2(uint8_t*, uint8_t*)	4
+../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1676:6:bool screen_flow_3View::checkDecryptedText(uint8_t*)	7
+../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1170:6:void screen_flow_3View::decryptSecret(uint8_t*)	30
+../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1401:6:void screen_flow_3View::decryptSecretWithCombinations(uint8_t*)	34
+../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:1721:6:void screen_flow_3View::passwordSuccess(uint8_t*)	73
+../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:2066:6:void screen_flow_3View::passwordWrong()	3
+../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:2102:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:2102:1:cpp)	1
 ../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:26:6:virtual void screen_flow_3View::setupScreen()	1
 ../TouchGFX/gui/src/screen_flow_3_screen/screen_flow_3View.cpp:330:6:virtual void screen_flow_3View::enterKeyboardPressed()	12
