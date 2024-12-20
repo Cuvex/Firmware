@@ -1,0 +1,73 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+# Toolchain: GNU Tools for STM32 (12.3.rel1)
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+CPP_SRCS += \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_pressed.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_relesed.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_pressed.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_released.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_pressed.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_released.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_pressed.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_released.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_pressed.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_released.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_pressed.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_released.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_pressed.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_released.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_pressed.cpp \
+../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_released.cpp 
+
+OBJS += \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_pressed.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_relesed.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_pressed.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_released.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_pressed.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_released.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_pressed.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_released.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_pressed.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_released.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_pressed.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_released.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_pressed.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_released.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_pressed.o \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_released.o 
+
+CPP_DEPS += \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_pressed.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_relesed.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_pressed.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_released.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_pressed.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_released.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_pressed.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_released.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_pressed.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_released.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_pressed.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_released.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_pressed.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_released.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_pressed.d \
+./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_released.d 
+
+
+# Each subdirectory must supply rules for building sources it contributes
+TouchGFX/generated/images/src/keyboard_images/alpha_numeric/%.o TouchGFX/generated/images/src/keyboard_images/alpha_numeric/%.su TouchGFX/generated/images/src/keyboard_images/alpha_numeric/%.cyclo: ../TouchGFX/generated/images/src/keyboard_images/alpha_numeric/%.cpp TouchGFX/generated/images/src/keyboard_images/alpha_numeric/subdir.mk
+	arm-none-eabi-g++ "$<" -mcpu=cortex-m33 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U5A9xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I../TouchGFX/App -I../TouchGFX/target/generated -I../TouchGFX/target -I../Middlewares/Third_Party/FreeRTOS/Source/include/ -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/ -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/ -I../Middlewares/Third_Party/CMSIS/RTOS2/Include/ -I../Middlewares/ST/touchgfx/framework/include -I../TouchGFX/generated/fonts/include -I../TouchGFX/generated/gui_generated/include -I../TouchGFX/generated/images/include -I../TouchGFX/generated/texts/include -I../TouchGFX/generated/videos/include -I../TouchGFX/gui/include -I../Drivers/BSP/Components/ft5336 -I../Drivers/BSP/Components/Common -I../Middlewares/ST/rfal/Inc -I../Middlewares/ST/ndef/Inc/poller -I../Middlewares/ST/ndef/Inc/message -I../Drivers/BSP/Components/ST25R95 -I../TouchGFX/gui/include/gui/widgets/qrcode -I../Middlewares/Third_Party/mbed-crypto/include -I../Middlewares/Third_Party/mbed-crypto/include/mbedtls -I../Middlewares/Third_Party/mbed-crypto/include/psa -I../Middlewares/Third_Party/mbed-crypto/library -I../Middlewares/ST/touchgfx_components/gpu2d/NemaGFX/include -I../Middlewares/ST/touchgfx_components/gpu2d/TouchGFXNema/include -O1 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -femit-class-debug-always -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "$@"
+
+clean: clean-TouchGFX-2f-generated-2f-images-2f-src-2f-keyboard_images-2f-alpha_numeric
+
+clean-TouchGFX-2f-generated-2f-images-2f-src-2f-keyboard_images-2f-alpha_numeric:
+	-$(RM) ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_pressed.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_pressed.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_pressed.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_pressed.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_relesed.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_relesed.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_relesed.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_1_relesed.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_pressed.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_pressed.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_pressed.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_pressed.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_released.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_released.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_released.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_delete_2_released.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_pressed.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_pressed.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_pressed.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_pressed.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_released.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_released.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_released.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_hide_released.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_pressed.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_pressed.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_pressed.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_pressed.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_released.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_released.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_released.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_key_released.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_pressed.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_pressed.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_pressed.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_pressed.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_released.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_released.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_released.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_mode_released.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_pressed.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_pressed.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_pressed.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_pressed.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_released.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_released.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_released.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_1_released.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_pressed.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_pressed.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_pressed.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_pressed.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_released.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_released.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_released.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_shift_2_released.su
+	-$(RM) ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_pressed.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_pressed.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_pressed.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_pressed.su ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_released.cyclo ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_released.d ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_released.o ./TouchGFX/generated/images/src/keyboard_images/alpha_numeric/image___keyboardAlphaNum_space_released.su
+
+.PHONY: clean-TouchGFX-2f-generated-2f-images-2f-src-2f-keyboard_images-2f-alpha_numeric
+

@@ -15,16 +15,18 @@
 #include <gui/screen_init_screen/screen_initPresenter.hpp>
 #include <gui/screen_menu_screen/screen_menuView.hpp>
 #include <gui/screen_menu_screen/screen_menuPresenter.hpp>
-#include <gui/screen_flow_1_screen/screen_flow_1View.hpp>
-#include <gui/screen_flow_1_screen/screen_flow_1Presenter.hpp>
-#include <gui/screen_flow_2_screen/screen_flow_2View.hpp>
-#include <gui/screen_flow_2_screen/screen_flow_2Presenter.hpp>
-#include <gui/screen_flow_3_screen/screen_flow_3View.hpp>
-#include <gui/screen_flow_3_screen/screen_flow_3Presenter.hpp>
-#include <gui/screen_flow_4_screen/screen_flow_4View.hpp>
-#include <gui/screen_flow_4_screen/screen_flow_4Presenter.hpp>
-#include <gui/screen_flow_5_screen/screen_flow_5View.hpp>
-#include <gui/screen_flow_5_screen/screen_flow_5Presenter.hpp>
+#include <gui/screen_flow_encrypt_screen/screen_flow_encryptView.hpp>
+#include <gui/screen_flow_encrypt_screen/screen_flow_encryptPresenter.hpp>
+#include <gui/screen_flow_decrypt_screen/screen_flow_decryptView.hpp>
+#include <gui/screen_flow_decrypt_screen/screen_flow_decryptPresenter.hpp>
+#include <gui/screen_flow_clone_screen/screen_flow_cloneView.hpp>
+#include <gui/screen_flow_clone_screen/screen_flow_clonePresenter.hpp>
+#include <gui/screen_flow_wallet_screen/screen_flow_walletView.hpp>
+#include <gui/screen_flow_wallet_screen/screen_flow_walletPresenter.hpp>
+#include <gui/screen_flow_psbt_screen/screen_flow_psbtView.hpp>
+#include <gui/screen_flow_psbt_screen/screen_flow_psbtPresenter.hpp>
+#include <gui/screen_flow_settings_screen/screen_flow_settingsView.hpp>
+#include <gui/screen_flow_settings_screen/screen_flow_settingsPresenter.hpp>
 
 using namespace touchgfx;
 
@@ -72,67 +74,67 @@ void FrontendApplicationBase::gotoscreen_menuScreenNoTransitionImpl()
     touchgfx::makeTransition<screen_menuView, screen_menuPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
-// screen_flow_1
+// screen_flow_encrypt
 
-void FrontendApplicationBase::gotoscreen_flow_1ScreenNoTransition()
+void FrontendApplicationBase::gotoscreen_flow_encryptScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_1ScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_encryptScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoscreen_flow_1ScreenNoTransitionImpl()
+void FrontendApplicationBase::gotoscreen_flow_encryptScreenNoTransitionImpl()
 {
-    touchgfx::makeTransition<screen_flow_1View, screen_flow_1Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<screen_flow_encryptView, screen_flow_encryptPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
-// screen_flow_2
+// screen_flow_decrypt
 
-void FrontendApplicationBase::gotoscreen_flow_2ScreenNoTransition()
+void FrontendApplicationBase::gotoscreen_flow_decryptScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_2ScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_decryptScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoscreen_flow_2ScreenNoTransitionImpl()
+void FrontendApplicationBase::gotoscreen_flow_decryptScreenNoTransitionImpl()
 {
-    touchgfx::makeTransition<screen_flow_2View, screen_flow_2Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<screen_flow_decryptView, screen_flow_decryptPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
-// screen_flow_3
+// screen_flow_clone
 
-void FrontendApplicationBase::gotoscreen_flow_3ScreenNoTransition()
+void FrontendApplicationBase::gotoscreen_flow_cloneScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_3ScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_cloneScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoscreen_flow_3ScreenNoTransitionImpl()
+void FrontendApplicationBase::gotoscreen_flow_cloneScreenNoTransitionImpl()
 {
-    touchgfx::makeTransition<screen_flow_3View, screen_flow_3Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<screen_flow_cloneView, screen_flow_clonePresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
-// screen_flow_4
+// screen_flow_wallet
 
-void FrontendApplicationBase::gotoscreen_flow_4ScreenNoTransition()
+void FrontendApplicationBase::gotoscreen_flow_walletScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_4ScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_walletScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoscreen_flow_4ScreenNoTransitionImpl()
+void FrontendApplicationBase::gotoscreen_flow_walletScreenNoTransitionImpl()
 {
-    touchgfx::makeTransition<screen_flow_4View, screen_flow_4Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<screen_flow_walletView, screen_flow_walletPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
-// screen_flow_5
+// screen_flow_settings
 
-void FrontendApplicationBase::gotoscreen_flow_5ScreenNoTransition()
+void FrontendApplicationBase::gotoscreen_flow_settingsScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_5ScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_settingsScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoscreen_flow_5ScreenNoTransitionImpl()
+void FrontendApplicationBase::gotoscreen_flow_settingsScreenNoTransitionImpl()
 {
-    touchgfx::makeTransition<screen_flow_5View, screen_flow_5Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<screen_flow_settingsView, screen_flow_settingsPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

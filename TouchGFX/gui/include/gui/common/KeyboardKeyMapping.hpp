@@ -20,7 +20,7 @@ using namespace touchgfx;
 /************************************************************************************************************************************************************************************************************************
  ******************************************************************************* LAYOUT 1 - Keyboard alpha/num (alpha) **************************************************************************************************
  ************************************************************************************************************************************************************************************************************************/
-static const Keyboard::KeyMapping keyMappingsAlphaLower[27] =
+static const Keyboard::KeyMapping keyMappingsLayout1Lower[27] =
 {
 		{ 1, 'q'},  // q
 		{ 2, 'w'},  // w
@@ -51,13 +51,13 @@ static const Keyboard::KeyMapping keyMappingsAlphaLower[27] =
 		{27, ' '},  // space
 };
 
-static const Keyboard::KeyMappingList keyMappingListAlphaLower =
+static const Keyboard::KeyMappingList keyMappingListLayout1Lower =
 {
-		keyMappingsAlphaLower,
+		keyMappingsLayout1Lower,
 		27
 };
 
-static const Keyboard::KeyMapping keyMappingsAlphaUpper[27] =
+static const Keyboard::KeyMapping keyMappingsLayout1Upper[27] =
 {
 		{ 1, 'Q'},  // Q
 		{ 2, 'W'},  // W
@@ -88,16 +88,16 @@ static const Keyboard::KeyMapping keyMappingsAlphaUpper[27] =
 		{27, ' '} 	// space
 };
 
-static const Keyboard::KeyMappingList keyMappingListAlphaUpper =
+static const Keyboard::KeyMappingList keyMappingListLayout1Upper =
 {
-		keyMappingsAlphaUpper,
+		keyMappingsLayout1Upper,
 		27
 };
 
 /************************************************************************************************************************************************************************************************************************
  ***************************************************************************** LAYOUT 2 - Keyboard alpha/num (num+simb) *************************************************************************************************
  ************************************************************************************************************************************************************************************************************************/
-static const Keyboard::KeyMapping keyMappingsNumLower[26] =
+static const Keyboard::KeyMapping keyMappingsLayout2Lower[26] =
 {
 		{ 1,  '1'},  // 1
 		{ 2,  '2'},  // 2
@@ -127,13 +127,13 @@ static const Keyboard::KeyMapping keyMappingsNumLower[26] =
 		{26,  ' '}   // space
 };
 
-static const Keyboard::KeyMappingList keyMappingListNumLower =
+static const Keyboard::KeyMappingList keyMappingListLayout2Lower =
 {
-		keyMappingsNumLower,
+		keyMappingsLayout2Lower,
 		26
 };
 
-static const Keyboard::KeyMapping keyMappingsNumUpper[26] =
+static const Keyboard::KeyMapping keyMappingsLayout2Upper[26] =
 {
 		{1,  '['},  // [
 		{2,  ']'},  // ]
@@ -163,72 +163,91 @@ static const Keyboard::KeyMapping keyMappingsNumUpper[26] =
 		{26, ' '}   // space
 };
 
-static const Keyboard::KeyMappingList keyMappingListNumUpper =
+static const Keyboard::KeyMappingList keyMappingListLayout2Upper =
 {
-		keyMappingsNumUpper,
+		keyMappingsLayout2Upper,
 		26
 };
 
 /************************************************************************************************************************************************************************************************************************
- **************************************************************************************** LAYOUT 3 - Keyboard num *******************************************************************************************************
+ ******************************************************************************* LAYOUT 3 - Keyboard alpha/num (alpha -> lower) *****************************************************************************************
  ************************************************************************************************************************************************************************************************************************/
-static const Keyboard::KeyMapping keyMappingsKeyboardNum[10] =
+static const Keyboard::KeyMapping keyMappingLayout3[26] =
 {
-		{ 1,  '1'}, // 1
-		{ 2,  '2'}, // 2
-		{ 3,  '3'}, // 3
-		{ 4,  '4'}, // 4
-		{ 5,  '5'}, // 5
-		{ 6,  '6'}, // 6
-		{ 7,  '7'}, // 7
-		{ 8,  '8'}, // 8
-		{ 9,  '9'},	// 9
-		{10,  '0'} 	// 0
+		{ 1, 'q'},  // q
+		{ 2, 'w'},  // w
+		{ 3, 'e'},  // e
+		{ 4, 'r'},  // r
+		{ 5, 't'},  // t
+		{ 6, 'y'},  // y
+		{ 7, 'u'},  // u
+		{ 8, 'i'},  // i
+		{ 9, 'o'},  // o
+		{10, 'p'},  // p
+		{11, 'a'},  // a
+		{12, 's'},  // s
+		{13, 'd'},  // d
+		{14, 'f'},  // f
+		{15, 'g'},  // g
+		{16, 'h'},  // h
+		{17, 'j'},  // j
+		{18, 'k'},  // k
+		{19, 'l'},  // l
+		{20, 'z'},  // z
+		{21, 'x'},  // x
+		{22, 'c'},  // c
+		{23, 'v'},  // v
+		{24, 'b'},  // b
+		{25, 'n'},  // n
+		{26, 'm'}   // m
 };
 
-static const Keyboard::KeyMappingList keyMappingListKeyboardNum =
+static const Keyboard::KeyMappingList keyMappingListLayout3 =
 {
-		keyMappingsKeyboardNum,
+		keyMappingLayout3,
+		26
+};
+
+/************************************************************************************************************************************************************************************************************************
+ **************************************************************************************** LAYOUT 4 - Keyboard num *******************************************************************************************************
+ ************************************************************************************************************************************************************************************************************************/
+static const Keyboard::KeyMapping keyMappingsLayout4[10] =
+{
+		{1, '1'}, 	// 1
+		{2, '2'}, 	// 2
+		{3, '3'}, 	// 3
+		{4, '4'}, 	// 4
+		{5, '5'}, 	// 5
+		{6, '6'}, 	// 6
+		{7, '7'}, 	// 7
+		{8, '8'}, 	// 8
+		{9,	'9'},	// 9
+		{10,'0'} 	// 0
+};
+
+static const Keyboard::KeyMappingList keyMappingListLayout4 =
+{
+		keyMappingsLayout4,
 		10
 };
 
 /************************************************************************************************************************************************************************************************************************
- *************************************************************************************** LAYOUT 4 - Keyboard upper ******************************************************************************************************
+ **************************************************************************************** LAYOUT 5 - Keyboard num short *************************************************************************************************
  ************************************************************************************************************************************************************************************************************************/
-static const Keyboard::KeyMapping keyMappingSeed[26] =
+static const Keyboard::KeyMapping keyMappingsLayout5[6] =
 {
-		{ 1, 'q'},  // Q
-		{ 2, 'w'},  // W
-		{ 3, 'e'},  // E
-		{ 4, 'r'},  // R
-		{ 5, 't'},  // T
-		{ 6, 'y'},  // Y
-		{ 7, 'u'},  // U
-		{ 8, 'i'},  // I
-		{ 9, 'o'},  // O
-		{10, 'p'},  // P
-		{11, 'a'},  // A
-		{12, 's'},  // S
-		{13, 'd'},  // D
-		{14, 'f'},  // F
-		{15, 'g'},  // G
-		{16, 'h'},  // H
-		{17, 'j'},  // J
-		{18, 'k'},  // K
-		{19, 'l'},  // L
-		{20, 'z'},  // Z
-		{21, 'x'},  // X
-		{22, 'c'},  // C
-		{23, 'v'},  // V
-		{24, 'b'},  // B
-		{25, 'n'},  // N
-		{26, 'm'}   // M
+		{1, '1'}, 	// 1
+		{2, '2'}, 	// 2
+		{3, '3'}, 	// 3
+		{4, '4'}, 	// 4
+		{5, '5'}, 	// 5
+		{6, '6'} 	// 6
 };
 
-static const Keyboard::KeyMappingList keyMappingListSeed =
+static const Keyboard::KeyMappingList keyMappingListLayout5 =
 {
-		keyMappingSeed,
-		26
+		keyMappingsLayout5,
+		6
 };
 
 #endif

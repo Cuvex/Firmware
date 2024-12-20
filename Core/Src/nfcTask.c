@@ -355,117 +355,12 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 		break;
 
 		/*******************************************************************************************************************************************/
-	case NFC_TAG_READ_WRITE_FLOW_1:
-
-		/*** Obtaining the UID (new reading) ***/
-		memcpy(cuvex.nfc.tag.new_uid, hex2Str(pNfcDevice->nfcid, pNfcDevice->nfcidLen), 14);
-
-		/*** READ + WRITE --> if tag1 equals tag2 ***/
-		if(strstr((char *) cuvex.nfc.tag.uid, (char *) cuvex.nfc.tag.new_uid) != 0x00)
-		{
-			/*** READ --> if tag2 not formatted ***/
-			if(pInfo->state != NDEF_STATE_INITIALIZED)
-			{
-				/*** Obtaining the message in Raw format ***/
-				if(ndefPollerReadRawMessage(pNdefCtx, raw_message_buf, sizeof(raw_message_buf), &raw_message_len) != ERR_NONE){
-					return ERROR;
-				}
-
-				/*** Decoding the message in Raw format ***/
-				buf_const_raw_message.buffer = raw_message_buf;
-				buf_const_raw_message.length = raw_message_len;
-
-				if(ndefMessageDecode(&buf_const_raw_message, &message) != ERR_NONE){
-					return ERROR;
-				}
-
-				/*** Retrieval of information stored on the NFC tag ***/
-				if(ndefMessageGetInfoT2T_NTAG216(&message) == ERROR){
-					cuvex.nfc.tag.encripted	= false;
-				}
-
-#ifdef DEBUG_NFC_PRINTF
-				printf("[NDEF-flow1] -> Read success...\r\n");
-#endif
-			}
-			else{
-				cuvex.nfc.tag.encripted	= false;
-			}
-
-			/*** WRITE --> if tag_2 does not have a cryptogram ***/
-			if(cuvex.nfc.tag.encripted == false)
-			{
-				/*** Buffers --> Initialization of read buffers and assignment of new values ***/
-				memset(cuvex.nfc.tag.alias, 0x00, sizeof(cuvex.nfc.tag.alias));
-				memset(cuvex.nfc.tag.cryptogram, 0x00, sizeof(cuvex.nfc.tag.cryptogram));
-				memset(cuvex.nfc.tag.information, 0x00, sizeof(cuvex.nfc.tag.information));
-				memcpy(cuvex.nfc.tag.alias, cuvex.nfc.tag.new_alias, sizeof(cuvex.nfc.tag.alias));
-
-				/*** Text/record 1 --> Initialization and encoding ***/
-				buf_lan_code_1.buffer = (uint8_t *) "A:";
-				buf_lan_code_1.length = 2;
-				buf_record_1.buffer   = cuvex.nfc.tag.alias;
-				buf_record_1.length   = sizeof(cuvex.nfc.tag.alias);
-
-				err |= ndefRtdText(&text_1, TEXT_ENCODING_UTF8, &buf_lan_code_1, &buf_record_1);
-				err |= ndefRtdTextToRecord(&text_1, &record_1);
-
-				/*** Text/record 2 --> Initialization and encoding ***/
-				buf_lan_code_2.buffer = (uint8_t *) "C:";
-				buf_lan_code_2.length = 2;
-				buf_record_2.buffer   = cuvex.nfc.tag.cryptogram;
-				buf_record_2.length   = sizeof(cuvex.nfc.tag.cryptogram);
-
-				err |= ndefRtdText(&text_2, TEXT_ENCODING_UTF8, &buf_lan_code_2, &buf_record_2);
-				err |= ndefRtdTextToRecord(&text_2, &record_2);
-
-				/*** Text/record 3 --> Initialization and encoding ***/
-				buf_lan_code_3.buffer = (uint8_t *) "I:";
-				buf_lan_code_3.length = 2;
-				buf_record_3.buffer   = cuvex.nfc.tag.information;
-				buf_record_3.length   = sizeof(cuvex.nfc.tag.information);
-
-				err |= ndefRtdText(&text_3, TEXT_ENCODING_UTF8, &buf_lan_code_3, &buf_record_3);
-				err |= ndefRtdTextToRecord(&text_3, &record_3);
-
-				/*** Message --> Initialization and appending of records ***/
-				err  = ndefMessageInit(&message);
-				err |= ndefMessageAppend(&message, &record_1);
-				err |= ndefMessageAppend(&message, &record_2);
-				err |= ndefMessageAppend(&message, &record_3);
-
-				/*** Raw Buffer --> Encoding and writing of the message ***/
-				buf_raw_message.buffer = raw_message_buf;
-				buf_raw_message.length = sizeof(raw_message_buf);
-
-				err |= ndefMessageEncode(&message, &buf_raw_message);
-
-				if(err != ERR_NONE){
-					return ERROR;
-				}
-
-				err = ndefPollerWriteRawMessage(pNdefCtx, buf_raw_message.buffer, buf_raw_message.length);
-
-				if(err != ERR_NONE){
-					return ERROR;
-				}
-
-#ifdef DEBUG_NFC_PRINTF
-				printf("[NDEF-flow1] -> Write success...\r\n");
-#endif
-
-				cuvex.nfc.tag.flag_readed_writed_flow_1 = true;
-			}
-		}
+	case NFC_TAG_READ_WRITE_FLOW_ENCRYPT_T4T_8K:
+		cuvex.nfc.tag.flag_readed_writed = true;
 		break;
 
 		/*******************************************************************************************************************************************/
-	case NFC_TAG_READ_WRITE_FLOW_2_T4T_8K:
-		cuvex.nfc.tag.flag_readed_writed_flow_2 = true;
-		break;
-
-		/*******************************************************************************************************************************************/
-	case NFC_TAG_READ_WRITE_FLOW_2:
+	case NFC_TAG_READ_WRITE_FLOW_ENCRYPT:
 
 		/*** Obtaining the UID (first read) ***/
 		memcpy(cuvex.nfc.tag.uid, hex2Str(pNfcDevice->nfcid, pNfcDevice->nfcidLen), 14);
@@ -492,7 +387,7 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 			}
 
 #ifdef DEBUG_NFC_PRINTF
-			printf("[NDEF-flow2] -> Read success...\r\n");
+			printf("[NDEF-flow-encrypt] -> Read success...\r\n");
 #endif
 		}
 		else{
@@ -560,20 +455,20 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 			}
 
 #ifdef DEBUG_NFC_PRINTF
-			printf("[NDEF-flow2] -> Write success...\r\n");
+			printf("[NDEF-flow-encrypt] -> Write success...\r\n");
 #endif
 		}
 
-		cuvex.nfc.tag.flag_readed_writed_flow_2 = true;
+		cuvex.nfc.tag.flag_readed_writed = true;
 		break;
 
 		/*******************************************************************************************************************************************/
-	case NFC_TAG_READ_WRITE_FLOW_4_T4T_8K:
-		cuvex.nfc.tag.flag_readed_writed_flow_4 = true;
+	case NFC_TAG_READ_WRITE_FLOW_CLONE_T4T_8K:
+		cuvex.nfc.tag.flag_readed_writed = true;
 		break;
 
 		/*******************************************************************************************************************************************/
-	case NFC_TAG_READ_WRITE_FLOW_4:
+	case NFC_TAG_READ_WRITE_FLOW_CLONE:
 
 		/*** Obtaining the UID (first read) ***/
 		memcpy(cuvex.nfc.tag.new_uid, hex2Str(pNfcDevice->nfcid, pNfcDevice->nfcidLen), 14);
@@ -608,7 +503,7 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 				}
 
 #ifdef DEBUG_NFC_PRINTF
-				printf("[NDEF-flow4] -> Read success...\r\n");
+				printf("[NDEF-flow-clone] -> Read success...\r\n");
 #endif
 			}
 			else{
@@ -677,11 +572,11 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 				}
 
 #ifdef DEBUG_NFC_PRINTF
-				printf("[NDEF-flow4] -> Write success...\r\n");
+				printf("[NDEF-flow-clone] -> Write success...\r\n");
 #endif
 			}
 
-			cuvex.nfc.tag.flag_readed_writed_flow_4 = true;
+			cuvex.nfc.tag.flag_readed_writed = true;
 		}
 		break;
 	}
@@ -784,124 +679,8 @@ int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx
 		break;
 
 		/*******************************************************************************************************************************************/
-	case NFC_TAG_READ_WRITE_FLOW_1:
-
-		/*** Obtaining the UID (new reading) ***/
-		memcpy(cuvex.nfc.tag.new_uid, hex2Str(pNfcDevice->nfcid, pNfcDevice->nfcidLen), 14);
-
-		/*** READ + WRITE --> if tag1 equals tag2 ***/
-		if(strstr((char *) cuvex.nfc.tag.uid, (char *) cuvex.nfc.tag.new_uid) != 0x00)
-		{
-			/*** READ --> if tag2 not formatted ***/
-			if(pInfo->state != NDEF_STATE_INITIALIZED)
-			{
-				/*** Obtaining the message in Raw format ***/
-				if(ndefPollerReadRawMessage(pNdefCtx, raw_message_buf, sizeof(raw_message_buf), &raw_message_len) != ERR_NONE){
-					return ERROR;
-				}
-
-				/*** Decoding the message in Raw format ***/
-				buf_const_raw_message.buffer = raw_message_buf;
-				buf_const_raw_message.length = raw_message_len;
-
-				if(ndefMessageDecode(&buf_const_raw_message, &message) != ERR_NONE){
-					return ERROR;
-				}
-
-				/*** Retrieval of information stored on the NFC tag ***/
-				if(ndefMessageGetInfoT4T_8K(&message) == ERROR){
-					cuvex.nfc.tag.encripted	= false;
-				}
-
-#ifdef DEBUG_NFC_PRINTF
-				printf("[NDEF-flow1] -> Read success...\r\n");
-#endif
-			}
-			else{
-				cuvex.nfc.tag.encripted	= false;
-			}
-
-			/*** WRITE --> if tag_2 does not have a cryptogram ***/
-			if(cuvex.nfc.tag.encripted == false)
-			{
-				/*** Buffers --> Initialization of read buffers and assignment of new values ***/
-				memset(cuvex.nfc.tag.alias, 0x00, sizeof(cuvex.nfc.tag.alias));
-				memset(cuvex.nfc.tag.cryptogram, 0x00, sizeof(cuvex.nfc.tag.cryptogram));
-				memset(cuvex.nfc.tag.information, 0x00, sizeof(cuvex.nfc.tag.information));
-				memset(cuvex.nfc.tag.multisignature, 0x00, sizeof(cuvex.nfc.tag.multisignature));
-				memcpy(cuvex.nfc.tag.alias, cuvex.nfc.tag.new_alias, sizeof(cuvex.nfc.tag.alias));
-
-				/*** Text/record 1 --> Initialization and encoding ***/
-				buf_lan_code_1.buffer = (uint8_t *) "A:";
-				buf_lan_code_1.length = 2;
-				buf_record_1.buffer   = cuvex.nfc.tag.alias;
-				buf_record_1.length   = sizeof(cuvex.nfc.tag.alias);
-
-				err |= ndefRtdText(&text_1, TEXT_ENCODING_UTF8, &buf_lan_code_1, &buf_record_1);
-				err |= ndefRtdTextToRecord(&text_1, &record_1);
-
-				/*** Text/record 2 --> Initialization and encoding ***/
-				buf_lan_code_2.buffer = (uint8_t *) "C:";
-				buf_lan_code_2.length = 2;
-				buf_record_2.buffer   = cuvex.nfc.tag.cryptogram;
-				buf_record_2.length   = sizeof(cuvex.nfc.tag.cryptogram);
-
-				err |= ndefRtdText(&text_2, TEXT_ENCODING_UTF8, &buf_lan_code_2, &buf_record_2);
-				err |= ndefRtdTextToRecord(&text_2, &record_2);
-
-				/*** Text/record 3 --> Initialization and encoding ***/
-				buf_lan_code_3.buffer = (uint8_t *) "I:";
-				buf_lan_code_3.length = 2;
-				buf_record_3.buffer   = cuvex.nfc.tag.information;
-				buf_record_3.length   = sizeof(cuvex.nfc.tag.information);
-
-				err |= ndefRtdText(&text_3, TEXT_ENCODING_UTF8, &buf_lan_code_3, &buf_record_3);
-				err |= ndefRtdTextToRecord(&text_3, &record_3);
-
-				/*** Text/record 4 --> Initialization and encoding ***/
-				buf_lan_code_4.buffer = (uint8_t *) "M:";
-				buf_lan_code_4.length = 2;
-				buf_record_4.buffer   = cuvex.nfc.tag.multisignature;
-				buf_record_4.length   = sizeof(cuvex.nfc.tag.multisignature);
-
-				err |= ndefRtdText(&text_4, TEXT_ENCODING_UTF8, &buf_lan_code_4, &buf_record_4);
-				err |= ndefRtdTextToRecord(&text_4, &record_4);
-
-				/*** Message --> Initialization and appending of records ***/
-				err  = ndefMessageInit(&message);
-				err |= ndefMessageAppend(&message, &record_1);
-				err |= ndefMessageAppend(&message, &record_2);
-				err |= ndefMessageAppend(&message, &record_3);
-				err |= ndefMessageAppend(&message, &record_4);
-
-				/*** Raw Buffer --> Encoding and writing of the message ***/
-				buf_raw_message.buffer = raw_message_buf;
-				buf_raw_message.length = sizeof(raw_message_buf);
-
-				err |= ndefMessageEncode(&message, &buf_raw_message);
-
-				if(err != ERR_NONE){
-					return ERROR;
-				}
-
-				err = ndefPollerWriteRawMessage(pNdefCtx, buf_raw_message.buffer, buf_raw_message.length);
-
-				if(err != ERR_NONE){
-					return ERROR;
-				}
-
-#ifdef DEBUG_NFC_PRINTF
-				printf("[NDEF-flow1] -> Write success...\r\n");
-#endif
-
-				cuvex.nfc.tag.flag_readed_writed_flow_1 = true;
-			}
-		}
-		break;
-
-		/*******************************************************************************************************************************************/
-	case NFC_TAG_READ_WRITE_FLOW_2_T4T_8K:
-	case NFC_TAG_READ_WRITE_FLOW_2:
+	case NFC_TAG_READ_WRITE_FLOW_ENCRYPT_T4T_8K:
+	case NFC_TAG_READ_WRITE_FLOW_ENCRYPT:
 
 		/*** Obtaining the UID (first read) ***/
 		memcpy(cuvex.nfc.tag.uid, hex2Str(pNfcDevice->nfcid, pNfcDevice->nfcidLen), 14);
@@ -928,7 +707,7 @@ int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx
 			}
 
 #ifdef DEBUG_NFC_PRINTF
-			printf("[NDEF-flow2] -> Read success...\r\n");
+			printf("[NDEF-flow-encrypt] -> Read success...\r\n");
 #endif
 		}
 		else{
@@ -1008,16 +787,16 @@ int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx
 			}
 
 #ifdef DEBUG_NFC_PRINTF
-			printf("[NDEF-flow2] -> Write success...\r\n");
+			printf("[NDEF-flow-encrypt] -> Write success...\r\n");
 #endif
 		}
 
-		cuvex.nfc.tag.flag_readed_writed_flow_2 = true;
+		cuvex.nfc.tag.flag_readed_writed = true;
 		break;
 
 		/*******************************************************************************************************************************************/
-	case NFC_TAG_READ_WRITE_FLOW_4_T4T_8K:
-	case NFC_TAG_READ_WRITE_FLOW_4:
+	case NFC_TAG_READ_WRITE_FLOW_CLONE_T4T_8K:
+	case NFC_TAG_READ_WRITE_FLOW_CLONE:
 
 		/*** Obtaining the UID (first read) ***/
 		memcpy(cuvex.nfc.tag.new_uid, hex2Str(pNfcDevice->nfcid, pNfcDevice->nfcidLen), 14);
@@ -1053,7 +832,7 @@ int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx
 				}
 
 #ifdef DEBUG_NFC_PRINTF
-				printf("[NDEF-flow4] -> Read success...\r\n");
+				printf("[NDEF-flow-clone] -> Read success...\r\n");
 #endif
 			}
 			else{
@@ -1134,11 +913,11 @@ int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx
 				}
 
 #ifdef DEBUG_NFC_PRINTF
-				printf("[NDEF-flow4] -> Write success...\r\n");
+				printf("[NDEF-flow-clone] -> Write success...\r\n");
 #endif
 			}
 
-			cuvex.nfc.tag.flag_readed_writed_flow_4 = true;
+			cuvex.nfc.tag.flag_readed_writed = true;
 		}
 		break;
 	}

@@ -13,8 +13,8 @@
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
-#include <gui/containers/keyboardDeviceAlias_container.hpp>
-#include <gui/containers/textArea_container.hpp>
+#include <gui/containers/keyboard_generic_deviceAlias.hpp>
+#include <gui/containers/textArea.hpp>
 
 class screen_initViewBase : public touchgfx::View<screen_initPresenter>
 {
@@ -86,9 +86,9 @@ protected:
     touchgfx::Image check_language;
     touchgfx::TextArea text_language;
     touchgfx::Container s1_2_typeDeviceAlias;
-    keyboardDeviceAlias_container keyboard_device_alias;
-    textArea_container keyboard_text_area;
+    keyboard_generic_deviceAlias keyboard_device_alias;
     touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_hide;
+    textArea keyboard_text_area;
     touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_show;
     touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_enter;
     touchgfx::TextAreaWithOneWildcard keyboard_text_typed;

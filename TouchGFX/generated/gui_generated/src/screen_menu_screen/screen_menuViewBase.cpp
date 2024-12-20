@@ -3,6 +3,7 @@
 /*********************************************************************************/
 #include <gui_generated/screen_menu_screen/screen_menuViewBase.hpp>
 #include <touchgfx/Color.hpp>
+#include <images/BitmapDatabase.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 
 screen_menuViewBase::screen_menuViewBase() :
@@ -17,55 +18,65 @@ screen_menuViewBase::screen_menuViewBase() :
     add(background);
 
     menu.setPosition(0, 0, 320, 240);
-    btn_1_admin.setBoxWithBorderPosition(0, 0, 320, 30);
-    btn_1_admin.setBorderSize(0);
-    btn_1_admin.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
-    btn_1_admin.setText(TypedText(T_SM_BTN1_ADMIN));
-    btn_1_admin.setTextPosition(0, 5, 320, 30);
-    btn_1_admin.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    btn_1_admin.setAction(flexButtonCallback);
-    btn_1_admin.setPosition(0, 45, 320, 30);
-    menu.add(btn_1_admin);
+    btn_encrypt.setBoxWithBorderPosition(0, 0, 100, 100);
+    btn_encrypt.setBorderSize(0);
+    btn_encrypt.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(229, 229, 229), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
+    btn_encrypt.setIconBitmaps(Bitmap(BITMAP_MAIN_MENU_ENCRYPT_ID), Bitmap(BITMAP_MAIN_MENU_ENCRYPT_ID));
+    btn_encrypt.setIconXY(30, 19);
+    btn_encrypt.setText(TypedText(T_SM_BTN_ENCRYPT));
+    btn_encrypt.setTextPosition(0, 67, 100, 100);
+    btn_encrypt.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_encrypt.setAction(flexButtonCallback);
+    btn_encrypt.setPosition(6, 18, 100, 100);
+    menu.add(btn_encrypt);
 
-    btn_2_encrypt.setBoxWithBorderPosition(0, 0, 320, 30);
-    btn_2_encrypt.setBorderSize(0);
-    btn_2_encrypt.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
-    btn_2_encrypt.setText(TypedText(T_SM_BTN2_ENCRYPT));
-    btn_2_encrypt.setTextPosition(0, 5, 320, 30);
-    btn_2_encrypt.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    btn_2_encrypt.setAction(flexButtonCallback);
-    btn_2_encrypt.setPosition(0, 75, 320, 30);
-    menu.add(btn_2_encrypt);
+    btn_decrypt.setBoxWithBorderPosition(0, 0, 100, 100);
+    btn_decrypt.setBorderSize(0);
+    btn_decrypt.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(229, 229, 229), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
+    btn_decrypt.setIconBitmaps(Bitmap(BITMAP_MAIN_MENU_DECRYPT_ID), Bitmap(BITMAP_MAIN_MENU_DECRYPT_ID));
+    btn_decrypt.setIconXY(30, 19);
+    btn_decrypt.setText(TypedText(T_SM_BTN_DECRYPT));
+    btn_decrypt.setTextPosition(0, 67, 100, 100);
+    btn_decrypt.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_decrypt.setAction(flexButtonCallback);
+    btn_decrypt.setPosition(110, 18, 100, 100);
+    menu.add(btn_decrypt);
 
-    btn_3_decrypt.setBoxWithBorderPosition(0, 0, 320, 30);
-    btn_3_decrypt.setBorderSize(0);
-    btn_3_decrypt.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
-    btn_3_decrypt.setText(TypedText(T_SM_BTN3_DECRYPT));
-    btn_3_decrypt.setTextPosition(0, 5, 320, 30);
-    btn_3_decrypt.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    btn_3_decrypt.setAction(flexButtonCallback);
-    btn_3_decrypt.setPosition(0, 105, 320, 30);
-    menu.add(btn_3_decrypt);
+    btn_clone.setBoxWithBorderPosition(0, 0, 100, 100);
+    btn_clone.setBorderSize(0);
+    btn_clone.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(229, 229, 229), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
+    btn_clone.setIconBitmaps(Bitmap(BITMAP_MAIN_MENU_CLONE_ID), Bitmap(BITMAP_MAIN_MENU_CLONE_ID));
+    btn_clone.setIconXY(30, 19);
+    btn_clone.setText(TypedText(T_SM_BTN_CLONE));
+    btn_clone.setTextPosition(0, 67, 100, 100);
+    btn_clone.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_clone.setAction(flexButtonCallback);
+    btn_clone.setPosition(214, 18, 100, 100);
+    menu.add(btn_clone);
 
-    btn_4_clone.setBoxWithBorderPosition(0, 0, 320, 30);
-    btn_4_clone.setBorderSize(0);
-    btn_4_clone.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
-    btn_4_clone.setText(TypedText(T_SM_BTN4_CLONE));
-    btn_4_clone.setTextPosition(0, 5, 320, 30);
-    btn_4_clone.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    btn_4_clone.setAction(flexButtonCallback);
-    btn_4_clone.setPosition(0, 135, 320, 30);
-    menu.add(btn_4_clone);
+    btn_wallet.setBoxWithBorderPosition(0, 0, 100, 100);
+    btn_wallet.setBorderSize(0);
+    btn_wallet.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(229, 229, 229), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
+    btn_wallet.setIconBitmaps(Bitmap(BITMAP_MAIN_MENU_WALLET_ID), Bitmap(BITMAP_MAIN_MENU_WALLET_ID));
+    btn_wallet.setIconXY(30, 19);
+    btn_wallet.setText(TypedText(T_SM_BTN_WALLET));
+    btn_wallet.setTextPosition(0, 67, 100, 100);
+    btn_wallet.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_wallet.setAction(flexButtonCallback);
+    btn_wallet.setPosition(6, 122, 100, 100);
+    menu.add(btn_wallet);
 
-    btn_5_settings.setBoxWithBorderPosition(0, 0, 320, 30);
-    btn_5_settings.setBorderSize(0);
-    btn_5_settings.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
-    btn_5_settings.setText(TypedText(T_SM_BTN5_SETTINGS));
-    btn_5_settings.setTextPosition(0, 5, 320, 30);
-    btn_5_settings.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    btn_5_settings.setAction(flexButtonCallback);
-    btn_5_settings.setPosition(0, 165, 320, 30);
-    menu.add(btn_5_settings);
+    btn_settings.setBoxWithBorderPosition(0, 0, 100, 100);
+    btn_settings.setBorderSize(0);
+    btn_settings.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(229, 229, 229), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
+    btn_settings.setIconBitmaps(Bitmap(BITMAP_MAIN_MENU_SETTINGS_ID), Bitmap(BITMAP_MAIN_MENU_SETTINGS_ID));
+    btn_settings.setIconXY(30, 19);
+    btn_settings.setText(TypedText(T_SM_BTN_SETTINGS));
+    btn_settings.setTextPosition(0, 67, 100, 100);
+    btn_settings.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_settings.setAction(flexButtonCallback);
+    btn_settings.setPosition(110, 122, 100, 100);
+    menu.add(btn_settings);
 
     add(menu);
 }
@@ -82,39 +93,39 @@ void screen_menuViewBase::setupScreen()
 
 void screen_menuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
 {
-    if (&src == &btn_1_admin)
-    {
-        //adminButtonPressed
-        //When btn_1_admin clicked change screen to screen_flow_1
-        //Go to screen_flow_1 with no screen transition
-        application().gotoscreen_flow_1ScreenNoTransition();
-    }
-    if (&src == &btn_2_encrypt)
+    if (&src == &btn_encrypt)
     {
         //encryptButtonPressed
-        //When btn_2_encrypt clicked change screen to screen_flow_2
-        //Go to screen_flow_2 with no screen transition
-        application().gotoscreen_flow_2ScreenNoTransition();
+        //When btn_encrypt clicked change screen to screen_flow_encrypt
+        //Go to screen_flow_encrypt with no screen transition
+        application().gotoscreen_flow_encryptScreenNoTransition();
     }
-    if (&src == &btn_3_decrypt)
+    if (&src == &btn_decrypt)
     {
         //decryptButtonPressed
-        //When btn_3_decrypt clicked change screen to screen_flow_3
-        //Go to screen_flow_3 with no screen transition
-        application().gotoscreen_flow_3ScreenNoTransition();
+        //When btn_decrypt clicked change screen to screen_flow_decrypt
+        //Go to screen_flow_decrypt with no screen transition
+        application().gotoscreen_flow_decryptScreenNoTransition();
     }
-    if (&src == &btn_4_clone)
+    if (&src == &btn_clone)
     {
         //cloneButtonPressed
-        //When btn_4_clone clicked change screen to screen_flow_4
-        //Go to screen_flow_4 with no screen transition
-        application().gotoscreen_flow_4ScreenNoTransition();
+        //When btn_clone clicked change screen to screen_flow_clone
+        //Go to screen_flow_clone with no screen transition
+        application().gotoscreen_flow_cloneScreenNoTransition();
     }
-    if (&src == &btn_5_settings)
+    if (&src == &btn_wallet)
+    {
+        //walletButtonPressed
+        //When btn_wallet clicked change screen to screen_flow_wallet
+        //Go to screen_flow_wallet with no screen transition
+        application().gotoscreen_flow_walletScreenNoTransition();
+    }
+    if (&src == &btn_settings)
     {
         //settingsButtonPressed
-        //When btn_5_settings clicked change screen to screen_flow_5
-        //Go to screen_flow_5 with no screen transition
-        application().gotoscreen_flow_5ScreenNoTransition();
+        //When btn_settings clicked change screen to screen_flow_settings
+        //Go to screen_flow_settings with no screen transition
+        application().gotoscreen_flow_settingsScreenNoTransition();
     }
 }

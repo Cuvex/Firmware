@@ -1,0 +1,64 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1419:6:virtual void screen_flow_encryptView::successPressed()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/include/gui/screen_flow_encrypt_screen/screen_flow_encryptView.hpp:25:10:screen_flow_encryptView::~screen_flow_encryptView()	1
+../TouchGFX/gui/include/gui/screen_flow_encrypt_screen/screen_flow_encryptView.hpp:25:10:virtual screen_flow_encryptView::~screen_flow_encryptView()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:23:1:screen_flow_encryptView::screen_flow_encryptView()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:350:6:void screen_flow_encryptView::changeScreen(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:361:6:void screen_flow_encryptView::changeStateNfc(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:58:6:virtual void screen_flow_encryptView::tearDownScreen()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:2065:6:void screen_flow_encryptView::generateRecordData1_Alias()	2
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:2350:6:void screen_flow_encryptView::generateRecordData3_Information()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:2390:6:void screen_flow_encryptView::configAESPeripheral(uint8_t*, uint8_t*)	4
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:2086:6:void screen_flow_encryptView::generateRecordData2_Cryptogram()	31
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:2587:6:void screen_flow_encryptView::generateCombinations(int, int, char (*)[45])	8
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:2376:6:void screen_flow_encryptView::generateRecordData4_Multisignature()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:2649:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:2649:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:485:6:virtual void screen_flow_encryptView::hideKeyboard1SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:508:6:virtual void screen_flow_encryptView::showKeyboard1SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:531:6:virtual void screen_flow_encryptView::enterKeyboard1SeedPressed()	2
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:567:6:virtual void screen_flow_encryptView::hideKeyboard2SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:591:6:virtual void screen_flow_encryptView::showKeyboard2SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:615:6:virtual void screen_flow_encryptView::enterKeyboard2SeedPressed()	4
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:655:6:virtual void screen_flow_encryptView::hideKeyboard3SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:679:6:virtual void screen_flow_encryptView::showKeyboard3SeedPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:706:6:virtual void screen_flow_encryptView::enterKeyboard3SeedPressed()	5
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:775:6:virtual void screen_flow_encryptView::hideKeyboardPlainTextPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:799:6:virtual void screen_flow_encryptView::showKeyboardPlainTextPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1037:6:virtual void screen_flow_encryptView::enterKeyboardPasswordPressed()	24
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1233:6:virtual void screen_flow_encryptView::enterKeyboardAliasPressed()	3
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1274:6:virtual void screen_flow_encryptView::menuBip39Pressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1300:6:virtual void screen_flow_encryptView::menuSlip39Pressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1326:6:virtual void screen_flow_encryptView::menuXmrPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1352:6:virtual void screen_flow_encryptView::menuPlainTextPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1376:6:virtual void screen_flow_encryptView::menuTextFromNfcPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1402:6:virtual void screen_flow_encryptView::encryptPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1430:6:virtual void screen_flow_encryptView::eye1Pressed()	2
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1450:6:virtual void screen_flow_encryptView::eye2Pressed()	2
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1470:6:virtual void screen_flow_encryptView::retryPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1495:6:virtual void screen_flow_encryptView::passwordSuccessPressed()	5
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1550:6:virtual void screen_flow_encryptView::multisignedYesPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1570:6:virtual void screen_flow_encryptView::multisignedNoPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1587:6:virtual void screen_flow_encryptView::multisignedPlusPressed()	6
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1626:6:virtual void screen_flow_encryptView::multisignedMinusPressed()	6
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1665:6:virtual void screen_flow_encryptView::multisignedSelectPressed()	6
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1917:6:virtual void screen_flow_encryptView::btnFromNfcErrorPressed()	1
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1943:6:void screen_flow_encryptView::setScreenMode()	2
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:2045:6:void screen_flow_encryptView::setScreenLanguage()	2
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:28:6:virtual void screen_flow_encryptView::setupScreen()	2
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:76:6:virtual void screen_flow_encryptView::tickEventScreen()	34
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:826:6:virtual void screen_flow_encryptView::enterKeyboardPlainTextPressed()	4
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:884:6:virtual void screen_flow_encryptView::hideKeyboardPasswordPressed()	3
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:935:6:virtual void screen_flow_encryptView::show1KeyboardPasswordPressed()	3
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:986:6:virtual void screen_flow_encryptView::show2KeyboardPasswordPressed()	3
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1171:6:virtual void screen_flow_encryptView::hideKeyboardAliasPressed()	2
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1202:6:virtual void screen_flow_encryptView::showKeyboardAliasPressed()	2
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1719:6:virtual void screen_flow_encryptView::btnUpPressed()	13
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1775:6:virtual void screen_flow_encryptView::btnDownPressed()	13
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1829:6:virtual void screen_flow_encryptView::btnScrollUpPressed()	7
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:1870:6:virtual void screen_flow_encryptView::btnScrollDownPressed()	7
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:2433:6:void screen_flow_encryptView::checkDataFromNFC()	22
+../TouchGFX/gui/src/screen_flow_encrypt_screen/screen_flow_encryptView.cpp:372:6:void screen_flow_encryptView::updateStateNfc(uint16_t)	16

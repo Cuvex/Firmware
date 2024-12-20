@@ -1,0 +1,10 @@
+../TouchGFX/gui/include/gui/screen_flow_clone_screen/screen_flow_clonePresenter.hpp:41:13:screen_flow_clonePresenter::~screen_flow_clonePresenter()	1
+../TouchGFX/gui/src/screen_flow_clone_screen/screen_flow_clonePresenter.cpp:23:6:virtual void screen_flow_clonePresenter::activate()	1
+../TouchGFX/gui/src/screen_flow_clone_screen/screen_flow_clonePresenter.cpp:28:6:virtual void screen_flow_clonePresenter::deactivate()	1
+../TouchGFX/gui/src/screen_flow_clone_screen/screen_flow_clonePresenter.cpp:60:6:virtual void screen_flow_clonePresenter::updateStateNfc(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_flow_clone_screen/screen_flow_clonePresenter.hpp:41:13:virtual screen_flow_clonePresenter::~screen_flow_clonePresenter()	1
+../TouchGFX/gui/src/screen_flow_clone_screen/screen_flow_clonePresenter.cpp:40:6:virtual void screen_flow_clonePresenter::changeScreen(uint16_t)	1
+../TouchGFX/gui/src/screen_flow_clone_screen/screen_flow_clonePresenter.cpp:48:6:virtual void screen_flow_clonePresenter::changeStateNfc(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_flow_clone_screen/screen_flow_clonePresenter.hpp:41:13:virtual void* screen_flow_clonePresenter::_ZThn4_N26screen_flow_clonePresenterD1Ev()	1
+../TouchGFX/gui/include/gui/screen_flow_clone_screen/screen_flow_clonePresenter.hpp:41:13:virtual void* screen_flow_clonePresenter::_ZThn4_N26screen_flow_clonePresenterD0Ev()	1
+../TouchGFX/gui/src/screen_flow_clone_screen/screen_flow_clonePresenter.cpp:17:1:screen_flow_clonePresenter::screen_flow_clonePresenter(screen_flow_cloneView&)	1

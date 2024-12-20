@@ -1,0 +1,10 @@
+../Middlewares/Third_Party/mbed-crypto/library/aes.c:383:13:aes_gen_tables	6
+../Middlewares/Third_Party/mbed-crypto/library/aes.c:497:6:mbedtls_aes_init	1
+../Middlewares/Third_Party/mbed-crypto/library/aes.c:504:6:mbedtls_aes_free	2
+../Middlewares/Third_Party/mbed-crypto/library/aes.c:589:5:mbedtls_aes_setkey_enc	13
+../Middlewares/Third_Party/mbed-crypto/library/aes.c:691:5:mbedtls_aes_setkey_dec	5
+../Middlewares/Third_Party/mbed-crypto/library/aes.c:881:5:mbedtls_internal_aes_encrypt	3
+../Middlewares/Third_Party/mbed-crypto/library/aes.c:940:6:mbedtls_aes_encrypt	1
+../Middlewares/Third_Party/mbed-crypto/library/aes.c:952:5:mbedtls_internal_aes_decrypt	3
+../Middlewares/Third_Party/mbed-crypto/library/aes.c:1011:6:mbedtls_aes_decrypt	1
+../Middlewares/Third_Party/mbed-crypto/library/aes.c:1046:5:mbedtls_aes_crypt_ecb	2

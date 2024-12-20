@@ -1,0 +1,45 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:55:6:virtual void screen_flow_walletView::tearDownScreen()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:72:6:virtual void screen_flow_walletView::changeScreen(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:813:6:virtual void screen_flow_walletView::btnEncryptPressed()	2
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:840:6:virtual void screen_flow_walletView::btnRestartPressed()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/include/gui/screen_flow_wallet_screen/screen_flow_walletView.hpp:32:10:screen_flow_walletView::~screen_flow_walletView()	1
+../TouchGFX/gui/include/gui/screen_flow_wallet_screen/screen_flow_walletView.hpp:32:10:virtual screen_flow_walletView::~screen_flow_walletView()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:20:1:screen_flow_walletView::screen_flow_walletView()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:1068:6:void screen_flow_walletView::getBinarySequence()	6
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:1039:6:void screen_flow_walletView::getWord24()	4
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:1115:5:int screen_flow_walletView::getSeedBIP39()	3
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:1154:5:int screen_flow_walletView::getPrivateKey()	5
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:1192:5:int screen_flow_walletView::getPublicKey()	5
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:1327:6:void screen_flow_walletView::base58check_encode(uint8_t*, int, uint8_t*)	9
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:1238:6:void screen_flow_walletView::getZprvKey()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:1283:6:void screen_flow_walletView::getZpubKey()	2
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:1370:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:1370:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:1015:6:void screen_flow_walletView::resetCoinDiceValues(uint8_t, uint8_t)	3
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:967:6:void screen_flow_walletView::getCurrentWord()	8
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:941:6:void screen_flow_walletView::changeCurrentDice()	5
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:89:6:virtual void screen_flow_walletView::tickEventScreen()	14
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:179:6:virtual void screen_flow_walletView::btnInfoWalletPressed()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:195:6:virtual void screen_flow_walletView::btnDiceSelectPressed()	37
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:390:6:virtual void screen_flow_walletView::btnHeadsPressed()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:411:6:virtual void screen_flow_walletView::btnTailsPressed()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:578:6:virtual void screen_flow_walletView::hideKeyboard2Pressed()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:602:6:virtual void screen_flow_walletView::showKeyboard2Pressed()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:629:6:virtual void screen_flow_walletView::enterKeyboard2Pressed()	8
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:719:6:virtual void screen_flow_walletView::btnUpPassphrasePressed()	6
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:749:6:virtual void screen_flow_walletView::btnDownPassphrasePressed()	6
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:785:6:virtual void screen_flow_walletView::btnScrollUpPressed()	2
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:799:6:virtual void screen_flow_walletView::btnScrollDownPressed()	2
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:857:6:void screen_flow_walletView::setScreenMode()	2
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:915:6:void screen_flow_walletView::setScreenLanguage()	2
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:24:6:virtual void screen_flow_walletView::setupScreen()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:327:6:virtual void screen_flow_walletView::btnGetWordsPressed()	5
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:432:6:virtual void screen_flow_walletView::hideKeyboard1Pressed()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:456:6:virtual void screen_flow_walletView::showKeyboard1Dice1Pressed()	2
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:485:6:virtual void screen_flow_walletView::showKeyboard1Dice2Pressed()	2
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:514:6:virtual void screen_flow_walletView::showKeyboard1Dice3Pressed()	2
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletView.cpp:543:6:virtual void screen_flow_walletView::showKeyboard1Dice4Pressed()	2

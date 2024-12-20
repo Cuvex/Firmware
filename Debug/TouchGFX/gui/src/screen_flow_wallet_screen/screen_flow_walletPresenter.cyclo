@@ -1,0 +1,13 @@
+../TouchGFX/gui/include/gui/model/ModelListener.hpp:32:15:virtual void ModelListener::updateStateNfc(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_flow_wallet_screen/screen_flow_walletPresenter.hpp:41:13:screen_flow_walletPresenter::~screen_flow_walletPresenter()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletPresenter.cpp:23:6:virtual void screen_flow_walletPresenter::activate()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletPresenter.cpp:28:6:virtual void screen_flow_walletPresenter::deactivate()	1
+../TouchGFX/gui/include/gui/screen_flow_wallet_screen/screen_flow_walletPresenter.hpp:41:13:virtual screen_flow_walletPresenter::~screen_flow_walletPresenter()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletPresenter.cpp:40:6:virtual void screen_flow_walletPresenter::changeScreen(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_flow_wallet_screen/screen_flow_walletPresenter.hpp:41:13:virtual void* screen_flow_walletPresenter::_ZThn4_N27screen_flow_walletPresenterD1Ev()	1
+../TouchGFX/gui/include/gui/screen_flow_wallet_screen/screen_flow_walletPresenter.hpp:41:13:virtual void* screen_flow_walletPresenter::_ZThn4_N27screen_flow_walletPresenterD0Ev()	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletPresenter.cpp:17:1:screen_flow_walletPresenter::screen_flow_walletPresenter(screen_flow_walletView&)	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletPresenter.cpp:43:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_wallet_screen/screen_flow_walletPresenter.cpp:43:1:cpp)	1

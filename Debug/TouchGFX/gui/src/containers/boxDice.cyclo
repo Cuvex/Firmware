@@ -1,0 +1,24 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:121:18:virtual void touchgfx::Drawable::invalidateContent() const	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:315:18:virtual void touchgfx::Drawable::setX(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:327:18:virtual void touchgfx::Drawable::setY(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:356:18:virtual void touchgfx::Drawable::setWidth(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:368:18:virtual void touchgfx::Drawable::setHeight(int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:378:18:virtual void touchgfx::Drawable::childGeometryChanged()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:389:18:virtual void touchgfx::Drawable::handleClickEvent(const touchgfx::ClickEvent&)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:401:18:virtual void touchgfx::Drawable::handleGestureEvent(const touchgfx::GestureEvent&)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:490:18:virtual void touchgfx::Drawable::handleDragEvent(const touchgfx::DragEvent&)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:501:18:virtual void touchgfx::Drawable::handleTickEvent()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:588:18:virtual void touchgfx::Drawable::moveTo(int16_t, int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/Container.hpp:165:23:virtual touchgfx::Drawable* touchgfx::Container::getFirstChild()	1
+../TouchGFX/gui/src/containers/boxDice.cpp:106:6:virtual void boxDice::setId(uint8_t)	1
+../TouchGFX/gui/src/containers/boxDice.cpp:117:6:virtual void boxDice::setBoxColour(uint8_t, uint8_t, uint8_t)	1
+../TouchGFX/gui/src/containers/boxDice.cpp:133:6:virtual void boxDice::setHighlightColour(uint8_t, uint8_t, uint8_t)	1
+../TouchGFX/gui/src/containers/boxDice.cpp:149:6:virtual void boxDice::setTextColour(uint8_t, uint8_t, uint8_t)	1
+../TouchGFX/gui/src/containers/boxDice.cpp:160:6:virtual void boxDice::setHighlight()	1
+../TouchGFX/gui/src/containers/boxDice.cpp:171:6:virtual void boxDice::resetHighlight()	1
+../TouchGFX/gui/src/containers/boxDice.cpp:42:6:virtual void boxDice::btnDicePressed()	12
+../TouchGFX/gui/src/containers/boxDice.cpp:182:6:virtual void boxDice::setValue(uint8_t)	2
+../TouchGFX/gui/include/gui/containers/boxDice.hpp:23:13:boxDice::~boxDice()	1
+../TouchGFX/gui/include/gui/containers/boxDice.hpp:23:13:virtual boxDice::~boxDice()	1
+../TouchGFX/gui/src/containers/boxDice.cpp:20:1:boxDice::boxDice()	1
+../TouchGFX/gui/src/containers/boxDice.cpp:25:6:virtual void boxDice::initialize()	1

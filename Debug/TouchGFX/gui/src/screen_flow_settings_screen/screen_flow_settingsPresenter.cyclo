@@ -1,0 +1,10 @@
+../TouchGFX/gui/include/gui/model/ModelListener.hpp:32:15:virtual void ModelListener::updateStateNfc(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_flow_settings_screen/screen_flow_settingsPresenter.hpp:41:13:screen_flow_settingsPresenter::~screen_flow_settingsPresenter()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsPresenter.cpp:23:6:virtual void screen_flow_settingsPresenter::activate()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsPresenter.cpp:28:6:virtual void screen_flow_settingsPresenter::deactivate()	1
+../TouchGFX/gui/include/gui/screen_flow_settings_screen/screen_flow_settingsPresenter.hpp:41:13:virtual screen_flow_settingsPresenter::~screen_flow_settingsPresenter()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsPresenter.cpp:40:6:virtual void screen_flow_settingsPresenter::changeScreen(uint16_t)	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsPresenter.cpp:48:6:virtual void screen_flow_settingsPresenter::changeFlash(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_flow_settings_screen/screen_flow_settingsPresenter.hpp:41:13:virtual void* screen_flow_settingsPresenter::_ZThn4_N29screen_flow_settingsPresenterD1Ev()	1
+../TouchGFX/gui/include/gui/screen_flow_settings_screen/screen_flow_settingsPresenter.hpp:41:13:virtual void* screen_flow_settingsPresenter::_ZThn4_N29screen_flow_settingsPresenterD0Ev()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsPresenter.cpp:17:1:screen_flow_settingsPresenter::screen_flow_settingsPresenter(screen_flow_settingsView&)	1

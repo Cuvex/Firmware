@@ -121,15 +121,15 @@ screen_initViewBase::screen_initViewBase() :
     keyboard_device_alias.setVisible(false);
     s1_2_typeDeviceAlias.add(keyboard_device_alias);
 
-    keyboard_text_area.setXY(45, 120);
-    s1_2_typeDeviceAlias.add(keyboard_text_area);
-
-    keyboard_btn_hide.setIconBitmaps(Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_RELEASE_ID), Bitmap(BITMAP_KEYBOARDALPHANUM_HIDE_PRESSED_ID));
+    keyboard_btn_hide.setIconBitmaps(Bitmap(BITMAP___KEYBOARDALPHANUM_HIDE_RELEASED_ID), Bitmap(BITMAP___KEYBOARDALPHANUM_HIDE_PRESSED_ID));
     keyboard_btn_hide.setIconXY(0, 0);
     keyboard_btn_hide.setVisible(false);
     keyboard_btn_hide.setAction(flexButtonCallback);
-    keyboard_btn_hide.setPosition(242, 210, 75, 25);
+    keyboard_btn_hide.setPosition(235, 211, 80, 27);
     s1_2_typeDeviceAlias.add(keyboard_btn_hide);
+
+    keyboard_text_area.setXY(45, 120);
+    s1_2_typeDeviceAlias.add(keyboard_text_area);
 
     keyboard_btn_show.setBoxWithBorderPosition(0, 0, 169, 30);
     keyboard_btn_show.setBorderSize(5);
@@ -150,7 +150,7 @@ screen_initViewBase::screen_initViewBase() :
     keyboard_text_typed.setLinespacing(0);
     Unicode::snprintf(keyboard_text_typedBuffer, KEYBOARD_TEXT_TYPED_SIZE, "%s", touchgfx::TypedText(T_SI_KEYBOARD_TYPED_VALUE).getText());
     keyboard_text_typed.setWildcard(keyboard_text_typedBuffer);
-    keyboard_text_typed.setTypedText(touchgfx::TypedText(T_SFI_KEYBOARD_TYPED));
+    keyboard_text_typed.setTypedText(touchgfx::TypedText(T_SI_KEYBOARD_TYPED));
     s1_2_typeDeviceAlias.add(keyboard_text_typed);
 
     keyboard_text_info_2.setPosition(0, 90, 320, 20);

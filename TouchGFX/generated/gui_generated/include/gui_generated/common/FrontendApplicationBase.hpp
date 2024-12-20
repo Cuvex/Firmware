@@ -26,20 +26,20 @@ public:
     // screen_menu
     void gotoscreen_menuScreenNoTransition();
 
-    // screen_flow_1
-    void gotoscreen_flow_1ScreenNoTransition();
+    // screen_flow_encrypt
+    void gotoscreen_flow_encryptScreenNoTransition();
 
-    // screen_flow_2
-    void gotoscreen_flow_2ScreenNoTransition();
+    // screen_flow_decrypt
+    void gotoscreen_flow_decryptScreenNoTransition();
 
-    // screen_flow_3
-    void gotoscreen_flow_3ScreenNoTransition();
+    // screen_flow_clone
+    void gotoscreen_flow_cloneScreenNoTransition();
 
-    // screen_flow_4
-    void gotoscreen_flow_4ScreenNoTransition();
+    // screen_flow_wallet
+    void gotoscreen_flow_walletScreenNoTransition();
 
-    // screen_flow_5
-    void gotoscreen_flow_5ScreenNoTransition();
+    // screen_flow_settings
+    void gotoscreen_flow_settingsScreenNoTransition();
 
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
@@ -52,20 +52,20 @@ protected:
     // screen_menu
     void gotoscreen_menuScreenNoTransitionImpl();
 
-    // screen_flow_1
-    void gotoscreen_flow_1ScreenNoTransitionImpl();
+    // screen_flow_encrypt
+    void gotoscreen_flow_encryptScreenNoTransitionImpl();
 
-    // screen_flow_2
-    void gotoscreen_flow_2ScreenNoTransitionImpl();
+    // screen_flow_decrypt
+    void gotoscreen_flow_decryptScreenNoTransitionImpl();
 
-    // screen_flow_3
-    void gotoscreen_flow_3ScreenNoTransitionImpl();
+    // screen_flow_clone
+    void gotoscreen_flow_cloneScreenNoTransitionImpl();
 
-    // screen_flow_4
-    void gotoscreen_flow_4ScreenNoTransitionImpl();
+    // screen_flow_wallet
+    void gotoscreen_flow_walletScreenNoTransitionImpl();
 
-    // screen_flow_5
-    void gotoscreen_flow_5ScreenNoTransitionImpl();
+    // screen_flow_settings
+    void gotoscreen_flow_settingsScreenNoTransitionImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

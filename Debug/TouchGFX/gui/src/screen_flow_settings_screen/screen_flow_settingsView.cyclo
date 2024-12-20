@@ -1,0 +1,23 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:144:18:virtual void touchgfx::Screen::handleTickEvent()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:32:6:virtual void screen_flow_settingsView::tearDownScreen()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:49:6:virtual void screen_flow_settingsView::changeScreen(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:60:6:virtual void screen_flow_settingsView::changeFlash(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:214:6:virtual void screen_flow_settingsView::sliderSetDutyCicle(int)	1
+../TouchGFX/gui/include/gui/screen_flow_settings_screen/screen_flow_settingsView.hpp:26:13:screen_flow_settingsView::~screen_flow_settingsView()	1
+../TouchGFX/gui/include/gui/screen_flow_settings_screen/screen_flow_settingsView.hpp:26:13:virtual screen_flow_settingsView::~screen_flow_settingsView()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:19:1:screen_flow_settingsView::screen_flow_settingsView()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:77:6:virtual void screen_flow_settingsView::menuVersionPressed()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:123:6:virtual void screen_flow_settingsView::menuLanguagePressed()	2
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:147:6:virtual void screen_flow_settingsView::menuAppearancePressed()	2
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:171:6:virtual void screen_flow_settingsView::versionUpdatePressed()	5
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:290:6:virtual void screen_flow_settingsView::backPressed()	2
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:326:6:virtual void screen_flow_settingsView::setScreenMode()	2
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:258:6:virtual void screen_flow_settingsView::appearanceLightPressed()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:274:6:virtual void screen_flow_settingsView::appearanceDarkPressed()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:446:6:virtual void screen_flow_settingsView::setScreenLanguage()	2
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:24:6:virtual void screen_flow_settingsView::setupScreen()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:226:6:virtual void screen_flow_settingsView::languageEnglishPressed()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:242:6:virtual void screen_flow_settingsView::languageSpanishPressed()	1
+../TouchGFX/gui/src/screen_flow_settings_screen/screen_flow_settingsView.cpp:105:6:virtual void screen_flow_settingsView::menuBrightnessPressed()	1
