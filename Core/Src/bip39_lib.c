@@ -492,6 +492,143 @@ bool getBip39Word(char *word_to_predict)
 	return false;
 }
 
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+bool getBip39WordFromGlobalIndex(int index, char *word)
+{
+	if(index < 136)	 		//'a'
+	{
+		memcpy(word, bip39_words_a[index], 10);
+		return true;
+	}
+	else if(index < 253)	//'b'
+	{
+		memcpy(word, bip39_words_b[index-136], 10);
+		return true;
+	}
+	else if(index < 439)	//'c'
+	{
+		memcpy(word, bip39_words_c[index-253], 10);
+		return true;
+	}
+	else if(index < 551)	//'d'
+	{
+		memcpy(word, bip39_words_d[index-439], 10);
+		return true;
+	}
+	else if(index < 651)	//'e'
+	{
+		memcpy(word, bip39_words_e[index-551], 10);
+		return true;
+	}
+	else if(index < 757)	//'f'
+	{
+		memcpy(word, bip39_words_f[index-651], 10);
+		return true;
+	}
+	else if(index < 833)	//'g'
+	{
+		memcpy(word, bip39_words_g[index-757], 10);
+		return true;
+	}
+	else if(index < 897)	//'h'
+	{
+		memcpy(word, bip39_words_h[index-833], 10);
+		return true;
+	}
+	else if(index < 952)	//'i'
+	{
+		memcpy(word, bip39_words_i[index-897], 10);
+		return true;
+	}
+	else if(index < 972)	//'j'
+	{
+		memcpy(word, bip39_words_j[index-952], 10);
+		return true;
+	}
+	else if(index < 992)	//'k'
+	{
+		memcpy(word, bip39_words_k[index-972], 10);
+		return true;
+	}
+	else if(index < 1068)	//'l'
+	{
+		memcpy(word, bip39_words_l[index-992], 10);
+		return true;
+	}
+	else if(index < 1173)	//'m'
+	{
+		memcpy(word, bip39_words_m[index-1068], 10);
+		return true;
+	}
+	else if(index < 1214)	//'n'
+	{
+		memcpy(word, bip39_words_n[index-1173], 10);
+		return true;
+	}
+	else if(index < 1269)	//'o'
+	{
+		memcpy(word, bip39_words_o[index-1214], 10);
+		return true;
+	}
+	else if(index < 1401)	//'p'
+	{
+		memcpy(word, bip39_words_p[index-1269], 10);
+		return true;
+	}
+	else if(index < 1409)	//'q'
+	{
+		memcpy(word, bip39_words_q[index-1401], 10);
+		return true;
+	}
+	else if(index < 1517)	//'r'
+	{
+		memcpy(word, bip39_words_r[index-1409], 10);
+		return true;
+	}
+	else if(index < 1767)	//'s'
+	{
+		memcpy(word, bip39_words_s[index-1517], 10);
+		return true;
+	}
+	else if(index < 1888)	//'t'
+	{
+		memcpy(word, bip39_words_t[index-1767], 10);
+		return true;
+	}
+	else if(index < 1923)	//'u'
+	{
+		memcpy(word, bip39_words_u[index-1888], 10);
+		return true;
+	}
+	else if(index < 1969)	//'v'
+	{
+		memcpy(word, bip39_words_v[index-1923], 10);
+		return true;
+	}
+	else if(index < 2038)	//'w'
+	{
+		memcpy(word, bip39_words_w[index-1969], 10);
+		return true;
+	}
+	else if(index < 2044)	//'y'
+	{
+		memcpy(word, bip39_words_y[index-2038], 10);
+		return true;
+	}
+	else if(index < 2048)	//'z'
+	{
+		memcpy(word, bip39_words_z[index-2044], 10);
+		return true;
+	}
+
+	return false;
+}
+
 
 
 

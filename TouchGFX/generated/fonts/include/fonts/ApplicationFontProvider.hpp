@@ -13,39 +13,43 @@ class FlashDataReader;
 
 struct Typography
 {
-    static const touchgfx::FontId NEUE_BOLD_15PX = 0;
-    static const touchgfx::FontId NEUE_BOLD_20PX = 1;
-    static const touchgfx::FontId NEUE_BOLD_25PX = 2;
-    static const touchgfx::FontId NEUE_MEDIUM_15PX = 3;
-    static const touchgfx::FontId NEUE_MEDIUM_20PX = 4;
-    static const touchgfx::FontId NEUE_MEDIUM_25PX = 5;
-    static const touchgfx::FontId DISPLAY = 6;
-    static const touchgfx::FontId MODE = 7;
-    static const touchgfx::FontId KEYBOARD = 8;
-    static const touchgfx::FontId NEUE_MEDIUM_10PX = 9;
-    static const touchgfx::FontId NEUE_BOLD_10PX = 10;
-    static const touchgfx::FontId NEUE_MEDIUM_12PX = 11;
-    static const touchgfx::FontId NEUE_BOLD_12PX = 12;
-    static const touchgfx::FontId NEUE_MEDIUM_11PX = 13;
+    static const touchgfx::FontId NEUE_MEDIUM_10PX = 0;
+    static const touchgfx::FontId NEUE_MEDIUM_11PX = 1;
+    static const touchgfx::FontId NEUE_MEDIUM_12PX = 2;
+    static const touchgfx::FontId NEUE_MEDIUM_13PX = 3;
+    static const touchgfx::FontId NEUE_MEDIUM_14PX = 4;
+    static const touchgfx::FontId NEUE_MEDIUM_15PX = 5;
+    static const touchgfx::FontId NEUE_MEDIUM_20PX = 6;
+    static const touchgfx::FontId NEUE_MEDIUM_25PX = 7;
+    static const touchgfx::FontId NEUE_BOLD_10PX = 8;
+    static const touchgfx::FontId NEUE_BOLD_12PX = 9;
+    static const touchgfx::FontId NEUE_BOLD_15PX = 10;
+    static const touchgfx::FontId NEUE_BOLD_20PX = 11;
+    static const touchgfx::FontId NEUE_BOLD_25PX = 12;
+    static const touchgfx::FontId DISPLAY = 13;
+    static const touchgfx::FontId MODE = 14;
+    static const touchgfx::FontId KEYBOARD = 15;
 };
 
 struct TypographyFontIndex
 {
-    static const touchgfx::FontId NEUE_BOLD_15PX = 0;   // NeueMontreal_Bold_otf_15_4bpp
-    static const touchgfx::FontId NEUE_BOLD_20PX = 1;   // NeueMontreal_Bold_otf_20_4bpp
-    static const touchgfx::FontId NEUE_BOLD_25PX = 2;   // NeueMontreal_Bold_otf_25_4bpp
-    static const touchgfx::FontId NEUE_MEDIUM_15PX = 3; // NeueMontreal_Medium_otf_15_4bpp
-    static const touchgfx::FontId NEUE_MEDIUM_20PX = 4; // NeueMontreal_Medium_otf_20_4bpp
-    static const touchgfx::FontId NEUE_MEDIUM_25PX = 5; // NeueMontreal_Medium_otf_25_4bpp
-    static const touchgfx::FontId DISPLAY = 6;          // NeueMontreal_Medium_otf_18_4bpp
-    static const touchgfx::FontId MODE = 6;             // NeueMontreal_Medium_otf_18_4bpp
-    static const touchgfx::FontId KEYBOARD = 6;         // NeueMontreal_Medium_otf_18_4bpp
-    static const touchgfx::FontId NEUE_MEDIUM_10PX = 7; // NeueMontreal_Medium_otf_10_4bpp
+    static const touchgfx::FontId NEUE_MEDIUM_10PX = 0; // NeueMontreal_Medium_otf_10_4bpp
+    static const touchgfx::FontId NEUE_MEDIUM_11PX = 1; // NeueMontreal_Medium_otf_11_4bpp
+    static const touchgfx::FontId NEUE_MEDIUM_12PX = 2; // NeueMontreal_Medium_otf_12_4bpp
+    static const touchgfx::FontId NEUE_MEDIUM_13PX = 3; // NeueMontreal_Medium_otf_13_4bpp
+    static const touchgfx::FontId NEUE_MEDIUM_14PX = 4; // NeueMontreal_Medium_otf_14_4bpp
+    static const touchgfx::FontId NEUE_MEDIUM_15PX = 5; // NeueMontreal_Medium_otf_15_4bpp
+    static const touchgfx::FontId NEUE_MEDIUM_20PX = 6; // NeueMontreal_Medium_otf_20_4bpp
+    static const touchgfx::FontId NEUE_MEDIUM_25PX = 7; // NeueMontreal_Medium_otf_25_4bpp
     static const touchgfx::FontId NEUE_BOLD_10PX = 8;   // NeueMontreal_Bold_otf_10_4bpp
-    static const touchgfx::FontId NEUE_MEDIUM_12PX = 9; // NeueMontreal_Medium_otf_12_4bpp
-    static const touchgfx::FontId NEUE_BOLD_12PX = 10;   // NeueMontreal_Bold_otf_12_4bpp
-    static const touchgfx::FontId NEUE_MEDIUM_11PX = 11; // NeueMontreal_Medium_otf_11_4bpp
-    static const uint16_t NUMBER_OF_FONTS = 12;
+    static const touchgfx::FontId NEUE_BOLD_12PX = 9;   // NeueMontreal_Bold_otf_12_4bpp
+    static const touchgfx::FontId NEUE_BOLD_15PX = 10;   // NeueMontreal_Bold_otf_15_4bpp
+    static const touchgfx::FontId NEUE_BOLD_20PX = 11;   // NeueMontreal_Bold_otf_20_4bpp
+    static const touchgfx::FontId NEUE_BOLD_25PX = 12;   // NeueMontreal_Bold_otf_25_4bpp
+    static const touchgfx::FontId DISPLAY = 13;          // NeueMontreal_Medium_otf_18_4bpp
+    static const touchgfx::FontId MODE = 13;             // NeueMontreal_Medium_otf_18_4bpp
+    static const touchgfx::FontId KEYBOARD = 13;         // NeueMontreal_Medium_otf_18_4bpp
+    static const uint16_t NUMBER_OF_FONTS = 14;
 };
 
 class ApplicationFontProvider : public touchgfx::FontProvider

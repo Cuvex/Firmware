@@ -1,0 +1,8 @@
+../TouchGFX/gui/include/gui/model/ModelListener.hpp:32:15:virtual void ModelListener::updateStateNfc(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_flow_psbt_screen/screen_flow_psbtPresenter.hpp:28:13:screen_flow_psbtPresenter::~screen_flow_psbtPresenter()	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtPresenter.cpp:10:6:virtual void screen_flow_psbtPresenter::activate()	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtPresenter.cpp:15:6:virtual void screen_flow_psbtPresenter::deactivate()	1
+../TouchGFX/gui/include/gui/screen_flow_psbt_screen/screen_flow_psbtPresenter.hpp:28:13:virtual screen_flow_psbtPresenter::~screen_flow_psbtPresenter()	1
+../TouchGFX/gui/include/gui/screen_flow_psbt_screen/screen_flow_psbtPresenter.hpp:28:13:virtual void* screen_flow_psbtPresenter::_ZThn4_N25screen_flow_psbtPresenterD1Ev()	1
+../TouchGFX/gui/include/gui/screen_flow_psbt_screen/screen_flow_psbtPresenter.hpp:28:13:virtual void* screen_flow_psbtPresenter::_ZThn4_N25screen_flow_psbtPresenterD0Ev()	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtPresenter.cpp:4:1:screen_flow_psbtPresenter::screen_flow_psbtPresenter(screen_flow_psbtView&)	1

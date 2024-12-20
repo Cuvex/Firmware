@@ -16,21 +16,27 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/AbstractButtonContainer.hpp:99:18:virtual void touchgfx::AbstractButtonContainer::executeAction()	3
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/ClickButtonTrigger.hpp:47:18:virtual void touchgfx::ClickButtonTrigger::handleClickEvent(const touchgfx::ClickEvent&)	5
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
-../TouchGFX/generated/gui_generated/src/screen_menu_screen/screen_menuViewBase.cpp:73:1:screen_menuViewBase::~screen_menuViewBase()	1
-../TouchGFX/generated/gui_generated/src/screen_menu_screen/screen_menuViewBase.cpp:78:6:virtual void screen_menuViewBase::setupScreen()	1
+../TouchGFX/generated/gui_generated/src/screen_menu_screen/screen_menuViewBase.cpp:84:1:screen_menuViewBase::~screen_menuViewBase()	1
+../TouchGFX/generated/gui_generated/src/screen_menu_screen/screen_menuViewBase.cpp:89:6:virtual void screen_menuViewBase::setupScreen()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:41:7:touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>::~BoxWithBorderButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:44:7:touchgfx::IconButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >::~IconButtonStyle()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:123:18:void touchgfx::BoxWithBorderButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::ClickButtonTrigger]	2
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:138:18:void touchgfx::TextButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:touchgfx::Callback<screen_menuViewBase, const touchgfx::AbstractButtonContainer&>::~Callback()	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:43:7:touchgfx::TextButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >::~TextButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:43:7:touchgfx::TextButtonStyle<touchgfx::IconButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> > >::~TextButtonStyle()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:386:18:void touchgfx::Callback<dest_type, T1, void, void>::execute(T1) [with dest_type = screen_menuViewBase; T1 = const touchgfx::AbstractButtonContainer&]	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:396:18:bool touchgfx::Callback<dest_type, T1, void, void>::isValid() const [with dest_type = screen_menuViewBase; T1 = const touchgfx::AbstractButtonContainer&]	3
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:145:18:void touchgfx::TextButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:145:18:void touchgfx::TextButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::IconButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >]	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:144:18:void touchgfx::IconButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:131:18:void touchgfx::BoxWithBorderButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::ClickButtonTrigger]	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:41:7:virtual touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>::~BoxWithBorderButtonStyle()	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:43:7:virtual touchgfx::TextButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >::~TextButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:44:7:virtual touchgfx::IconButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >::~IconButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:43:7:virtual touchgfx::TextButtonStyle<touchgfx::IconButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> > >::~TextButtonStyle()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:virtual touchgfx::Callback<screen_menuViewBase, const touchgfx::AbstractButtonContainer&>::~Callback()	1
-../TouchGFX/generated/gui_generated/src/screen_menu_screen/screen_menuViewBase.cpp:73:1:virtual screen_menuViewBase::~screen_menuViewBase()	1
-../TouchGFX/generated/gui_generated/src/screen_menu_screen/screen_menuViewBase.cpp:83:6:void screen_menuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer&)	6
-../TouchGFX/generated/gui_generated/src/screen_menu_screen/screen_menuViewBase.cpp:8:1:screen_menuViewBase::screen_menuViewBase()	1
+../TouchGFX/generated/gui_generated/src/screen_menu_screen/screen_menuViewBase.cpp:84:1:virtual screen_menuViewBase::~screen_menuViewBase()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:137:18:void touchgfx::IconButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	3
+../TouchGFX/generated/gui_generated/src/screen_menu_screen/screen_menuViewBase.cpp:94:6:void screen_menuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer&)	6
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:138:18:void touchgfx::TextButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::IconButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >]	3
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:59:18:void touchgfx::IconButtonStyle<T>::setIconBitmaps(const touchgfx::Bitmap&, const touchgfx::Bitmap&) [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:46:5:touchgfx::TextButtonStyle<T>::TextButtonStyle() [with T = touchgfx::IconButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >]	1
+../TouchGFX/generated/gui_generated/src/screen_menu_screen/screen_menuViewBase.cpp:9:1:screen_menuViewBase::screen_menuViewBase()	1

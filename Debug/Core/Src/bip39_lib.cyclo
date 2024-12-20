@@ -1,1 +1,2 @@
 ../Core/Src/bip39_lib.c:232:6:getBip39Word	151
+../Core/Src/bip39_lib.c:501:6:getBip39WordFromGlobalIndex	26

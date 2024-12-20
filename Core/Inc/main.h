@@ -126,7 +126,7 @@ void Error_Handler(void);
  * DEFINE's
  */
 
-#define FIRMWARE_VERSION		"1.1.0"			//Firmware version
+#define FIRMWARE_VERSION		"1.1.1"			//Firmware version
 //#define DEBUG_PRINTF
 //#define DEBUG_NFC_PRINTF
 
@@ -163,10 +163,8 @@ struct tag
 	uint8_t type;
 	/***/
 	bool flag_readed;
+	bool flag_readed_writed;
 	bool flag_readed_from_nfc;
-	bool flag_readed_writed_flow_1;
-	bool flag_readed_writed_flow_2;
-	bool flag_readed_writed_flow_4;
 	/***/
 	uint8_t uid[SIZE_UID];
 	uint8_t alias[SIZE_ALIAS];
@@ -220,6 +218,17 @@ struct info
 	uint8_t errors;
 };
 
+struct wallet
+{
+	bool flag_new;
+	uint8_t dice_selected[4];
+	uint8_t coin_dice_values[5];
+	uint8_t words_to_encrypt[24][5];
+	uint8_t pass_deriv[250];
+	uint8_t zprv_key[125];
+	uint8_t zpub_key[125];
+};
+
 struct cuvex
 {
 	uint8_t screen;
@@ -228,6 +237,7 @@ struct cuvex
 	char signature_buffer[SIGNATURE_SIZE];
 	struct nfc nfc;
 	struct info info;
+	struct wallet wallet;
 };
 
 /*
@@ -239,11 +249,12 @@ enum gui_to_main_queue_msg
 	/*** GUI Screen's ***/
 	GUI_TO_MAIN_SCREEN_INIT = 0,
 	GUI_TO_MAIN_SCREEN_MAIN_MENU,
-	GUI_TO_MAIN_SCREEN_FLOW_1,
-	GUI_TO_MAIN_SCREEN_FLOW_2,
-	GUI_TO_MAIN_SCREEN_FLOW_3,
-	GUI_TO_MAIN_SCREEN_FLOW_4,
-	GUI_TO_MAIN_SCREEN_FLOW_5,
+	GUI_TO_MAIN_SCREEN_FLOW_ENCRYPT,
+	GUI_TO_MAIN_SCREEN_FLOW_DECRYPT,
+	GUI_TO_MAIN_SCREEN_FLOW_CLONE,
+	GUI_TO_MAIN_SCREEN_FLOW_WALLET,
+	GUI_TO_MAIN_SCREEN_FLOW_PSBT,
+	GUI_TO_MAIN_SCREEN_FLOW_SETTINGS,
 
 	/*** NFC actions ***/
 	GUI_TO_MAIN_NFC_DISABLE,
@@ -251,11 +262,10 @@ enum gui_to_main_queue_msg
 	GUI_TO_MAIN_NFC_TAG_NONE,
 	GUI_TO_MAIN_NFC_TAG_READ,
 	GUI_TO_MAIN_NFC_TAG_READ_FROM_NFC,
-	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_1,
-	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_2,
-	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_2_T4T_8K,
-	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_4,
-	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_4_T4T_8K,
+	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_ENCRYPT,
+	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_ENCRYPT_T4T_8K,
+	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_CLONE,
+	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_CLONE_T4T_8K,
 
 	/*** Flash actions ***/
 	GUI_TO_MAIN_FLASH_SAVE_SETTINGS,
@@ -269,22 +279,22 @@ enum main_to_gui_queue_msg
 	MAIN_TO_GUI_NFC_INITIALIZED,
 	MAIN_TO_GUI_NFC_TAG_READED,
 	MAIN_TO_GUI_NFC_TAG_READED_FROM_NFC,
-	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_1,
-	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2,
-	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_2_T4T_8K,
-	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_4,
-	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_4_T4T_8K
+	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_ENCRYPT,
+	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_ENCRYPT_T4T_8K,
+	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_CLONE,
+	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_CLONE_T4T_8K
 };
 
 enum screen_state
 {
 	SCREEN_INIT = 0,
 	SCREEN_MAIN_MENU,
-	SCREEN_FLOW_1,
-	SCREEN_FLOW_2,
-	SCREEN_FLOW_3,
-	SCREEN_FLOW_4,
-	SCREEN_FLOW_5
+	SCREEN_FLOW_ENCRYPT,
+	SCREEN_FLOW_DECRYPT,
+	SCREEN_FLOW_CLONE,
+	SCREEN_FLOW_WALLET,
+	SCREEN_FLOW_PSBT,
+	SCREEN_FLOW_SETTINGS
 };
 
 enum nfc_tag_actions
@@ -292,11 +302,10 @@ enum nfc_tag_actions
 	NFC_TAG_NONE = 0,
 	NFC_TAG_READ,
 	NFC_TAG_READ_FROM_NFC,
-	NFC_TAG_READ_WRITE_FLOW_1,
-	NFC_TAG_READ_WRITE_FLOW_2,
-	NFC_TAG_READ_WRITE_FLOW_2_T4T_8K,
-	NFC_TAG_READ_WRITE_FLOW_4,
-	NFC_TAG_READ_WRITE_FLOW_4_T4T_8K
+	NFC_TAG_READ_WRITE_FLOW_ENCRYPT,
+	NFC_TAG_READ_WRITE_FLOW_ENCRYPT_T4T_8K,
+	NFC_TAG_READ_WRITE_FLOW_CLONE,
+	NFC_TAG_READ_WRITE_FLOW_CLONE_T4T_8K
 };
 
 enum nfc_tag_type
@@ -326,7 +335,28 @@ enum text_type
 	TEXT_TYPE_XMR,
 	TEXT_TYPE_PLAINTEXT,
 	TEXT_TYPE_FROM_NFC_BIP39,
-	TEXT_TYPE_FROM_NFC_PLAINTEXT
+	TEXT_TYPE_FROM_NFC_PLAINTEXT,
+	TEXT_TYPE_FROM_WALLET_BIP39
+};
+
+enum dice_colour
+{
+	DICE_COLOUR_1 = 1,
+	DICE_COLOUR_2,
+	DICE_COLOUR_3,
+	DICE_COLOUR_4,
+	DICE_COLOUR_5,
+	DICE_COLOUR_6,
+	DICE_COLOUR_7,
+	DICE_COLOUR_8
+};
+
+enum dice_selected_value
+{
+	DICE_SELECTED_VALUE_1 = 101,
+	DICE_SELECTED_VALUE_2,
+	DICE_SELECTED_VALUE_3,
+	DICE_SELECTED_VALUE_4
 };
 
 /*********************************************************************************************************************************************************************************************************

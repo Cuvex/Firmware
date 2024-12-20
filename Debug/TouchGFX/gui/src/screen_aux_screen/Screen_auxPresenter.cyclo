@@ -1,0 +1,9 @@
+../TouchGFX/gui/include/gui/model/ModelListener.hpp:32:15:virtual void ModelListener::updateStateNfc(uint16_t)	1
+../TouchGFX/gui/include/gui/screen_aux_screen/Screen_auxPresenter.hpp:28:13:Screen_auxPresenter::~Screen_auxPresenter()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/src/screen_aux_screen/Screen_auxPresenter.cpp:10:6:virtual void Screen_auxPresenter::activate()	1
+../TouchGFX/gui/include/gui/screen_aux_screen/Screen_auxPresenter.hpp:28:13:virtual Screen_auxPresenter::~Screen_auxPresenter()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/include/gui/screen_aux_screen/Screen_auxPresenter.hpp:28:13:virtual void* Screen_auxPresenter::_ZThn4_N19Screen_auxPresenterD1Ev()	1
+../TouchGFX/gui/src/screen_aux_screen/Screen_auxPresenter.cpp:4:1:Screen_auxPresenter::Screen_auxPresenter(Screen_auxView&)	1
+../TouchGFX/gui/src/screen_aux_screen/Screen_auxPresenter.cpp:18:1:cpp)	1

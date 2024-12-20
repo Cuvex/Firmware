@@ -17,6 +17,7 @@
 #include <gui_generated/screen_menu_screen/screen_menuViewBase.hpp>
 #include <gui/screen_menu_screen/screen_menuPresenter.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
+#include <images/BitmapDatabase.hpp>
 
 class screen_menuView : public screen_menuViewBase
 {

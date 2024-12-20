@@ -1,0 +1,14 @@
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:214:12:derive_mpi	5
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:586:12:ecdsa_verify_restartable	15
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:254:12:ecdsa_sign_restartable	21
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:236:5:mbedtls_ecdsa_can_do	1
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:391:5:mbedtls_ecdsa_sign	1
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:715:5:mbedtls_ecdsa_verify	1
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:759:5:mbedtls_ecdsa_write_signature_restartable	6
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:809:5:mbedtls_ecdsa_write_signature	1
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:857:5:mbedtls_ecdsa_read_signature_restartable	6
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:843:5:mbedtls_ecdsa_read_signature	1
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:923:5:mbedtls_ecdsa_genkey	2
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:961:6:mbedtls_ecdsa_init	1
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:971:6:mbedtls_ecdsa_free	2
+../Middlewares/Third_Party/mbed-crypto/library/ecdsa.c:943:5:mbedtls_ecdsa_from_keypair	4

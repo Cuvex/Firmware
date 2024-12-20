@@ -1,4 +1,3 @@
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:121:18:virtual void touchgfx::Drawable::invalidateContent() const	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:315:18:virtual void touchgfx::Drawable::setX(int16_t)	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:327:18:virtual void touchgfx::Drawable::setY(int16_t)	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:356:18:virtual void touchgfx::Drawable::setWidth(int16_t)	1
@@ -15,5 +14,8 @@
 ../TouchGFX/generated/gui_generated/src/containers/thinking_circles_containerBase.cpp:77:6:virtual void thinking_circles_containerBase::initialize()	1
 ../TouchGFX/generated/gui_generated/src/containers/thinking_circles_containerBase.cpp:72:1:thinking_circles_containerBase::~thinking_circles_containerBase()	1
 ../TouchGFX/generated/gui_generated/src/containers/thinking_circles_containerBase.cpp:72:1:virtual thinking_circles_containerBase::~thinking_circles_containerBase()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:121:18:virtual void touchgfx::Drawable::invalidateContent() const	2
 ../TouchGFX/generated/gui_generated/src/containers/thinking_circles_containerBase.cpp:82:6:virtual void thinking_circles_containerBase::handleTickEvent()	4
-../TouchGFX/generated/gui_generated/src/containers/thinking_circles_containerBase.cpp:7:1:thinking_circles_containerBase::thinking_circles_containerBase()	19
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:233:10:void touchgfx::Drawable::setPosition(int16_t, int16_t, int16_t, int16_t)	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/canvas/AbstractPainterRGB888.hpp:36:5:touchgfx::AbstractPainterRGB888::AbstractPainterRGB888()	4
+../TouchGFX/generated/gui_generated/src/containers/thinking_circles_containerBase.cpp:7:1:thinking_circles_containerBase::thinking_circles_containerBase()	1

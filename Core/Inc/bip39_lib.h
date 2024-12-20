@@ -23,7 +23,8 @@
 #include "main.h"
 
 /********************************************************************* Function's **********************************************************************/
-bool getBip39Word(char *buffer);
+bool getBip39Word(char *word_to_predict);
+bool getBip39WordFromGlobalIndex(int index, char *word);
 
 /********************************************************************* Variable's **********************************************************************/
 extern const char bip39_words_a[136][10];

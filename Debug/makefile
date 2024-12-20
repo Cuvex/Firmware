@@ -14,29 +14,33 @@ RM := rm -rf
 -include TouchGFX/gui/src/widgets/qrcode/subdir.mk
 -include TouchGFX/gui/src/screen_menu_screen/subdir.mk
 -include TouchGFX/gui/src/screen_init_screen/subdir.mk
--include TouchGFX/gui/src/screen_flow_5_screen/subdir.mk
--include TouchGFX/gui/src/screen_flow_4_screen/subdir.mk
--include TouchGFX/gui/src/screen_flow_3_screen/subdir.mk
--include TouchGFX/gui/src/screen_flow_2_screen/subdir.mk
--include TouchGFX/gui/src/screen_flow_1_screen/subdir.mk
+-include TouchGFX/gui/src/screen_flow_wallet_screen/subdir.mk
+-include TouchGFX/gui/src/screen_flow_settings_screen/subdir.mk
+-include TouchGFX/gui/src/screen_flow_psbt_screen/subdir.mk
+-include TouchGFX/gui/src/screen_flow_encrypt_screen/subdir.mk
+-include TouchGFX/gui/src/screen_flow_decrypt_screen/subdir.mk
+-include TouchGFX/gui/src/screen_flow_clone_screen/subdir.mk
 -include TouchGFX/gui/src/model/subdir.mk
 -include TouchGFX/gui/src/containers/subdir.mk
 -include TouchGFX/gui/src/common/subdir.mk
 -include TouchGFX/generated/texts/src/subdir.mk
--include TouchGFX/generated/images/src/teclados_cuvex/numeric/subdir.mk
--include TouchGFX/generated/images/src/teclados_cuvex/alpha_numeric/subdir.mk
+-include TouchGFX/generated/images/src/menu_images/subdir.mk
+-include TouchGFX/generated/images/src/keyboard_images/numeric/subdir.mk
+-include TouchGFX/generated/images/src/keyboard_images/alpha_numeric/subdir.mk
 -include TouchGFX/generated/images/src/subdir.mk
 -include TouchGFX/generated/gui_generated/src/screen_menu_screen/subdir.mk
 -include TouchGFX/generated/gui_generated/src/screen_init_screen/subdir.mk
--include TouchGFX/generated/gui_generated/src/screen_flow_5_screen/subdir.mk
--include TouchGFX/generated/gui_generated/src/screen_flow_4_screen/subdir.mk
--include TouchGFX/generated/gui_generated/src/screen_flow_3_screen/subdir.mk
--include TouchGFX/generated/gui_generated/src/screen_flow_2_screen/subdir.mk
--include TouchGFX/generated/gui_generated/src/screen_flow_1_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen_flow_wallet_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen_flow_settings_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen_flow_psbt_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen_flow_encrypt_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen_flow_decrypt_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen_flow_clone_screen/subdir.mk
 -include TouchGFX/generated/gui_generated/src/containers/subdir.mk
 -include TouchGFX/generated/gui_generated/src/common/subdir.mk
 -include TouchGFX/generated/fonts/src/subdir.mk
 -include TouchGFX/App/subdir.mk
+-include Middlewares/Third_Party/mbed-crypto/library/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/subdir.mk
@@ -127,8 +131,8 @@ all: main-build
 main-build: sml-230109.elf secondary-outputs
 
 # Tool invocations
-sml-230109.elf sml-230109.map: $(OBJS) $(USER_OBJS) C:\Users\daniel.e\Documents\Workspace_git\sml-240118\sml-230109\STM32U5A9VJTXQ_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "sml-230109.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"C:\Users\daniel.e\Documents\Workspace_git\sml-240118\sml-230109\STM32U5A9VJTXQ_FLASH.ld" -Wl,-Map="sml-230109.map" -Wl,--gc-sections -static -L"C:\Users\daniel.e\Documents\Workspace_git\sml-240118\sml-230109\Middlewares\ST\touchgfx\lib\core\cortex_m33\gcc" -L"C:\Users\daniel.e\Documents\Workspace_git\sml-240118\sml-230109\Middlewares\ST\touchgfx_components\gpu2d\NemaGFX\lib\core\cortex_m33\gcc" -L"C:\Users\daniel.e\Documents\Workspace_git\sml-240118\sml-230109\Middlewares\ST\touchgfx_components\gpu2d\TouchGFXNema\lib\cortex_m33\gcc" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+sml-230109.elf sml-230109.map: $(OBJS) $(USER_OBJS) C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\STM32U5A9VJTXQ_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "sml-230109.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\STM32U5A9VJTXQ_FLASH.ld" -Wl,-Map="sml-230109.map" -Wl,--gc-sections -static -L"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\Middlewares\ST\touchgfx\lib\core\cortex_m33\gcc" -L"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\Middlewares\ST\touchgfx_components\gpu2d\NemaGFX\lib\core\cortex_m33\gcc" -L"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\Middlewares\ST\touchgfx_components\gpu2d\TouchGFXNema\lib\cortex_m33\gcc" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

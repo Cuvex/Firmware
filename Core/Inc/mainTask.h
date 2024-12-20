@@ -30,6 +30,7 @@ void clearNfc_all(void);
 void clearNfc_readerFlags(void);
 void clearNfc_tagFlags(void);
 void clearNfc_tagInfo(void);
+void clearWallet(void);
 void readFlash(uint32_t address, char* data, size_t data_size);
 void writeFlash(uint32_t address, char* data, size_t data_size);
 void eraseFlash(uint32_t Banks, uint32_t Page, uint32_t NbPages);
