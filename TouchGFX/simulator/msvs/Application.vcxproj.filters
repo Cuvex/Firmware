@@ -208,66 +208,6 @@
     <Filter Include="Header Files\generated\gui_generated\containers">
       <UniqueIdentifier>A4245688-335F-D55A-655F-89F5466D7842</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\gui\screen_flow_2_screen">
-      <UniqueIdentifier>27F10B9D-7792-328F-13BF-A609F4CE6732</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gui\screen_flow_2_screen">
-      <UniqueIdentifier>5FFD8602-C300-A9C2-2B60-72703AB70D0B</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui\screen_flow_1_screen">
-      <UniqueIdentifier>5E62128C-6B72-DC16-EF66-F3D25286EF30</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gui\screen_flow_1_screen">
-      <UniqueIdentifier>819DF1FC-79A0-FE5C-4B99-FC32048DB36B</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\generated\gui_generated\screen_flow_2_screen">
-      <UniqueIdentifier>F81555DE-2706-1A79-B3D7-6BC20E24028D</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\generated\gui_generated\screen_flow_2_screen">
-      <UniqueIdentifier>1515C7A6-1A96-1B95-71F6-7B2B80B1D19F</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\generated\gui_generated\screen_flow_1_screen">
-      <UniqueIdentifier>0750F48C-E6C6-F1DA-F9CD-931B705676E1</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\generated\gui_generated\screen_flow_1_screen">
-      <UniqueIdentifier>344C7568-2B2C-F9E4-F51E-3B92AC1FEF69</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gui\screen_flow_4_screen">
-      <UniqueIdentifier>EC9947CC-E6B4-121B-A4C2-AD91BA4273DE</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui\screen_flow_4_screen">
-      <UniqueIdentifier>FBBB8246-3248-0E3F-BC67-F1F6E0F66E56</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui\screen_flow_3_screen">
-      <UniqueIdentifier>20C6B3FE-2EC8-6F46-1B58-1241522E0B8C</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gui\screen_flow_5_screen">
-      <UniqueIdentifier>E2D3B907-0B14-83EA-0130-0646D4C523FF</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gui\screen_flow_3_screen">
-      <UniqueIdentifier>30042342-A428-4E14-6E77-4AEA0841FF15</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui\screen_flow_5_screen">
-      <UniqueIdentifier>1A9600B0-7207-2F86-AB56-D490102BBCAE</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\generated\gui_generated\screen_flow_3_screen">
-      <UniqueIdentifier>667EFC0B-25BF-01A0-F876-1299D699DA78</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\generated\gui_generated\screen_flow_5_screen">
-      <UniqueIdentifier>DA44FCA9-04BA-833A-40B8-625089428733</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\generated\gui_generated\screen_flow_5_screen">
-      <UniqueIdentifier>923027BE-1A44-FF70-4D32-BB78396CE0E6</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\generated\gui_generated\screen_flow_4_screen">
-      <UniqueIdentifier>0D3E1BC8-1B25-A386-C6A8-A1D576EAD371</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\generated\gui_generated\screen_flow_3_screen">
-      <UniqueIdentifier>52C8E3E5-A73A-9B12-9DBF-720E8E16BBCE</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\generated\gui_generated\screen_flow_4_screen">
-      <UniqueIdentifier>18A955AF-C7BF-B405-7D9C-D482F84F6C68</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\gui\widgets">
       <UniqueIdentifier>8D278E14-2CFC-E7BE-4A70-97895BCFDE35</UniqueIdentifier>
     </Filter>
@@ -279,6 +219,78 @@
     </Filter>
     <Filter Include="Source Files\gui\widgets\qrcode">
       <UniqueIdentifier>FB6EDFB7-95C6-E5AA-E56B-DB5D6BC74BAF</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screen_flow_settings_screen">
+      <UniqueIdentifier>F70FBEC2-EDE3-4255-1182-1B9B1445C972</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\screen_flow_settings_screen">
+      <UniqueIdentifier>0CBDB70A-CA1E-CD0A-1CD9-08A2C285FEB0</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screen_flow_settings_screen">
+      <UniqueIdentifier>D7C8EAA7-5FE8-03D1-9D47-28389C4633F1</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screen_flow_settings_screen">
+      <UniqueIdentifier>A94F2F30-8B8B-7E8A-D06B-E6DBE65479E9</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screen_flow_psbt_screen">
+      <UniqueIdentifier>456E7FB7-0569-EA0B-D3A0-9A76E258E06C</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\screen_flow_psbt_screen">
+      <UniqueIdentifier>92783E9B-1D43-2ADA-B40B-6B39D8AA3343</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screen_flow_wallet_screen">
+      <UniqueIdentifier>E1514556-8EEF-3A8E-F2A7-1159FC13C5D5</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\screen_flow_wallet_screen">
+      <UniqueIdentifier>6455E25B-DC0E-1FDA-3D2B-81B7E8AB5B1A</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screen_flow_wallet_screen">
+      <UniqueIdentifier>1ADF4ACF-FE95-926D-E294-48EF2DEE8235</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screen_flow_wallet_screen">
+      <UniqueIdentifier>C6DA1161-7148-5E57-B745-93F2BBAA902D</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screen_flow_psbt_screen">
+      <UniqueIdentifier>DBC5135A-CB03-F1E1-6507-46FFDEB9C29D</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screen_flow_psbt_screen">
+      <UniqueIdentifier>0DE33B77-D14E-2CEE-F0CC-1439F79F7895</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\screen_flow_clone_screen">
+      <UniqueIdentifier>C35EB0DB-8206-47C8-5951-294F4C188F0A</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screen_flow_clone_screen">
+      <UniqueIdentifier>CFCF2142-70DA-2AFD-1E37-237ADBCD6B96</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screen_flow_decrypt_screen">
+      <UniqueIdentifier>A9CA7527-675E-F4B2-0874-BD41C489CCB7</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\screen_flow_decrypt_screen">
+      <UniqueIdentifier>FE7987D3-B683-F476-FFFF-44CD2B6FEEDD</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screen_flow_encrypt_screen">
+      <UniqueIdentifier>6A0A12E1-5506-AD22-D74A-415F4D9D0E9F</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\screen_flow_encrypt_screen">
+      <UniqueIdentifier>51C151A0-7097-0D8F-2DA3-2102BCCBDD8D</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screen_flow_encrypt_screen">
+      <UniqueIdentifier>1B9012B5-3256-3ACC-A6C5-67B294FD05ED</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screen_flow_encrypt_screen">
+      <UniqueIdentifier>725B1269-9DC9-E29B-4EA1-1A3F38EBE57C</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screen_flow_decrypt_screen">
+      <UniqueIdentifier>008AE48B-810F-E668-B39E-6090AAA837BD</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screen_flow_decrypt_screen">
+      <UniqueIdentifier>007FE432-2D8B-64CF-E1B3-D933E87E5433</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screen_flow_clone_screen">
+      <UniqueIdentifier>EE6ED29E-3DE8-642C-2021-2BE33D5F3413</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screen_flow_clone_screen">
+      <UniqueIdentifier>793AD87E-E0EB-4872-026B-D891C047ED07</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -330,130 +342,160 @@
     <ClCompile Include="..\..\generated\gui_generated\src\screen_menu_screen\screen_menuViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\screen_menu_screen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\close_button_container.cpp">
-      <Filter>Source Files\gui\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\close_button_containerBase.cpp">
-      <Filter>Source Files\generated\gui_generated\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_1_screen\screen_flow_1Presenter.cpp">
-      <Filter>Source Files\gui\screen_flow_1_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_1_screen\screen_flow_1View.cpp">
-      <Filter>Source Files\gui\screen_flow_1_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_1_screen\screen_flow_1ViewBase.cpp">
-      <Filter>Source Files\generated\gui_generated\screen_flow_1_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_2_screen\screen_flow_2Presenter.cpp">
-      <Filter>Source Files\gui\screen_flow_2_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_2_screen\screen_flow_2View.cpp">
-      <Filter>Source Files\gui\screen_flow_2_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_2_screen\screen_flow_2ViewBase.cpp">
-      <Filter>Source Files\generated\gui_generated\screen_flow_2_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\thinking_circles_container.cpp">
-      <Filter>Source Files\gui\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\thinking_circles_containerBase.cpp">
-      <Filter>Source Files\generated\gui_generated\containers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\common\CustomKeyboard.cpp">
-      <Filter>Source Files\gui\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_3_screen\screen_flow_3Presenter.cpp">
-      <Filter>Source Files\gui\screen_flow_3_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_3_screen\screen_flow_3View.cpp">
-      <Filter>Source Files\gui\screen_flow_3_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_3_screen\screen_flow_3ViewBase.cpp">
-      <Filter>Source Files\generated\gui_generated\screen_flow_3_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_4_screen\screen_flow_4Presenter.cpp">
-      <Filter>Source Files\gui\screen_flow_4_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_4_screen\screen_flow_4View.cpp">
-      <Filter>Source Files\gui\screen_flow_4_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_4_screen\screen_flow_4ViewBase.cpp">
-      <Filter>Source Files\generated\gui_generated\screen_flow_4_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_5_screen\screen_flow_5Presenter.cpp">
-      <Filter>Source Files\gui\screen_flow_5_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_5_screen\screen_flow_5View.cpp">
-      <Filter>Source Files\gui\screen_flow_5_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_5_screen\screen_flow_5ViewBase.cpp">
-      <Filter>Source Files\generated\gui_generated\screen_flow_5_screen</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\gui\src\widgets\qrcode\QRCode.cpp">
       <Filter>Source Files\gui\widgets\qrcode</Filter>
     </ClCompile>
     <ClCompile Include="..\..\gui\src\widgets\qrcode\QRCodeWidget.cpp">
       <Filter>Source Files\gui\widgets\qrcode</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\keyboardAlias_container.cpp">
+    <ClCompile Include="..\..\gui\src\containers\boxDice.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboardAlias_containerBase.cpp">
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\boxDiceBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\keyboardNumeric_container.cpp">
+    <ClCompile Include="..\..\gui\src\screen_flow_settings_screen\screen_flow_settingsPresenter.cpp">
+      <Filter>Source Files\gui\screen_flow_settings_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_settings_screen\screen_flow_settingsView.cpp">
+      <Filter>Source Files\gui\screen_flow_settings_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_settings_screen\screen_flow_settingsViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screen_flow_settings_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_psbt_screen\screen_flow_psbtPresenter.cpp">
+      <Filter>Source Files\gui\screen_flow_psbt_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_psbt_screen\screen_flow_psbtView.cpp">
+      <Filter>Source Files\gui\screen_flow_psbt_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_psbt_screen\screen_flow_psbtViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screen_flow_psbt_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_wallet_screen\screen_flow_walletPresenter.cpp">
+      <Filter>Source Files\gui\screen_flow_wallet_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_wallet_screen\screen_flow_walletView.cpp">
+      <Filter>Source Files\gui\screen_flow_wallet_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_wallet_screen\screen_flow_walletViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screen_flow_wallet_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_clone_screen\screen_flow_clonePresenter.cpp">
+      <Filter>Source Files\gui\screen_flow_clone_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_clone_screen\screen_flow_cloneView.cpp">
+      <Filter>Source Files\gui\screen_flow_clone_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_clone_screen\screen_flow_cloneViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screen_flow_clone_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_decrypt_screen\screen_flow_decryptPresenter.cpp">
+      <Filter>Source Files\gui\screen_flow_decrypt_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_decrypt_screen\screen_flow_decryptView.cpp">
+      <Filter>Source Files\gui\screen_flow_decrypt_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_decrypt_screen\screen_flow_decryptViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screen_flow_decrypt_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_screen\screen_flow_encryptPresenter.cpp">
+      <Filter>Source Files\gui\screen_flow_encrypt_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_screen\screen_flow_encryptView.cpp">
+      <Filter>Source Files\gui\screen_flow_encrypt_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_encrypt_screen\screen_flow_encryptViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screen_flow_encrypt_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\keyboard_decrypt_password.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboardNumeric_containerBase.cpp">
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_decrypt_passwordBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\keyboardPassphrase_container.cpp">
+    <ClCompile Include="..\..\gui\src\containers\keyboard_encrypt_password1.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboardPassphrase_containerBase.cpp">
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_encrypt_password1Base.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\keyboardPassword_container.cpp">
+    <ClCompile Include="..\..\gui\src\containers\keyboard_encrypt_password2.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboardPassword_containerBase.cpp">
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_encrypt_password2Base.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\keyboardPlainText_container.cpp">
+    <ClCompile Include="..\..\gui\src\containers\keyboard_encrypt_plaintext.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboardPlainText_containerBase.cpp">
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_encrypt_plaintextBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\textArea_container.cpp">
+    <ClCompile Include="..\..\gui\src\containers\keyboard_encrypt_seedNum.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\textArea_containerBase.cpp">
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_encrypt_seedNumBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\textAreaSelected_container.cpp">
+    <ClCompile Include="..\..\gui\src\containers\keyboard_encrypt_seedPassphrase.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\textAreaSelected_containerBase.cpp">
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_encrypt_seedPassphraseBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\keyboardPasswordCheck_container.cpp">
+    <ClCompile Include="..\..\gui\src\containers\keyboard_encrypt_seedWords.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboardPasswordCheck_containerBase.cpp">
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_encrypt_seedWordsBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\keyboardDeviceAlias_container.cpp">
+    <ClCompile Include="..\..\gui\src\containers\keyboard_encrypt_tagAlias.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboardDeviceAlias_containerBase.cpp">
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_encrypt_tagAliasBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\containers\keyboardSeed_container.cpp">
+    <ClCompile Include="..\..\gui\src\containers\keyboard_generic_deviceAlias.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboardSeed_containerBase.cpp">
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_generic_deviceAliasBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\keyboard_wallet_diceNum.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_wallet_diceNumBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\keyboard_wallet_passphrase.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_wallet_passphraseBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\textArea.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\textAreaBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\textAreaSelected.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\textAreaSelectedBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\thinking_circles.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\thinking_circlesBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\close_btn.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\close_btnBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
   </ItemGroup>
@@ -916,71 +958,11 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_menu_screen\screen_menuViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\screen_menu_screen</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\close_button_container.hpp">
-      <Filter>Header Files\gui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\close_button_containerBase.hpp">
-      <Filter>Header Files\generated\gui_generated\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_1_screen\screen_flow_1Presenter.hpp">
-      <Filter>Header Files\gui\screen_flow_1_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_1_screen\screen_flow_1View.hpp">
-      <Filter>Header Files\gui\screen_flow_1_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_1_screen\screen_flow_1ViewBase.hpp">
-      <Filter>Header Files\generated\gui_generated\screen_flow_1_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_2_screen\screen_flow_2Presenter.hpp">
-      <Filter>Header Files\gui\screen_flow_2_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_2_screen\screen_flow_2View.hpp">
-      <Filter>Header Files\gui\screen_flow_2_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_2_screen\screen_flow_2ViewBase.hpp">
-      <Filter>Header Files\generated\gui_generated\screen_flow_2_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\thinking_circles_container.hpp">
-      <Filter>Header Files\gui\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\thinking_circles_containerBase.hpp">
-      <Filter>Header Files\generated\gui_generated\containers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\common\CustomKeyboard.hpp">
-      <Filter>Header Files\gui\common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardKeyMapping.hpp">
       <Filter>Header Files\gui\common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardLayout.hpp">
       <Filter>Header Files\gui\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_3_screen\screen_flow_3Presenter.hpp">
-      <Filter>Header Files\gui\screen_flow_3_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_3_screen\screen_flow_3View.hpp">
-      <Filter>Header Files\gui\screen_flow_3_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_3_screen\screen_flow_3ViewBase.hpp">
-      <Filter>Header Files\generated\gui_generated\screen_flow_3_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_4_screen\screen_flow_4Presenter.hpp">
-      <Filter>Header Files\gui\screen_flow_4_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_4_screen\screen_flow_4View.hpp">
-      <Filter>Header Files\gui\screen_flow_4_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_4_screen\screen_flow_4ViewBase.hpp">
-      <Filter>Header Files\generated\gui_generated\screen_flow_4_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_5_screen\screen_flow_5Presenter.hpp">
-      <Filter>Header Files\gui\screen_flow_5_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_5_screen\screen_flow_5View.hpp">
-      <Filter>Header Files\gui\screen_flow_5_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_5_screen\screen_flow_5ViewBase.hpp">
-      <Filter>Header Files\generated\gui_generated\screen_flow_5_screen</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\widgets\qrcode\QRCode.hpp">
       <Filter>Header Files\gui\widgets\qrcode</Filter>
@@ -988,64 +970,154 @@
     <ClInclude Include="..\..\gui\include\gui\widgets\qrcode\QRCodeWidget.hpp">
       <Filter>Header Files\gui\widgets\qrcode</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\keyboardAlias_container.hpp">
+    <ClInclude Include="..\..\gui\include\gui\containers\boxDice.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboardAlias_containerBase.hpp">
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\boxDiceBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\keyboardNumeric_container.hpp">
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_settings_screen\screen_flow_settingsPresenter.hpp">
+      <Filter>Header Files\gui\screen_flow_settings_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_settings_screen\screen_flow_settingsView.hpp">
+      <Filter>Header Files\gui\screen_flow_settings_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_settings_screen\screen_flow_settingsViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screen_flow_settings_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_psbt_screen\screen_flow_psbtPresenter.hpp">
+      <Filter>Header Files\gui\screen_flow_psbt_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_psbt_screen\screen_flow_psbtView.hpp">
+      <Filter>Header Files\gui\screen_flow_psbt_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_psbt_screen\screen_flow_psbtViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screen_flow_psbt_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_wallet_screen\screen_flow_walletPresenter.hpp">
+      <Filter>Header Files\gui\screen_flow_wallet_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_wallet_screen\screen_flow_walletView.hpp">
+      <Filter>Header Files\gui\screen_flow_wallet_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_wallet_screen\screen_flow_walletViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screen_flow_wallet_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_clone_screen\screen_flow_clonePresenter.hpp">
+      <Filter>Header Files\gui\screen_flow_clone_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_clone_screen\screen_flow_cloneView.hpp">
+      <Filter>Header Files\gui\screen_flow_clone_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_clone_screen\screen_flow_cloneViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screen_flow_clone_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_decrypt_screen\screen_flow_decryptPresenter.hpp">
+      <Filter>Header Files\gui\screen_flow_decrypt_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_decrypt_screen\screen_flow_decryptView.hpp">
+      <Filter>Header Files\gui\screen_flow_decrypt_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_decrypt_screen\screen_flow_decryptViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screen_flow_decrypt_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_screen\screen_flow_encryptPresenter.hpp">
+      <Filter>Header Files\gui\screen_flow_encrypt_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_screen\screen_flow_encryptView.hpp">
+      <Filter>Header Files\gui\screen_flow_encrypt_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_encrypt_screen\screen_flow_encryptViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screen_flow_encrypt_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_decrypt_password.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboardNumeric_containerBase.hpp">
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_decrypt_passwordBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\keyboardPassphrase_container.hpp">
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_encrypt_password1.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboardPassphrase_containerBase.hpp">
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_encrypt_password1Base.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\keyboardPassword_container.hpp">
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_encrypt_password2.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboardPassword_containerBase.hpp">
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_encrypt_password2Base.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\keyboardPlainText_container.hpp">
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_encrypt_plaintext.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboardPlainText_containerBase.hpp">
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_encrypt_plaintextBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\textArea_container.hpp">
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_encrypt_seedNum.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\textArea_containerBase.hpp">
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_encrypt_seedNumBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\textAreaSelected_container.hpp">
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_encrypt_seedPassphrase.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\textAreaSelected_containerBase.hpp">
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_encrypt_seedPassphraseBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\keyboardPasswordCheck_container.hpp">
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_encrypt_seedWords.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboardPasswordCheck_containerBase.hpp">
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_encrypt_seedWordsBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\keyboardDeviceAlias_container.hpp">
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_encrypt_tagAlias.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboardDeviceAlias_containerBase.hpp">
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_encrypt_tagAliasBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\containers\keyboardSeed_container.hpp">
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_generic_deviceAlias.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboardSeed_containerBase.hpp">
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_generic_deviceAliasBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_wallet_diceNum.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_wallet_diceNumBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_wallet_passphrase.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_wallet_passphraseBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\textArea.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\textAreaBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\textAreaSelected.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\textAreaSelectedBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\thinking_circles.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\thinking_circlesBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\close_btn.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\close_btnBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
   </ItemGroup>
