@@ -24,7 +24,8 @@
 ../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:92:6:void FrontendApplicationBase::gotoscreen_flow_decryptScreenNoTransition()	1
 ../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:105:6:void FrontendApplicationBase::gotoscreen_flow_cloneScreenNoTransition()	1
 ../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:118:6:void FrontendApplicationBase::gotoscreen_flow_walletScreenNoTransition()	1
-../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:131:6:void FrontendApplicationBase::gotoscreen_flow_settingsScreenNoTransition()	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:131:6:void FrontendApplicationBase::gotoscreen_flow_psbtScreenNoTransition()	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:144:6:void FrontendApplicationBase::gotoscreen_flow_settingsScreenNoTransition()	1
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(Screen**, Presenter**, MVPHeap&, Transition**, ModelType*) [with ScreenType = screen_initView; PresenterType = screen_initPresenter; TransType = NoTransition; ModelType = Model]	10
 ../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:59:6:void FrontendApplicationBase::gotoscreen_initScreenNoTransitionImpl()	1
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(Screen**, Presenter**, MVPHeap&, Transition**, ModelType*) [with ScreenType = screen_menuView; PresenterType = screen_menuPresenter; TransType = NoTransition; ModelType = Model]	10
@@ -37,7 +38,9 @@
 ../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:111:6:void FrontendApplicationBase::gotoscreen_flow_cloneScreenNoTransitionImpl()	1
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(Screen**, Presenter**, MVPHeap&, Transition**, ModelType*) [with ScreenType = screen_flow_walletView; PresenterType = screen_flow_walletPresenter; TransType = NoTransition; ModelType = Model]	10
 ../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:124:6:void FrontendApplicationBase::gotoscreen_flow_walletScreenNoTransitionImpl()	1
+../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(Screen**, Presenter**, MVPHeap&, Transition**, ModelType*) [with ScreenType = screen_flow_psbtView; PresenterType = screen_flow_psbtPresenter; TransType = NoTransition; ModelType = Model]	10
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:137:6:void FrontendApplicationBase::gotoscreen_flow_psbtScreenNoTransitionImpl()	1
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:161:16:PresenterType* touchgfx::makeTransition(Screen**, Presenter**, MVPHeap&, Transition**, ModelType*) [with ScreenType = screen_flow_settingsView; PresenterType = screen_flow_settingsPresenter; TransType = NoTransition; ModelType = Model]	10
-../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:137:6:void FrontendApplicationBase::gotoscreen_flow_settingsScreenNoTransitionImpl()	1
-../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:140:1:cpp)	1
-../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:140:1:cpp)	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:150:6:void FrontendApplicationBase::gotoscreen_flow_settingsScreenNoTransitionImpl()	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:153:1:cpp)	1
+../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp:153:1:cpp)	1

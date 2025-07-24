@@ -66,6 +66,18 @@ screen_menuViewBase::screen_menuViewBase() :
     btn_wallet.setPosition(6, 122, 100, 100);
     menu.add(btn_wallet);
 
+    btn_psbt.setBoxWithBorderPosition(0, 0, 100, 100);
+    btn_psbt.setBorderSize(0);
+    btn_psbt.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(229, 229, 229), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
+    btn_psbt.setIconBitmaps(Bitmap(BITMAP_MAIN_MENU_PSBT_ID), Bitmap(BITMAP_MAIN_MENU_PSBT_ID));
+    btn_psbt.setIconXY(30, 19);
+    btn_psbt.setText(TypedText(T_SM_BTN_PSBT));
+    btn_psbt.setTextPosition(0, 67, 100, 100);
+    btn_psbt.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    btn_psbt.setAction(flexButtonCallback);
+    btn_psbt.setPosition(110, 122, 100, 100);
+    menu.add(btn_psbt);
+
     btn_settings.setBoxWithBorderPosition(0, 0, 100, 100);
     btn_settings.setBorderSize(0);
     btn_settings.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(229, 229, 229), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
@@ -75,7 +87,7 @@ screen_menuViewBase::screen_menuViewBase() :
     btn_settings.setTextPosition(0, 67, 100, 100);
     btn_settings.setTextColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(237, 237, 237));
     btn_settings.setAction(flexButtonCallback);
-    btn_settings.setPosition(110, 122, 100, 100);
+    btn_settings.setPosition(214, 122, 100, 100);
     menu.add(btn_settings);
 
     add(menu);
@@ -127,5 +139,12 @@ void screen_menuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButt
         //When btn_settings clicked change screen to screen_flow_settings
         //Go to screen_flow_settings with no screen transition
         application().gotoscreen_flow_settingsScreenNoTransition();
+    }
+    if (&src == &btn_psbt)
+    {
+        //psbtButtonPressed
+        //When btn_psbt clicked change screen to screen_flow_psbt
+        //Go to screen_flow_psbt with no screen transition
+        application().gotoscreen_flow_psbtScreenNoTransition();
     }
 }

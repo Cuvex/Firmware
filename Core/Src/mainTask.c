@@ -132,6 +132,21 @@ void processGuiToMainQueue(void)
 			cuvex.nfc.tag.action = NFC_TAG_READ_FROM_NFC;
 			break;
 
+		case GUI_TO_MAIN_NFC_TAG_READ_FROM_PSBT:
+			clearNfc_tagFlags();
+			cuvex.nfc.tag.action = NFC_TAG_READ_FROM_PSBT;
+			break;
+
+		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FROM_PSBT:
+			clearNfc_tagFlags();
+			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FROM_PSBT;
+			break;
+
+		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FROM_PSBT_T4T_8K:
+			clearNfc_tagFlags();
+			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FROM_PSBT_T4T_8K;
+			break;
+
 		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_ENCRYPT:
 			clearNfc_tagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FLOW_ENCRYPT;
@@ -182,7 +197,6 @@ void stateMachineScreens(void)
 	case SCREEN_INIT:
 	case SCREEN_MAIN_MENU:
 	case SCREEN_FLOW_WALLET:
-	case SCREEN_FLOW_PSBT:
 	case SCREEN_FLOW_SETTINGS:
 	default:
 		break;
@@ -190,7 +204,6 @@ void stateMachineScreens(void)
 		/*
 		 * Flow "Encrypt"
 		 */
-
 	case SCREEN_FLOW_ENCRYPT:
 		if((cuvex.nfc.flag_enabled == true) && (cuvex.nfc.flag_initialized == true))
 		{
@@ -238,7 +251,6 @@ void stateMachineScreens(void)
 		/*
 		 * Flow "Decrypt"
 		 */
-
 	case SCREEN_FLOW_DECRYPT:
 		if((cuvex.nfc.flag_enabled == true) && (cuvex.nfc.flag_initialized == true))
 		{
@@ -263,11 +275,9 @@ void stateMachineScreens(void)
 		}
 		break;
 
-
 		/*
 		 * Flow "Clone"
 		 */
-
 	case SCREEN_FLOW_CLONE:
 		if((cuvex.nfc.flag_enabled == true) && (cuvex.nfc.flag_initialized == true))
 		{
@@ -311,6 +321,63 @@ void stateMachineScreens(void)
 			}
 		}
 		break;
+
+		/*
+		 * Flow "PSBT"
+		 */
+	case SCREEN_FLOW_PSBT:
+		if((cuvex.nfc.flag_enabled == true) && (cuvex.nfc.flag_initialized == true))
+		{
+			/*** Initialization of NFC reader/writer (if requested) ***/
+			if(cuvex.nfc.flag_notify_init == false)
+			{
+				if(osMessageQueueGetSpace(mainToGuiQueueHandle) > 0){
+					osMessageQueuePut(mainToGuiQueueHandle, (void*)&(int){MAIN_TO_GUI_NFC_INITIALIZED}, 0, 0);
+				}
+				cuvex.nfc.flag_notify_init = true;
+			}
+
+			/*** NFC tag reading (if requested) ***/
+			if((cuvex.nfc.tag.action == NFC_TAG_READ_FROM_PSBT) && (cuvex.nfc.tag.flag_readed_from_psbt == true))
+			{
+				if(osMessageQueueGetSpace(mainToGuiQueueHandle) > 0){
+					osMessageQueuePut(mainToGuiQueueHandle, (void*)&(int){MAIN_TO_GUI_NFC_TAG_READED_FROM_PSBT}, 0, 0);
+				}
+				cuvex.nfc.tag.action = NFC_TAG_NONE;
+				cuvex.nfc.tag.flag_readed_from_psbt = false;
+			}
+
+			/*** NFC tag reading (if requested) ***/
+			if((cuvex.nfc.tag.action == NFC_TAG_READ) && (cuvex.nfc.tag.flag_readed == true))
+			{
+				if(osMessageQueueGetSpace(mainToGuiQueueHandle) > 0){
+					osMessageQueuePut(mainToGuiQueueHandle, (void*)&(int){MAIN_TO_GUI_NFC_TAG_READED}, 0, 0);
+				}
+				cuvex.nfc.tag.action = NFC_TAG_NONE;
+				cuvex.nfc.tag.flag_readed = false;
+			}
+
+			/*** NFC tag reading + writing (if requested) ***/
+			if((cuvex.nfc.tag.action == NFC_TAG_READ_WRITE_FROM_PSBT) && (cuvex.nfc.tag.flag_readed_writed_from_psbt == true))
+			{
+				if(osMessageQueueGetSpace(mainToGuiQueueHandle) > 0){
+					osMessageQueuePut(mainToGuiQueueHandle, (void*)&(int){MAIN_TO_GUI_NFC_TAG_READED_WRITED_FROM_PSBT}, 0, 0);
+				}
+				cuvex.nfc.tag.action = NFC_TAG_NONE;
+				cuvex.nfc.tag.flag_readed_writed_from_psbt = false;
+			}
+
+			/*** NFC tag reading + writing (if requested) ***/
+			if((cuvex.nfc.tag.action == NFC_TAG_READ_WRITE_FROM_PSBT_T4T_8K) && (cuvex.nfc.tag.flag_readed_writed_from_psbt == true))
+			{
+				if(osMessageQueueGetSpace(mainToGuiQueueHandle) > 0){
+					osMessageQueuePut(mainToGuiQueueHandle, (void*)&(int){MAIN_TO_GUI_NFC_TAG_READED_WRITED_FROM_PSBT_T4T_8K}, 0, 0);
+				}
+				cuvex.nfc.tag.action = NFC_TAG_NONE;
+				cuvex.nfc.tag.flag_readed_writed_from_psbt = false;
+			}
+		}
+		break;
 	}
 }
 
@@ -348,11 +415,13 @@ void clearNfc_readerFlags(void)
  **************************************************************************************************************************************/
 void clearNfc_tagFlags(void)
 {
-	cuvex.nfc.tag.action 	  			= NFC_TAG_NONE;
-	cuvex.nfc.tag.type		 			= NFC_TAG_TYPE_NONE;
-	cuvex.nfc.tag.flag_readed 			= false;
-	cuvex.nfc.tag.flag_readed_writed 	= false;
-	cuvex.nfc.tag.flag_readed_from_nfc	= false;
+	cuvex.nfc.tag.action 	  					= NFC_TAG_NONE;
+	cuvex.nfc.tag.type		 					= NFC_TAG_TYPE_NONE;
+	cuvex.nfc.tag.flag_readed 					= false;
+	cuvex.nfc.tag.flag_readed_writed 			= false;
+	cuvex.nfc.tag.flag_readed_from_nfc			= false;
+	cuvex.nfc.tag.flag_readed_from_psbt			= false;
+	cuvex.nfc.tag.flag_readed_writed_from_psbt	= false;
 }
 
 /**************************************************************************************************************************************
@@ -385,6 +454,10 @@ void clearNfc_tagInfo(void)
 	memset(cuvex.nfc.tag.from_nfc_public_key, 0x00, sizeof(cuvex.nfc.tag.from_nfc_public_key));
 	memset(cuvex.nfc.tag.from_nfc_pass_deriv, 0x00, sizeof(cuvex.nfc.tag.from_nfc_pass_deriv));
 	memset(cuvex.nfc.tag.from_nfc_plain_text, 0x00, sizeof(cuvex.nfc.tag.from_nfc_plain_text));
+	/***/
+	cuvex.nfc.tag.from_psbt_type = 0;
+	memset(cuvex.nfc.tag.from_psbt_base64, 0x00, sizeof(cuvex.nfc.tag.from_psbt_base64));
+	memset(cuvex.nfc.tag.from_psbt_base64_signed, 0x00, sizeof(cuvex.nfc.tag.from_psbt_base64_signed));
 }
 
 /**************************************************************************************************************************************

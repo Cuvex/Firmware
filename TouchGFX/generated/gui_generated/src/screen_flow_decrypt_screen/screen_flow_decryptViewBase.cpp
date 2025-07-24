@@ -33,43 +33,43 @@ screen_flow_decryptViewBase::screen_flow_decryptViewBase() :
     temporal_block_spanish_1.setXY(45, 120);
     temporal_block_spanish_1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_spanish_1.setLinespacing(0);
-    temporal_block_spanish_1.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_SPANISH_1));
+    temporal_block_spanish_1.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_SPANISH_1));
     text_temporal_block_spanish.add(temporal_block_spanish_1);
 
     temporal_block_spanish_2.setXY(185, 120);
     temporal_block_spanish_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_spanish_2.setLinespacing(0);
-    temporal_block_spanish_2.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_SPANISH_2));
+    temporal_block_spanish_2.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_SPANISH_2));
     text_temporal_block_spanish.add(temporal_block_spanish_2);
 
     temporal_block_spanish_3.setXY(252, 120);
     temporal_block_spanish_3.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_spanish_3.setLinespacing(0);
-    temporal_block_spanish_3.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_SPANISH_3));
+    temporal_block_spanish_3.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_SPANISH_3));
     text_temporal_block_spanish.add(temporal_block_spanish_3);
 
     temporal_block_spanish_4.setXY(41, 138);
     temporal_block_spanish_4.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_spanish_4.setLinespacing(0);
-    temporal_block_spanish_4.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_SPANISH_4));
+    temporal_block_spanish_4.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_SPANISH_4));
     text_temporal_block_spanish.add(temporal_block_spanish_4);
 
     temporal_block_spanish_5.setXY(71, 156);
     temporal_block_spanish_5.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_spanish_5.setLinespacing(0);
-    temporal_block_spanish_5.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_SPANISH_5));
+    temporal_block_spanish_5.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_SPANISH_5));
     text_temporal_block_spanish.add(temporal_block_spanish_5);
 
     temporal_block_spanish_6.setXY(131, 156);
     temporal_block_spanish_6.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_spanish_6.setLinespacing(0);
-    temporal_block_spanish_6.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_SPANISH_6));
+    temporal_block_spanish_6.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_SPANISH_6));
     text_temporal_block_spanish.add(temporal_block_spanish_6);
 
     temporal_block_spanish_7.setXY(47, 174);
     temporal_block_spanish_7.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_spanish_7.setLinespacing(0);
-    temporal_block_spanish_7.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_SPANISH_7));
+    temporal_block_spanish_7.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_SPANISH_7));
     text_temporal_block_spanish.add(temporal_block_spanish_7);
 
     s0_temporalBlock.add(text_temporal_block_spanish);
@@ -78,37 +78,37 @@ screen_flow_decryptViewBase::screen_flow_decryptViewBase() :
     temporal_block_english_1.setXY(56, 120);
     temporal_block_english_1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_english_1.setLinespacing(0);
-    temporal_block_english_1.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_ENGLISH_1));
+    temporal_block_english_1.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_ENGLISH_1));
     text_temporal_block_english.add(temporal_block_english_1);
 
     temporal_block_english_2.setXY(136, 120);
     temporal_block_english_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_english_2.setLinespacing(0);
-    temporal_block_english_2.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_ENGLISH_2));
+    temporal_block_english_2.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_ENGLISH_2));
     text_temporal_block_english.add(temporal_block_english_2);
 
     temporal_block_english_3.setXY(202, 120);
     temporal_block_english_3.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_english_3.setLinespacing(0);
-    temporal_block_english_3.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_ENGLISH_3));
+    temporal_block_english_3.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_ENGLISH_3));
     text_temporal_block_english.add(temporal_block_english_3);
 
     temporal_block_english_4.setXY(49, 138);
     temporal_block_english_4.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_english_4.setLinespacing(0);
-    temporal_block_english_4.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_ENGLISH_4));
+    temporal_block_english_4.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_ENGLISH_4));
     text_temporal_block_english.add(temporal_block_english_4);
 
     temporal_block_english_5.setXY(92, 156);
     temporal_block_english_5.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_english_5.setLinespacing(0);
-    temporal_block_english_5.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_ENGLISH_5));
+    temporal_block_english_5.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_ENGLISH_5));
     text_temporal_block_english.add(temporal_block_english_5);
 
     temporal_block_english_6.setXY(48, 174);
     temporal_block_english_6.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     temporal_block_english_6.setLinespacing(0);
-    temporal_block_english_6.setTypedText(touchgfx::TypedText(T_SD_TEMPORAL_BLOCK_ENGLISH_6));
+    temporal_block_english_6.setTypedText(touchgfx::TypedText(T_TEMPORAL_BLOCK_ENGLISH_6));
     text_temporal_block_english.add(temporal_block_english_6);
 
     s0_temporalBlock.add(text_temporal_block_english);

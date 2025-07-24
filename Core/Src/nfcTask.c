@@ -64,6 +64,7 @@ void enableNFC(void)
 	HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);	//Green --> OFF
 	HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);		//Red --> OFF
 	HAL_GPIO_WritePin(NFC_EN_GPIO_Port, NFC_EN_Pin, GPIO_PIN_SET);
+	//HAL_GPIO_WritePin(BLE_EN_GPIO_Port, BLE_EN_Pin, GPIO_PIN_SET);
 	HAL_UART_Init(&huart3);
 }
 
@@ -78,6 +79,7 @@ void disableNFC(void)
 	HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);	//Green --> OFF
 	HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);		//Red --> OFF
 	HAL_GPIO_WritePin(NFC_EN_GPIO_Port, NFC_EN_Pin, GPIO_PIN_RESET);
+	//HAL_GPIO_WritePin(BLE_EN_GPIO_Port, BLE_EN_Pin, GPIO_PIN_RESET);
 	HAL_UART_DeInit(&huart3);
 }
 
@@ -269,7 +271,7 @@ int nfcActionNdef(rfalNfcDevice *pNfcDevice)
 int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx, ndefInfo *pInfo)
 {
 	ReturnCode 			err;
-	uint8_t 			raw_message_buf[1000] = {0};
+	uint8_t 			raw_message_buf[868] = {0};
 	ndefBuffer       	buf_raw_message;
 	uint32_t         	raw_message_len;
 	ndefConstBuffer  	buf_const_raw_message;
@@ -352,6 +354,118 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 		}
 
 		cuvex.nfc.tag.flag_readed_from_nfc = true;
+		break;
+
+		/*******************************************************************************************************************************************/
+	case NFC_TAG_READ_FROM_PSBT:
+
+		/*** Reading the tag (if it has information) ***/
+		if(pInfo->state != NDEF_STATE_INITIALIZED)
+		{
+			/*** Obtaining the message in Raw format ***/
+			if(ndefPollerReadRawMessage(pNdefCtx, raw_message_buf, sizeof(raw_message_buf), &raw_message_len) != ERR_NONE){
+				return ERROR;
+			}
+
+			/*** Decoding the message in Raw format ***/
+			buf_const_raw_message.buffer = raw_message_buf;
+			buf_const_raw_message.length = raw_message_len;
+
+			if(ndefMessageDecode(&buf_const_raw_message, &message) != ERR_NONE){
+				return ERROR;
+			}
+
+			/*** Retrieval of information stored on the NFC tag ***/
+			if(ndefMessageGetInfo_fromPSBT(&message) == ERROR){
+				cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_NONE;
+			}
+		}
+		else{
+			cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_NONE;
+		}
+
+		cuvex.nfc.tag.flag_readed_from_psbt = true;
+		break;
+
+		/*******************************************************************************************************************************************/
+	case NFC_TAG_READ_WRITE_FROM_PSBT_T4T_8K:
+		cuvex.nfc.tag.flag_readed_writed_from_psbt = true;
+		break;
+
+		/*******************************************************************************************************************************************/
+	case NFC_TAG_READ_WRITE_FROM_PSBT:
+
+		/*** Reading the tag (if it has information) ***/
+		if(pInfo->state != NDEF_STATE_INITIALIZED)
+		{
+			/*** Obtaining the message in Raw format ***/
+			if(ndefPollerReadRawMessage(pNdefCtx, raw_message_buf, sizeof(raw_message_buf), &raw_message_len) != ERR_NONE){
+				return ERROR;
+			}
+
+			/*** Decoding the message in Raw format ***/
+			buf_const_raw_message.buffer = raw_message_buf;
+			buf_const_raw_message.length = raw_message_len;
+
+			if(ndefMessageDecode(&buf_const_raw_message, &message) != ERR_NONE){
+				return ERROR;
+			}
+
+			/*** Retrieval of information stored on the NFC tag ***/
+			if(ndefMessageGetInfo_fromPSBT(&message) == ERROR){
+				cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_NONE;
+			}
+		}
+		else{
+			cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_NONE;
+		}
+
+		/*** Writing the tag (if it has psbt information) ***/
+		if(cuvex.nfc.tag.from_psbt_type != PSBT_TYPE_NONE)
+		{
+			/*** Text/record 1 --> Initialization and encoding ***/
+			buf_lan_code_1.buffer = (uint8_t *) "en";
+			buf_lan_code_1.length = 2;
+			buf_record_1.buffer   = (uint8_t *) "PSBT CARD-SIGNED";
+			buf_record_1.length   = 18;
+
+			err |= ndefRtdText(&text_1, TEXT_ENCODING_UTF8, &buf_lan_code_1, &buf_record_1);
+			err |= ndefRtdTextToRecord(&text_1, &record_1);
+
+			/*** Text/record 2 --> Initialization and encoding ***/
+			buf_lan_code_2.buffer = (uint8_t *) "en";
+			buf_lan_code_2.length = 2;
+			buf_record_2.buffer   = cuvex.nfc.tag.from_psbt_base64_signed;
+			buf_record_2.length   = strlen(cuvex.nfc.tag.from_psbt_base64_signed);
+
+			err |= ndefRtdText(&text_2, TEXT_ENCODING_UTF8, &buf_lan_code_2, &buf_record_2);
+			err |= ndefRtdTextToRecord(&text_2, &record_2);
+
+			/*** Message --> Initialization and appending of records ***/
+			err  = ndefMessageInit(&message);
+			err |= ndefMessageAppend(&message, &record_1);
+			err |= ndefMessageAppend(&message, &record_2);
+
+			/*** Raw Buffer --> Encoding and writing of the message ***/
+			buf_raw_message.buffer = raw_message_buf;
+			buf_raw_message.length = sizeof(raw_message_buf);
+
+			err |= ndefMessageEncode(&message, &buf_raw_message);
+
+			if(err != ERR_NONE){
+				return ERROR;
+			}
+
+			err = ndefPollerWriteRawMessage(pNdefCtx, buf_raw_message.buffer, buf_raw_message.length);
+
+			if(err != ERR_NONE){
+				return ERROR;
+			}
+
+			cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_V0_SIGNED;
+		}
+
+		cuvex.nfc.tag.flag_readed_writed_from_psbt = true;
 		break;
 
 		/*******************************************************************************************************************************************/
@@ -593,7 +707,7 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx, ndefInfo *pInfo)
 {
 	ReturnCode 			err;
-	uint8_t 			raw_message_buf[1750] = {0};
+	uint8_t 			raw_message_buf[4000] = {0};
 	ndefBuffer       	buf_raw_message;
 	uint32_t         	raw_message_len;
 	ndefConstBuffer  	buf_const_raw_message;
@@ -676,6 +790,114 @@ int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx
 		}
 
 		cuvex.nfc.tag.flag_readed_from_nfc = true;
+		break;
+
+		/*******************************************************************************************************************************************/
+	case NFC_TAG_READ_FROM_PSBT:
+
+		/*** Reading the tag (if it has information) ***/
+		if(pInfo->state != NDEF_STATE_INITIALIZED)
+		{
+			/*** Obtaining the message in Raw format ***/
+			if(ndefPollerReadRawMessage(pNdefCtx, raw_message_buf, sizeof(raw_message_buf), &raw_message_len) != ERR_NONE){
+				return ERROR;
+			}
+
+			/*** Decoding the message in Raw format ***/
+			buf_const_raw_message.buffer = raw_message_buf;
+			buf_const_raw_message.length = raw_message_len;
+
+			if(ndefMessageDecode(&buf_const_raw_message, &message) != ERR_NONE){
+				return ERROR;
+			}
+
+			/*** Retrieval of information stored on the NFC tag ***/
+			if(ndefMessageGetInfo_fromPSBT(&message) == ERROR){
+				cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_NONE;
+			}
+		}
+		else{
+			cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_NONE;
+		}
+
+		cuvex.nfc.tag.flag_readed_from_psbt = true;
+		break;
+
+		/*******************************************************************************************************************************************/
+	case NFC_TAG_READ_WRITE_FROM_PSBT_T4T_8K:
+	case NFC_TAG_READ_WRITE_FROM_PSBT:
+
+		/*** Reading the tag (if it has information) ***/
+		if(pInfo->state != NDEF_STATE_INITIALIZED)
+		{
+			/*** Obtaining the message in Raw format ***/
+			if(ndefPollerReadRawMessage(pNdefCtx, raw_message_buf, sizeof(raw_message_buf), &raw_message_len) != ERR_NONE){
+				return ERROR;
+			}
+
+			/*** Decoding the message in Raw format ***/
+			buf_const_raw_message.buffer = raw_message_buf;
+			buf_const_raw_message.length = raw_message_len;
+
+			if(ndefMessageDecode(&buf_const_raw_message, &message) != ERR_NONE){
+				return ERROR;
+			}
+
+			/*** Retrieval of information stored on the NFC tag ***/
+			if(ndefMessageGetInfo_fromPSBT(&message) == ERROR){
+				cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_NONE;
+			}
+		}
+		else{
+			cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_NONE;
+		}
+
+		/*** Writing the tag (if it has psbt information) ***/
+		if(cuvex.nfc.tag.from_psbt_type != PSBT_TYPE_NONE)
+		{
+			/*** Text/record 1 --> Initialization and encoding ***/
+			buf_lan_code_1.buffer = (uint8_t *) "en";
+			buf_lan_code_1.length = 2;
+			buf_record_1.buffer   = (uint8_t *) "PSBT CARD-SIGNED";
+			buf_record_1.length   = 18;
+
+			err |= ndefRtdText(&text_1, TEXT_ENCODING_UTF8, &buf_lan_code_1, &buf_record_1);
+			err |= ndefRtdTextToRecord(&text_1, &record_1);
+
+			/*** Text/record 2 --> Initialization and encoding ***/
+			buf_lan_code_2.buffer = (uint8_t *) "en";
+			buf_lan_code_2.length = 2;
+			buf_record_2.buffer   = cuvex.nfc.tag.from_psbt_base64_signed;
+			buf_record_2.length   = strlen(cuvex.nfc.tag.from_psbt_base64_signed);
+
+			err |= ndefRtdText(&text_2, TEXT_ENCODING_UTF8, &buf_lan_code_2, &buf_record_2);
+			err |= ndefRtdTextToRecord(&text_2, &record_2);
+
+			/*** Message --> Initialization and appending of records ***/
+			err  = ndefMessageInit(&message);
+			err |= ndefMessageAppend(&message, &record_1);
+			err |= ndefMessageAppend(&message, &record_2);
+
+			/*** Raw Buffer --> Encoding and writing of the message ***/
+			buf_raw_message.buffer = raw_message_buf;
+			buf_raw_message.length = sizeof(raw_message_buf);
+
+			err |= ndefMessageEncode(&message, &buf_raw_message);
+
+			if(err != ERR_NONE){
+				return ERROR;
+			}
+
+			err = ndefPollerWriteRawMessage(pNdefCtx, buf_raw_message.buffer, buf_raw_message.length);
+
+			if(err != ERR_NONE){
+				return ERROR;
+			}
+
+			cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_V0_SIGNED;
+		}
+
+		cuvex.nfc.tag.flag_readed_writed_from_psbt = true;
 		break;
 
 		/*******************************************************************************************************************************************/
@@ -1521,6 +1743,131 @@ int ndefRecordGetInfo_fromNFC(const ndefRecord* record)
 
 					return SUCCESS;
 				}
+			}
+			break;
+		}
+	}
+
+	return ERROR;
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+int ndefMessageGetInfo_fromPSBT(const ndefMessage* message)
+{
+	ndefRecord* record;
+	record = ndefMessageGetFirstRecord(message);
+
+	while(record != NULL)
+	{
+		if(ndefRecordGetInfo_fromPSBT(record) != SUCCESS){
+			return ERROR;
+		}
+
+		record = ndefMessageGetNextRecord(record);
+	}
+
+	return SUCCESS;
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+int ndefRecordGetInfo_fromPSBT(const ndefRecord* record)
+{
+	static uint32_t index = 0;
+	ndefType type;
+	uint8_t utfEncoding;
+	ndefConstBuffer8 bufLanguageCode;
+	ndefConstBuffer  bufSentence;
+
+	/*** Update record index ***/
+	if(ndefHeaderIsSetMB(record)){
+		index = 1;
+	}
+	else{
+		index++;
+	}
+
+#ifdef DEBUG_NFC_PRINTF
+	printf("### Record #%d: --> MB:%d,ME:%d,CF:%d,SR:%d,IL:%d,TNF:%d\r\n", index, ndefHeaderMB(record), ndefHeaderME(record), ndefHeaderCF(record), ndefHeaderSR(record), ndefHeaderIL(record), ndefHeaderTNF(record));
+#endif
+
+	/*** Get record type ***/
+	ndefRecordToType(record, &type);
+
+	/*** Get record info (if type text) ***/
+	if((type.id == NDEF_TYPE_RTD_TEXT) && (ndefGetRtdText(&type, &utfEncoding, &bufLanguageCode, &bufSentence) != ERR_PARAM))
+	{
+
+#ifdef DEBUG_NFC_PRINTF
+		for(int i=0; i<bufLanguageCode.length; i++){
+			printf("%c", bufLanguageCode.buffer[i]);
+		}
+		printf("...");
+		for(int i=0; i<bufSentence.length; i++){
+			printf("%c", bufSentence.buffer[i]);
+		}
+		printf("\r\n\r\n");
+#endif
+
+		switch(index)
+		{
+		default:
+			break;
+
+		case 1:	//Record 1
+			if((bufLanguageCode.length == 2) && (bufLanguageCode.buffer[0] == 'e') && (bufLanguageCode.buffer[1] == 'n'))
+			{
+				if(strstr((char *) bufSentence.buffer, (char *) "PSBT CARD - PSBT=0") != 0x00){
+					cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_V0_NOT_SIGNED;
+				}
+				else if((strstr((char *) bufSentence.buffer, (char *) "PSBT CARD - SIGNED") != 0x00) || (strstr((char *) bufSentence.buffer, (char *) "PSBT CARD-SIGNED") != 0x00)){
+					cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_V0_SIGNED;
+				}
+				else{
+					cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_OTHER_STATE;
+				}
+				return SUCCESS;
+			}
+			else{
+				return ERROR;
+			}
+			break;
+
+		case 2:	//Record 2
+			if((bufLanguageCode.length == 2) && (bufLanguageCode.buffer[0] == 'e') && (bufLanguageCode.buffer[1] == 'n'))
+			{
+				memset(cuvex.nfc.tag.from_psbt_base64, 0x00, sizeof(cuvex.nfc.tag.from_psbt_base64));
+				memcpy(cuvex.nfc.tag.from_psbt_base64, bufSentence.buffer, bufSentence.length);
+				return SUCCESS;
+			}
+			else{
+				return ERROR;
+			}
+			break;
+
+		case 3:	//Record 3
+		case 4:	//Record 4
+		case 5:	//Record 5
+		case 6:	//Record 6
+		case 7:	//Record 7
+		case 8:	//Record 8
+		case 9:	//Record 9
+			if((bufLanguageCode.length == 2) && (bufLanguageCode.buffer[0] == 'e') && (bufLanguageCode.buffer[1] == 'n'))
+			{
+				strncat(cuvex.nfc.tag.from_psbt_base64, bufSentence.buffer, bufSentence.length);
+				return SUCCESS;
+			}
+			else{
+				return ERROR;
 			}
 			break;
 		}

@@ -38,6 +38,7 @@ extern "C" {
 #include "stdio.h"
 #include "stdbool.h"
 #include "stdlib.h"
+#include "inttypes.h"
 #include "cmsis_os2.h"
 #include "bip39_lib.h"
 #include "slip39_lib.h"
@@ -126,9 +127,10 @@ void Error_Handler(void);
  * DEFINE's
  */
 
-#define FIRMWARE_VERSION		"1.1.1"			//Firmware version
+#define FIRMWARE_VERSION		"1.1.2"		//Firmware version
 //#define DEBUG_PRINTF
 //#define DEBUG_NFC_PRINTF
+//#define DEBUG_PSBT_PRINTF
 
 #define SIZE_UID 				25
 #define SIZE_ALIAS 				25
@@ -153,6 +155,8 @@ void Error_Handler(void);
 #define FROM_NFC_PUBLIC_KEY		250
 #define FROM_NFC_PLAIN_TEXT		500
 
+#define FROM_PSBT_BASE64		4000
+
 /*
  * STRUCT's
  */
@@ -165,6 +169,8 @@ struct tag
 	bool flag_readed;
 	bool flag_readed_writed;
 	bool flag_readed_from_nfc;
+	bool flag_readed_from_psbt;
+	bool flag_readed_writed_from_psbt;
 	/***/
 	uint8_t uid[SIZE_UID];
 	uint8_t alias[SIZE_ALIAS];
@@ -190,6 +196,10 @@ struct tag
 	uint8_t from_nfc_private_key[FROM_NFC_PRIVATE_KEY];
 	uint8_t from_nfc_public_key[FROM_NFC_PUBLIC_KEY];
 	uint8_t from_nfc_plain_text[FROM_NFC_PLAIN_TEXT];
+	/***/
+	uint8_t from_psbt_type;
+	uint8_t from_psbt_base64[FROM_PSBT_BASE64];
+	uint8_t from_psbt_base64_signed[FROM_PSBT_BASE64];
 
 	/*** NEW CRYPTO VALUES TO REINITIALIZE AES PERIPHERAL ***/
 	uint32_t new_text_to_encrypt[SIZE_CRYPT_MSG];
@@ -262,6 +272,9 @@ enum gui_to_main_queue_msg
 	GUI_TO_MAIN_NFC_TAG_NONE,
 	GUI_TO_MAIN_NFC_TAG_READ,
 	GUI_TO_MAIN_NFC_TAG_READ_FROM_NFC,
+	GUI_TO_MAIN_NFC_TAG_READ_FROM_PSBT,
+	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FROM_PSBT,
+	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FROM_PSBT_T4T_8K,
 	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_ENCRYPT,
 	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_ENCRYPT_T4T_8K,
 	GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_CLONE,
@@ -279,6 +292,9 @@ enum main_to_gui_queue_msg
 	MAIN_TO_GUI_NFC_INITIALIZED,
 	MAIN_TO_GUI_NFC_TAG_READED,
 	MAIN_TO_GUI_NFC_TAG_READED_FROM_NFC,
+	MAIN_TO_GUI_NFC_TAG_READED_FROM_PSBT,
+	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FROM_PSBT,
+	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FROM_PSBT_T4T_8K,
 	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_ENCRYPT,
 	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_ENCRYPT_T4T_8K,
 	MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_CLONE,
@@ -302,6 +318,9 @@ enum nfc_tag_actions
 	NFC_TAG_NONE = 0,
 	NFC_TAG_READ,
 	NFC_TAG_READ_FROM_NFC,
+	NFC_TAG_READ_FROM_PSBT,
+	NFC_TAG_READ_WRITE_FROM_PSBT,
+	NFC_TAG_READ_WRITE_FROM_PSBT_T4T_8K,
 	NFC_TAG_READ_WRITE_FLOW_ENCRYPT,
 	NFC_TAG_READ_WRITE_FLOW_ENCRYPT_T4T_8K,
 	NFC_TAG_READ_WRITE_FLOW_CLONE,
@@ -357,6 +376,14 @@ enum dice_selected_value
 	DICE_SELECTED_VALUE_2,
 	DICE_SELECTED_VALUE_3,
 	DICE_SELECTED_VALUE_4
+};
+
+enum psbt_type
+{
+	PSBT_TYPE_NONE = 0,
+	PSBT_TYPE_V0_NOT_SIGNED,
+	PSBT_TYPE_V0_SIGNED,
+	PSBT_TYPE_OTHER_STATE
 };
 
 /*********************************************************************************************************************************************************************************************************

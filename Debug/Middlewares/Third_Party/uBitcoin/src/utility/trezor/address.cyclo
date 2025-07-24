@@ -1,0 +1,3 @@
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/address.c:27:8:address_prefix_bytes_len	3
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/address.c:35:6:address_write_prefix_bytes	4
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/address.c:43:6:address_check_prefix	4

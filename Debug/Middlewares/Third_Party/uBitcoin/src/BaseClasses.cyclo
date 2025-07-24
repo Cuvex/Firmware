@@ -1,0 +1,18 @@
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:37:8:virtual size_t ParseByteStream::available()	2
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:65:5:virtual int ParseByteStream::getLast()	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:68:8:virtual size_t ParseByteStream::read(uint8_t*, size_t)	4
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:92:8:virtual size_t SerializeByteStream::available()	2
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:99:8:virtual size_t SerializeByteStream::write(uint8_t)	5
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:120:8:virtual size_t SerializeByteStream::write(const uint8_t*, size_t)	3
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:44:5:virtual int ParseByteStream::read()	5
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:10:8:size_t SerializeStream::serialize(const Streamable*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:14:8:size_t ParseStream::parse(Streamable*)	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:19:1:ParseByteStream::ParseByteStream(const uint8_t*, size_t, encoding_format)	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:27:1:ParseByteStream::ParseByteStream(const char*, encoding_format)	2
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:34:1:ParseByteStream::~ParseByteStream()	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:83:1:SerializeByteStream::SerializeByteStream(uint8_t*, size_t, encoding_format)	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:88:1:SerializeByteStream::SerializeByteStream(char*, size_t, encoding_format)	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:167:8:size_t Streamable::serialize(uint8_t*, size_t, size_t, encoding_format) const	1
+C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.tcc:217:7:void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::forward_iterator_tag) [with _FwdIterator = const char*; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	4
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:155:8:std::string Streamable::serialize(size_t, size_t) const	2
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.cpp:142:8:std::string Readable::toString() const	1

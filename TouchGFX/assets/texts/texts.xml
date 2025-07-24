@@ -689,60 +689,6 @@
         <Translation Language="GB">IMPORTANT: </Translation>
       </Text>
     </TextGroup>
-    <TextGroup Id="screen_flow_decrypt_temporal_block">
-      <Text Id="sd_temporal_block_spanish_7" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">No desconectes el dispositivo de la &#10;alimentación.</Translation>
-        <Translation Language="GB">No desconectes el dispositivo de la &#10;alimentación.</Translation>
-      </Text>
-      <Text Id="sd_temporal_block_spanish_6" Alignment="Left" TypographyId="Neue_bold_15px">
-        <Translation Language="SP">bloqueo temporal.</Translation>
-        <Translation Language="GB">bloqueo temporal.</Translation>
-      </Text>
-      <Text Id="sd_temporal_block_spanish_5" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">NFC, por </Translation>
-        <Translation Language="GB">NFC, por </Translation>
-      </Text>
-      <Text Id="sd_temporal_block_spanish_4" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">se puede dar inicio a la activación del</Translation>
-        <Translation Language="GB">se puede dar inicio a la activación del</Translation>
-      </Text>
-      <Text Id="sd_temporal_block_spanish_3" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">, no </Translation>
-        <Translation Language="GB">, no </Translation>
-      </Text>
-      <Text Id="sd_temporal_block_spanish_2" Alignment="Left" TypographyId="Neue_bold_15px">
-        <Translation Language="SP">5 minutos</Translation>
-        <Translation Language="GB">5 minutos</Translation>
-      </Text>
-      <Text Id="sd_temporal_block_spanish_1" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">Durante los próximos </Translation>
-        <Translation Language="GB">Durante los próximos </Translation>
-      </Text>
-      <Text Id="sd_temporal_block_english_6" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">Do not disconnect the device from &#10;the power supply.</Translation>
-        <Translation Language="GB">Do not disconnect the device from &#10;the power supply.</Translation>
-      </Text>
-      <Text Id="sd_temporal_block_english_5" Alignment="Center" TypographyId="Neue_bold_15px">
-        <Translation Language="SP">temporary blocking.</Translation>
-        <Translation Language="GB">temporary blocking.</Translation>
-      </Text>
-      <Text Id="sd_temporal_block_english_4" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">activation cannot be started due to</Translation>
-        <Translation Language="GB">activation cannot be started due to</Translation>
-      </Text>
-      <Text Id="sd_temporal_block_english_3" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">, the NFC </Translation>
-        <Translation Language="GB">, the NFC </Translation>
-      </Text>
-      <Text Id="sd_temporal_block_english_2" Alignment="Left" TypographyId="Neue_bold_15px">
-        <Translation Language="SP">5 minutes</Translation>
-        <Translation Language="GB">5 minutes</Translation>
-      </Text>
-      <Text Id="sd_temporal_block_english_1" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">For the next </Translation>
-        <Translation Language="GB">For the next </Translation>
-      </Text>
-    </TextGroup>
     <TextGroup Id="screen_flow_decrypt_password_error1">
       <Text Id="sd_password_error1_spanish_1" Alignment="Center" TypographyId="Neue_bold_15px">
         <Translation Language="SP">Ko Password.</Translation>
@@ -1051,73 +997,305 @@
         <Translation Language="GB">CONTINUE</Translation>
       </Text>
     </TextGroup>
-    <TextGroup Id="screen_flow_settings">
-      <Text Id="ss_appearance_btn_dark" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">Oscuro</Translation>
-        <Translation Language="GB">Dark</Translation>
-      </Text>
-      <Text Id="ss_appearance_btn_light" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">Claro</Translation>
-        <Translation Language="GB">Light</Translation>
-      </Text>
-      <Text Id="ss_appearance_text_info" Alignment="Center" TypographyId="Neue_bold_15px">
-        <Translation Language="SP">Aspecto</Translation>
-        <Translation Language="GB">Appearance</Translation>
-      </Text>
-      <Text Id="ss_language_btn_spanish" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">Español</Translation>
-        <Translation Language="GB">Spanish</Translation>
-      </Text>
-      <Text Id="ss_language_btn_english" Alignment="Left" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">Inglés</Translation>
-        <Translation Language="GB">English</Translation>
-      </Text>
-      <Text Id="ss_language_text_info" Alignment="Center" TypographyId="Neue_bold_15px">
-        <Translation Language="SP">Idioma</Translation>
-        <Translation Language="GB">Language</Translation>
-      </Text>
-      <Text Id="ss_brightness_text_info" Alignment="Center" TypographyId="Neue_bold_15px">
-        <Translation Language="SP">Brillo</Translation>
-        <Translation Language="GB">Brightness</Translation>
-      </Text>
-      <Text Id="ss_update_click_value" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">3</Translation>
-        <Translation Language="GB"></Translation>
-      </Text>
-      <Text Id="ss_update_click" Alignment="Center" TypographyId="Neue_medium_15px">
+    <TextGroup Id="screen_flow_psbt">
+      <Text Id="sp_check_receiver_address_1" Alignment="Center" TypographyId="Neue_bold_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="ss_version_btn_update" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">ACTUALIZAR</Translation>
-        <Translation Language="GB">UPDATE</Translation>
+      <Text Id="sp_check_receiver_address_1_value" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
       </Text>
-      <Text Id="ss_version_text_caution" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">IMPORTANTE, asegúrate de tener&#10;previamente descargada la nueva &#10;actualización de firmware en la &#10;App Cuvex de tu Smartphone.&#10;Sigue las instrucciones en la App &#10;Cuvex.</Translation>
-        <Translation Language="GB">IMPORTANT, make sure you have &#10;previously downloaded the new &#10;firmware update in the &#10;Cuvex App on your Smartphone. &#10;Follow the instructions in the &#10;Cuvex App.</Translation>
+      <Text Id="sp_check_receiver_address_2" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="ss_version_text_version" Alignment="Center" TypographyId="Neue_medium_15px">
-        <Translation Language="SP">Cuvex V.&lt;value&gt;(&lt;value&gt;)</Translation>
-        <Translation Language="GB">Cuvex V.&lt;value&gt;(&lt;value&gt;)</Translation>
+      <Text Id="sp_check_receiver_address_2_value" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
       </Text>
-      <Text Id="ss_menu_appearance" Alignment="Center" TypographyId="Neue_medium_14px">
-        <Translation Language="SP">ASPECTO</Translation>
-        <Translation Language="GB">APPEARANCE</Translation>
+      <Text Id="sp_check_receiver_address_3" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="ss_menu_language" Alignment="Center" TypographyId="Neue_medium_14px">
-        <Translation Language="SP">IDIOMA</Translation>
-        <Translation Language="GB">LANGUAGE</Translation>
+      <Text Id="sp_check_receiver_address_3_value" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
       </Text>
-      <Text Id="ss_menu_brightness" Alignment="Center" TypographyId="Neue_medium_14px">
-        <Translation Language="SP">BRILLO</Translation>
-        <Translation Language="GB">BRIGHTNESS</Translation>
+      <Text Id="sp_psbt_signed_success" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">PSBT, firmado con éxito.</Translation>
+        <Translation Language="GB">PSBT, successfully signed.</Translation>
       </Text>
-      <Text Id="ss_menu_version" Alignment="Center" TypographyId="Neue_medium_14px">
-        <Translation Language="SP">VERSIÓN</Translation>
-        <Translation Language="GB">VERSION</Translation>
+      <Text Id="sp_btn_close" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CERRAR</Translation>
+        <Translation Language="GB">CLOSE</Translation>
+      </Text>
+      <Text Id="sp_psbt_save_success" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">PSBT firmado grabado con éxito.</Translation>
+        <Translation Language="GB">PSBT successfully signed and saved.</Translation>
+      </Text>
+      <Text Id="sp_wait_read_nfc3" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Acerca la tarjeta donde has &#10;grabado la transacción PSBT.</Translation>
+        <Translation Language="GB">Bring the card containing the &#10;PSBT transaction closer.</Translation>
+      </Text>
+      <Text Id="sp_btn_write_psbt_via_nfc" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">GRABAR PSBT POR NFC</Translation>
+        <Translation Language="GB">WRITE PSBT VIA NFC</Translation>
+      </Text>
+      <Text Id="sp_update_click_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">3</Translation>
+        <Translation Language="GB">3</Translation>
+      </Text>
+      <Text Id="sp_keyboard_btn_enter_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">DESCIFRAR</Translation>
+        <Translation Language="GB">DECRYPT</Translation>
+      </Text>
+      <Text Id="sp_keyboard_text_typed_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="sp_keyboard_text_typed_hide_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="sp_keyboard_info_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">Introduce tu Password.</Translation>
+        <Translation Language="GB">Enter your Password.</Translation>
+      </Text>
+      <Text Id="sp_keyboard_btn_enter" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_keyboard_text_typed" Alignment="Right" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_keyboard_text_typed_hide" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_keyboard_info" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_keyboard_placeholder" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Password</Translation>
+        <Translation Language="GB">Password</Translation>
+      </Text>
+      <Text Id="sp_no_change_address_warning_text_3" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">En esta transacción gastará el total &#10;indicado ya que no se establece cambio.</Translation>
+        <Translation Language="GB">This transaction will spend the full indicated &#10;amount since no change is specified.</Translation>
+      </Text>
+      <Text Id="sp_no_change_address_warning_text_2" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Transacción sin dirección de cambio.</Translation>
+        <Translation Language="GB">Transaction without a change address. </Translation>
+      </Text>
+      <Text Id="sp_no_change_address_warning_text_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">¡Atención!</Translation>
+        <Translation Language="GB">Attention!</Translation>
+      </Text>
+      <Text Id="sp_btn_sign_psbt_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">CONTINUAR</Translation>
+        <Translation Language="GB">CONTINUE</Translation>
+      </Text>
+      <Text Id="sp_sign_psbt_click_confirm" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_btn_sign_psbt" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_check_receiver_info_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">Receptor  -/-</Translation>
+        <Translation Language="GB">Recipient  -/-</Translation>
+      </Text>
+      <Text Id="sp_ko_private_password_error_text_2" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">La clave privada grabada en la tarjeta &#10;no es válida para esta transacción.</Translation>
+        <Translation Language="GB">The private key stored on the card &#10;is not valid for this transaction.</Translation>
+      </Text>
+      <Text Id="sp_ko_private_password_error_text_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Ko Clave Privada</Translation>
+        <Translation Language="GB">Private Key Error</Translation>
+      </Text>
+      <Text Id="sp_check_receiver_direction_value" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sp_check_receiver_direction" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_check_receiver_info" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_bitcoin_amount_value" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sp_bitcoin_amount" Alignment="Right" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2_fee_num_value" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2_outputs_num_value" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2_inputs_num_value" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sp_bitcoin_amount_info_2_value" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sp_bitcoin_amount_info_2" Alignment="Right" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_bitcoin_change_text_info_2" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Cambio</Translation>
+        <Translation Language="GB">Change</Translation>
+      </Text>
+      <Text Id="sp_btn_verify_transaction_info_2" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">REVISAR RECEPTOR</Translation>
+        <Translation Language="GB">REVIEW RECIPIENT</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2_fee_num" Alignment="Right" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2_outputs_num" Alignment="Right" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2_inputs_num" Alignment="Right" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2_fee" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Total Fee:</Translation>
+        <Translation Language="GB">Total Fee:</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2_outputs" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Total receptor:</Translation>
+        <Translation Language="GB">Total recipient:</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2_inputs" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Total input:</Translation>
+        <Translation Language="GB">Total input:</Translation>
+      </Text>
+      <Text Id="ko_password_2_error_text_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Ko password.</Translation>
+        <Translation Language="GB">Ko password.</Translation>
+      </Text>
+      <Text Id="ko_password_2_error_text_2" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">No se ha podido acceder.&#10;Bloqueo temporal, en tu próximo intento &#10;de descifrar deberás esperar 5 minutos.</Translation>
+        <Translation Language="GB">Unable to access.&#10;Temporary lockout. You must wait 5 minutes &#10;before your next decryption attempt.</Translation>
+      </Text>
+      <Text Id="ko_password_1_error_text_2" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">El Password no es correcto.&#10;Tienes un intento más antes del bloqueo &#10;temporal en el menú de descifrado.</Translation>
+        <Translation Language="GB">The password is incorrect.&#10;You have one more attempt before a &#10;temporary lockout in the decryption menu.</Translation>
+      </Text>
+      <Text Id="ko_password_1_error_text_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Ko password.</Translation>
+        <Translation Language="GB">Ko password.</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Detalles de la transacción</Translation>
+        <Translation Language="GB">Transaction details</Translation>
+      </Text>
+      <Text Id="sp_btn_retry_card_format" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">REINTENTAR</Translation>
+        <Translation Language="GB">RETRY</Translation>
+      </Text>
+      <Text Id="sp_btn_retry_no_cryptogram" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">REINTENTAR</Translation>
+        <Translation Language="GB">RETRY</Translation>
+      </Text>
+      <Text Id="sp_no_cryptogram_error" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Tarjeta emisora elegida no tiene &#10;criptograma grabado.</Translation>
+        <Translation Language="GB">The selected sender card does not &#10;have a recorded cryptogram.</Translation>
+      </Text>
+      <Text Id="sp_card_format_error" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Error formato de tarjeta no válido.</Translation>
+        <Translation Language="GB">Invalid card format error.</Translation>
+      </Text>
+      <Text Id="sp_wait_read_nfc2" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Acerca la tarjeta donde tienes cifrada &#10;tu semilla o clave privada.</Translation>
+        <Translation Language="GB">Bring the card with your encrypted &#10;seed or private key closer.</Translation>
+      </Text>
+      <Text Id="sp_btn_verify_transaction_info_1" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">VERIFICAR TRANSACCIÓN</Translation>
+        <Translation Language="GB">VERIFY TRANSACTION</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_1_fee_num_value" Alignment="Right" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_1_fee_num" Alignment="Right" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_1_outputs_num_value" Alignment="Right" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_1_outputs_num" Alignment="Right" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_1_inputs_num_value" Alignment="Right" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_1_inputs_num" Alignment="Right" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_1_fee" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Fee:</Translation>
+        <Translation Language="GB">Fee:</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_1_outputs" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Salidas:</Translation>
+        <Translation Language="GB">Outputs:</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_1_inputs" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Entradas:</Translation>
+        <Translation Language="GB">Inputs:</Translation>
+      </Text>
+      <Text Id="sp_bitcoin_amount_info_1_value" Alignment="Right" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sp_bitcoin_amount_info_1" Alignment="Right" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Información transacción</Translation>
+        <Translation Language="GB">Transaction information</Translation>
+      </Text>
+      <Text Id="sp_wait_read_nfc1" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Acerca la tarjeta donde has &#10;grabado la transacción PSBT.</Translation>
+        <Translation Language="GB">Bring the card containing the &#10;PSBT transaction closer.</Translation>
+      </Text>
+      <Text Id="sp_init_nfc_text2" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">NFC.</Translation>
+        <Translation Language="GB">NFC.</Translation>
+      </Text>
+      <Text Id="sp_init_nfc_text1" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Activando </Translation>
+        <Translation Language="GB">Activating </Translation>
       </Text>
     </TextGroup>
-    <TextGroup Id="screen_flow_settings_caution_msg">
+    <TextGroup Id="screen_flow_settings">
       <Text Id="ss_text_caution_english_9" Alignment="Left" TypographyId="Neue_medium_12px">
         <Translation Language="SP">on the button.</Translation>
         <Translation Language="GB">on the button.</Translation>
@@ -1189,6 +1367,124 @@
       <Text Id="ss_text_caution_spanish_1" Alignment="Left" TypographyId="Neue_bold_15px">
         <Translation Language="SP">IMPORTANTE, </Translation>
         <Translation Language="GB">IMPORTANTE, </Translation>
+      </Text>
+      <Text Id="ss_appearance_btn_dark" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Oscuro</Translation>
+        <Translation Language="GB">Dark</Translation>
+      </Text>
+      <Text Id="ss_appearance_btn_light" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Claro</Translation>
+        <Translation Language="GB">Light</Translation>
+      </Text>
+      <Text Id="ss_appearance_text_info" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Aspecto</Translation>
+        <Translation Language="GB">Appearance</Translation>
+      </Text>
+      <Text Id="ss_language_btn_spanish" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Español</Translation>
+        <Translation Language="GB">Spanish</Translation>
+      </Text>
+      <Text Id="ss_language_btn_english" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Inglés</Translation>
+        <Translation Language="GB">English</Translation>
+      </Text>
+      <Text Id="ss_language_text_info" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Idioma</Translation>
+        <Translation Language="GB">Language</Translation>
+      </Text>
+      <Text Id="ss_brightness_text_info" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Brillo</Translation>
+        <Translation Language="GB">Brightness</Translation>
+      </Text>
+      <Text Id="ss_update_click_value" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">3</Translation>
+        <Translation Language="GB">3</Translation>
+      </Text>
+      <Text Id="ss_update_click" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="ss_version_btn_update" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">ACTUALIZAR</Translation>
+        <Translation Language="GB">UPDATE</Translation>
+      </Text>
+      <Text Id="ss_version_text_caution" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">IMPORTANTE, asegúrate de tener&#10;previamente descargada la nueva &#10;actualización de firmware en la &#10;App Cuvex de tu Smartphone.&#10;Sigue las instrucciones en la App &#10;Cuvex.</Translation>
+        <Translation Language="GB">IMPORTANT, make sure you have &#10;previously downloaded the new &#10;firmware update in the &#10;Cuvex App on your Smartphone. &#10;Follow the instructions in the &#10;Cuvex App.</Translation>
+      </Text>
+      <Text Id="ss_version_text_version" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Cuvex V.&lt;value&gt;(&lt;value&gt;)</Translation>
+        <Translation Language="GB">Cuvex V.&lt;value&gt;(&lt;value&gt;)</Translation>
+      </Text>
+      <Text Id="ss_menu_appearance" Alignment="Center" TypographyId="Neue_medium_14px">
+        <Translation Language="SP">ASPECTO</Translation>
+        <Translation Language="GB">APPEARANCE</Translation>
+      </Text>
+      <Text Id="ss_menu_language" Alignment="Center" TypographyId="Neue_medium_14px">
+        <Translation Language="SP">IDIOMA</Translation>
+        <Translation Language="GB">LANGUAGE</Translation>
+      </Text>
+      <Text Id="ss_menu_brightness" Alignment="Center" TypographyId="Neue_medium_14px">
+        <Translation Language="SP">BRILLO</Translation>
+        <Translation Language="GB">BRIGHTNESS</Translation>
+      </Text>
+      <Text Id="ss_menu_version" Alignment="Center" TypographyId="Neue_medium_14px">
+        <Translation Language="SP">VERSIÓN</Translation>
+        <Translation Language="GB">VERSION</Translation>
+      </Text>
+    </TextGroup>
+    <TextGroup Id="temporal_block">
+      <Text Id="temporal_block_spanish_7" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">No desconectes el dispositivo de la &#10;alimentación.</Translation>
+        <Translation Language="GB">No desconectes el dispositivo de la &#10;alimentación.</Translation>
+      </Text>
+      <Text Id="temporal_block_spanish_6" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">bloqueo temporal.</Translation>
+        <Translation Language="GB">bloqueo temporal.</Translation>
+      </Text>
+      <Text Id="temporal_block_spanish_5" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">NFC, por </Translation>
+        <Translation Language="GB">NFC, por </Translation>
+      </Text>
+      <Text Id="temporal_block_spanish_4" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">se puede dar inicio a la activación del</Translation>
+        <Translation Language="GB">se puede dar inicio a la activación del</Translation>
+      </Text>
+      <Text Id="temporal_block_spanish_3" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">, no </Translation>
+        <Translation Language="GB">, no </Translation>
+      </Text>
+      <Text Id="temporal_block_spanish_2" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">5 minutos</Translation>
+        <Translation Language="GB">5 minutos</Translation>
+      </Text>
+      <Text Id="temporal_block_spanish_1" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Durante los próximos </Translation>
+        <Translation Language="GB">Durante los próximos </Translation>
+      </Text>
+      <Text Id="temporal_block_english_6" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Do not disconnect the device from &#10;the power supply.</Translation>
+        <Translation Language="GB">Do not disconnect the device from &#10;the power supply.</Translation>
+      </Text>
+      <Text Id="temporal_block_english_5" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">temporary blocking.</Translation>
+        <Translation Language="GB">temporary blocking.</Translation>
+      </Text>
+      <Text Id="temporal_block_english_4" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">activation cannot be started due to</Translation>
+        <Translation Language="GB">activation cannot be started due to</Translation>
+      </Text>
+      <Text Id="temporal_block_english_3" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">, the NFC </Translation>
+        <Translation Language="GB">, the NFC </Translation>
+      </Text>
+      <Text Id="temporal_block_english_2" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">5 minutes</Translation>
+        <Translation Language="GB">5 minutes</Translation>
+      </Text>
+      <Text Id="temporal_block_english_1" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">For the next </Translation>
+        <Translation Language="GB">For the next </Translation>
       </Text>
     </TextGroup>
     <TextGroup Id="Unsorted" />

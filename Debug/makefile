@@ -40,6 +40,11 @@ RM := rm -rf
 -include TouchGFX/generated/gui_generated/src/common/subdir.mk
 -include TouchGFX/generated/fonts/src/subdir.mk
 -include TouchGFX/App/subdir.mk
+-include Middlewares/Third_Party/uBitcoin/tests/subdir.mk
+-include Middlewares/Third_Party/uBitcoin/src/utility/trezor/subdir.mk
+-include Middlewares/Third_Party/uBitcoin/src/utility/subdir.mk
+-include Middlewares/Third_Party/uBitcoin/src/subdir.mk
+-include Middlewares/Third_Party/uBitcoin/examples/cpp/subdir.mk
 -include Middlewares/Third_Party/mbed-crypto/library/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/subdir.mk
@@ -132,7 +137,7 @@ main-build: sml-230109.elf secondary-outputs
 
 # Tool invocations
 sml-230109.elf sml-230109.map: $(OBJS) $(USER_OBJS) C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\STM32U5A9VJTXQ_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "sml-230109.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\STM32U5A9VJTXQ_FLASH.ld" -Wl,-Map="sml-230109.map" -Wl,--gc-sections -static -L"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\Middlewares\ST\touchgfx\lib\core\cortex_m33\gcc" -L"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\Middlewares\ST\touchgfx_components\gpu2d\NemaGFX\lib\core\cortex_m33\gcc" -L"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\Middlewares\ST\touchgfx_components\gpu2d\TouchGFXNema\lib\cortex_m33\gcc" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	arm-none-eabi-g++ -o "sml-230109.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\STM32U5A9VJTXQ_FLASH.ld" -Wl,-Map="sml-230109.map" -Wl,--gc-sections -static -L"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\Middlewares\ST\touchgfx\lib\core\cortex_m33\gcc" -L"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\Middlewares\ST\touchgfx_components\gpu2d\NemaGFX\lib\core\cortex_m33\gcc" -L"C:\Users\daniel.e\Documents\Workspace_git\sml-001-fw\sml-230109\Middlewares\ST\touchgfx_components\gpu2d\TouchGFXNema\lib\cortex_m33\gcc" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

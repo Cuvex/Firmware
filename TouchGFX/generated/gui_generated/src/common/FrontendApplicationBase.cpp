@@ -126,6 +126,19 @@ void FrontendApplicationBase::gotoscreen_flow_walletScreenNoTransitionImpl()
     touchgfx::makeTransition<screen_flow_walletView, screen_flow_walletPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
+// screen_flow_psbt
+
+void FrontendApplicationBase::gotoscreen_flow_psbtScreenNoTransition()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_psbtScreenNoTransitionImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoscreen_flow_psbtScreenNoTransitionImpl()
+{
+    touchgfx::makeTransition<screen_flow_psbtView, screen_flow_psbtPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
 // screen_flow_settings
 
 void FrontendApplicationBase::gotoscreen_flow_settingsScreenNoTransition()

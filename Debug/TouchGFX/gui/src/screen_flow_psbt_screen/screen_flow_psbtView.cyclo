@@ -1,6 +1,50 @@
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:104:18:virtual void touchgfx::Screen::afterTransition()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:154:18:virtual void touchgfx::Screen::handleKeyEvent(uint8_t)	1
-../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:13:6:virtual void screen_flow_psbtView::tearDownScreen()	1
-../TouchGFX/gui/include/gui/screen_flow_psbt_screen/screen_flow_psbtView.hpp:11:13:screen_flow_psbtView::~screen_flow_psbtView()	1
-../TouchGFX/gui/include/gui/screen_flow_psbt_screen/screen_flow_psbtView.hpp:11:13:virtual screen_flow_psbtView::~screen_flow_psbtView()	1
-../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:3:1:screen_flow_psbtView::screen_flow_psbtView()	1
-../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:8:6:virtual void screen_flow_psbtView::setupScreen()	1
+../Drivers/CMSIS/Include/core_cm33.h:2448:34:void __NVIC_SystemReset()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:touchgfx::TypedText::~TypedText()	1
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:18:20:virtual size_t ECPoint::length() const	1
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:19:20:virtual size_t ECPoint::stringLength() const	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:137:6:virtual void screen_flow_psbtView::changeScreen(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:148:6:virtual void screen_flow_psbtView::changeFlash(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:159:6:virtual void screen_flow_psbtView::changeStateNfc(uint8_t)	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:40:6:virtual void screen_flow_psbtView::tearDownScreen()	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:608:6:virtual void screen_flow_psbtView::koPassword2BtnPressed()	0
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:619:6:virtual void screen_flow_psbtView::koPrivatePasswordBtnPressed()	0
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:821:6:virtual void screen_flow_psbtView::btnClosePressed()	0
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1751:6:virtual void screen_flow_psbtView::passwordWrong()	2
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1785:6:virtual void screen_flow_psbtView::printfPsbtInputsMetadata()	1
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:17:18:virtual void ECPoint::reset()	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:295:6:virtual void screen_flow_psbtView::btnVerifyTransactionPressed()	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:779:6:virtual void screen_flow_psbtView::btnWarningNoChangeAddressPressed()	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:954:6:virtual void screen_flow_psbtView::checkTemporalBlock()	2
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:532:6:virtual void screen_flow_psbtView::retryNoCryptogramErrorPressed()	2
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:838:6:virtual void screen_flow_psbtView::setScreenMode()	2
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:553:6:virtual void screen_flow_psbtView::koPassword1BtnPressed()	5
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:170:6:virtual void screen_flow_psbtView::updateStateNfc(uint16_t)	18
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:469:6:virtual void screen_flow_psbtView::eyePressed()	2
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:795:6:virtual void screen_flow_psbtView::btnWritePsbtViaNfcPressed()	2
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:489:6:virtual void screen_flow_psbtView::retryCardFormatErrorPressed()	4
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:65:13:virtual touchgfx::TypedText::~TypedText()	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:934:6:virtual void screen_flow_psbtView::setScreenLanguage()	2
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.h:122:20:virtual size_t Streamable::from_str(const char*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.h:119:20:virtual size_t Streamable::to_str(char*, size_t) const	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1251:6:virtual void screen_flow_psbtView::configAESPeripheral_v2(uint8_t*, uint8_t*)	4
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1289:6:virtual void screen_flow_psbtView::decryptSecret(uint8_t*)	18
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1448:6:virtual void screen_flow_psbtView::decryptSecretWithCombinations(uint8_t*)	25
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1672:6:virtual bool screen_flow_psbtView::checkDecryptedText(uint8_t*)	2
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1690:6:virtual void screen_flow_psbtView::passwordSuccess(uint8_t*)	7
+../TouchGFX/gui/include/gui/screen_flow_psbt_screen/screen_flow_psbtView.hpp:30:13:screen_flow_psbtView::~screen_flow_psbtView()	1
+../TouchGFX/gui/include/gui/screen_flow_psbt_screen/screen_flow_psbtView.hpp:30:13:virtual screen_flow_psbtView::~screen_flow_psbtView()	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1062:5:virtual int screen_flow_psbtView::getCheckPsbtInfo2()	23
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1005:5:virtual int screen_flow_psbtView::getCheckPsbtInfo1()	13
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:630:6:virtual void screen_flow_psbtView::checkReceiverPressed()	6
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:698:6:virtual void screen_flow_psbtView::btnSignPsbtPressed()	9
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1195:6:virtual void screen_flow_psbtView::signPsbtTransaction()	5
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1883:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:1883:1:cpp)	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:22:1:screen_flow_psbtView::screen_flow_psbtView()	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:28:6:virtual void screen_flow_psbtView::setupScreen()	1
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:377:6:virtual void screen_flow_psbtView::enterKeyboardPressed()	12
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:58:6:virtual void screen_flow_psbtView::tickEventScreen()	9
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:315:6:virtual void screen_flow_psbtView::hideKeyboardPressed()	2
+../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtView.cpp:346:6:virtual void screen_flow_psbtView::showKeyboardPressed()	2
