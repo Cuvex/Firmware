@@ -27,8 +27,6 @@
     <ClCompile Include="..\..\gui\src\screen_menu_screen\screen_menuPresenter.cpp"/>
     <ClCompile Include="..\..\gui\src\screen_menu_screen\screen_menuView.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\screen_menu_screen\screen_menuViewBase.cpp"/>
-    <ClCompile Include="..\..\gui\src\widgets\qrcode\QRCode.cpp"/>
-    <ClCompile Include="..\..\gui\src\widgets\qrcode\QRCodeWidget.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\boxDice.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\boxDiceBase.cpp"/>
     <ClCompile Include="..\..\gui\src\screen_flow_settings_screen\screen_flow_settingsPresenter.cpp"/>
@@ -46,9 +44,6 @@
     <ClCompile Include="..\..\gui\src\screen_flow_decrypt_screen\screen_flow_decryptPresenter.cpp"/>
     <ClCompile Include="..\..\gui\src\screen_flow_decrypt_screen\screen_flow_decryptView.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_decrypt_screen\screen_flow_decryptViewBase.cpp"/>
-    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_screen\screen_flow_encryptPresenter.cpp"/>
-    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_screen\screen_flow_encryptView.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_encrypt_screen\screen_flow_encryptViewBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\keyboard_decrypt_password.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_decrypt_passwordBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\keyboard_encrypt_password1.cpp"/>
@@ -81,6 +76,18 @@
     <ClCompile Include="..\..\generated\gui_generated\src\containers\close_btnBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\keyboard_psbt_password.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_psbt_passwordBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1Presenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1View.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1ViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2Presenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2View.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2ViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\decrypt_tag.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\decrypt_tagBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\keyboard_decrypt_verifyAddress.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_decrypt_verifyAddressBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\verify_address.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\verify_addressBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -239,8 +246,6 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_menu_screen\screen_menuViewBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardKeyMapping.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardLayout.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\widgets\qrcode\QRCode.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\widgets\qrcode\QRCodeWidget.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\boxDice.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\boxDiceBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\screen_flow_settings_screen\screen_flow_settingsPresenter.hpp"/>
@@ -258,9 +263,6 @@
     <ClInclude Include="..\..\gui\include\gui\screen_flow_decrypt_screen\screen_flow_decryptPresenter.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\screen_flow_decrypt_screen\screen_flow_decryptView.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_decrypt_screen\screen_flow_decryptViewBase.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_screen\screen_flow_encryptPresenter.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_screen\screen_flow_encryptView.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_encrypt_screen\screen_flow_encryptViewBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\keyboard_decrypt_password.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_decrypt_passwordBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\keyboard_encrypt_password1.hpp"/>
@@ -293,6 +295,18 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\close_btnBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\keyboard_psbt_password.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_psbt_passwordBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1Presenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1View.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1ViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2Presenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2View.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2ViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\decrypt_tag.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\decrypt_tagBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_decrypt_verifyAddress.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_decrypt_verifyAddressBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\verify_address.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\verify_addressBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

@@ -68,86 +68,86 @@ extern TIM_HandleTypeDef htim6;
 /*           Cortex Processor Interruption and Exception Handlers          */
 /******************************************************************************/
 /**
- * @brief This function handles Non maskable interrupt.
- */
+  * @brief This function handles Non maskable interrupt.
+  */
 void NMI_Handler(void)
 {
-	/* USER CODE BEGIN NonMaskableInt_IRQn 0 */
-	/* USER CODE END NonMaskableInt_IRQn 0 */
-	/* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+  /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+  /* USER CODE END NonMaskableInt_IRQn 0 */
+  /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
 	while (1)
 	{
 	}
-	/* USER CODE END NonMaskableInt_IRQn 1 */
+  /* USER CODE END NonMaskableInt_IRQn 1 */
 }
 
 /**
- * @brief This function handles Hard fault interrupt.
- */
+  * @brief This function handles Hard fault interrupt.
+  */
 void HardFault_Handler(void)
 {
-	/* USER CODE BEGIN HardFault_IRQn 0 */
-	/* USER CODE END HardFault_IRQn 0 */
-	while (1)
-	{
-		/* USER CODE BEGIN W1_HardFault_IRQn 0 */
-		/* USER CODE END W1_HardFault_IRQn 0 */
-	}
+  /* USER CODE BEGIN HardFault_IRQn 0 */
+  /* USER CODE END HardFault_IRQn 0 */
+  while (1)
+  {
+    /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+    /* USER CODE END W1_HardFault_IRQn 0 */
+  }
 }
 
 /**
- * @brief This function handles Memory management fault.
- */
+  * @brief This function handles Memory management fault.
+  */
 void MemManage_Handler(void)
 {
-	/* USER CODE BEGIN MemoryManagement_IRQn 0 */
-	/* USER CODE END MemoryManagement_IRQn 0 */
-	while (1)
-	{
-		/* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
-		/* USER CODE END W1_MemoryManagement_IRQn 0 */
-	}
+  /* USER CODE BEGIN MemoryManagement_IRQn 0 */
+  /* USER CODE END MemoryManagement_IRQn 0 */
+  while (1)
+  {
+    /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
+    /* USER CODE END W1_MemoryManagement_IRQn 0 */
+  }
 }
 
 /**
- * @brief This function handles Prefetch fault, memory access fault.
- */
+  * @brief This function handles Prefetch fault, memory access fault.
+  */
 void BusFault_Handler(void)
 {
-	/* USER CODE BEGIN BusFault_IRQn 0 */
-	/* USER CODE END BusFault_IRQn 0 */
-	while (1)
-	{
-		/* USER CODE BEGIN W1_BusFault_IRQn 0 */
-		/* USER CODE END W1_BusFault_IRQn 0 */
-	}
+  /* USER CODE BEGIN BusFault_IRQn 0 */
+  /* USER CODE END BusFault_IRQn 0 */
+  while (1)
+  {
+    /* USER CODE BEGIN W1_BusFault_IRQn 0 */
+    /* USER CODE END W1_BusFault_IRQn 0 */
+  }
 }
 
 /**
- * @brief This function handles Undefined instruction or illegal state.
- */
+  * @brief This function handles Undefined instruction or illegal state.
+  */
 void UsageFault_Handler(void)
 {
-	/* USER CODE BEGIN UsageFault_IRQn 0 */
-	/* USER CODE END UsageFault_IRQn 0 */
-	while (1)
-	{
-		/* USER CODE BEGIN W1_UsageFault_IRQn 0 */
-		/* USER CODE END W1_UsageFault_IRQn 0 */
-	}
+  /* USER CODE BEGIN UsageFault_IRQn 0 */
+  /* USER CODE END UsageFault_IRQn 0 */
+  while (1)
+  {
+    /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
+    /* USER CODE END W1_UsageFault_IRQn 0 */
+  }
 }
 
 /**
- * @brief This function handles Debug monitor.
- */
+  * @brief This function handles Debug monitor.
+  */
 void DebugMon_Handler(void)
 {
-	/* USER CODE BEGIN DebugMonitor_IRQn 0 */
+  /* USER CODE BEGIN DebugMonitor_IRQn 0 */
 
-	/* USER CODE END DebugMonitor_IRQn 0 */
-	/* USER CODE BEGIN DebugMonitor_IRQn 1 */
+  /* USER CODE END DebugMonitor_IRQn 0 */
+  /* USER CODE BEGIN DebugMonitor_IRQn 1 */
 
-	/* USER CODE END DebugMonitor_IRQn 1 */
+  /* USER CODE END DebugMonitor_IRQn 1 */
 }
 
 /******************************************************************************/
@@ -158,101 +158,101 @@ void DebugMon_Handler(void)
 /******************************************************************************/
 
 /**
- * @brief This function handles TIM6 global interrupt.
- */
+  * @brief This function handles TIM6 global interrupt.
+  */
 void TIM6_IRQHandler(void)
 {
-	/* USER CODE BEGIN TIM6_IRQn 0 */
+  /* USER CODE BEGIN TIM6_IRQn 0 */
 
-	/* USER CODE END TIM6_IRQn 0 */
-	HAL_TIM_IRQHandler(&htim6);
-	/* USER CODE BEGIN TIM6_IRQn 1 */
+  /* USER CODE END TIM6_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim6);
+  /* USER CODE BEGIN TIM6_IRQn 1 */
 
-	/* USER CODE END TIM6_IRQn 1 */
+  /* USER CODE END TIM6_IRQn 1 */
 }
 
 /**
- * @brief This function handles USART3 global interrupt.
- */
+  * @brief This function handles USART3 global interrupt.
+  */
 void USART3_IRQHandler(void)
 {
-	/* USER CODE BEGIN USART3_IRQn 0 */
+  /* USER CODE BEGIN USART3_IRQn 0 */
 
-	/* USER CODE END USART3_IRQn 0 */
-	HAL_UART_IRQHandler(&huart3);
-	/* USER CODE BEGIN USART3_IRQn 1 */
+  /* USER CODE END USART3_IRQn 0 */
+  HAL_UART_IRQHandler(&huart3);
+  /* USER CODE BEGIN USART3_IRQn 1 */
 
-	/* USER CODE END USART3_IRQn 1 */
+  /* USER CODE END USART3_IRQn 1 */
 }
 
 /**
- * @brief This function handles DMA2D global interrupt.
- */
+  * @brief This function handles DMA2D global interrupt.
+  */
 void DMA2D_IRQHandler(void)
 {
-	/* USER CODE BEGIN DMA2D_IRQn 0 */
+  /* USER CODE BEGIN DMA2D_IRQn 0 */
 
-	/* USER CODE END DMA2D_IRQn 0 */
-	HAL_DMA2D_IRQHandler(&hdma2d);
-	/* USER CODE BEGIN DMA2D_IRQn 1 */
+  /* USER CODE END DMA2D_IRQn 0 */
+  HAL_DMA2D_IRQHandler(&hdma2d);
+  /* USER CODE BEGIN DMA2D_IRQn 1 */
 
-	/* USER CODE END DMA2D_IRQn 1 */
+  /* USER CODE END DMA2D_IRQn 1 */
 }
 
 /**
- * @brief This function handles GPU2D global interrupt.
- */
+  * @brief This function handles GPU2D global interrupt.
+  */
 void GPU2D_IRQHandler(void)
 {
-	/* USER CODE BEGIN GPU2D_IRQn 0 */
+  /* USER CODE BEGIN GPU2D_IRQn 0 */
 
-	/* USER CODE END GPU2D_IRQn 0 */
-	HAL_GPU2D_IRQHandler(&hgpu2d);
-	/* USER CODE BEGIN GPU2D_IRQn 1 */
+  /* USER CODE END GPU2D_IRQn 0 */
+  HAL_GPU2D_IRQHandler(&hgpu2d);
+  /* USER CODE BEGIN GPU2D_IRQn 1 */
 
-	/* USER CODE END GPU2D_IRQn 1 */
+  /* USER CODE END GPU2D_IRQn 1 */
 }
 
 /**
- * @brief This function handles GPU2D Error interrupt.
- */
+  * @brief This function handles GPU2D Error interrupt.
+  */
 void GPU2D_ER_IRQHandler(void)
 {
-	/* USER CODE BEGIN GPU2D_ER_IRQn 0 */
+  /* USER CODE BEGIN GPU2D_ER_IRQn 0 */
 
-	/* USER CODE END GPU2D_ER_IRQn 0 */
-	HAL_GPU2D_ER_IRQHandler(&hgpu2d);
-	/* USER CODE BEGIN GPU2D_ER_IRQn 1 */
+  /* USER CODE END GPU2D_ER_IRQn 0 */
+  HAL_GPU2D_ER_IRQHandler(&hgpu2d);
+  /* USER CODE BEGIN GPU2D_ER_IRQn 1 */
 
-	/* USER CODE END GPU2D_ER_IRQn 1 */
+  /* USER CODE END GPU2D_ER_IRQn 1 */
 }
 
 /**
- * @brief This function handles LCD-TFT global interrupt.
- */
+  * @brief This function handles LCD-TFT global interrupt.
+  */
 void LTDC_IRQHandler(void)
 {
-	/* USER CODE BEGIN LTDC_IRQn 0 */
+  /* USER CODE BEGIN LTDC_IRQn 0 */
 
-	/* USER CODE END LTDC_IRQn 0 */
-	HAL_LTDC_IRQHandler(&hltdc);
-	/* USER CODE BEGIN LTDC_IRQn 1 */
+  /* USER CODE END LTDC_IRQn 0 */
+  HAL_LTDC_IRQHandler(&hltdc);
+  /* USER CODE BEGIN LTDC_IRQn 1 */
 
-	/* USER CODE END LTDC_IRQn 1 */
+  /* USER CODE END LTDC_IRQn 1 */
 }
 
 /**
- * @brief This function handles LCD-TFT Error interrupt.
- */
+  * @brief This function handles LCD-TFT Error interrupt.
+  */
 void LTDC_ER_IRQHandler(void)
 {
-	/* USER CODE BEGIN LTDC_ER_IRQn 0 */
+  /* USER CODE BEGIN LTDC_ER_IRQn 0 */
 
-	/* USER CODE END LTDC_ER_IRQn 0 */
-	HAL_LTDC_IRQHandler(&hltdc);
-	/* USER CODE BEGIN LTDC_ER_IRQn 1 */
+  /* USER CODE END LTDC_ER_IRQn 0 */
+  HAL_LTDC_IRQHandler(&hltdc);
+  /* USER CODE BEGIN LTDC_ER_IRQn 1 */
 
-	/* USER CODE END LTDC_ER_IRQn 1 */
+  /* USER CODE END LTDC_ER_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

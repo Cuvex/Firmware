@@ -1,6 +1,6 @@
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:6908:13:I2C_Flush_TXDR	3
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:7524:13:I2C_TransferConfig	1
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:7551:13:I2C_Enable_IRQ	14
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:7551:13:I2C_Enable_IRQ	16
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:7647:13:I2C_Disable_IRQ	8
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:7710:13:I2C_ConvertOtherXferOptions	3
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:7383:26:I2C_IsErrorOccurred	18
@@ -66,7 +66,7 @@
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:6380:13:I2C_ITMasterCplt	12
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:5202:26:I2C_Master_ISR_IT	22
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:5767:26:I2C_Mem_ISR_DMA	17
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:5906:26:I2C_Slave_ISR_DMA	24
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:5906:26:I2C_Slave_ISR_DMA	27
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:5627:26:I2C_Master_ISR_DMA	18
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:7144:13:I2C_DMAError	1
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_i2c.c:6930:13:I2C_DMAMasterTransmitCplt	6

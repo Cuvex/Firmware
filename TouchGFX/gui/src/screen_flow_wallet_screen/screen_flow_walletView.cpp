@@ -827,8 +827,8 @@ void screen_flow_walletView::btnEncryptPressed()
 	strcat((char *) cuvex.wallet.zprv_key, (char *) zprv_key);
 	strcat((char *) cuvex.wallet.zpub_key, (char *) zpub_key);
 
-	/*** Jump to flow 2 ***/
-	application().gotoscreen_flow_encryptScreenNoTransition();
+	/*** Jump to "encrypt part 1" ***/
+	application().gotoscreen_flow_encrypt_part_2ScreenNoTransition();
 }
 
 /**************************************************************************************************************************************

@@ -33,13 +33,13 @@ close_btnBase::close_btnBase() :
     textArea.setXY(52, 140);
     textArea.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     textArea.setLinespacing(0);
-    textArea.setTypedText(touchgfx::TypedText(T_CONTAINER_CLOSE_TEXT_INFO));
+    textArea.setTypedText(touchgfx::TypedText(T_CONT_CLOSE_TEXT_INFO));
     confirm_close_window.add(textArea);
 
     cancel_button.setBoxWithBorderPosition(0, 0, 159, 30);
     cancel_button.setBorderSize(0);
     cancel_button.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
-    cancel_button.setText(TypedText(T_CONTAINER_CLOSE_BTN_CANCEL));
+    cancel_button.setText(TypedText(T_CONT_CLOSE_BTN_CANCEL));
     cancel_button.setTextPosition(0, 5, 159, 30);
     cancel_button.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     cancel_button.setAction(flexButtonCallback);
@@ -49,7 +49,7 @@ close_btnBase::close_btnBase() :
     confirm_button.setBoxWithBorderPosition(0, 0, 159, 30);
     confirm_button.setBorderSize(0);
     confirm_button.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(0, 0, 0), touchgfx::Color::getColorFromRGB(0, 0, 0));
-    confirm_button.setText(TypedText(T_CONTAINER_CLOSE_BTN_CONFIRM));
+    confirm_button.setText(TypedText(T_CONT_CLOSE_BTN_CONFIRM));
     confirm_button.setTextPosition(0, 5, 159, 30);
     confirm_button.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     confirm_button.setAction(flexButtonCallback);

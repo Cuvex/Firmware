@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (12.3.rel1)
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
 # Add inputs and outputs from these tool invocations to the build variables 
@@ -11,7 +11,6 @@ C_SRCS += \
 ../Core/Src/main.c \
 ../Core/Src/mainTask.c \
 ../Core/Src/nfcTask.c \
-../Core/Src/qrcode.c \
 ../Core/Src/slip39_lib.c \
 ../Core/Src/stm32u5xx_hal_msp.c \
 ../Core/Src/stm32u5xx_hal_timebase_tim.c \
@@ -28,7 +27,6 @@ C_DEPS += \
 ./Core/Src/main.d \
 ./Core/Src/mainTask.d \
 ./Core/Src/nfcTask.d \
-./Core/Src/qrcode.d \
 ./Core/Src/slip39_lib.d \
 ./Core/Src/stm32u5xx_hal_msp.d \
 ./Core/Src/stm32u5xx_hal_timebase_tim.d \
@@ -45,7 +43,6 @@ OBJS += \
 ./Core/Src/main.o \
 ./Core/Src/mainTask.o \
 ./Core/Src/nfcTask.o \
-./Core/Src/qrcode.o \
 ./Core/Src/slip39_lib.o \
 ./Core/Src/stm32u5xx_hal_msp.o \
 ./Core/Src/stm32u5xx_hal_timebase_tim.o \
@@ -63,7 +60,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/app_freertos.cyclo ./Core/Src/app_freertos.d ./Core/Src/app_freertos.o ./Core/Src/app_freertos.su ./Core/Src/bip39_lib.cyclo ./Core/Src/bip39_lib.d ./Core/Src/bip39_lib.o ./Core/Src/bip39_lib.su ./Core/Src/logger.cyclo ./Core/Src/logger.d ./Core/Src/logger.o ./Core/Src/logger.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/mainTask.cyclo ./Core/Src/mainTask.d ./Core/Src/mainTask.o ./Core/Src/mainTask.su ./Core/Src/nfcTask.cyclo ./Core/Src/nfcTask.d ./Core/Src/nfcTask.o ./Core/Src/nfcTask.su ./Core/Src/qrcode.cyclo ./Core/Src/qrcode.d ./Core/Src/qrcode.o ./Core/Src/qrcode.su ./Core/Src/slip39_lib.cyclo ./Core/Src/slip39_lib.d ./Core/Src/slip39_lib.o ./Core/Src/slip39_lib.su ./Core/Src/stm32u5xx_hal_msp.cyclo ./Core/Src/stm32u5xx_hal_msp.d ./Core/Src/stm32u5xx_hal_msp.o ./Core/Src/stm32u5xx_hal_msp.su ./Core/Src/stm32u5xx_hal_timebase_tim.cyclo ./Core/Src/stm32u5xx_hal_timebase_tim.d ./Core/Src/stm32u5xx_hal_timebase_tim.o ./Core/Src/stm32u5xx_hal_timebase_tim.su ./Core/Src/stm32u5xx_it.cyclo ./Core/Src/stm32u5xx_it.d ./Core/Src/stm32u5xx_it.o ./Core/Src/stm32u5xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32u5xx.cyclo ./Core/Src/system_stm32u5xx.d ./Core/Src/system_stm32u5xx.o ./Core/Src/system_stm32u5xx.su ./Core/Src/xmr_lib.cyclo ./Core/Src/xmr_lib.d ./Core/Src/xmr_lib.o ./Core/Src/xmr_lib.su
+	-$(RM) ./Core/Src/app_freertos.cyclo ./Core/Src/app_freertos.d ./Core/Src/app_freertos.o ./Core/Src/app_freertos.su ./Core/Src/bip39_lib.cyclo ./Core/Src/bip39_lib.d ./Core/Src/bip39_lib.o ./Core/Src/bip39_lib.su ./Core/Src/logger.cyclo ./Core/Src/logger.d ./Core/Src/logger.o ./Core/Src/logger.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/mainTask.cyclo ./Core/Src/mainTask.d ./Core/Src/mainTask.o ./Core/Src/mainTask.su ./Core/Src/nfcTask.cyclo ./Core/Src/nfcTask.d ./Core/Src/nfcTask.o ./Core/Src/nfcTask.su ./Core/Src/slip39_lib.cyclo ./Core/Src/slip39_lib.d ./Core/Src/slip39_lib.o ./Core/Src/slip39_lib.su ./Core/Src/stm32u5xx_hal_msp.cyclo ./Core/Src/stm32u5xx_hal_msp.d ./Core/Src/stm32u5xx_hal_msp.o ./Core/Src/stm32u5xx_hal_msp.su ./Core/Src/stm32u5xx_hal_timebase_tim.cyclo ./Core/Src/stm32u5xx_hal_timebase_tim.d ./Core/Src/stm32u5xx_hal_timebase_tim.o ./Core/Src/stm32u5xx_hal_timebase_tim.su ./Core/Src/stm32u5xx_it.cyclo ./Core/Src/stm32u5xx_it.d ./Core/Src/stm32u5xx_it.o ./Core/Src/stm32u5xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32u5xx.cyclo ./Core/Src/system_stm32u5xx.d ./Core/Src/system_stm32u5xx.o ./Core/Src/system_stm32u5xx.su ./Core/Src/xmr_lib.cyclo ./Core/Src/xmr_lib.d ./Core/Src/xmr_lib.o ./Core/Src/xmr_lib.su
 
 .PHONY: clean-Core-2f-Src
 

@@ -65,14 +65,14 @@
 ../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:628:5:int PrivateKey::ecdh(PublicKey, uint8_t*, bool)	2
 ../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:647:11:Signature PrivateKey::sign(const uint8_t*) const	1
 ../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:702:1:PrivateKey::PrivateKey(std::string)	1
-C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.tcc:217:7:void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::forward_iterator_tag) [with _FwdIterator = const char*; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	4
-../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:428:8:std::string PublicKey::nestedSegwitAddress(const Network*) const	1
-../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:623:8:std::string PrivateKey::nestedSegwitAddress() const	1
-../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:553:8:std::string PrivateKey::wif() const	1
+C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\arm-none-eabi\include\c++\13.3.1\bits\basic_string.tcc:221:7:void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::forward_iterator_tag) [with _FwdIterator = const char*; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	4
 ../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:387:8:std::string PublicKey::legacyAddress(const Network*) const	1
 ../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:614:8:std::string PrivateKey::address() const	1
 ../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:617:8:std::string PrivateKey::legacyAddress() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:553:8:std::string PrivateKey::wif() const	1
 ../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:406:8:std::string PublicKey::segwitAddress(const Network*) const	1
 ../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:620:8:std::string PrivateKey::segwitAddress() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:428:8:std::string PublicKey::nestedSegwitAddress(const Network*) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:623:8:std::string PrivateKey::nestedSegwitAddress() const	1
 ../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:444:6:bool PublicKey::schnorr_verify(SchnorrSignature, const uint8_t*) const	3
 ../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:656:18:SchnorrSignature PrivateKey::schnorr_sign(const uint8_t*) const	9

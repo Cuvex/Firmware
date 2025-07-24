@@ -105,9 +105,9 @@ boxDiceBase::boxDiceBase() :
     text_dice.setPosition(2, 14, 60, 36);
     text_dice.setColor(touchgfx::Color::getColorFromRGB(182, 182, 182));
     text_dice.setLinespacing(0);
-    Unicode::snprintf(text_diceBuffer, TEXT_DICE_SIZE, "%s", touchgfx::TypedText(T_CONTAINER_BOX_DICE_VALUE).getText());
+    Unicode::snprintf(text_diceBuffer, TEXT_DICE_SIZE, "%s", touchgfx::TypedText(T_CONT_BOX_DICE_VALUE).getText());
     text_dice.setWildcard(text_diceBuffer);
-    text_dice.setTypedText(touchgfx::TypedText(T_CONTAINER_BOX_DICE));
+    text_dice.setTypedText(touchgfx::TypedText(T_CONT_BOX_DICE));
     text_dice.setVisible(false);
     add(text_dice);
 

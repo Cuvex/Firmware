@@ -39,6 +39,7 @@ extern "C" {
 #include "stdbool.h"
 #include "stdlib.h"
 #include "inttypes.h"
+#include "ctype.h"
 #include "cmsis_os2.h"
 #include "bip39_lib.h"
 #include "slip39_lib.h"
@@ -127,35 +128,36 @@ void Error_Handler(void);
  * DEFINE's
  */
 
-#define FIRMWARE_VERSION		"1.1.2"		//Firmware version
+#define FIRMWARE_VERSION			"1.1.3"		//Firmware version
 //#define DEBUG_PRINTF
 //#define DEBUG_NFC_PRINTF
 //#define DEBUG_PSBT_PRINTF
 
-#define SIZE_UID 				25
-#define SIZE_ALIAS 				25
-#define SIZE_INFORMATION		50
-#define SIZE_MULTISIGN			700
-#define SIZE_CRYPT				768
-#define SIZE_CRYPT_MSG			SIZE_CRYPT/4
+#define SIZE_UID 					25
+#define SIZE_ALIAS 					25
+#define SIZE_INFORMATION			50
+#define SIZE_MULTISIGN				700
+#define SIZE_CRYPT					768
+#define SIZE_CRYPT_MSG				SIZE_CRYPT/4
 
-#define DEV_ALIAS_ADDR			0x083FA000		//"DEV_ALIAS" (bank 2) 	--> Address
-#define DEV_ALIAS_PAGE			253				//"DEV_ALIAS" (bank 2) 	--> Page number
-#define DEV_ALIAS_SIZE			30				//"DEV_ALIAS" (bank 2) 	--> Máx size
-#define EEPROM_ADDR				0x083FC000		//"EEPROM" (bank 2) 	--> Address
-#define EEPROM_PAGE				254				//"EEPROM" (bank 2) 	--> Page number
-#define EEPROM_SIZE				112				//"EEPROM" (bank 2)		--> Máx size
-#define SIGNATURE_ADDR			0x083FE000		//"SIGNATURE" (bank 2) 	--> Address
-#define SIGNATURE_PAGE			255				//"SIGNATURE" (bank 2) 	--> Page number
-#define SIGNATURE_SIZE			62				//"SIGNATURE" (bank 2) 	--> Máx size
+#define DEV_ALIAS_ADDR				0x083FA000		//"DEV_ALIAS" (bank 2) 	--> Address
+#define DEV_ALIAS_PAGE				253				//"DEV_ALIAS" (bank 2) 	--> Page number
+#define DEV_ALIAS_SIZE				30				//"DEV_ALIAS" (bank 2) 	--> Máx size
+#define EEPROM_ADDR					0x083FC000		//"EEPROM" (bank 2) 	--> Address
+#define EEPROM_PAGE					254				//"EEPROM" (bank 2) 	--> Page number
+#define EEPROM_SIZE					112				//"EEPROM" (bank 2)		--> Máx size
+#define SIGNATURE_ADDR				0x083FE000		//"SIGNATURE" (bank 2) 	--> Address
+#define SIGNATURE_PAGE				255				//"SIGNATURE" (bank 2) 	--> Page number
+#define SIGNATURE_SIZE				62				//"SIGNATURE" (bank 2) 	--> Máx size
 
-#define FROM_NFC_SEED			250
-#define FROM_NFC_PASS_DERIV		250
-#define FROM_NFC_PRIVATE_KEY	250
-#define FROM_NFC_PUBLIC_KEY		250
-#define FROM_NFC_PLAIN_TEXT		500
+#define FROM_NFC_SEED				250
+#define FROM_NFC_PASS_DERIV			250
+#define FROM_NFC_PRIVATE_KEY		250
+#define FROM_NFC_PUBLIC_KEY			250
+#define FROM_NFC_PLAIN_TEXT			500
 
-#define FROM_PSBT_BASE64		4000
+#define FROM_PSBT_BASE64_MAX_SIZE	7500			//Mifare DESFire ev1 8K (real size < 8KB)
+#define FROM_PSBT_T2T_MAX_SIZE		866				//NTAG216 (real size < 888B)
 
 /*
  * STRUCT's
@@ -171,6 +173,7 @@ struct tag
 	bool flag_readed_from_nfc;
 	bool flag_readed_from_psbt;
 	bool flag_readed_writed_from_psbt;
+	bool flag_readed_writed_from_psbt_size_warning;
 	/***/
 	uint8_t uid[SIZE_UID];
 	uint8_t alias[SIZE_ALIAS];
@@ -198,8 +201,8 @@ struct tag
 	uint8_t from_nfc_plain_text[FROM_NFC_PLAIN_TEXT];
 	/***/
 	uint8_t from_psbt_type;
-	uint8_t from_psbt_base64[FROM_PSBT_BASE64];
-	uint8_t from_psbt_base64_signed[FROM_PSBT_BASE64];
+	uint8_t from_psbt_base64[FROM_PSBT_BASE64_MAX_SIZE];
+	uint8_t from_psbt_base64_signed[FROM_PSBT_BASE64_MAX_SIZE];
 
 	/*** NEW CRYPTO VALUES TO REINITIALIZE AES PERIPHERAL ***/
 	uint32_t new_text_to_encrypt[SIZE_CRYPT_MSG];
@@ -228,6 +231,23 @@ struct info
 	uint8_t errors;
 };
 
+struct encrypt
+{
+	uint8_t  text_type;
+	uint16_t total_words;
+	uint8_t  actual_pwd;
+	uint8_t  words_to_encrypt[55][5];	//54 words... 4 characters per word...
+	uint8_t  buff_passphrase[105];		//100 characters
+	uint8_t  buff_plain_text[505];		//500 characters
+};
+
+struct decrypt
+{
+	uint8_t cryptogram_decrypted[SIZE_CRYPT];
+	uint8_t derivation_path[50];
+	uint8_t derived_address[100];
+};
+
 struct wallet
 {
 	bool flag_new;
@@ -247,6 +267,8 @@ struct cuvex
 	char signature_buffer[SIGNATURE_SIZE];
 	struct nfc nfc;
 	struct info info;
+	struct encrypt encrypt;
+	struct decrypt decrypt;
 	struct wallet wallet;
 };
 

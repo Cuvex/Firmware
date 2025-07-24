@@ -29,7 +29,7 @@
 ../Middlewares/ST/rfal/Src/rfal_rfst25r95.c:760:21:rfalGetTransceiveState	1
 ../Middlewares/ST/rfal/Src/rfal_rfst25r95.c:765:12:rfalGetTransceiveStatus	2
 ../Middlewares/ST/rfal/Src/rfal_rfst25r95.c:772:12:rfalGetTransceiveRSSI	1
-../Middlewares/ST/rfal/Src/rfal_rfst25r95.c:781:6:rfalWorker	37
+../Middlewares/ST/rfal/Src/rfal_rfst25r95.c:781:6:rfalWorker	36
 ../Middlewares/ST/rfal/Src/rfal_rfst25r95.c:1037:19:rfalTransceiveRunBlockingTx	3
 ../Middlewares/ST/rfal/Src/rfal_rfst25r95.c:695:12:rfalTransceiveBlockingTx	2
 ../Middlewares/ST/rfal/Src/rfal_rfst25r95.c:708:12:rfalTransceiveBlockingRx	3

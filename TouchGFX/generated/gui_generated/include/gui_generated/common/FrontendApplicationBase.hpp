@@ -26,8 +26,11 @@ public:
     // screen_menu
     void gotoscreen_menuScreenNoTransition();
 
-    // screen_flow_encrypt
-    void gotoscreen_flow_encryptScreenNoTransition();
+    // screen_flow_encrypt_part_1
+    void gotoscreen_flow_encrypt_part_1ScreenNoTransition();
+
+    // screen_flow_encrypt_part_2
+    void gotoscreen_flow_encrypt_part_2ScreenNoTransition();
 
     // screen_flow_decrypt
     void gotoscreen_flow_decryptScreenNoTransition();
@@ -55,8 +58,11 @@ protected:
     // screen_menu
     void gotoscreen_menuScreenNoTransitionImpl();
 
-    // screen_flow_encrypt
-    void gotoscreen_flow_encryptScreenNoTransitionImpl();
+    // screen_flow_encrypt_part_1
+    void gotoscreen_flow_encrypt_part_1ScreenNoTransitionImpl();
+
+    // screen_flow_encrypt_part_2
+    void gotoscreen_flow_encrypt_part_2ScreenNoTransitionImpl();
 
     // screen_flow_decrypt
     void gotoscreen_flow_decryptScreenNoTransitionImpl();
