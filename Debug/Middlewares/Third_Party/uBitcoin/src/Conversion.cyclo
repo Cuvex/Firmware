@@ -1,0 +1,42 @@
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:17:8:size_t toHex(const uint8_t*, size_t, char*, size_t)	8
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:81:9:uint8_t hexToVal(char)	4
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:94:8:size_t fromHex(const char*, size_t, uint8_t*, size_t)	9
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:119:8:size_t fromHex(std::string, uint8_t*, size_t)	2
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:133:8:size_t fromBin(const char*, size_t, uint8_t*, size_t)	9
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:163:8:size_t toBin(const uint8_t*, size_t, char*, size_t)	8
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:221:8:size_t fromBin(std::string, uint8_t*, size_t)	2
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:234:8:size_t toBase58Length(const uint8_t*, size_t)	5
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:255:8:size_t toBase58(const uint8_t*, size_t, char*, size_t)	22
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:332:8:size_t toBase58Check(const uint8_t*, size_t, char*, size_t)	4
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:362:8:size_t fromBase58Length(const char*, size_t)	2
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:368:8:size_t fromBase58(const char*, size_t, uint8_t*, size_t)	19
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:428:8:size_t fromBase58Check(const char*, size_t, uint8_t*, size_t)	6
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:453:8:size_t fromBase58(std::string, uint8_t*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:456:8:size_t fromBase58Check(std::string, uint8_t*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:471:8:size_t toBase43Length(const uint8_t*, size_t)	5
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:483:8:size_t toBase43(const uint8_t*, size_t, char*, size_t)	22
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:559:8:size_t fromBase43Length(const char*, size_t)	2
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:565:8:size_t fromBase43(const char*, size_t, uint8_t*, size_t)	19
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:625:8:size_t fromBase43(std::string, uint8_t*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:637:8:size_t toBase64Length(const uint8_t*, size_t, uint8_t)	4
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:709:8:size_t fromBase64Length(const char*, size_t, uint8_t)	7
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:818:10:uint64_t littleEndianToInt(const uint8_t*, size_t)	3
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:827:6:void intToLittleEndian(uint64_t, uint8_t*, size_t)	3
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:833:10:uint64_t bigEndianToInt(const uint8_t*, size_t)	3
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:649:8:size_t toBase64(const uint8_t*, size_t, char*, size_t, uint8_t)	16
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:842:6:void intToBigEndian(uint64_t, uint8_t*, size_t)	3
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:727:8:size_t fromBase64(const char*, size_t, uint8_t*, size_t, uint8_t)	25
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:787:8:size_t fromBase64(std::string, uint8_t*, size_t, uint8_t)	1
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:850:9:uint8_t lenVarInt(uint64_t)	3
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:862:10:uint64_t readVarInt(const uint8_t*, size_t)	3
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:875:8:size_t writeVarInt(uint64_t, uint8_t*, size_t)	6
+C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.tcc:217:7:void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::forward_iterator_tag) [with _FwdIterator = const char*; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	4
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:698:8:std::string toBase64(const uint8_t*, size_t, uint8_t)	4
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:39:8:std::string toHex(const uint8_t*, size_t)	4
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:182:8:std::string toBin(const uint8_t*, size_t)	4
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:320:8:std::string toBase58(const uint8_t*, size_t)	4
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:348:8:std::string toBase58Check(const uint8_t*, size_t)	4
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:547:8:std::string toBase43(const uint8_t*, size_t)	4
+C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.tcc:217:7:void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::forward_iterator_tag) [with _FwdIterator = char*; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	4
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:790:8:std::string base64ToHex(std::string, uint8_t)	4
+../Middlewares/Third_Party/uBitcoin/src/Conversion.cpp:799:8:std::string hexToBase64(std::string, uint8_t)	4

@@ -1,0 +1,44 @@
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.h:129:18:virtual void Streamable::reset()	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.h:131:20:virtual size_t Streamable::stringLength() const	1
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:18:20:virtual size_t ECPoint::length() const	1
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:19:20:virtual size_t ECPoint::stringLength() const	1
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:17:18:virtual void ECPoint::reset()	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.h:122:20:virtual size_t Streamable::from_str(const char*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.h:119:20:virtual size_t Streamable::to_str(char*, size_t) const	1
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:139:8:virtual size_t TxIn::length() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.h:636:20:virtual size_t TxOut::length() const	1
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:72:8:virtual size_t TxIn::from_stream(ParseStream*)	17
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:116:8:virtual size_t TxIn::to_stream(SerializeStream*, size_t) const	9
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:182:8:virtual size_t TxOut::to_stream(SerializeStream*, size_t) const	5
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:145:8:virtual size_t TxOut::from_stream(ParseStream*)	12
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:19:6:void TxIn::init()	1
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:26:1:TxIn::TxIn()	1
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:29:1:TxIn::TxIn(const uint8_t*, uint32_t, uint32_t)	2
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:37:1:TxIn::TxIn(const uint8_t*, uint32_t, Script, uint32_t)	2
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:45:1:TxIn::TxIn(const char*, uint32_t, uint32_t)	3
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:59:1:TxIn::TxIn(const char*, uint32_t, Script, uint32_t)	3
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:198:6:void Tx::init()	1
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:209:1:Tx::Tx()	1
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:212:1:Tx::Tx(const Tx&)	13
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:230:5:Tx& Tx::operator=(const Tx&)	25
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:258:6:void Tx::clear()	12
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:255:1:Tx::~Tx()	1
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:352:8:virtual size_t Tx::from_stream(ParseStream*)	67
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:284:6:bool Tx::isSegwit() const	4
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:270:8:virtual size_t Tx::length() const	6
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:292:8:virtual size_t Tx::to_stream(SerializeStream*, size_t) const	27
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:487:5:int Tx::sigHash(uint8_t*, uint8_t, Script, SigHashType) const	9
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:519:5:int Tx::hash(uint8_t*) const	5
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:542:5:int Tx::whash(uint8_t*) const	7
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:571:5:int Tx::txid(uint8_t*) const	2
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:579:5:int Tx::wtxid(uint8_t*) const	2
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:589:8:std::string Tx::txid() const	1
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:594:8:std::string Tx::wtxid() const	1
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:601:9:uint8_t Tx::addInput(TxIn)	14
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:614:9:uint8_t Tx::addOutput(TxOut)	13
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:628:5:int Tx::hashPrevouts(uint8_t*) const	3
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:641:5:int Tx::hashSequence(uint8_t*) const	3
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:653:5:int Tx::hashOutputs(uint8_t*) const	3
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:663:5:int Tx::sigHashSegwit(uint8_t*, uint8_t, Script, uint64_t, SigHashType) const	1
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:698:11:Signature Tx::signInput(uint8_t, PrivateKey, Script, SigHashType)	5
+../Middlewares/Third_Party/uBitcoin/src/Transaction.cpp:717:11:Signature Tx::signSegwitInput(uint8_t, PrivateKey, Script, uint64_t, ScriptType, SigHashType)	15

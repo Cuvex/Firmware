@@ -72,7 +72,8 @@ osThreadId_t nfcTaskHandle;
 const osThreadAttr_t nfcTask_attributes = {
 		.name = "nfcTask",
 		.priority = (osPriority_t) osPriorityNormal,
-		.stack_size = 2048 * 4
+		//.stack_size = 2048 * 4
+		.stack_size = 4096 * 4
 };
 /* Definitions for guiToMainQueue */
 osMessageQueueId_t guiToMainQueueHandle;

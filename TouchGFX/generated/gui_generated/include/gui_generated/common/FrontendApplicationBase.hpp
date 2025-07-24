@@ -38,6 +38,9 @@ public:
     // screen_flow_wallet
     void gotoscreen_flow_walletScreenNoTransition();
 
+    // screen_flow_psbt
+    void gotoscreen_flow_psbtScreenNoTransition();
+
     // screen_flow_settings
     void gotoscreen_flow_settingsScreenNoTransition();
 
@@ -63,6 +66,9 @@ protected:
 
     // screen_flow_wallet
     void gotoscreen_flow_walletScreenNoTransitionImpl();
+
+    // screen_flow_psbt
+    void gotoscreen_flow_psbtScreenNoTransitionImpl();
 
     // screen_flow_settings
     void gotoscreen_flow_settingsScreenNoTransitionImpl();

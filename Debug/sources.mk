@@ -53,6 +53,11 @@ Middlewares/Third_Party/FreeRTOS/Source \
 Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure \
 Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang \
 Middlewares/Third_Party/mbed-crypto/library \
+Middlewares/Third_Party/uBitcoin/examples/cpp \
+Middlewares/Third_Party/uBitcoin/src \
+Middlewares/Third_Party/uBitcoin/src/utility \
+Middlewares/Third_Party/uBitcoin/src/utility/trezor \
+Middlewares/Third_Party/uBitcoin/tests \
 TouchGFX/App \
 TouchGFX/generated/fonts/src \
 TouchGFX/generated/gui_generated/src/common \

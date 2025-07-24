@@ -63,7 +63,7 @@ void screen_flow_decryptView::tickEventScreen()
 	{
 		tick_temporal_block++;
 
-		if(tick_temporal_block >= 5*60*5)	//5 minutes in total (approx.)
+		if(tick_temporal_block >= 6*300)	//5 minutes (6 ticks/second * 300 seconds)
 		{
 			temporal_block = 0;
 			tick_temporal_block = 0;

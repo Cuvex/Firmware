@@ -1,0 +1,78 @@
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.h:129:18:virtual void Streamable::reset()	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.h:131:20:virtual size_t Streamable::stringLength() const	1
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:18:20:virtual size_t ECPoint::length() const	1
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:19:20:virtual size_t ECPoint::stringLength() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.h:181:20:virtual size_t PrivateKey::stringLength() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.h:182:20:virtual size_t PrivateKey::length() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.h:463:20:virtual size_t SchnorrSignature::length() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:643:12:int is_canonical(uint8_t, uint8_t*)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:357:8:virtual size_t SchnorrSignature::to_stream(SerializeStream*, size_t) const	3
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:331:8:virtual size_t SchnorrSignature::from_stream(ParseStream*)	8
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:108:18:virtual void ECScalar::init()	1
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:110:18:virtual void ECScalar::reset()	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.h:122:20:virtual size_t Streamable::from_str(const char*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/BaseClasses.h:119:20:virtual size_t Streamable::to_str(char*, size_t) const	1
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:17:18:virtual void ECPoint::reset()	1
+../Middlewares/Third_Party/uBitcoin/src/BitcoinCurve.h:139:18:virtual bool ECScalar::isValid() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.h:183:10:virtual void PrivateKey::setSecret(const uint8_t*)	2
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:475:8:virtual size_t PrivateKey::from_stream(ParseStream*)	7
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:23:14:const char* generateMnemonic(uint8_t)	3
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:30:14:const char* generateMnemonic(uint8_t, const uint8_t*, size_t)	3
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:40:14:const char* mnemonicFromEntropy(const uint8_t*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:43:8:size_t mnemonicToEntropy(const char*, size_t, uint8_t*, size_t)	5
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:63:8:size_t mnemonicToEntropy(std::string, uint8_t*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:72:14:const char* generateMnemonic(const uint8_t*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:86:14:const char* generateMnemonic(uint8_t, std::string)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:89:14:const char* generateMnemonic(std::string)	5
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:92:6:bool checkMnemonic(std::string)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:99:1:Signature::Signature()	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:104:1:Signature::Signature(const uint8_t*, const uint8_t*)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:218:8:size_t Signature::rlen() const	4
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:232:8:size_t Signature::slen() const	4
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:122:8:virtual size_t Signature::from_stream(ParseStream*)	36
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:117:1:Signature::Signature(const char*)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:246:8:virtual size_t Signature::length() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:250:8:size_t Signature::fromDer(const uint8_t*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:109:1:Signature::Signature(const uint8_t*)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:113:1:Signature::Signature(const uint8_t*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:254:8:size_t Signature::der(uint8_t*, size_t) const	3
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:206:8:virtual size_t Signature::to_stream(SerializeStream*, size_t) const	3
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:277:6:void Signature::bin(uint8_t*, size_t) const	3
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:294:6:void Signature::fromBin(const uint8_t*, size_t)	3
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:314:1:SchnorrSignature::SchnorrSignature()	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:318:1:SchnorrSignature::SchnorrSignature(const uint8_t*, const uint8_t*)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:322:1:SchnorrSignature::SchnorrSignature(const uint8_t*)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:326:1:SchnorrSignature::SchnorrSignature(const char*)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:372:5:int PublicKey::legacyAddress(char*, size_t, const Network*) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:393:5:int PublicKey::segwitAddress(char*, size_t, const Network*) const	2
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:412:5:int PublicKey::nestedSegwitAddress(char*, size_t, const Network*) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:434:8:Script PublicKey::script(ScriptType) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:437:6:bool PublicKey::verify(Signature, const uint8_t*) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:503:1:PrivateKey::PrivateKey()	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:508:1:PrivateKey::PrivateKey(const uint8_t*, bool, const Network*)	2
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:515:1:PrivateKey::PrivateKey(ECScalar)	2
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:531:1:PrivateKey::~PrivateKey()	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:536:5:int PrivateKey::wif(char*, size_t) const	2
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.h:165:20:virtual size_t PrivateKey::to_str(char*, size_t) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:559:5:int PrivateKey::fromWIF(const char*, size_t)	7
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.h:166:20:virtual size_t PrivateKey::from_str(const char*, size_t)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:593:5:int PrivateKey::fromWIF(const char*)	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:597:11:PublicKey PrivateKey::publicKey() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:601:5:int PrivateKey::address(char*, size_t) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:604:5:int PrivateKey::legacyAddress(char*, size_t) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:607:5:int PrivateKey::segwitAddress(char*, size_t) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:610:5:int PrivateKey::nestedSegwitAddress(char*, size_t) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:628:5:int PrivateKey::ecdh(PublicKey, uint8_t*, bool)	2
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:647:11:Signature PrivateKey::sign(const uint8_t*) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:702:1:PrivateKey::PrivateKey(std::string)	1
+C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\tools\arm-none-eabi\include\c++\12.3.1\bits\basic_string.tcc:217:7:void std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::_M_construct(_InIterator, _InIterator, std::forward_iterator_tag) [with _FwdIterator = const char*; _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]	4
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:428:8:std::string PublicKey::nestedSegwitAddress(const Network*) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:623:8:std::string PrivateKey::nestedSegwitAddress() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:553:8:std::string PrivateKey::wif() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:387:8:std::string PublicKey::legacyAddress(const Network*) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:614:8:std::string PrivateKey::address() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:617:8:std::string PrivateKey::legacyAddress() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:406:8:std::string PublicKey::segwitAddress(const Network*) const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:620:8:std::string PrivateKey::segwitAddress() const	1
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:444:6:bool PublicKey::schnorr_verify(SchnorrSignature, const uint8_t*) const	3
+../Middlewares/Third_Party/uBitcoin/src/Bitcoin.cpp:656:18:SchnorrSignature PrivateKey::schnorr_sign(const uint8_t*) const	9

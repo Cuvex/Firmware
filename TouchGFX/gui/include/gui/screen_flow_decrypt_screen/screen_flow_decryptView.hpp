@@ -63,15 +63,15 @@ protected:
 	uint8_t	 num_pwds;
 	uint8_t  actual_pwd;
 	bool 	 pwd_ok;
-    uint8_t  words_decrypted[55][5];	//48 words... 4 characters per word...
-    uint8_t  words_to_check[55][15];	//48 words... 8 characters per word...
-	uint8_t  buff_passphrase[105];		//100 characters
-	uint8_t  buff_plain_text[505];		//500 characters
-	uint8_t  buff_pass_der[205];		//200 characters
-	uint8_t  buff_derivation1[105];		//100 characters
-	uint8_t  buff_derivation2[105];		//100 characters
-	uint8_t  buff_pri_key[205];			//200 characters
-	uint8_t  buff_pub_key[205];			//200 characters
+    uint8_t  words_decrypted[55][5];				//48 words... 4 characters per word...
+    uint8_t  words_to_check[55][15];				//48 words... 8 characters per word...
+	uint8_t  buff_passphrase[105];					//100 characters
+	uint8_t  buff_plain_text[505];					//500 characters
+	uint8_t  buff_pass_der[205];					//200 characters
+	uint8_t  buff_derivation1[105];					//100 characters
+	uint8_t  buff_derivation2[105];					//100 characters
+	uint8_t  buff_pri_key[205];						//200 characters
+	uint8_t  buff_pub_key[205];						//200 characters
 	uint8_t  pwds[10][KEYBOARD_TEXT_TYPED_SIZE];	//6 passwords... 40 characters per password...
 	uint8_t  pwd_raw[10*KEYBOARD_TEXT_TYPED_SIZE];	//6*40 = 240
 	uint8_t  pwd_sha256[32];						//32

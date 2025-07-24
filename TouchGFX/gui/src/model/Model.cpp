@@ -45,6 +45,18 @@ void Model::tick()
 			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED_FROM_NFC);
 			break;
 
+		case MAIN_TO_GUI_NFC_TAG_READED_FROM_PSBT:
+			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED_FROM_PSBT);
+			break;
+
+		case MAIN_TO_GUI_NFC_TAG_READED_WRITED_FROM_PSBT:
+			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED_WRITED_FROM_PSBT);
+			break;
+
+		case MAIN_TO_GUI_NFC_TAG_READED_WRITED_FROM_PSBT_T4T_8K:
+			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED_WRITED_FROM_PSBT_T4T_8K);
+			break;
+
 		case MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_ENCRYPT:
 			modelListener->updateStateNfc(MAIN_TO_GUI_NFC_TAG_READED_WRITED_FLOW_ENCRYPT);
 			break;

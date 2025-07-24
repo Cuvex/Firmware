@@ -1,0 +1,4 @@
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/rand.c:120:32:random32	1
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/rand.c:139:28:random_buffer	4
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/rand.c:150:10:random_uniform	2
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/rand.c:157:6:random_permute	3

@@ -905,8 +905,61 @@
               },
               {
                 "Type": "FlexButton",
-                "Name": "btn_settings",
+                "Name": "btn_psbt",
                 "X": 110,
+                "Y": 122,
+                "Width": 100,
+                "Height": 100,
+                "LockPosition": true,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "Y": 67,
+                    "TextId": "sm_btn_psbt",
+                    "TextRotation": "0",
+                    "ColorReleased": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    },
+                    "ColorPressed": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    }
+                  },
+                  {
+                    "Type": "IconButtonStyle",
+                    "X": 30,
+                    "Y": 19,
+                    "IconReleased": "menu_images\\main_menu_psbt.png",
+                    "IconPressed": "menu_images\\main_menu_psbt.png"
+                  },
+                  {
+                    "Type": "BoxWithBorderButtonStyle",
+                    "Width": 100,
+                    "Height": 100,
+                    "LockToFlexButtonSize": true,
+                    "ColorReleased": {
+                      "Red": 229,
+                      "Green": 229,
+                      "Blue": 229
+                    },
+                    "ColorPressed": {
+                      "Red": 64,
+                      "Green": 92,
+                      "Blue": 160
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "btn_settings",
+                "X": 214,
                 "Y": 122,
                 "Width": 100,
                 "Height": 100,
@@ -1018,6 +1071,18 @@
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionNone",
               "ActionComponent": "screen_flow_settings"
+            }
+          },
+          {
+            "InteractionName": "psbtButtonPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btn_psbt"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "screen_flow_psbt"
             }
           }
         ]
@@ -4635,7 +4700,7 @@
                     "Width": 138,
                     "Height": 18,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_spanish_1",
+                    "TextId": "temporal_block_spanish_1",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4652,7 +4717,7 @@
                     "Width": 69,
                     "Height": 18,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_spanish_2",
+                    "TextId": "temporal_block_spanish_2",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4669,7 +4734,7 @@
                     "Width": 25,
                     "Height": 18,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_spanish_3",
+                    "TextId": "temporal_block_spanish_3",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4686,7 +4751,7 @@
                     "Width": 235,
                     "Height": 18,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_spanish_4",
+                    "TextId": "temporal_block_spanish_4",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4703,7 +4768,7 @@
                     "Width": 61,
                     "Height": 18,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_spanish_5",
+                    "TextId": "temporal_block_spanish_5",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4720,7 +4785,7 @@
                     "Width": 126,
                     "Height": 18,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_spanish_6",
+                    "TextId": "temporal_block_spanish_6",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4737,7 +4802,7 @@
                     "Width": 225,
                     "Height": 36,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_spanish_7",
+                    "TextId": "temporal_block_spanish_7",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4763,7 +4828,7 @@
                     "Width": 80,
                     "Height": 18,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_english_1",
+                    "TextId": "temporal_block_english_1",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4780,7 +4845,7 @@
                     "Width": 68,
                     "Height": 18,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_english_2",
+                    "TextId": "temporal_block_english_2",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4797,7 +4862,7 @@
                     "Width": 63,
                     "Height": 18,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_english_3",
+                    "TextId": "temporal_block_english_3",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4814,7 +4879,7 @@
                     "Width": 222,
                     "Height": 18,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_english_4",
+                    "TextId": "temporal_block_english_4",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4831,7 +4896,7 @@
                     "Width": 139,
                     "Height": 18,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_english_5",
+                    "TextId": "temporal_block_english_5",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -4848,7 +4913,7 @@
                     "Width": 221,
                     "Height": 36,
                     "LockPosition": true,
-                    "TextId": "sd_temporal_block_english_6",
+                    "TextId": "temporal_block_english_6",
                     "TextRotation": "0",
                     "Color": {
                       "Red": 63,
@@ -8951,6 +9016,7 @@
       },
       {
         "Name": "screen_flow_psbt",
+        "CanvasBufferSize": 4800,
         "Components": [
           {
             "Type": "Box",
@@ -8963,30 +9029,2494 @@
               "Green": 237,
               "Blue": 237
             }
+          },
+          {
+            "Type": "Container",
+            "Name": "s0_initNFC_psbt",
+            "Width": 320,
+            "Height": 240,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "init_nfc_thinking_circles",
+                "X": 95,
+                "Y": 170,
+                "Width": 130,
+                "Height": 30,
+                "LockPosition": true,
+                "CustomContainerDefinitionName": "thinking_circles"
+              },
+              {
+                "Type": "Image",
+                "Name": "init_nfc_image",
+                "X": 124,
+                "Y": 44,
+                "Width": 73,
+                "Height": 76,
+                "LockPosition": true,
+                "RelativeFilename": "grafismo_activando_nfc_cuvex.png"
+              },
+              {
+                "Type": "TextArea",
+                "Name": "init_nfc_text1",
+                "X": 110,
+                "Y": 140,
+                "Width": 68,
+                "Height": 18,
+                "LockPosition": true,
+                "TextId": "sp_init_nfc_text1",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "init_nfc_text2",
+                "X": 178,
+                "Y": 140,
+                "Width": 34,
+                "Height": 18,
+                "LockPosition": true,
+                "TextId": "sp_init_nfc_text2",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "AutoSize": true
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s1_waitReadNFC_psbt",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "text_wait_read_nfc1",
+                "Y": 134,
+                "Width": 320,
+                "Height": 40,
+                "LockPosition": true,
+                "TextId": "sp_wait_read_nfc1",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "Image",
+                "Name": "image_wait_read_nfc1",
+                "X": 121,
+                "Y": 48,
+                "Width": 78,
+                "Height": 78,
+                "LockPosition": true,
+                "RelativeFilename": "grafismo_nfc2_cuvex.png"
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s2_transactionInfo1",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "text_transaction_info_1",
+                "Y": 16,
+                "Width": 320,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_1",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "Container",
+                "Name": "bitcoin_transactions_info_1_box",
+                "X": 16,
+                "Y": 64,
+                "Width": 288,
+                "Height": 40,
+                "LockPosition": true,
+                "Components": [
+                  {
+                    "Type": "BoxWithBorder",
+                    "Name": "bitcoin_box_info_1",
+                    "Width": 288,
+                    "Height": 40,
+                    "LockPosition": true,
+                    "Color": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "BorderColor": {
+                      "Red": 164,
+                      "Green": 171,
+                      "Blue": 185
+                    },
+                    "BorderSize": 1
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "bitcoin_image_info_1",
+                    "X": 8,
+                    "Y": 8,
+                    "Width": 24,
+                    "Height": 24,
+                    "LockPosition": true,
+                    "RelativeFilename": "bitcoin.png"
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "bitcoin_amount_info_1",
+                    "X": 40,
+                    "Y": 10,
+                    "Width": 240,
+                    "Height": 20,
+                    "LockPosition": true,
+                    "TextId": "sp_bitcoin_amount_info_1",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    },
+                    "Wildcard1": {
+                      "TextId": "sp_bitcoin_amount_info_1_value",
+                      "UseBuffer": true,
+                      "BufferSize": 50
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_1_inputs",
+                "X": 16,
+                "Y": 120,
+                "Width": 100,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_1_inputs",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_1_outputs",
+                "X": 16,
+                "Y": 140,
+                "Width": 100,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_1_outputs",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_1_fee",
+                "X": 16,
+                "Y": 160,
+                "Width": 100,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_1_fee",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_1_inputs_num",
+                "X": 204,
+                "Y": 120,
+                "Width": 100,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_1_inputs_num",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "Wildcard1": {
+                  "TextId": "sp_transaction_info_1_inputs_num_value",
+                  "UseBuffer": true,
+                  "BufferSize": 10
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_1_outputs_num",
+                "X": 204,
+                "Y": 140,
+                "Width": 100,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_1_outputs_num",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "Wildcard1": {
+                  "TextId": "sp_transaction_info_1_outputs_num_value",
+                  "UseBuffer": true,
+                  "BufferSize": 10
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_1_fee_num",
+                "X": 204,
+                "Y": 160,
+                "Width": 100,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_1_fee_num",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "Wildcard1": {
+                  "TextId": "sp_transaction_info_1_fee_num_value",
+                  "UseBuffer": true,
+                  "BufferSize": 10
+                }
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "btn_verify_transaction_info_1",
+                "Y": 210,
+                "Width": 320,
+                "Height": 30,
+                "LockPosition": true,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "Y": 5,
+                    "TextId": "sp_btn_verify_transaction_info_1",
+                    "TextRotation": "0",
+                    "ColorReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorPressed": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    }
+                  },
+                  {
+                    "Type": "BoxWithBorderButtonStyle",
+                    "Width": 320,
+                    "Height": 30,
+                    "LockToFlexButtonSize": true,
+                    "ColorReleased": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    },
+                    "ColorPressed": {
+                      "Red": 64,
+                      "Green": 92,
+                      "Blue": 160
+                    },
+                    "ColorBorderReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorBorderPressed": {
+                      "Red": 51,
+                      "Green": 102,
+                      "Blue": 153
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s3_initNFC_crypto",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "init_nfc_thinking_circles_1",
+                "X": 95,
+                "Y": 170,
+                "Width": 130,
+                "Height": 30,
+                "LockPosition": true,
+                "CustomContainerDefinitionName": "thinking_circles"
+              },
+              {
+                "Type": "Image",
+                "Name": "init_nfc_image_1",
+                "X": 124,
+                "Y": 44,
+                "Width": 73,
+                "Height": 76,
+                "LockPosition": true,
+                "RelativeFilename": "grafismo_activando_nfc_cuvex.png"
+              },
+              {
+                "Type": "TextArea",
+                "Name": "init_nfc_text1_1",
+                "X": 110,
+                "Y": 140,
+                "Width": 68,
+                "Height": 18,
+                "LockPosition": true,
+                "TextId": "sp_init_nfc_text1",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "init_nfc_text2_1",
+                "X": 178,
+                "Y": 140,
+                "Width": 34,
+                "Height": 18,
+                "LockPosition": true,
+                "TextId": "sp_init_nfc_text2",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "AutoSize": true
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s4_waitReadNFC_crypto",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "text_wait_read_nfc2",
+                "Y": 134,
+                "Width": 320,
+                "Height": 40,
+                "LockPosition": true,
+                "TextId": "sp_wait_read_nfc2",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "Image",
+                "Name": "image_wait_read_nfc2",
+                "X": 121,
+                "Y": 48,
+                "Width": 78,
+                "Height": 78,
+                "LockPosition": true,
+                "RelativeFilename": "grafismo_nfc2_cuvex.png"
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s5_typePassword",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "keyboard_password",
+                "Y": 117,
+                "Width": 320,
+                "Height": 123,
+                "Visible": false,
+                "LockPosition": true,
+                "CustomContainerDefinitionName": "keyboard_psbt_password"
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "keyboard_btn_hide",
+                "X": 235,
+                "Y": 211,
+                "Width": 80,
+                "Height": 27,
+                "Visible": false,
+                "LockPosition": true,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "IconButtonStyle",
+                    "IconReleased": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_hide_released.png",
+                    "IconPressed": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_hide_pressed.png"
+                  }
+                ]
+              },
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "keyboard_text_area",
+                "X": 45,
+                "Y": 120,
+                "Width": 230,
+                "Height": 30,
+                "LockPosition": true,
+                "CustomContainerDefinitionName": "textArea"
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "keyboard_btn_show",
+                "X": 76,
+                "Y": 120,
+                "Width": 169,
+                "Height": 30,
+                "LockPosition": true,
+                "Alpha": 0,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "BoxWithBorderButtonStyle",
+                    "Width": 169,
+                    "Height": 30,
+                    "LockToFlexButtonSize": true,
+                    "BorderSize": 5,
+                    "ColorReleased": {
+                      "Green": 102,
+                      "Blue": 153
+                    },
+                    "ColorPressed": {
+                      "Green": 153,
+                      "Blue": 204
+                    },
+                    "ColorBorderReleased": {
+                      "Green": 51,
+                      "Blue": 102
+                    },
+                    "ColorBorderPressed": {
+                      "Red": 51,
+                      "Green": 102,
+                      "Blue": 153
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "keyboard_btn_enter",
+                "Y": 210,
+                "Width": 320,
+                "Height": 30,
+                "LockPosition": true,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "Y": 5,
+                    "TextId": "sp_keyboard_btn_enter",
+                    "TextRotation": "0",
+                    "Wildcard1": {
+                      "TextId": "sp_keyboard_btn_enter_value",
+                      "UseBuffer": true,
+                      "BufferSize": 25
+                    },
+                    "ColorReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorPressed": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    }
+                  },
+                  {
+                    "Type": "BoxWithBorderButtonStyle",
+                    "Width": 320,
+                    "Height": 30,
+                    "LockToFlexButtonSize": true,
+                    "ColorReleased": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    },
+                    "ColorPressed": {
+                      "Red": 64,
+                      "Green": 92,
+                      "Blue": 160
+                    },
+                    "ColorBorderReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorBorderPressed": {
+                      "Red": 51,
+                      "Green": 102,
+                      "Blue": 153
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "ToggleButton",
+                "Name": "keyboard_pwd_eye",
+                "X": 245,
+                "Y": 120,
+                "Width": 30,
+                "Height": 30,
+                "LockPosition": true,
+                "Pressed": "ojo_cerrado.png",
+                "Released": "ojo_abierto.png"
+              },
+              {
+                "Type": "TextArea",
+                "Name": "keyboard_text_typed",
+                "X": 76,
+                "Y": 125,
+                "Width": 169,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_keyboard_text_typed",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "sp_keyboard_text_typed_value",
+                  "UseBuffer": true,
+                  "BufferSize": 45
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "keyboard_text_typed_hide",
+                "X": 76,
+                "Y": 125,
+                "Width": 169,
+                "Height": 20,
+                "Visible": false,
+                "LockPosition": true,
+                "TextId": "sp_keyboard_text_typed_hide",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "sp_keyboard_text_typed_hide_value",
+                  "UseBuffer": true,
+                  "BufferSize": 45
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "keyboard_text_info",
+                "Y": 90,
+                "Width": 320,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_keyboard_info",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "Wildcard1": {
+                  "TextId": "sp_keyboard_info_value",
+                  "UseBuffer": true,
+                  "BufferSize": 50
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "keyboard_placeholder",
+                "X": 62,
+                "Y": 125,
+                "Width": 180,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_keyboard_placeholder",
+                "TextRotation": "0",
+                "Alpha": 75
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s6_transactionInfo2",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "text_transaction_info_2",
+                "Y": 16,
+                "Width": 320,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_2",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "Container",
+                "Name": "bitcoin_transactions_info_2_box",
+                "X": 16,
+                "Y": 144,
+                "Width": 288,
+                "Height": 40,
+                "LockPosition": true,
+                "Components": [
+                  {
+                    "Type": "BoxWithBorder",
+                    "Name": "bitcoin_box_info_2",
+                    "Width": 288,
+                    "Height": 40,
+                    "LockPosition": true,
+                    "Color": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "BorderColor": {
+                      "Red": 164,
+                      "Green": 171,
+                      "Blue": 185
+                    },
+                    "BorderSize": 1
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "bitcoin_image_info_2",
+                    "X": 8,
+                    "Y": 8,
+                    "Width": 24,
+                    "Height": 24,
+                    "LockPosition": true,
+                    "RelativeFilename": "bitcoin.png"
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "bitcoin_change_info_2",
+                    "X": 35,
+                    "Y": 10,
+                    "Width": 60,
+                    "Height": 20,
+                    "LockPosition": true,
+                    "TextId": "sp_bitcoin_change_text_info_2",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "bitcoin_amount_info_2",
+                    "X": 100,
+                    "Y": 10,
+                    "Width": 180,
+                    "Height": 20,
+                    "LockPosition": true,
+                    "TextId": "sp_bitcoin_amount_info_2",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    },
+                    "Wildcard1": {
+                      "TextId": "sp_bitcoin_amount_info_2_value",
+                      "UseBuffer": true,
+                      "BufferSize": 50
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_2_inputs",
+                "X": 16,
+                "Y": 64,
+                "Width": 100,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_2_inputs",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_2_outputs",
+                "X": 16,
+                "Y": 84,
+                "Width": 100,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_2_outputs",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_2_fee",
+                "X": 16,
+                "Y": 104,
+                "Width": 100,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_2_fee",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_2_inputs_num",
+                "X": 116,
+                "Y": 64,
+                "Width": 188,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_2_inputs_num",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "Wildcard1": {
+                  "TextId": "sp_transaction_info_2_inputs_num_value",
+                  "UseBuffer": true,
+                  "BufferSize": 50
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_2_outputs_num",
+                "X": 116,
+                "Y": 84,
+                "Width": 188,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_2_outputs_num",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "Wildcard1": {
+                  "TextId": "sp_transaction_info_2_outputs_num_value",
+                  "UseBuffer": true,
+                  "BufferSize": 50
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "text_transactions_info_2_fee_num",
+                "X": 116,
+                "Y": 104,
+                "Width": 188,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_transaction_info_2_fee_num",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "Wildcard1": {
+                  "TextId": "sp_transaction_info_2_fee_num_value",
+                  "UseBuffer": true,
+                  "BufferSize": 50
+                }
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "btn_check_receiver",
+                "Y": 210,
+                "Width": 320,
+                "Height": 30,
+                "LockPosition": true,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "Y": 5,
+                    "TextId": "sp_btn_verify_transaction_info_2",
+                    "TextRotation": "0",
+                    "ColorReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorPressed": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    }
+                  },
+                  {
+                    "Type": "BoxWithBorderButtonStyle",
+                    "Width": 320,
+                    "Height": 30,
+                    "LockToFlexButtonSize": true,
+                    "ColorReleased": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    },
+                    "ColorPressed": {
+                      "Red": 64,
+                      "Green": 92,
+                      "Blue": 160
+                    },
+                    "ColorBorderReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorBorderPressed": {
+                      "Red": 51,
+                      "Green": 102,
+                      "Blue": 153
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s7_checkReceiver",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "Container",
+                "Name": "bitcoin_box",
+                "X": 16,
+                "Y": 64,
+                "Width": 288,
+                "Height": 40,
+                "LockPosition": true,
+                "Components": [
+                  {
+                    "Type": "BoxWithBorder",
+                    "Name": "bitcoin_box_info",
+                    "Width": 288,
+                    "Height": 40,
+                    "LockPosition": true,
+                    "Color": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "BorderColor": {
+                      "Red": 164,
+                      "Green": 171,
+                      "Blue": 185
+                    },
+                    "BorderSize": 1
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "bitcoin_image",
+                    "X": 8,
+                    "Y": 8,
+                    "Width": 24,
+                    "Height": 24,
+                    "LockPosition": true,
+                    "RelativeFilename": "bitcoin.png"
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "bitcoin_amount",
+                    "X": 40,
+                    "Y": 10,
+                    "Width": 240,
+                    "Height": 20,
+                    "LockPosition": true,
+                    "TextId": "sp_bitcoin_amount",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    },
+                    "Wildcard1": {
+                      "TextId": "sp_bitcoin_amount_value",
+                      "UseBuffer": true,
+                      "BufferSize": 50
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "TextArea",
+                "Name": "check_receiver_info",
+                "Y": 16,
+                "Width": 320,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_check_receiver_info",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "Wildcard1": {
+                  "TextId": "sp_check_receiver_info_value",
+                  "UseBuffer": true,
+                  "BufferSize": 20
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "check_receiver_address_1",
+                "Y": 120,
+                "Width": 320,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_check_receiver_address_1",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 140
+                },
+                "Wildcard1": {
+                  "TextId": "sp_check_receiver_address_1_value",
+                  "UseBuffer": true,
+                  "BufferSize": 20
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "check_receiver_address_2",
+                "Y": 140,
+                "Width": 320,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_check_receiver_address_2",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "Wildcard1": {
+                  "TextId": "sp_check_receiver_address_2_value",
+                  "UseBuffer": true,
+                  "BufferSize": 80
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "check_receiver_address_3",
+                "Y": 160,
+                "Width": 320,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_check_receiver_address_3",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 140
+                },
+                "Wildcard1": {
+                  "TextId": "sp_check_receiver_address_3_value",
+                  "UseBuffer": true,
+                  "BufferSize": 20
+                }
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "btn_sign_psbt",
+                "Y": 210,
+                "Width": 320,
+                "Height": 30,
+                "LockPosition": true,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "Y": 5,
+                    "TextId": "sp_btn_sign_psbt",
+                    "TextRotation": "0",
+                    "Wildcard1": {
+                      "TextId": "sp_btn_sign_psbt_value",
+                      "UseBuffer": true,
+                      "BufferSize": 20
+                    },
+                    "ColorReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorPressed": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    }
+                  },
+                  {
+                    "Type": "BoxWithBorderButtonStyle",
+                    "Width": 320,
+                    "Height": 30,
+                    "LockToFlexButtonSize": true,
+                    "ColorReleased": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    },
+                    "ColorPressed": {
+                      "Red": 64,
+                      "Green": 92,
+                      "Blue": 160
+                    },
+                    "ColorBorderReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorBorderPressed": {
+                      "Red": 51,
+                      "Green": 102,
+                      "Blue": 153
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "FlexButton",
+                "Name": "btn_sign_psbt_click_confirm",
+                "X": 270,
+                "Y": 212,
+                "Width": 26,
+                "Height": 26,
+                "Visible": false,
+                "LockPosition": true,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "Y": 3,
+                    "TextId": "sp_sign_psbt_click_confirm",
+                    "TextRotation": "0",
+                    "Wildcard1": {
+                      "TextId": "sp_update_click_value",
+                      "UseBuffer": true,
+                      "BufferSize": 5
+                    },
+                    "ColorReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorPressed": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    }
+                  },
+                  {
+                    "Type": "IconButtonStyle",
+                    "IconReleased": "circle_update.png",
+                    "IconPressed": "circle_update.png"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s8_checkSignedQR",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "FlexButton",
+                "Name": "btn_write_psbt_via_nfc",
+                "Y": 210,
+                "Width": 320,
+                "Height": 30,
+                "LockPosition": true,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "Y": 5,
+                    "TextId": "sp_btn_write_psbt_via_nfc",
+                    "TextRotation": "0",
+                    "ColorReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorPressed": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    }
+                  },
+                  {
+                    "Type": "BoxWithBorderButtonStyle",
+                    "Width": 320,
+                    "Height": 30,
+                    "LockToFlexButtonSize": true,
+                    "ColorReleased": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    },
+                    "ColorPressed": {
+                      "Red": 64,
+                      "Green": 92,
+                      "Blue": 160
+                    },
+                    "ColorBorderReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorBorderPressed": {
+                      "Red": 51,
+                      "Green": 102,
+                      "Blue": 153
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "psbt_signed_success",
+                "Width": 320,
+                "Height": 210,
+                "Visible": false,
+                "LockPosition": true,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "psbt_signed_success_text",
+                    "Y": 130,
+                    "Width": 320,
+                    "Height": 20,
+                    "LockPosition": true,
+                    "TextId": "sp_psbt_signed_success",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "psbt_signed_success_image",
+                    "X": 117,
+                    "Y": 44,
+                    "Width": 86,
+                    "Height": 76,
+                    "LockPosition": true,
+                    "RelativeFilename": "grafismo_proceso_exitoso_cuvex.png"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s9_initNFC_save_psbt",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "init_nfc_thinking_circles_2",
+                "X": 95,
+                "Y": 170,
+                "Width": 130,
+                "Height": 30,
+                "LockPosition": true,
+                "CustomContainerDefinitionName": "thinking_circles"
+              },
+              {
+                "Type": "Image",
+                "Name": "init_nfc_image_2",
+                "X": 124,
+                "Y": 44,
+                "Width": 73,
+                "Height": 76,
+                "LockPosition": true,
+                "RelativeFilename": "grafismo_activando_nfc_cuvex.png"
+              },
+              {
+                "Type": "TextArea",
+                "Name": "init_nfc_text1_2",
+                "X": 110,
+                "Y": 140,
+                "Width": 68,
+                "Height": 18,
+                "LockPosition": true,
+                "TextId": "sp_init_nfc_text1",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "init_nfc_text2_2",
+                "X": 178,
+                "Y": 140,
+                "Width": 34,
+                "Height": 18,
+                "LockPosition": true,
+                "TextId": "sp_init_nfc_text2",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                },
+                "AutoSize": true
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s10_waitReadNFC_save_psbt",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "text_wait_read_nfc3",
+                "Y": 134,
+                "Width": 320,
+                "Height": 40,
+                "LockPosition": true,
+                "TextId": "sp_wait_read_nfc3",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "Image",
+                "Name": "image_wait_read_nfc3",
+                "X": 121,
+                "Y": 48,
+                "Width": 78,
+                "Height": 78,
+                "LockPosition": true,
+                "RelativeFilename": "grafismo_nfc2_cuvex.png"
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s11_psbtSigned_Success",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "FlexButton",
+                "Name": "btn_close",
+                "Y": 210,
+                "Width": 320,
+                "Height": 30,
+                "LockPosition": true,
+                "ButtonTrigger": {
+                  "Type": "ClickButtonTrigger"
+                },
+                "ButtonStyles": [
+                  {
+                    "Type": "TextButtonStyle",
+                    "Y": 5,
+                    "TextId": "sp_btn_close",
+                    "TextRotation": "0",
+                    "ColorReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorPressed": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    }
+                  },
+                  {
+                    "Type": "BoxWithBorderButtonStyle",
+                    "Width": 320,
+                    "Height": 30,
+                    "LockToFlexButtonSize": true,
+                    "ColorReleased": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    },
+                    "ColorPressed": {
+                      "Red": 64,
+                      "Green": 92,
+                      "Blue": 160
+                    },
+                    "ColorBorderReleased": {
+                      "Red": 237,
+                      "Green": 237,
+                      "Blue": 237
+                    },
+                    "ColorBorderPressed": {
+                      "Red": 51,
+                      "Green": 102,
+                      "Blue": 153
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "TextArea",
+                "Name": "psbt_save_success_text",
+                "Y": 130,
+                "Width": 320,
+                "Height": 20,
+                "LockPosition": true,
+                "TextId": "sp_psbt_save_success",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 63,
+                  "Green": 63,
+                  "Blue": 81
+                }
+              },
+              {
+                "Type": "Image",
+                "Name": "psbt_save_success_image",
+                "X": 117,
+                "Y": 44,
+                "Width": 86,
+                "Height": 76,
+                "LockPosition": true,
+                "RelativeFilename": "grafismo_proceso_exitoso_cuvex.png"
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "s99_error_warning_alert",
+            "Width": 320,
+            "Height": 240,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "Box",
+                "Name": "background_error",
+                "Width": 320,
+                "Height": 240,
+                "LockPosition": true,
+                "Color": {
+                  "Red": 237,
+                  "Green": 237,
+                  "Blue": 237
+                }
+              },
+              {
+                "Type": "Container",
+                "Name": "error_temporalBlock",
+                "Width": 320,
+                "Height": 240,
+                "Visible": false,
+                "LockPosition": true,
+                "Components": [
+                  {
+                    "Type": "Image",
+                    "Name": "image_temporal_block",
+                    "X": 122,
+                    "Y": 26,
+                    "Width": 76,
+                    "Height": 78,
+                    "LockPosition": true,
+                    "RelativeFilename": "grafismo_proceso_error_cuvex.png"
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "text_temporal_block_spanish",
+                    "Width": 320,
+                    "Height": 240,
+                    "Visible": false,
+                    "LockPosition": true,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_spanish_1",
+                        "X": 45,
+                        "Y": 120,
+                        "Width": 138,
+                        "Height": 18,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_spanish_1",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_spanish_2",
+                        "X": 185,
+                        "Y": 120,
+                        "Width": 69,
+                        "Height": 18,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_spanish_2",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_spanish_3",
+                        "X": 252,
+                        "Y": 120,
+                        "Width": 25,
+                        "Height": 18,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_spanish_3",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_spanish_4",
+                        "X": 41,
+                        "Y": 138,
+                        "Width": 235,
+                        "Height": 18,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_spanish_4",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_spanish_5",
+                        "X": 71,
+                        "Y": 156,
+                        "Width": 61,
+                        "Height": 18,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_spanish_5",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_spanish_6",
+                        "X": 131,
+                        "Y": 156,
+                        "Width": 126,
+                        "Height": 18,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_spanish_6",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_spanish_7",
+                        "X": 47,
+                        "Y": 174,
+                        "Width": 225,
+                        "Height": 36,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_spanish_7",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Container",
+                    "Name": "text_temporal_block_english",
+                    "Width": 320,
+                    "Height": 240,
+                    "LockPosition": true,
+                    "Components": [
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_english_1",
+                        "X": 56,
+                        "Y": 120,
+                        "Width": 80,
+                        "Height": 18,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_english_1",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_english_2",
+                        "X": 136,
+                        "Y": 120,
+                        "Width": 68,
+                        "Height": 18,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_english_2",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_english_3",
+                        "X": 202,
+                        "Y": 120,
+                        "Width": 63,
+                        "Height": 18,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_english_3",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_english_4",
+                        "X": 49,
+                        "Y": 138,
+                        "Width": 222,
+                        "Height": 18,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_english_4",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_english_5",
+                        "X": 92,
+                        "Y": 156,
+                        "Width": 139,
+                        "Height": 18,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_english_5",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      },
+                      {
+                        "Type": "TextArea",
+                        "Name": "temporal_block_english_6",
+                        "X": 48,
+                        "Y": 174,
+                        "Width": 221,
+                        "Height": 36,
+                        "LockPosition": true,
+                        "TextId": "temporal_block_english_6",
+                        "TextRotation": "0",
+                        "Color": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "AutoSize": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "error_cardFormat",
+                "Width": 320,
+                "Height": 240,
+                "Visible": false,
+                "LockPosition": true,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "card_format_error_text",
+                    "Y": 130,
+                    "Width": 320,
+                    "Height": 20,
+                    "LockPosition": true,
+                    "TextId": "sp_card_format_error",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "card_format_error_image",
+                    "X": 117,
+                    "Y": 44,
+                    "Width": 86,
+                    "Height": 76,
+                    "LockPosition": true,
+                    "RelativeFilename": "grafismo_error_cuvex.png"
+                  },
+                  {
+                    "Type": "FlexButton",
+                    "Name": "card_format_error_btn",
+                    "Y": 210,
+                    "Width": 320,
+                    "Height": 30,
+                    "LockPosition": true,
+                    "ButtonTrigger": {
+                      "Type": "ClickButtonTrigger"
+                    },
+                    "ButtonStyles": [
+                      {
+                        "Type": "TextButtonStyle",
+                        "Y": 5,
+                        "TextId": "sp_btn_retry_card_format",
+                        "TextRotation": "0",
+                        "ColorReleased": {
+                          "Red": 237,
+                          "Green": 237,
+                          "Blue": 237
+                        },
+                        "ColorPressed": {
+                          "Red": 237,
+                          "Green": 237,
+                          "Blue": 237
+                        }
+                      },
+                      {
+                        "Type": "BoxWithBorderButtonStyle",
+                        "Width": 320,
+                        "Height": 30,
+                        "LockToFlexButtonSize": true,
+                        "ColorReleased": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "ColorPressed": {
+                          "Red": 64,
+                          "Green": 92,
+                          "Blue": 160
+                        },
+                        "ColorBorderReleased": {
+                          "Red": 237,
+                          "Green": 237,
+                          "Blue": 237
+                        },
+                        "ColorBorderPressed": {
+                          "Red": 51,
+                          "Green": 102,
+                          "Blue": 153
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "error_noCryptogram",
+                "Width": 320,
+                "Height": 240,
+                "Visible": false,
+                "LockPosition": true,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "no_cryptogram_error_text",
+                    "Y": 130,
+                    "Width": 320,
+                    "Height": 40,
+                    "LockPosition": true,
+                    "TextId": "sp_no_cryptogram_error",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "no_cryptogram_error_image",
+                    "X": 117,
+                    "Y": 44,
+                    "Width": 86,
+                    "Height": 76,
+                    "LockPosition": true,
+                    "RelativeFilename": "grafismo_error_cuvex.png"
+                  },
+                  {
+                    "Type": "FlexButton",
+                    "Name": "no_cryptogram_error_btn",
+                    "Y": 210,
+                    "Width": 320,
+                    "Height": 30,
+                    "LockPosition": true,
+                    "ButtonTrigger": {
+                      "Type": "ClickButtonTrigger"
+                    },
+                    "ButtonStyles": [
+                      {
+                        "Type": "TextButtonStyle",
+                        "Y": 5,
+                        "TextId": "sp_btn_retry_no_cryptogram",
+                        "TextRotation": "0",
+                        "ColorReleased": {
+                          "Red": 237,
+                          "Green": 237,
+                          "Blue": 237
+                        },
+                        "ColorPressed": {
+                          "Red": 237,
+                          "Green": 237,
+                          "Blue": 237
+                        }
+                      },
+                      {
+                        "Type": "BoxWithBorderButtonStyle",
+                        "Width": 320,
+                        "Height": 30,
+                        "LockToFlexButtonSize": true,
+                        "ColorReleased": {
+                          "Red": 63,
+                          "Green": 63,
+                          "Blue": 81
+                        },
+                        "ColorPressed": {
+                          "Red": 64,
+                          "Green": 92,
+                          "Blue": 160
+                        },
+                        "ColorBorderReleased": {
+                          "Red": 237,
+                          "Green": 237,
+                          "Blue": 237
+                        },
+                        "ColorBorderPressed": {
+                          "Red": 51,
+                          "Green": 102,
+                          "Blue": 153
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "error_koPassword1",
+                "Width": 320,
+                "Height": 240,
+                "Visible": false,
+                "LockPosition": true,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "ko_password_1_error_text_1",
+                    "Y": 118,
+                    "Width": 320,
+                    "Height": 20,
+                    "LockPosition": true,
+                    "TextId": "ko_password_1_error_text_1",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "ko_password_1_error_text_2",
+                    "Y": 147,
+                    "Width": 320,
+                    "Height": 60,
+                    "LockPosition": true,
+                    "TextId": "ko_password_1_error_text_2",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "ko_password_1_error_image",
+                    "X": 117,
+                    "Y": 32,
+                    "Width": 86,
+                    "Height": 76,
+                    "LockPosition": true,
+                    "RelativeFilename": "grafismo_error_cuvex.png"
+                  },
+                  {
+                    "Type": "FlexButton",
+                    "Name": "ko_password_1_btn",
+                    "Width": 320,
+                    "Height": 240,
+                    "LockPosition": true,
+                    "Alpha": 0,
+                    "ButtonTrigger": {
+                      "Type": "ClickButtonTrigger"
+                    },
+                    "ButtonStyles": [
+                      {
+                        "Type": "BoxWithBorderButtonStyle",
+                        "Width": 320,
+                        "Height": 240,
+                        "LockToFlexButtonSize": true,
+                        "BorderSize": 5,
+                        "ColorReleased": {
+                          "Green": 102,
+                          "Blue": 153
+                        },
+                        "ColorPressed": {
+                          "Green": 153,
+                          "Blue": 204
+                        },
+                        "ColorBorderReleased": {
+                          "Green": 51,
+                          "Blue": 102
+                        },
+                        "ColorBorderPressed": {
+                          "Red": 51,
+                          "Green": 102,
+                          "Blue": 153
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "error_koPassword2",
+                "Width": 320,
+                "Height": 240,
+                "Visible": false,
+                "LockPosition": true,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "ko_password_2_error_text_1",
+                    "Y": 118,
+                    "Width": 320,
+                    "Height": 20,
+                    "LockPosition": true,
+                    "TextId": "ko_password_2_error_text_1",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "ko_password_2_error_text_2",
+                    "Y": 147,
+                    "Width": 320,
+                    "Height": 60,
+                    "LockPosition": true,
+                    "TextId": "ko_password_2_error_text_2",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "ko_password_2_error_image",
+                    "X": 117,
+                    "Y": 32,
+                    "Width": 86,
+                    "Height": 76,
+                    "LockPosition": true,
+                    "RelativeFilename": "grafismo_error_cuvex.png"
+                  },
+                  {
+                    "Type": "FlexButton",
+                    "Name": "ko_password_2_btn",
+                    "Width": 320,
+                    "Height": 240,
+                    "LockPosition": true,
+                    "Alpha": 0,
+                    "ButtonTrigger": {
+                      "Type": "ClickButtonTrigger"
+                    },
+                    "ButtonStyles": [
+                      {
+                        "Type": "BoxWithBorderButtonStyle",
+                        "Width": 320,
+                        "Height": 240,
+                        "LockToFlexButtonSize": true,
+                        "BorderSize": 5,
+                        "ColorReleased": {
+                          "Green": 102,
+                          "Blue": 153
+                        },
+                        "ColorPressed": {
+                          "Green": 153,
+                          "Blue": 204
+                        },
+                        "ColorBorderReleased": {
+                          "Green": 51,
+                          "Blue": 102
+                        },
+                        "ColorBorderPressed": {
+                          "Red": 51,
+                          "Green": 102,
+                          "Blue": 153
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "error_koPrivatePassword",
+                "Width": 320,
+                "Height": 240,
+                "Visible": false,
+                "LockPosition": true,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "ko_private_password_error_text_1",
+                    "Y": 118,
+                    "Width": 320,
+                    "Height": 20,
+                    "LockPosition": true,
+                    "TextId": "sp_ko_private_password_error_text_1",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "ko_private_password_error_text_2",
+                    "Y": 147,
+                    "Width": 320,
+                    "Height": 40,
+                    "LockPosition": true,
+                    "TextId": "sp_ko_private_password_error_text_2",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "ko_private_password_error_image",
+                    "X": 117,
+                    "Y": 32,
+                    "Width": 86,
+                    "Height": 76,
+                    "LockPosition": true,
+                    "RelativeFilename": "grafismo_error_cuvex.png"
+                  },
+                  {
+                    "Type": "FlexButton",
+                    "Name": "ko_private_password_btn",
+                    "Width": 320,
+                    "Height": 240,
+                    "LockPosition": true,
+                    "Alpha": 0,
+                    "ButtonTrigger": {
+                      "Type": "ClickButtonTrigger"
+                    },
+                    "ButtonStyles": [
+                      {
+                        "Type": "BoxWithBorderButtonStyle",
+                        "Width": 320,
+                        "Height": 240,
+                        "LockToFlexButtonSize": true,
+                        "BorderSize": 5,
+                        "ColorReleased": {
+                          "Green": 102,
+                          "Blue": 153
+                        },
+                        "ColorPressed": {
+                          "Green": 153,
+                          "Blue": 204
+                        },
+                        "ColorBorderReleased": {
+                          "Green": 51,
+                          "Blue": 102
+                        },
+                        "ColorBorderPressed": {
+                          "Red": 51,
+                          "Green": 102,
+                          "Blue": 153
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Type": "Container",
+                "Name": "warning_noChangeAddress",
+                "Width": 320,
+                "Height": 240,
+                "Visible": false,
+                "LockPosition": true,
+                "Components": [
+                  {
+                    "Type": "TextArea",
+                    "Name": "no_change_address_warning_text_1",
+                    "Y": 118,
+                    "Width": 320,
+                    "Height": 20,
+                    "LockPosition": true,
+                    "TextId": "sp_no_change_address_warning_text_1",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "no_change_address_warning_text_2",
+                    "Y": 147,
+                    "Width": 320,
+                    "Height": 20,
+                    "LockPosition": true,
+                    "TextId": "sp_no_change_address_warning_text_2",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "TextArea",
+                    "Name": "no_change_address_warning_text_3",
+                    "Y": 167,
+                    "Width": 320,
+                    "Height": 40,
+                    "LockPosition": true,
+                    "TextId": "sp_no_change_address_warning_text_3",
+                    "TextRotation": "0",
+                    "Color": {
+                      "Red": 63,
+                      "Green": 63,
+                      "Blue": 81
+                    }
+                  },
+                  {
+                    "Type": "Image",
+                    "Name": "no_change_address_warning_image",
+                    "X": 122,
+                    "Y": 32,
+                    "Width": 76,
+                    "Height": 78,
+                    "LockPosition": true,
+                    "RelativeFilename": "grafismo_proceso_error_cuvex.png"
+                  },
+                  {
+                    "Type": "FlexButton",
+                    "Name": "no_change_address_warning_btn",
+                    "Width": 320,
+                    "Height": 240,
+                    "LockPosition": true,
+                    "Alpha": 0,
+                    "ButtonTrigger": {
+                      "Type": "ClickButtonTrigger"
+                    },
+                    "ButtonStyles": [
+                      {
+                        "Type": "BoxWithBorderButtonStyle",
+                        "Width": 320,
+                        "Height": 240,
+                        "LockToFlexButtonSize": true,
+                        "BorderSize": 5,
+                        "ColorReleased": {
+                          "Green": 102,
+                          "Blue": 153
+                        },
+                        "ColorPressed": {
+                          "Green": 153,
+                          "Blue": 204
+                        },
+                        "ColorBorderReleased": {
+                          "Green": 51,
+                          "Blue": 102
+                        },
+                        "ColorBorderPressed": {
+                          "Red": 51,
+                          "Green": 102,
+                          "Blue": 153
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Type": "CustomContainerInstance",
+            "Name": "close_button",
+            "Width": 320,
+            "Height": 240,
+            "LockPosition": true,
+            "CustomContainerDefinitionName": "close_btn"
           }
         ],
         "Interactions": [
           {
-            "InteractionName": "Interaction1",
-            "HasCompletedTrigger": true,
+            "InteractionName": "tickEvent",
             "Trigger": {
-              "Type": "TriggerScreenEntered"
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 10
             },
             "Action": {
-              "Type": "ActionDelay",
-              "Duration": 1000
+              "Type": "ActionCustom",
+              "FunctionName": "tickEventScreen"
             }
           },
           {
-            "InteractionName": "Interaction2",
+            "InteractionName": "btnVerifyTransactionPressed",
             "Trigger": {
-              "Type": "TriggerInteractionCompleted",
-              "InteractionToTriggerOn": "Interaction1"
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btn_verify_transaction_info_1"
             },
             "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "screen_menu"
+              "Type": "ActionCustom",
+              "FunctionName": "btnVerifyTransactionPressed"
+            }
+          },
+          {
+            "InteractionName": "hideKeyboardPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "keyboard_btn_hide"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "hideKeyboardPressed"
+            }
+          },
+          {
+            "InteractionName": "showKeyboardPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "keyboard_btn_show"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "showKeyboardPressed"
+            }
+          },
+          {
+            "InteractionName": "eyePressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "keyboard_pwd_eye"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "eyePressed"
+            }
+          },
+          {
+            "InteractionName": "retryCardFormatErrorPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "card_format_error_btn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "retryCardFormatErrorPressed"
+            }
+          },
+          {
+            "InteractionName": "retryNoCryptogramErrorPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "no_cryptogram_error_btn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "retryNoCryptogramErrorPressed"
+            }
+          },
+          {
+            "InteractionName": "enterKeyboardPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "keyboard_btn_enter"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "enterKeyboardPressed"
+            }
+          },
+          {
+            "InteractionName": "koPassword1BtnPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "ko_password_1_btn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "koPassword1BtnPressed"
+            }
+          },
+          {
+            "InteractionName": "koPassword2BtnPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "ko_password_2_btn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "koPassword2BtnPressed"
+            }
+          },
+          {
+            "InteractionName": "checkReceiverPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btn_check_receiver"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "checkReceiverPressed"
+            }
+          },
+          {
+            "InteractionName": "koPrivatePasswordBtnPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "ko_private_password_btn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "koPrivatePasswordBtnPressed"
+            }
+          },
+          {
+            "InteractionName": "btnSignPsbtPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btn_sign_psbt"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "btnSignPsbtPressed"
+            }
+          },
+          {
+            "InteractionName": "btnWarningNoChangeAddressPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "no_change_address_warning_btn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "btnWarningNoChangeAddressPressed"
+            }
+          },
+          {
+            "InteractionName": "btnWritePsbtViaNfcPressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btn_write_psbt_via_nfc"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "btnWritePsbtViaNfcPressed"
+            }
+          },
+          {
+            "InteractionName": "btnClosePressed",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "btn_close"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "btnClosePressed"
             }
           }
         ]
@@ -9341,7 +11871,7 @@
                     "X": 212,
                     "Y": 156,
                     "Width": 61,
-                    "Height": 14,
+                    "Height": 15,
                     "LockPosition": true,
                     "TextId": "ss_text_caution_spanish_9",
                     "TextRotation": "0",
@@ -9375,7 +11905,7 @@
                     "X": 58,
                     "Y": 156,
                     "Width": 77,
-                    "Height": 14,
+                    "Height": 15,
                     "LockPosition": true,
                     "TextId": "ss_text_caution_spanish_7",
                     "TextRotation": "0",
@@ -9503,7 +12033,7 @@
                     "X": 193,
                     "Y": 157,
                     "Width": 71,
-                    "Height": 14,
+                    "Height": 15,
                     "LockPosition": true,
                     "TextId": "ss_text_caution_english_9",
                     "TextRotation": "0",
@@ -9537,7 +12067,7 @@
                     "X": 70,
                     "Y": 157,
                     "Width": 54,
-                    "Height": 14,
+                    "Height": 15,
                     "LockPosition": true,
                     "TextId": "ss_text_caution_english_7",
                     "TextRotation": "0",
@@ -16406,6 +18936,656 @@
       },
       {
         "Name": "keyboard_wallet_passphrase",
+        "Y": 117,
+        "Width": 320,
+        "Height": 123,
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "keyboard_background",
+            "Width": 320,
+            "Height": 123,
+            "LockPosition": true,
+            "Color": {
+              "Red": 237,
+              "Green": 237,
+              "Blue": 237
+            }
+          },
+          {
+            "Type": "Container",
+            "Name": "alpha_num_layout_1",
+            "Width": 320,
+            "Height": 123,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_hide",
+                "X": 235,
+                "Y": 94,
+                "Width": 80,
+                "Height": 27,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_hide_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_space",
+                "X": 85,
+                "Y": 94,
+                "Width": 150,
+                "Height": 27,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_space_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_mode",
+                "X": 5,
+                "Y": 94,
+                "Width": 80,
+                "Height": 27,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_mode_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_delete",
+                "X": 271,
+                "Y": 64,
+                "Width": 44,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_delete_1_relesed.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_shift",
+                "X": 5,
+                "Y": 64,
+                "Width": 44,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_shift_1_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_1",
+                "X": 6,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_2",
+                "X": 37,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_3",
+                "X": 68,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_4",
+                "X": 99,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_5",
+                "X": 130,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_6",
+                "X": 161,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_7",
+                "X": 192,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_8",
+                "X": 223,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_9",
+                "X": 254,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_10",
+                "X": 285,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_11",
+                "X": 25,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_12",
+                "X": 55,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_13",
+                "X": 85,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_14",
+                "X": 115,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_15",
+                "X": 145,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_16",
+                "X": 175,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_17",
+                "X": 205,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_18",
+                "X": 235,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_19",
+                "X": 265,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_20",
+                "X": 55,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_21",
+                "X": 85,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_22",
+                "X": 115,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_23",
+                "X": 145,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_24",
+                "X": 175,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_25",
+                "X": 205,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_1_key_26",
+                "X": 235,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "alpha_num_layout_2",
+            "Width": 320,
+            "Height": 123,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_hide",
+                "X": 235,
+                "Y": 94,
+                "Width": 80,
+                "Height": 27,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_hide_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_space",
+                "X": 85,
+                "Y": 94,
+                "Width": 150,
+                "Height": 27,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_space_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_mode",
+                "X": 5,
+                "Y": 94,
+                "Width": 80,
+                "Height": 27,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_mode_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_delete",
+                "X": 254,
+                "Y": 64,
+                "Width": 61,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_delete_2_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_shift",
+                "X": 6,
+                "Y": 64,
+                "Width": 61,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_shift_2_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_1",
+                "X": 6,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_2",
+                "X": 37,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_3",
+                "X": 68,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_4",
+                "X": 99,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_5",
+                "X": 130,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_6",
+                "X": 161,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_7",
+                "X": 192,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_8",
+                "X": 223,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_9",
+                "X": 254,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_10",
+                "X": 285,
+                "Y": 4,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_11",
+                "X": 6,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_12",
+                "X": 37,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_13",
+                "X": 68,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_14",
+                "X": 99,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_15",
+                "X": 130,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_16",
+                "X": 161,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_17",
+                "X": 192,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_18",
+                "X": 223,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_19",
+                "X": 254,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_20",
+                "X": 285,
+                "Y": 34,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_21",
+                "X": 85,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_22",
+                "X": 115,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_23",
+                "X": 145,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_24",
+                "X": 175,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              },
+              {
+                "Type": "Image",
+                "Name": "layout_2_key_25",
+                "X": 205,
+                "Y": 64,
+                "Width": 30,
+                "Height": 28,
+                "LockPosition": true,
+                "RelativeFilename": "keyboard_images\\alpha_numeric\\__keyboardAlphaNum_key_released.png"
+              }
+            ]
+          }
+        ],
+        "Interactions": []
+      },
+      {
+        "Name": "keyboard_psbt_password",
         "Y": 117,
         "Width": 320,
         "Height": 123,

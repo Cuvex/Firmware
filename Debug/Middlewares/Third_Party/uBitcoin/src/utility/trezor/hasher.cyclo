@@ -1,0 +1,5 @@
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/hasher.c:26:6:hasher_Init	3
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/hasher.c:44:6:hasher_Reset	1
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/hasher.c:48:6:hasher_Update	3
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/hasher.c:88:6:hasher_Raw	1
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/hasher.c:64:6:hasher_Final	5

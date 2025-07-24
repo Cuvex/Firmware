@@ -10,9 +10,9 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:501:18:virtual void touchgfx::Drawable::handleTickEvent()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:588:18:virtual void touchgfx::Drawable::moveTo(int16_t, int16_t)	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/Container.hpp:165:23:virtual touchgfx::Drawable* touchgfx::Container::getFirstChild()	1
+../TouchGFX/gui/src/containers/close_btn.cpp:67:6:virtual void close_btn::confirmButtonClicked()	1
 ../TouchGFX/gui/src/containers/close_btn.cpp:43:6:virtual void close_btn::crossButtonClicked()	1
 ../TouchGFX/gui/src/containers/close_btn.cpp:55:6:virtual void close_btn::cancelButtonClicked()	1
-../TouchGFX/gui/src/containers/close_btn.cpp:67:6:virtual void close_btn::confirmButtonClicked()	1
 ../TouchGFX/gui/src/containers/close_btn.cpp:84:6:virtual void close_btn::checkScreenMode()	2
 ../TouchGFX/gui/include/gui/containers/close_btn.hpp:24:13:close_btn::~close_btn()	1
 ../TouchGFX/gui/include/gui/containers/close_btn.hpp:24:13:virtual close_btn::~close_btn()	1

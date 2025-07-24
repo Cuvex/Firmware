@@ -1,0 +1,7 @@
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/bip39.c:63:13:mnemonic_from_data	7
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/bip39.c:49:13:mnemonic_generate	4
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/bip39.c:97:6:mnemonic_clear	1
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/bip39.c:102:5:mnemonic_to_entropy	19
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/bip39.c:166:5:mnemonic_check	4
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/bip39.c:188:6:mnemonic_to_seed	14
+../Middlewares/Third_Party/uBitcoin/src/utility/trezor/bip39.c:233:21:mnemonic_wordlist	1

@@ -1,0 +1,6 @@
+../Middlewares/Third_Party/uBitcoin/src/utility/segwit_addr.c:27:10:bech32_polymod_step	1
+../Middlewares/Third_Party/uBitcoin/src/utility/segwit_addr.c:50:5:bech32_encode	13
+../Middlewares/Third_Party/uBitcoin/src/utility/segwit_addr.c:86:5:bech32_decode	20
+../Middlewares/Third_Party/uBitcoin/src/utility/segwit_addr.c:143:5:convert_bits	9
+../Middlewares/Third_Party/uBitcoin/src/utility/segwit_addr.c:165:5:segwit_addr_encode	6
+../Middlewares/Third_Party/uBitcoin/src/utility/segwit_addr.c:177:5:segwit_addr_decode	10

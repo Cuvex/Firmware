@@ -79,6 +79,8 @@
     <ClCompile Include="..\..\generated\gui_generated\src\containers\thinking_circlesBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\close_btn.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\close_btnBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\keyboard_psbt_password.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_psbt_passwordBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -289,6 +291,8 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\thinking_circlesBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\close_btn.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\close_btnBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_psbt_password.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_psbt_passwordBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>
