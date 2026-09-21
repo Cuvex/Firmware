@@ -37,7 +37,7 @@
 ../Middlewares/Third_Party/mbed-crypto/library/ecp.c:1126:5:mbedtls_ecp_tls_write_group	3
 ../Middlewares/Third_Party/mbed-crypto/library/ecp.c:3090:5:mbedtls_ecp_check_pubkey	24
 ../Middlewares/Third_Party/mbed-crypto/library/ecp.c:3117:5:mbedtls_ecp_check_privkey	3
-../Middlewares/Third_Party/mbed-crypto/library/ecp.c:2683:5:mbedtls_ecp_mul_restartable	52
+../Middlewares/Third_Party/mbed-crypto/library/ecp.c:2683:5:mbedtls_ecp_mul_restartable	51
 ../Middlewares/Third_Party/mbed-crypto/library/ecp.c:2758:5:mbedtls_ecp_mul	1
 ../Middlewares/Third_Party/mbed-crypto/library/ecp.c:2823:12:mbedtls_ecp_mul_shortcuts	9
 ../Middlewares/Third_Party/mbed-crypto/library/ecp.c:2856:5:mbedtls_ecp_muladd_restartable	5

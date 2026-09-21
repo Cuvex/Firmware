@@ -16,8 +16,10 @@
 #include <gui/screen_init_screen/screen_initPresenter.hpp>
 #include <gui/screen_menu_screen/screen_menuView.hpp>
 #include <gui/screen_menu_screen/screen_menuPresenter.hpp>
-#include <gui/screen_flow_encrypt_screen/screen_flow_encryptView.hpp>
-#include <gui/screen_flow_encrypt_screen/screen_flow_encryptPresenter.hpp>
+#include <gui/screen_flow_encrypt_part_1_screen/screen_flow_encrypt_part_1View.hpp>
+#include <gui/screen_flow_encrypt_part_1_screen/screen_flow_encrypt_part_1Presenter.hpp>
+#include <gui/screen_flow_encrypt_part_2_screen/screen_flow_encrypt_part_2View.hpp>
+#include <gui/screen_flow_encrypt_part_2_screen/screen_flow_encrypt_part_2Presenter.hpp>
 #include <gui/screen_flow_decrypt_screen/screen_flow_decryptView.hpp>
 #include <gui/screen_flow_decrypt_screen/screen_flow_decryptPresenter.hpp>
 #include <gui/screen_flow_clone_screen/screen_flow_cloneView.hpp>
@@ -52,13 +54,14 @@ public:
      */
     typedef touchgfx::meta::TypeList< screen_initView,
             touchgfx::meta::TypeList< screen_menuView,
-            touchgfx::meta::TypeList< screen_flow_encryptView,
+            touchgfx::meta::TypeList< screen_flow_encrypt_part_1View,
+            touchgfx::meta::TypeList< screen_flow_encrypt_part_2View,
             touchgfx::meta::TypeList< screen_flow_decryptView,
             touchgfx::meta::TypeList< screen_flow_cloneView,
             touchgfx::meta::TypeList< screen_flow_walletView,
             touchgfx::meta::TypeList< screen_flow_psbtView,
             touchgfx::meta::TypeList< screen_flow_settingsView,
-            touchgfx::meta::Nil > > > > > > >
+            touchgfx::meta::Nil > > > > > > > >
             > GeneratedViewTypes;
 
     /**
@@ -72,13 +75,14 @@ public:
      */
     typedef touchgfx::meta::TypeList< screen_initPresenter,
             touchgfx::meta::TypeList< screen_menuPresenter,
-            touchgfx::meta::TypeList< screen_flow_encryptPresenter,
+            touchgfx::meta::TypeList< screen_flow_encrypt_part_1Presenter,
+            touchgfx::meta::TypeList< screen_flow_encrypt_part_2Presenter,
             touchgfx::meta::TypeList< screen_flow_decryptPresenter,
             touchgfx::meta::TypeList< screen_flow_clonePresenter,
             touchgfx::meta::TypeList< screen_flow_walletPresenter,
             touchgfx::meta::TypeList< screen_flow_psbtPresenter,
             touchgfx::meta::TypeList< screen_flow_settingsPresenter,
-            touchgfx::meta::Nil > > > > > > >
+            touchgfx::meta::Nil > > > > > > > >
             > GeneratedPresenterTypes;
 
     /**

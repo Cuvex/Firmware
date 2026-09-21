@@ -10,4 +10,4 @@
 ../Middlewares/ST/rfal/Src/rfal_nfc.c:281:12:rfalNfcGetActiveDevice	5
 ../Middlewares/ST/rfal/Src/rfal_nfc.c:532:12:rfalNfcDataExchangeStart	18
 ../Middlewares/ST/rfal/Src/rfal_nfc.c:667:12:rfalNfcDataExchangeGetStatus	11
-../Middlewares/ST/rfal/Src/rfal_nfc.c:306:6:rfalNfcWorker	84
+../Middlewares/ST/rfal/Src/rfal_nfc.c:306:6:rfalNfcWorker	81

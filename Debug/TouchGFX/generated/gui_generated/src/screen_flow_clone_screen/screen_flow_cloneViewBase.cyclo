@@ -33,14 +33,14 @@
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_clone_screen/screen_flow_cloneViewBase.hpp:38:18:virtual void screen_flow_cloneViewBase::retryPressed()	1
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_clone_screen/screen_flow_cloneViewBase.hpp:42:18:virtual void screen_flow_cloneViewBase::exitSuccessPressed()	1
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_clone_screen/screen_flow_cloneViewBase.hpp:46:18:virtual void screen_flow_cloneViewBase::exitFailPressed()	1
-../TouchGFX/generated/gui_generated/src/screen_flow_clone_screen/screen_flow_cloneViewBase.cpp:208:6:void screen_flow_cloneViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer&)	5
-../TouchGFX/generated/gui_generated/src/screen_flow_clone_screen/screen_flow_cloneViewBase.cpp:240:6:virtual void screen_flow_cloneViewBase::handleTickEvent()	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:41:7:touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>::~BoxWithBorderButtonStyle()	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:123:18:void touchgfx::BoxWithBorderButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::ClickButtonTrigger]	2
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:138:18:void touchgfx::TextButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	2
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:touchgfx::Callback<screen_flow_cloneViewBase, const touchgfx::AbstractButtonContainer&>::~Callback()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:43:7:touchgfx::TextButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >::~TextButtonStyle()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:62:7:touchgfx::TextAreaWithOneWildcard::~TextAreaWithOneWildcard()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:touchgfx::Callback<screen_flow_cloneViewBase, const touchgfx::AbstractButtonContainer&>::~Callback()	1
+../TouchGFX/generated/gui_generated/src/screen_flow_clone_screen/screen_flow_cloneViewBase.cpp:208:6:void screen_flow_cloneViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer&)	5
+../TouchGFX/generated/gui_generated/src/screen_flow_clone_screen/screen_flow_cloneViewBase.cpp:240:6:virtual void screen_flow_cloneViewBase::handleTickEvent()	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:123:18:void touchgfx::BoxWithBorderButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::ClickButtonTrigger]	2
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:138:18:void touchgfx::TextButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:386:18:void touchgfx::Callback<dest_type, T1, void, void>::execute(T1) [with dest_type = screen_flow_cloneViewBase; T1 = const touchgfx::AbstractButtonContainer&]	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:396:18:bool touchgfx::Callback<dest_type, T1, void, void>::isValid() const [with dest_type = screen_flow_cloneViewBase; T1 = const touchgfx::AbstractButtonContainer&]	3
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:145:18:void touchgfx::TextButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	1

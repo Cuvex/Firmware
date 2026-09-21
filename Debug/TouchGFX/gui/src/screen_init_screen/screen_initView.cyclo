@@ -9,7 +9,6 @@
 ../TouchGFX/gui/include/gui/screen_init_screen/screen_initView.hpp:25:13:virtual screen_initView::~screen_initView()	1
 ../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:20:1:screen_initView::screen_initView()	1
 ../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:337:1:cpp)	1
-../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:337:1:cpp)	1
 ../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:132:6:virtual void screen_initView::settingsPressed()	1
 ../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:183:6:virtual void screen_initView::languageConfirmPressed()	1
 ../TouchGFX/gui/src/screen_init_screen/screen_initView.cpp:305:6:virtual void screen_initView::setScreenMode()	2

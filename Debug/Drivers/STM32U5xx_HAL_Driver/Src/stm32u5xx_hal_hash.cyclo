@@ -1,6 +1,6 @@
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:1907:13:HASH_GetDigest	5
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:1981:26:HASH_WaitOnFlagUntilTimeout	12
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:1835:26:HASH_WriteData	12
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:1835:26:HASH_WriteData	10
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:462:13:HAL_HASH_MspInit	1
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:328:19:HAL_HASH_Init	3
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:477:13:HAL_HASH_MspDeInit	1
@@ -40,7 +40,7 @@
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:3130:19:HASH_Finish	7
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:1095:19:HAL_HASH_MD5_Finish	1
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:1126:19:HAL_HASH_SHA1_Finish	1
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:3191:19:HMAC_Start	25
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:3191:19:HMAC_Start	26
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:1167:19:HAL_HMAC_MD5_Start	1
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:1186:19:HAL_HMAC_SHA1_Start	1
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_hash.c:3269:19:HMAC_Start_IT	12

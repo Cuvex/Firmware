@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (12.3.rel1)
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -11,13 +11,13 @@ RM := rm -rf
 -include sources.mk
 -include TouchGFX/target/generated/subdir.mk
 -include TouchGFX/target/subdir.mk
--include TouchGFX/gui/src/widgets/qrcode/subdir.mk
 -include TouchGFX/gui/src/screen_menu_screen/subdir.mk
 -include TouchGFX/gui/src/screen_init_screen/subdir.mk
 -include TouchGFX/gui/src/screen_flow_wallet_screen/subdir.mk
 -include TouchGFX/gui/src/screen_flow_settings_screen/subdir.mk
 -include TouchGFX/gui/src/screen_flow_psbt_screen/subdir.mk
--include TouchGFX/gui/src/screen_flow_encrypt_screen/subdir.mk
+-include TouchGFX/gui/src/screen_flow_encrypt_part_2_screen/subdir.mk
+-include TouchGFX/gui/src/screen_flow_encrypt_part_1_screen/subdir.mk
 -include TouchGFX/gui/src/screen_flow_decrypt_screen/subdir.mk
 -include TouchGFX/gui/src/screen_flow_clone_screen/subdir.mk
 -include TouchGFX/gui/src/model/subdir.mk
@@ -33,7 +33,8 @@ RM := rm -rf
 -include TouchGFX/generated/gui_generated/src/screen_flow_wallet_screen/subdir.mk
 -include TouchGFX/generated/gui_generated/src/screen_flow_settings_screen/subdir.mk
 -include TouchGFX/generated/gui_generated/src/screen_flow_psbt_screen/subdir.mk
--include TouchGFX/generated/gui_generated/src/screen_flow_encrypt_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen_flow_encrypt_part_2_screen/subdir.mk
+-include TouchGFX/generated/gui_generated/src/screen_flow_encrypt_part_1_screen/subdir.mk
 -include TouchGFX/generated/gui_generated/src/screen_flow_decrypt_screen/subdir.mk
 -include TouchGFX/generated/gui_generated/src/screen_flow_clone_screen/subdir.mk
 -include TouchGFX/generated/gui_generated/src/containers/subdir.mk

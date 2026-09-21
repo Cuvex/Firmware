@@ -12,4 +12,3 @@
 ../TouchGFX/gui/include/gui/screen_flow_psbt_screen/screen_flow_psbtPresenter.hpp:41:13:virtual void* screen_flow_psbtPresenter::_ZThn4_N25screen_flow_psbtPresenterD0Ev()	1
 ../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtPresenter.cpp:17:1:screen_flow_psbtPresenter::screen_flow_psbtPresenter(screen_flow_psbtView&)	1
 ../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtPresenter.cpp:71:1:cpp)	1
-../TouchGFX/gui/src/screen_flow_psbt_screen/screen_flow_psbtPresenter.cpp:71:1:cpp)	1

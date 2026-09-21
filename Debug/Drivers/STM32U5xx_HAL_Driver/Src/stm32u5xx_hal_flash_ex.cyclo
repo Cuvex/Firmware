@@ -1,6 +1,6 @@
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_flash_ex.c:888:13:FLASH_MassErase	3
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_flash_ex.c:318:19:HAL_FLASHEx_OBProgram	36
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_flash_ex.c:411:6:HAL_FLASHEx_OBGetConfig	12
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_flash_ex.c:411:6:HAL_FLASHEx_OBGetConfig	11
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_flash_ex.c:470:19:HAL_FLASHEx_ConfigBBAttributes	3
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_flash_ex.c:544:6:HAL_FLASHEx_GetConfigBBAttributes	3
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_flash_ex.c:638:6:HAL_FLASHEx_ConfigPrivMode	1

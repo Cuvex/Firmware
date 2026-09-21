@@ -66,7 +66,7 @@
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:6929:23:HAL_TIM_GetActiveChannel	1
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:6947:29:HAL_TIM_GetChannelState	6
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:6964:30:HAL_TIM_DMABurstState	1
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:7253:6:TIM_Base_SetConfig	19
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:7253:6:TIM_Base_SetConfig	40
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:281:19:HAL_TIM_Base_Init	3
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:665:19:HAL_TIM_OC_Init	3
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:1334:19:HAL_TIM_PWM_Init	3
@@ -98,12 +98,12 @@
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:1659:19:HAL_TIM_PWM_Stop_IT	24
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:1736:19:HAL_TIM_PWM_Start_DMA	55
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:1899:19:HAL_TIM_PWM_Stop_DMA	24
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2141:19:HAL_TIM_IC_Start	34
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2193:19:HAL_TIM_IC_Stop	10
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2223:19:HAL_TIM_IC_Start_IT	38
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2315:19:HAL_TIM_IC_Stop_IT	20
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2387:19:HAL_TIM_IC_Start_DMA	46
-../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2546:19:HAL_TIM_IC_Stop_DMA	20
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2141:19:HAL_TIM_IC_Start	29
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2193:19:HAL_TIM_IC_Stop	8
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2223:19:HAL_TIM_IC_Start_IT	33
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2315:19:HAL_TIM_IC_Stop_IT	15
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2387:19:HAL_TIM_IC_Start_DMA	41
+../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2546:19:HAL_TIM_IC_Stop_DMA	15
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2800:19:HAL_TIM_OnePulse_Start	15
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2857:19:HAL_TIM_OnePulse_Stop	15
 ../Drivers/STM32U5xx_HAL_Driver/Src/stm32u5xx_hal_tim.c:2900:19:HAL_TIM_OnePulse_Start_IT	15

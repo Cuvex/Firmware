@@ -1,28 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.23.0">
+<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.24.2">
   <Languages>
     <Language Id="SP" />
     <Language Id="GB" />
   </Languages>
   <Texts>
     <TextGroup Id="containers">
-      <Text Id="container_box_dice_value" Alignment="Center" TypographyId="Neue_medium_25px">
-        <Translation Language="SP">---</Translation>
-        <Translation Language="GB">---</Translation>
+      <Text Id="cont_decrypt_tag_processing" Alignment="Center" TypographyId="Neue_bold_20px">
+        <Translation Language="SP">Procesando...</Translation>
+        <Translation Language="GB">Processing...</Translation>
       </Text>
-      <Text Id="container_box_dice" Alignment="Center" TypographyId="Neue_medium_25px">
+      <Text Id="cont_verify_address_check_info" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">Verificar dirección</Translation>
+        <Translation Language="GB">Verify address</Translation>
+      </Text>
+      <Text Id="cont_verify_address_keyboard_info_4_2" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">0/0/33</Translation>
+        <Translation Language="GB">0/0/33</Translation>
+      </Text>
+      <Text Id="cont_verify_address_keyboard_info_4_1" Alignment="Right" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Ej: </Translation>
+        <Translation Language="GB">Ex: </Translation>
+      </Text>
+      <Text Id="cont_verify_address_keyboard_info_3_2" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">0/0/33</Translation>
+        <Translation Language="GB">0/0/33</Translation>
+      </Text>
+      <Text Id="cont_verify_address_keyboard_info_3_1" Alignment="Right" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Ej: m/84/0/</Translation>
+        <Translation Language="GB">Ex: m/84/0/</Translation>
+      </Text>
+      <Text Id="cont_verify_address_keyboard_info_2" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Introduce aquí los tres &#10;últimos números del Derivation Path.</Translation>
+        <Translation Language="GB">Enter the last three digits &#10;of the Derivation Path.</Translation>
+      </Text>
+      <Text Id="cont_verify_address_keyboard_info_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Verificar dirección</Translation>
+        <Translation Language="GB">Verify address</Translation>
+      </Text>
+      <Text Id="cont_verify_address_keyboard_placeholder" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Ej: 0/0/33</Translation>
+        <Translation Language="GB">Ex: 0/0/33</Translation>
+      </Text>
+      <Text Id="cont_verify_address_keyboard_typed_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP"></Translation>
+        <Translation Language="GB"></Translation>
+      </Text>
+      <Text Id="cont_verify_address_keyboard_typed" Alignment="Right" TypographyId="Neue_medium_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
         <Translation Language="GB">&lt;value&gt;</Translation>
       </Text>
-      <Text Id="container_close_text_info" Alignment="Center" TypographyId="Neue_medium_15px">
+      <Text Id="cont_verify_address_btn_keyboard_enter" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CONTINUAR</Translation>
+        <Translation Language="GB">CONTINUE</Translation>
+      </Text>
+      <Text Id="cont_box_dice_value" Alignment="Center" TypographyId="Neue_medium_25px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="cont_box_dice" Alignment="Center" TypographyId="Neue_medium_25px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="cont_close_text_info" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">¿Estás seguro que quieres cerrar &#10;el proceso?</Translation>
         <Translation Language="GB">Are you sure you want to close &#10;the process?</Translation>
       </Text>
-      <Text Id="container_close_btn_confirm" Alignment="Center" TypographyId="Neue_medium_15px">
+      <Text Id="cont_close_btn_confirm" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">CERRAR</Translation>
         <Translation Language="GB">CLOSE</Translation>
       </Text>
-      <Text Id="container_close_btn_cancel" Alignment="Center" TypographyId="Neue_medium_15px">
+      <Text Id="cont_close_btn_cancel" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">CANCELAR</Translation>
         <Translation Language="GB">CANCEL</Translation>
       </Text>
@@ -518,6 +566,42 @@
       </Text>
     </TextGroup>
     <TextGroup Id="screen_flow_decrypt">
+      <Text Id="sd_close_btn" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CERRAR</Translation>
+        <Translation Language="GB">CLOSE</Translation>
+      </Text>
+      <Text Id="sd_check_receiver_address_1_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sd_check_receiver_address_2_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sd_check_receiver_address_3_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sd_check_receiver_address_3" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_check_receiver_address_2" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_check_receiver_address_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_check_address_text_info" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Verificar dirección</Translation>
+        <Translation Language="GB">Verify address</Translation>
+      </Text>
+      <Text Id="sd_text_verify_address" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">VERIFICAR DIRECCIÓN</Translation>
+        <Translation Language="GB">VERIFY ADDRESS</Translation>
+      </Text>
       <Text Id="sd_text_qr_seed" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">QR FRASE SEMILLA</Translation>
         <Translation Language="GB">QR SEED PHRASE</Translation>
@@ -998,6 +1082,30 @@
       </Text>
     </TextGroup>
     <TextGroup Id="screen_flow_psbt">
+      <Text Id="sp_processing" Alignment="Center" TypographyId="Neue_bold_20px">
+        <Translation Language="SP">Procesando...</Translation>
+        <Translation Language="GB">Processing...</Translation>
+      </Text>
+      <Text Id="sp_no_change_address_warning_btn" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CONTINUAR</Translation>
+        <Translation Language="GB">CONTINUE</Translation>
+      </Text>
+      <Text Id="sp_card_size_error" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Necesitas una tarjeta de 8K.</Translation>
+        <Translation Language="GB">You need an 8K card.</Translation>
+      </Text>
+      <Text Id="sp_btn_retry_card_size" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">REINTENTAR</Translation>
+        <Translation Language="GB">RETRY</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2_rbf" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">RBF:</Translation>
+        <Translation Language="GB">RBF:</Translation>
+      </Text>
+      <Text Id="sp_transaction_info_2_rbf_num" Alignment="Right" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
       <Text Id="sp_check_receiver_address_1" Alignment="Center" TypographyId="Neue_bold_15px">
         <Translation Language="SP">&lt;value&gt;</Translation>
         <Translation Language="GB">&lt;value&gt;</Translation>

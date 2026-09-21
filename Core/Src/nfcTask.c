@@ -64,7 +64,6 @@ void enableNFC(void)
 	HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);	//Green --> OFF
 	HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);		//Red --> OFF
 	HAL_GPIO_WritePin(NFC_EN_GPIO_Port, NFC_EN_Pin, GPIO_PIN_SET);
-	//HAL_GPIO_WritePin(BLE_EN_GPIO_Port, BLE_EN_Pin, GPIO_PIN_SET);
 	HAL_UART_Init(&huart3);
 }
 
@@ -79,7 +78,6 @@ void disableNFC(void)
 	HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);	//Green --> OFF
 	HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);		//Red --> OFF
 	HAL_GPIO_WritePin(NFC_EN_GPIO_Port, NFC_EN_Pin, GPIO_PIN_RESET);
-	//HAL_GPIO_WritePin(BLE_EN_GPIO_Port, BLE_EN_Pin, GPIO_PIN_RESET);
 	HAL_UART_DeInit(&huart3);
 }
 
@@ -390,6 +388,7 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 		/*******************************************************************************************************************************************/
 	case NFC_TAG_READ_WRITE_FROM_PSBT_T4T_8K:
 		cuvex.nfc.tag.flag_readed_writed_from_psbt = true;
+		cuvex.nfc.tag.flag_readed_writed_from_psbt_size_warning = true;
 		break;
 
 		/*******************************************************************************************************************************************/
@@ -417,7 +416,7 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 			}
 		}
 		else{
-			cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_NONE;
+			cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_OTHER_STATE;
 		}
 
 		/*** Writing the tag (if it has psbt information) ***/
@@ -707,7 +706,7 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx, ndefInfo *pInfo)
 {
 	ReturnCode 			err;
-	uint8_t 			raw_message_buf[4000] = {0};
+	uint8_t 			raw_message_buf[8000] = {0};
 	ndefBuffer       	buf_raw_message;
 	uint32_t         	raw_message_len;
 	ndefConstBuffer  	buf_const_raw_message;
@@ -849,7 +848,7 @@ int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx
 			}
 		}
 		else{
-			cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_NONE;
+			cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_OTHER_STATE;
 		}
 
 		/*** Writing the tag (if it has psbt information) ***/
@@ -1824,9 +1823,9 @@ int ndefRecordGetInfo_fromPSBT(const ndefRecord* record)
 			break;
 
 		case 1:	//Record 1
-			if((bufLanguageCode.length == 2) && (bufLanguageCode.buffer[0] == 'e') && (bufLanguageCode.buffer[1] == 'n'))
+			if((bufLanguageCode.length == 2) && (bufLanguageCode.buffer[0] == 'e') && (bufLanguageCode.buffer[1] == 'n'))	//Not cryptogram (if cryptogram, "A:")
 			{
-				if(strstr((char *) bufSentence.buffer, (char *) "PSBT CARD - PSBT=0") != 0x00){
+				if((strstr((char *) bufSentence.buffer, (char *) "PSBT CARD - PSBT=0") != 0x00) || (strstr((char *) bufSentence.buffer, (char *) "PSBT CARD-PSBT=0") != 0x00)){
 					cuvex.nfc.tag.from_psbt_type = PSBT_TYPE_V0_NOT_SIGNED;
 				}
 				else if((strstr((char *) bufSentence.buffer, (char *) "PSBT CARD - SIGNED") != 0x00) || (strstr((char *) bufSentence.buffer, (char *) "PSBT CARD-SIGNED") != 0x00)){
@@ -1837,20 +1836,14 @@ int ndefRecordGetInfo_fromPSBT(const ndefRecord* record)
 				}
 				return SUCCESS;
 			}
-			else{
-				return ERROR;
-			}
 			break;
 
 		case 2:	//Record 2
-			if((bufLanguageCode.length == 2) && (bufLanguageCode.buffer[0] == 'e') && (bufLanguageCode.buffer[1] == 'n'))
+			if((bufLanguageCode.length == 2) && (bufLanguageCode.buffer[0] == 'e') && (bufLanguageCode.buffer[1] == 'n'))	//Not cryptogram (if cryptogram, "C:")
 			{
 				memset(cuvex.nfc.tag.from_psbt_base64, 0x00, sizeof(cuvex.nfc.tag.from_psbt_base64));
 				memcpy(cuvex.nfc.tag.from_psbt_base64, bufSentence.buffer, bufSentence.length);
 				return SUCCESS;
-			}
-			else{
-				return ERROR;
 			}
 			break;
 
@@ -1865,9 +1858,6 @@ int ndefRecordGetInfo_fromPSBT(const ndefRecord* record)
 			{
 				strncat(cuvex.nfc.tag.from_psbt_base64, bufSentence.buffer, bufSentence.length);
 				return SUCCESS;
-			}
-			else{
-				return ERROR;
 			}
 			break;
 		}

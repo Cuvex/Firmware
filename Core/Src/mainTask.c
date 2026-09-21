@@ -415,13 +415,14 @@ void clearNfc_readerFlags(void)
  **************************************************************************************************************************************/
 void clearNfc_tagFlags(void)
 {
-	cuvex.nfc.tag.action 	  					= NFC_TAG_NONE;
-	cuvex.nfc.tag.type		 					= NFC_TAG_TYPE_NONE;
-	cuvex.nfc.tag.flag_readed 					= false;
-	cuvex.nfc.tag.flag_readed_writed 			= false;
-	cuvex.nfc.tag.flag_readed_from_nfc			= false;
-	cuvex.nfc.tag.flag_readed_from_psbt			= false;
-	cuvex.nfc.tag.flag_readed_writed_from_psbt	= false;
+	cuvex.nfc.tag.action = NFC_TAG_NONE;
+	cuvex.nfc.tag.type = NFC_TAG_TYPE_NONE;
+	cuvex.nfc.tag.flag_readed = false;
+	cuvex.nfc.tag.flag_readed_writed = false;
+	cuvex.nfc.tag.flag_readed_from_nfc = false;
+	cuvex.nfc.tag.flag_readed_from_psbt	= false;
+	cuvex.nfc.tag.flag_readed_writed_from_psbt = false;
+	cuvex.nfc.tag.flag_readed_writed_from_psbt_size_warning	= false;
 }
 
 /**************************************************************************************************************************************
@@ -458,6 +459,8 @@ void clearNfc_tagInfo(void)
 	cuvex.nfc.tag.from_psbt_type = 0;
 	memset(cuvex.nfc.tag.from_psbt_base64, 0x00, sizeof(cuvex.nfc.tag.from_psbt_base64));
 	memset(cuvex.nfc.tag.from_psbt_base64_signed, 0x00, sizeof(cuvex.nfc.tag.from_psbt_base64_signed));
+	/***/
+	memset(cuvex.decrypt.cryptogram_decrypted, 0x00, sizeof(cuvex.decrypt.cryptogram_decrypted));
 }
 
 /**************************************************************************************************************************************

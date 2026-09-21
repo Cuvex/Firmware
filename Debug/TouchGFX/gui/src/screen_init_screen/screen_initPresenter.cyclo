@@ -11,4 +11,3 @@
 ../TouchGFX/gui/include/gui/screen_init_screen/screen_initPresenter.hpp:41:13:virtual void* screen_initPresenter::_ZThn4_N20screen_initPresenterD0Ev()	1
 ../TouchGFX/gui/src/screen_init_screen/screen_initPresenter.cpp:17:1:screen_initPresenter::screen_initPresenter(screen_initView&)	1
 ../TouchGFX/gui/src/screen_init_screen/screen_initPresenter.cpp:51:1:cpp)	1
-../TouchGFX/gui/src/screen_init_screen/screen_initPresenter.cpp:51:1:cpp)	1

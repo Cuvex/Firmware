@@ -108,9 +108,9 @@ void screen_menuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButt
     if (&src == &btn_encrypt)
     {
         //encryptButtonPressed
-        //When btn_encrypt clicked change screen to screen_flow_encrypt
-        //Go to screen_flow_encrypt with no screen transition
-        application().gotoscreen_flow_encryptScreenNoTransition();
+        //When btn_encrypt clicked change screen to screen_flow_encrypt_part_1
+        //Go to screen_flow_encrypt_part_1 with no screen transition
+        application().gotoscreen_flow_encrypt_part_1ScreenNoTransition();
     }
     if (&src == &btn_decrypt)
     {

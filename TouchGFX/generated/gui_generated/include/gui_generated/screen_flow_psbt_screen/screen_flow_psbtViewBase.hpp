@@ -15,9 +15,8 @@
 #include <touchgfx/widgets/BoxWithBorder.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
-#include <gui/containers/keyboard_psbt_password.hpp>
-#include <gui/containers/textArea.hpp>
-#include <touchgfx/widgets/ToggleButton.hpp>
+#include <gui/containers/decrypt_tag.hpp>
+#include <touchgfx/widgets/QRCode.hpp>
 #include <gui/containers/close_btn.hpp>
 
 class screen_flow_psbtViewBase : public touchgfx::View<screen_flow_psbtPresenter>
@@ -39,35 +38,11 @@ public:
     {
         // Override and implement this function in screen_flow_psbt
     }
-    virtual void hideKeyboardPressed()
-    {
-        // Override and implement this function in screen_flow_psbt
-    }
-    virtual void showKeyboardPressed()
-    {
-        // Override and implement this function in screen_flow_psbt
-    }
-    virtual void eyePressed()
-    {
-        // Override and implement this function in screen_flow_psbt
-    }
     virtual void retryCardFormatErrorPressed()
     {
         // Override and implement this function in screen_flow_psbt
     }
     virtual void retryNoCryptogramErrorPressed()
-    {
-        // Override and implement this function in screen_flow_psbt
-    }
-    virtual void enterKeyboardPressed()
-    {
-        // Override and implement this function in screen_flow_psbt
-    }
-    virtual void koPassword1BtnPressed()
-    {
-        // Override and implement this function in screen_flow_psbt
-    }
-    virtual void koPassword2BtnPressed()
     {
         // Override and implement this function in screen_flow_psbt
     }
@@ -92,6 +67,10 @@ public:
         // Override and implement this function in screen_flow_psbt
     }
     virtual void btnClosePressed()
+    {
+        // Override and implement this function in screen_flow_psbt
+    }
+    virtual void retryCardSizeErrorPressed()
     {
         // Override and implement this function in screen_flow_psbt
     }
@@ -135,17 +114,7 @@ protected:
     touchgfx::Container s4_waitReadNFC_crypto;
     touchgfx::TextArea text_wait_read_nfc2;
     touchgfx::Image image_wait_read_nfc2;
-    touchgfx::Container s5_typePassword;
-    keyboard_psbt_password keyboard_password;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_hide;
-    textArea keyboard_text_area;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_show;
-    touchgfx::WildcardTextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  keyboard_btn_enter;
-    touchgfx::ToggleButton keyboard_pwd_eye;
-    touchgfx::TextAreaWithOneWildcard keyboard_text_typed;
-    touchgfx::TextAreaWithOneWildcard keyboard_text_typed_hide;
-    touchgfx::TextAreaWithOneWildcard keyboard_text_info;
-    touchgfx::TextArea keyboard_placeholder;
+    decrypt_tag s5_typePassword;
     touchgfx::Container s6_transactionInfo2;
     touchgfx::TextArea text_transaction_info_2;
     touchgfx::Container bitcoin_transactions_info_2_box;
@@ -156,9 +125,11 @@ protected:
     touchgfx::TextArea text_transactions_info_2_inputs;
     touchgfx::TextArea text_transactions_info_2_outputs;
     touchgfx::TextArea text_transactions_info_2_fee;
+    touchgfx::TextArea text_transactions_info_2_rbf;
     touchgfx::TextAreaWithOneWildcard text_transactions_info_2_inputs_num;
     touchgfx::TextAreaWithOneWildcard text_transactions_info_2_outputs_num;
     touchgfx::TextAreaWithOneWildcard text_transactions_info_2_fee_num;
+    touchgfx::TextAreaWithOneWildcard text_transactions_info_2_rbf_num;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_check_receiver;
     touchgfx::Container s7_checkReceiver;
     touchgfx::Container bitcoin_box;
@@ -171,20 +142,25 @@ protected:
     touchgfx::TextAreaWithOneWildcard check_receiver_address_3;
     touchgfx::WildcardTextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_sign_psbt;
     touchgfx::WildcardTextButtonStyle< touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_sign_psbt_click_confirm;
-    touchgfx::Container s8_checkSignedQR;
+    touchgfx::Container s8_processing;
+    touchgfx::TextArea processing_text;
+    touchgfx::Container s9_checkSignedQR;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_write_psbt_via_nfc;
+    uint8_t qrBuffer_qr_code[QRCODE_BUFFER_SIZE(19)];
+    uint8_t qrScratchBuffer_qr_code[QRCODE_BUFFER_SIZE(19)];
+    touchgfx::QRCode qr_code;
     touchgfx::Container psbt_signed_success;
     touchgfx::TextArea psbt_signed_success_text;
     touchgfx::Image psbt_signed_success_image;
-    touchgfx::Container s9_initNFC_save_psbt;
+    touchgfx::Container s10_initNFC_save_psbt;
     thinking_circles init_nfc_thinking_circles_2;
     touchgfx::Image init_nfc_image_2;
     touchgfx::TextArea init_nfc_text1_2;
     touchgfx::TextArea init_nfc_text2_2;
-    touchgfx::Container s10_waitReadNFC_save_psbt;
+    touchgfx::Container s11_waitReadNFC_save_psbt;
     touchgfx::TextArea text_wait_read_nfc3;
     touchgfx::Image image_wait_read_nfc3;
-    touchgfx::Container s11_psbtSigned_Success;
+    touchgfx::Container s12_psbtSigned_Success;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_close;
     touchgfx::TextArea psbt_save_success_text;
     touchgfx::Image psbt_save_success_image;
@@ -211,20 +187,14 @@ protected:
     touchgfx::TextArea card_format_error_text;
     touchgfx::Image card_format_error_image;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  card_format_error_btn;
+    touchgfx::Container error_cardSize;
+    touchgfx::TextArea card_size_error_text;
+    touchgfx::Image card_size_error_image;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  card_size_error_btn;
     touchgfx::Container error_noCryptogram;
     touchgfx::TextArea no_cryptogram_error_text;
     touchgfx::Image no_cryptogram_error_image;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  no_cryptogram_error_btn;
-    touchgfx::Container error_koPassword1;
-    touchgfx::TextArea ko_password_1_error_text_1;
-    touchgfx::TextArea ko_password_1_error_text_2;
-    touchgfx::Image ko_password_1_error_image;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  ko_password_1_btn;
-    touchgfx::Container error_koPassword2;
-    touchgfx::TextArea ko_password_2_error_text_1;
-    touchgfx::TextArea ko_password_2_error_text_2;
-    touchgfx::Image ko_password_2_error_image;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  ko_password_2_btn;
     touchgfx::Container error_koPrivatePassword;
     touchgfx::TextArea ko_private_password_error_text_1;
     touchgfx::TextArea ko_private_password_error_text_2;
@@ -235,7 +205,7 @@ protected:
     touchgfx::TextArea no_change_address_warning_text_2;
     touchgfx::TextArea no_change_address_warning_text_3;
     touchgfx::Image no_change_address_warning_image;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  no_change_address_warning_btn;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  no_change_address_warning_btn;
     close_btn close_button;
 
     /*
@@ -249,14 +219,6 @@ protected:
     touchgfx::Unicode::UnicodeChar text_transactions_info_1_outputs_numBuffer[TEXT_TRANSACTIONS_INFO_1_OUTPUTS_NUM_SIZE];
     static const uint16_t TEXT_TRANSACTIONS_INFO_1_FEE_NUM_SIZE = 10;
     touchgfx::Unicode::UnicodeChar text_transactions_info_1_fee_numBuffer[TEXT_TRANSACTIONS_INFO_1_FEE_NUM_SIZE];
-    static const uint16_t KEYBOARD_BTN_ENTER_SIZE = 25;
-    touchgfx::Unicode::UnicodeChar keyboard_btn_enterBuffer[KEYBOARD_BTN_ENTER_SIZE];
-    static const uint16_t KEYBOARD_TEXT_TYPED_SIZE = 45;
-    touchgfx::Unicode::UnicodeChar keyboard_text_typedBuffer[KEYBOARD_TEXT_TYPED_SIZE];
-    static const uint16_t KEYBOARD_TEXT_TYPED_HIDE_SIZE = 45;
-    touchgfx::Unicode::UnicodeChar keyboard_text_typed_hideBuffer[KEYBOARD_TEXT_TYPED_HIDE_SIZE];
-    static const uint16_t KEYBOARD_TEXT_INFO_SIZE = 50;
-    touchgfx::Unicode::UnicodeChar keyboard_text_infoBuffer[KEYBOARD_TEXT_INFO_SIZE];
     static const uint16_t BITCOIN_AMOUNT_INFO_2_SIZE = 50;
     touchgfx::Unicode::UnicodeChar bitcoin_amount_info_2Buffer[BITCOIN_AMOUNT_INFO_2_SIZE];
     static const uint16_t TEXT_TRANSACTIONS_INFO_2_INPUTS_NUM_SIZE = 50;
@@ -265,6 +227,8 @@ protected:
     touchgfx::Unicode::UnicodeChar text_transactions_info_2_outputs_numBuffer[TEXT_TRANSACTIONS_INFO_2_OUTPUTS_NUM_SIZE];
     static const uint16_t TEXT_TRANSACTIONS_INFO_2_FEE_NUM_SIZE = 50;
     touchgfx::Unicode::UnicodeChar text_transactions_info_2_fee_numBuffer[TEXT_TRANSACTIONS_INFO_2_FEE_NUM_SIZE];
+    static const uint16_t TEXT_TRANSACTIONS_INFO_2_RBF_NUM_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar text_transactions_info_2_rbf_numBuffer[TEXT_TRANSACTIONS_INFO_2_RBF_NUM_SIZE];
     static const uint16_t BITCOIN_AMOUNT_SIZE = 50;
     touchgfx::Unicode::UnicodeChar bitcoin_amountBuffer[BITCOIN_AMOUNT_SIZE];
     static const uint16_t CHECK_RECEIVER_INFO_SIZE = 20;
@@ -298,13 +262,11 @@ private:
      * Callback Declarations
      */
     touchgfx::Callback<screen_flow_psbtViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
-    touchgfx::Callback<screen_flow_psbtViewBase, const touchgfx::AbstractButton&> buttonCallback;
 
     /*
      * Callback Handler Declarations
      */
     void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
-    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

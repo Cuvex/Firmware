@@ -1,10 +1,10 @@
 ../Middlewares/ST/rfal/Src/rfal_nfcv.c:168:19:rfalNfcvParseError	4
 ../Middlewares/ST/rfal/Src/rfal_nfcv.c:194:12:rfalNfcvPollerInitialize	2
 ../Middlewares/ST/rfal/Src/rfal_nfcv.c:226:12:rfalNfcvPollerInventory	10
-../Middlewares/ST/rfal/Src/rfal_nfcv.c:209:12:rfalNfcvPollerCheckPresence	3
+../Middlewares/ST/rfal/Src/rfal_nfcv.c:209:12:rfalNfcvPollerCheckPresence	2
 ../Middlewares/ST/rfal/Src/rfal_nfcv.c:266:12:rfalNfcvPollerCollisionResolution	17
 ../Middlewares/ST/rfal/Src/rfal_nfcv.c:448:12:rfalNfcvPollerSleep	2
-../Middlewares/ST/rfal/Src/rfal_nfcv.c:417:12:rfalNfcvPollerSleepCollisionResolution	7
+../Middlewares/ST/rfal/Src/rfal_nfcv.c:417:12:rfalNfcvPollerSleepCollisionResolution	6
 ../Middlewares/ST/rfal/Src/rfal_nfcv.c:550:12:rfalNfcvPollerWriteMultipleBlocks	12
 ../Middlewares/ST/rfal/Src/rfal_nfcv.c:692:12:rfalNfcvPollerExtendedWriteMultipleBlocks	11
 ../Middlewares/ST/rfal/Src/rfal_nfcv.c:775:12:rfalNfcvPollerTransceiveReq	18

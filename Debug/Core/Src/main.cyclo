@@ -1,7 +1,7 @@
-../Core/Src/main.c:207:6:SystemClock_Config	4
-../Core/Src/main.c:127:5:main	28
-../Core/Src/main.c:936:6:HAL_UART_TxCpltCallback	2
-../Core/Src/main.c:950:6:HAL_UART_RxCpltCallback	2
-../Core/Src/main.c:964:6:HAL_UART_ErrorCallback	2
-../Core/Src/main.c:985:6:HAL_TIM_PeriodElapsedCallback	2
-../Core/Src/main.c:1002:6:Error_Handler	1
+../Core/Src/main.c:209:6:SystemClock_Config	4
+../Core/Src/main.c:128:5:main	28
+../Core/Src/main.c:940:6:HAL_UART_TxCpltCallback	2
+../Core/Src/main.c:954:6:HAL_UART_RxCpltCallback	2
+../Core/Src/main.c:968:6:HAL_UART_ErrorCallback	2
+../Core/Src/main.c:989:6:HAL_TIM_PeriodElapsedCallback	2
+../Core/Src/main.c:1007:6:Error_Handler	1

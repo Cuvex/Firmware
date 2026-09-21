@@ -15,8 +15,10 @@
 #include <gui/screen_init_screen/screen_initPresenter.hpp>
 #include <gui/screen_menu_screen/screen_menuView.hpp>
 #include <gui/screen_menu_screen/screen_menuPresenter.hpp>
-#include <gui/screen_flow_encrypt_screen/screen_flow_encryptView.hpp>
-#include <gui/screen_flow_encrypt_screen/screen_flow_encryptPresenter.hpp>
+#include <gui/screen_flow_encrypt_part_1_screen/screen_flow_encrypt_part_1View.hpp>
+#include <gui/screen_flow_encrypt_part_1_screen/screen_flow_encrypt_part_1Presenter.hpp>
+#include <gui/screen_flow_encrypt_part_2_screen/screen_flow_encrypt_part_2View.hpp>
+#include <gui/screen_flow_encrypt_part_2_screen/screen_flow_encrypt_part_2Presenter.hpp>
 #include <gui/screen_flow_decrypt_screen/screen_flow_decryptView.hpp>
 #include <gui/screen_flow_decrypt_screen/screen_flow_decryptPresenter.hpp>
 #include <gui/screen_flow_clone_screen/screen_flow_cloneView.hpp>
@@ -41,6 +43,7 @@ FrontendApplicationBase::FrontendApplicationBase(Model& m, FrontendHeap& heap)
 #ifdef SIMULATOR
     reinterpret_cast<touchgfx::LCD24bpp&>(touchgfx::HAL::lcd()).enableTextureMapperAll();
     reinterpret_cast<touchgfx::LCD24bpp&>(touchgfx::HAL::lcd()).enableDecompressorL8_All();
+    reinterpret_cast<touchgfx::LCD24bpp&>(touchgfx::HAL::lcd()).enableDecompressorRGB();
 #endif
 }
 
@@ -74,17 +77,30 @@ void FrontendApplicationBase::gotoscreen_menuScreenNoTransitionImpl()
     touchgfx::makeTransition<screen_menuView, screen_menuPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
-// screen_flow_encrypt
+// screen_flow_encrypt_part_1
 
-void FrontendApplicationBase::gotoscreen_flow_encryptScreenNoTransition()
+void FrontendApplicationBase::gotoscreen_flow_encrypt_part_1ScreenNoTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_encryptScreenNoTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_encrypt_part_1ScreenNoTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoscreen_flow_encryptScreenNoTransitionImpl()
+void FrontendApplicationBase::gotoscreen_flow_encrypt_part_1ScreenNoTransitionImpl()
 {
-    touchgfx::makeTransition<screen_flow_encryptView, screen_flow_encryptPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<screen_flow_encrypt_part_1View, screen_flow_encrypt_part_1Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// screen_flow_encrypt_part_2
+
+void FrontendApplicationBase::gotoscreen_flow_encrypt_part_2ScreenNoTransition()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoscreen_flow_encrypt_part_2ScreenNoTransitionImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoscreen_flow_encrypt_part_2ScreenNoTransitionImpl()
+{
+    touchgfx::makeTransition<screen_flow_encrypt_part_2View, screen_flow_encrypt_part_2Presenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
 // screen_flow_decrypt

@@ -32,4 +32,3 @@
 ../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:28:17:static touchgfx::VectorRenderer* touchgfx::VectorRenderer::getInstance()	3
 ../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:140:10:void HAL_LTDC_LineEventCallback(LTDC_HandleTypeDef*)	3
 ../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:170:1:cpp)	1
-../TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp:170:1:cpp)	1

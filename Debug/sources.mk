@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (12.3.rel1)
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
 C++M_SRCS := 
@@ -64,7 +64,8 @@ TouchGFX/generated/gui_generated/src/common \
 TouchGFX/generated/gui_generated/src/containers \
 TouchGFX/generated/gui_generated/src/screen_flow_clone_screen \
 TouchGFX/generated/gui_generated/src/screen_flow_decrypt_screen \
-TouchGFX/generated/gui_generated/src/screen_flow_encrypt_screen \
+TouchGFX/generated/gui_generated/src/screen_flow_encrypt_part_1_screen \
+TouchGFX/generated/gui_generated/src/screen_flow_encrypt_part_2_screen \
 TouchGFX/generated/gui_generated/src/screen_flow_psbt_screen \
 TouchGFX/generated/gui_generated/src/screen_flow_settings_screen \
 TouchGFX/generated/gui_generated/src/screen_flow_wallet_screen \
@@ -80,13 +81,13 @@ TouchGFX/gui/src/containers \
 TouchGFX/gui/src/model \
 TouchGFX/gui/src/screen_flow_clone_screen \
 TouchGFX/gui/src/screen_flow_decrypt_screen \
-TouchGFX/gui/src/screen_flow_encrypt_screen \
+TouchGFX/gui/src/screen_flow_encrypt_part_1_screen \
+TouchGFX/gui/src/screen_flow_encrypt_part_2_screen \
 TouchGFX/gui/src/screen_flow_psbt_screen \
 TouchGFX/gui/src/screen_flow_settings_screen \
 TouchGFX/gui/src/screen_flow_wallet_screen \
 TouchGFX/gui/src/screen_init_screen \
 TouchGFX/gui/src/screen_menu_screen \
-TouchGFX/gui/src/widgets/qrcode \
 TouchGFX/target \
 TouchGFX/target/generated \
 

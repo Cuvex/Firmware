@@ -1,13 +1,15 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (12.3.rel1)
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../TouchGFX/gui/src/containers/boxDice.cpp \
 ../TouchGFX/gui/src/containers/close_btn.cpp \
+../TouchGFX/gui/src/containers/decrypt_tag.cpp \
 ../TouchGFX/gui/src/containers/keyboard_decrypt_password.cpp \
+../TouchGFX/gui/src/containers/keyboard_decrypt_verifyAddress.cpp \
 ../TouchGFX/gui/src/containers/keyboard_encrypt_password1.cpp \
 ../TouchGFX/gui/src/containers/keyboard_encrypt_password2.cpp \
 ../TouchGFX/gui/src/containers/keyboard_encrypt_plaintext.cpp \
@@ -21,12 +23,15 @@ CPP_SRCS += \
 ../TouchGFX/gui/src/containers/keyboard_wallet_passphrase.cpp \
 ../TouchGFX/gui/src/containers/textArea.cpp \
 ../TouchGFX/gui/src/containers/textAreaSelected.cpp \
-../TouchGFX/gui/src/containers/thinking_circles.cpp 
+../TouchGFX/gui/src/containers/thinking_circles.cpp \
+../TouchGFX/gui/src/containers/verify_address.cpp 
 
 OBJS += \
 ./TouchGFX/gui/src/containers/boxDice.o \
 ./TouchGFX/gui/src/containers/close_btn.o \
+./TouchGFX/gui/src/containers/decrypt_tag.o \
 ./TouchGFX/gui/src/containers/keyboard_decrypt_password.o \
+./TouchGFX/gui/src/containers/keyboard_decrypt_verifyAddress.o \
 ./TouchGFX/gui/src/containers/keyboard_encrypt_password1.o \
 ./TouchGFX/gui/src/containers/keyboard_encrypt_password2.o \
 ./TouchGFX/gui/src/containers/keyboard_encrypt_plaintext.o \
@@ -40,12 +45,15 @@ OBJS += \
 ./TouchGFX/gui/src/containers/keyboard_wallet_passphrase.o \
 ./TouchGFX/gui/src/containers/textArea.o \
 ./TouchGFX/gui/src/containers/textAreaSelected.o \
-./TouchGFX/gui/src/containers/thinking_circles.o 
+./TouchGFX/gui/src/containers/thinking_circles.o \
+./TouchGFX/gui/src/containers/verify_address.o 
 
 CPP_DEPS += \
 ./TouchGFX/gui/src/containers/boxDice.d \
 ./TouchGFX/gui/src/containers/close_btn.d \
+./TouchGFX/gui/src/containers/decrypt_tag.d \
 ./TouchGFX/gui/src/containers/keyboard_decrypt_password.d \
+./TouchGFX/gui/src/containers/keyboard_decrypt_verifyAddress.d \
 ./TouchGFX/gui/src/containers/keyboard_encrypt_password1.d \
 ./TouchGFX/gui/src/containers/keyboard_encrypt_password2.d \
 ./TouchGFX/gui/src/containers/keyboard_encrypt_plaintext.d \
@@ -59,7 +67,8 @@ CPP_DEPS += \
 ./TouchGFX/gui/src/containers/keyboard_wallet_passphrase.d \
 ./TouchGFX/gui/src/containers/textArea.d \
 ./TouchGFX/gui/src/containers/textAreaSelected.d \
-./TouchGFX/gui/src/containers/thinking_circles.d 
+./TouchGFX/gui/src/containers/thinking_circles.d \
+./TouchGFX/gui/src/containers/verify_address.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -69,7 +78,7 @@ TouchGFX/gui/src/containers/%.o TouchGFX/gui/src/containers/%.su TouchGFX/gui/sr
 clean: clean-TouchGFX-2f-gui-2f-src-2f-containers
 
 clean-TouchGFX-2f-gui-2f-src-2f-containers:
-	-$(RM) ./TouchGFX/gui/src/containers/boxDice.cyclo ./TouchGFX/gui/src/containers/boxDice.d ./TouchGFX/gui/src/containers/boxDice.o ./TouchGFX/gui/src/containers/boxDice.su ./TouchGFX/gui/src/containers/close_btn.cyclo ./TouchGFX/gui/src/containers/close_btn.d ./TouchGFX/gui/src/containers/close_btn.o ./TouchGFX/gui/src/containers/close_btn.su ./TouchGFX/gui/src/containers/keyboard_decrypt_password.cyclo ./TouchGFX/gui/src/containers/keyboard_decrypt_password.d ./TouchGFX/gui/src/containers/keyboard_decrypt_password.o ./TouchGFX/gui/src/containers/keyboard_decrypt_password.su ./TouchGFX/gui/src/containers/keyboard_encrypt_password1.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_password1.d ./TouchGFX/gui/src/containers/keyboard_encrypt_password1.o ./TouchGFX/gui/src/containers/keyboard_encrypt_password1.su ./TouchGFX/gui/src/containers/keyboard_encrypt_password2.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_password2.d ./TouchGFX/gui/src/containers/keyboard_encrypt_password2.o ./TouchGFX/gui/src/containers/keyboard_encrypt_password2.su ./TouchGFX/gui/src/containers/keyboard_encrypt_plaintext.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_plaintext.d ./TouchGFX/gui/src/containers/keyboard_encrypt_plaintext.o ./TouchGFX/gui/src/containers/keyboard_encrypt_plaintext.su ./TouchGFX/gui/src/containers/keyboard_encrypt_seedNum.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_seedNum.d ./TouchGFX/gui/src/containers/keyboard_encrypt_seedNum.o ./TouchGFX/gui/src/containers/keyboard_encrypt_seedNum.su ./TouchGFX/gui/src/containers/keyboard_encrypt_seedPassphrase.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_seedPassphrase.d ./TouchGFX/gui/src/containers/keyboard_encrypt_seedPassphrase.o ./TouchGFX/gui/src/containers/keyboard_encrypt_seedPassphrase.su ./TouchGFX/gui/src/containers/keyboard_encrypt_seedWords.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_seedWords.d ./TouchGFX/gui/src/containers/keyboard_encrypt_seedWords.o ./TouchGFX/gui/src/containers/keyboard_encrypt_seedWords.su ./TouchGFX/gui/src/containers/keyboard_encrypt_tagAlias.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_tagAlias.d ./TouchGFX/gui/src/containers/keyboard_encrypt_tagAlias.o ./TouchGFX/gui/src/containers/keyboard_encrypt_tagAlias.su ./TouchGFX/gui/src/containers/keyboard_generic_deviceAlias.cyclo ./TouchGFX/gui/src/containers/keyboard_generic_deviceAlias.d ./TouchGFX/gui/src/containers/keyboard_generic_deviceAlias.o ./TouchGFX/gui/src/containers/keyboard_generic_deviceAlias.su ./TouchGFX/gui/src/containers/keyboard_psbt_password.cyclo ./TouchGFX/gui/src/containers/keyboard_psbt_password.d ./TouchGFX/gui/src/containers/keyboard_psbt_password.o ./TouchGFX/gui/src/containers/keyboard_psbt_password.su ./TouchGFX/gui/src/containers/keyboard_wallet_diceNum.cyclo ./TouchGFX/gui/src/containers/keyboard_wallet_diceNum.d ./TouchGFX/gui/src/containers/keyboard_wallet_diceNum.o ./TouchGFX/gui/src/containers/keyboard_wallet_diceNum.su ./TouchGFX/gui/src/containers/keyboard_wallet_passphrase.cyclo ./TouchGFX/gui/src/containers/keyboard_wallet_passphrase.d ./TouchGFX/gui/src/containers/keyboard_wallet_passphrase.o ./TouchGFX/gui/src/containers/keyboard_wallet_passphrase.su ./TouchGFX/gui/src/containers/textArea.cyclo ./TouchGFX/gui/src/containers/textArea.d ./TouchGFX/gui/src/containers/textArea.o ./TouchGFX/gui/src/containers/textArea.su ./TouchGFX/gui/src/containers/textAreaSelected.cyclo ./TouchGFX/gui/src/containers/textAreaSelected.d ./TouchGFX/gui/src/containers/textAreaSelected.o ./TouchGFX/gui/src/containers/textAreaSelected.su ./TouchGFX/gui/src/containers/thinking_circles.cyclo ./TouchGFX/gui/src/containers/thinking_circles.d ./TouchGFX/gui/src/containers/thinking_circles.o ./TouchGFX/gui/src/containers/thinking_circles.su
+	-$(RM) ./TouchGFX/gui/src/containers/boxDice.cyclo ./TouchGFX/gui/src/containers/boxDice.d ./TouchGFX/gui/src/containers/boxDice.o ./TouchGFX/gui/src/containers/boxDice.su ./TouchGFX/gui/src/containers/close_btn.cyclo ./TouchGFX/gui/src/containers/close_btn.d ./TouchGFX/gui/src/containers/close_btn.o ./TouchGFX/gui/src/containers/close_btn.su ./TouchGFX/gui/src/containers/decrypt_tag.cyclo ./TouchGFX/gui/src/containers/decrypt_tag.d ./TouchGFX/gui/src/containers/decrypt_tag.o ./TouchGFX/gui/src/containers/decrypt_tag.su ./TouchGFX/gui/src/containers/keyboard_decrypt_password.cyclo ./TouchGFX/gui/src/containers/keyboard_decrypt_password.d ./TouchGFX/gui/src/containers/keyboard_decrypt_password.o ./TouchGFX/gui/src/containers/keyboard_decrypt_password.su ./TouchGFX/gui/src/containers/keyboard_decrypt_verifyAddress.cyclo ./TouchGFX/gui/src/containers/keyboard_decrypt_verifyAddress.d ./TouchGFX/gui/src/containers/keyboard_decrypt_verifyAddress.o ./TouchGFX/gui/src/containers/keyboard_decrypt_verifyAddress.su ./TouchGFX/gui/src/containers/keyboard_encrypt_password1.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_password1.d ./TouchGFX/gui/src/containers/keyboard_encrypt_password1.o ./TouchGFX/gui/src/containers/keyboard_encrypt_password1.su ./TouchGFX/gui/src/containers/keyboard_encrypt_password2.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_password2.d ./TouchGFX/gui/src/containers/keyboard_encrypt_password2.o ./TouchGFX/gui/src/containers/keyboard_encrypt_password2.su ./TouchGFX/gui/src/containers/keyboard_encrypt_plaintext.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_plaintext.d ./TouchGFX/gui/src/containers/keyboard_encrypt_plaintext.o ./TouchGFX/gui/src/containers/keyboard_encrypt_plaintext.su ./TouchGFX/gui/src/containers/keyboard_encrypt_seedNum.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_seedNum.d ./TouchGFX/gui/src/containers/keyboard_encrypt_seedNum.o ./TouchGFX/gui/src/containers/keyboard_encrypt_seedNum.su ./TouchGFX/gui/src/containers/keyboard_encrypt_seedPassphrase.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_seedPassphrase.d ./TouchGFX/gui/src/containers/keyboard_encrypt_seedPassphrase.o ./TouchGFX/gui/src/containers/keyboard_encrypt_seedPassphrase.su ./TouchGFX/gui/src/containers/keyboard_encrypt_seedWords.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_seedWords.d ./TouchGFX/gui/src/containers/keyboard_encrypt_seedWords.o ./TouchGFX/gui/src/containers/keyboard_encrypt_seedWords.su ./TouchGFX/gui/src/containers/keyboard_encrypt_tagAlias.cyclo ./TouchGFX/gui/src/containers/keyboard_encrypt_tagAlias.d ./TouchGFX/gui/src/containers/keyboard_encrypt_tagAlias.o ./TouchGFX/gui/src/containers/keyboard_encrypt_tagAlias.su ./TouchGFX/gui/src/containers/keyboard_generic_deviceAlias.cyclo ./TouchGFX/gui/src/containers/keyboard_generic_deviceAlias.d ./TouchGFX/gui/src/containers/keyboard_generic_deviceAlias.o ./TouchGFX/gui/src/containers/keyboard_generic_deviceAlias.su ./TouchGFX/gui/src/containers/keyboard_psbt_password.cyclo ./TouchGFX/gui/src/containers/keyboard_psbt_password.d ./TouchGFX/gui/src/containers/keyboard_psbt_password.o ./TouchGFX/gui/src/containers/keyboard_psbt_password.su ./TouchGFX/gui/src/containers/keyboard_wallet_diceNum.cyclo ./TouchGFX/gui/src/containers/keyboard_wallet_diceNum.d ./TouchGFX/gui/src/containers/keyboard_wallet_diceNum.o ./TouchGFX/gui/src/containers/keyboard_wallet_diceNum.su ./TouchGFX/gui/src/containers/keyboard_wallet_passphrase.cyclo ./TouchGFX/gui/src/containers/keyboard_wallet_passphrase.d ./TouchGFX/gui/src/containers/keyboard_wallet_passphrase.o ./TouchGFX/gui/src/containers/keyboard_wallet_passphrase.su ./TouchGFX/gui/src/containers/textArea.cyclo ./TouchGFX/gui/src/containers/textArea.d ./TouchGFX/gui/src/containers/textArea.o ./TouchGFX/gui/src/containers/textArea.su ./TouchGFX/gui/src/containers/textAreaSelected.cyclo ./TouchGFX/gui/src/containers/textAreaSelected.d ./TouchGFX/gui/src/containers/textAreaSelected.o ./TouchGFX/gui/src/containers/textAreaSelected.su ./TouchGFX/gui/src/containers/thinking_circles.cyclo ./TouchGFX/gui/src/containers/thinking_circles.d ./TouchGFX/gui/src/containers/thinking_circles.o ./TouchGFX/gui/src/containers/thinking_circles.su ./TouchGFX/gui/src/containers/verify_address.cyclo ./TouchGFX/gui/src/containers/verify_address.d ./TouchGFX/gui/src/containers/verify_address.o ./TouchGFX/gui/src/containers/verify_address.su
 
 .PHONY: clean-TouchGFX-2f-gui-2f-src-2f-containers
 

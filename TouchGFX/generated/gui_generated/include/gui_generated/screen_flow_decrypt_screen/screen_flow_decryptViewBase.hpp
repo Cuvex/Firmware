@@ -14,12 +14,12 @@
 #include <gui/containers/thinking_circles.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
-#include <gui/containers/keyboard_decrypt_password.hpp>
-#include <gui/containers/textArea.hpp>
-#include <touchgfx/widgets/ToggleButton.hpp>
+#include <gui/containers/decrypt_tag.hpp>
 #include <touchgfx/widgets/canvas/Circle.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB888.hpp>
 #include <touchgfx/containers/ScrollableContainer.hpp>
+#include <touchgfx/widgets/QRCode.hpp>
+#include <gui/containers/verify_address.hpp>
 #include <gui/containers/close_btn.hpp>
 
 class screen_flow_decryptViewBase : public touchgfx::View<screen_flow_decryptPresenter>
@@ -37,18 +37,6 @@ public:
     {
         // Override and implement this function in screen_flow_decrypt
     }
-    virtual void hideKeyboardPressed()
-    {
-        // Override and implement this function in screen_flow_decrypt
-    }
-    virtual void showKeyboardPressed()
-    {
-        // Override and implement this function in screen_flow_decrypt
-    }
-    virtual void enterKeyboardPressed()
-    {
-        // Override and implement this function in screen_flow_decrypt
-    }
     virtual void decryptPressed()
     {
         // Override and implement this function in screen_flow_decrypt
@@ -58,10 +46,6 @@ public:
         // Override and implement this function in screen_flow_decrypt
     }
     virtual void moreTimePressed()
-    {
-        // Override and implement this function in screen_flow_decrypt
-    }
-    virtual void eyePressed()
     {
         // Override and implement this function in screen_flow_decrypt
     }
@@ -85,14 +69,6 @@ public:
     {
         // Override and implement this function in screen_flow_decrypt
     }
-    virtual void btnError1Pressed()
-    {
-        // Override and implement this function in screen_flow_decrypt
-    }
-    virtual void btnError2Pressed()
-    {
-        // Override and implement this function in screen_flow_decrypt
-    }
     virtual void btnCautionMsgPressed()
     {
         // Override and implement this function in screen_flow_decrypt
@@ -106,6 +82,14 @@ public:
         // Override and implement this function in screen_flow_decrypt
     }
     virtual void btnQrPublicKeyPressed()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
+    virtual void btnVerifyAddressPressed()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
+    virtual void btnClosePressed()
     {
         // Override and implement this function in screen_flow_decrypt
     }
@@ -155,46 +139,8 @@ protected:
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_retry;
     touchgfx::TextArea text_read_error;
     touchgfx::Image image_read_error;
-    touchgfx::Container s5_typePassword;
-    keyboard_decrypt_password keyboard_password;
-    touchgfx::IconButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_hide;
-    textArea keyboard_text_area;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  keyboard_btn_show;
-    touchgfx::WildcardTextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  keyboard_btn_enter;
-    touchgfx::ToggleButton keyboard_pwd_eye;
-    touchgfx::TextAreaWithOneWildcard keyboard_text_typed;
-    touchgfx::TextAreaWithOneWildcard keyboard_text_typed_hide;
-    touchgfx::TextAreaWithOneWildcard keyboard_text_info;
-    touchgfx::TextArea keyboard_placeholder;
-    touchgfx::Container s6_passwordError1;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  btn_password_error_1;
-    touchgfx::Container text_password_error1_spanish;
-    touchgfx::TextArea password_error1_spanish_1;
-    touchgfx::TextArea password_error1_spanish_2;
-    touchgfx::TextArea password_error1_spanish_3;
-    touchgfx::TextArea password_error1_spanish_4;
-    touchgfx::TextArea password_error1_spanish_5;
-    touchgfx::Container text_password_error1_english;
-    touchgfx::TextArea password_error1_english_1;
-    touchgfx::TextArea password_error1_english_2;
-    touchgfx::TextArea password_error1_english_3;
-    touchgfx::TextArea password_error1_english_4;
-    touchgfx::TextArea password_error1_english_5;
-    touchgfx::Container s7_passwordError2;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  btn_password_error2;
-    touchgfx::Container text_password_error2_spanish;
-    touchgfx::TextArea password_error2_spanish_1;
-    touchgfx::TextArea password_error2_spanish_2;
-    touchgfx::TextArea password_error2_spanish_3;
-    touchgfx::TextArea password_error2_spanish_4;
-    touchgfx::TextArea password_error2_spanish_5;
-    touchgfx::Container text_password_error2_english;
-    touchgfx::TextArea password_error2_english_1;
-    touchgfx::TextArea password_error2_english_2;
-    touchgfx::TextArea password_error2_english_3;
-    touchgfx::TextArea password_error2_english_4;
-    touchgfx::TextArea password_error2_english_5;
-    touchgfx::Container s8_viewSecret;
+    decrypt_tag s5_typePassword;
+    touchgfx::Container s6_viewSecret;
     touchgfx::Container container_qr_small_code;
     touchgfx::Circle circle_qr_small;
     touchgfx::PainterRGB888 circle_qr_smallPainter;
@@ -219,13 +165,24 @@ protected:
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_1_qr_seed;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_2_qr_private_key;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_3_qr_public_key;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_4_verify_address;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_more_time;
     touchgfx::TextAreaWithOneWildcard text_timeout;
+    uint8_t qrBuffer_qr_code[QRCODE_BUFFER_SIZE(15)];
+    uint8_t qrScratchBuffer_qr_code[QRCODE_BUFFER_SIZE(15)];
+    touchgfx::QRCode qr_code;
     touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_back;
-    touchgfx::Container s9_timeoutSecret;
+    touchgfx::Container s7_timeoutSecret;
     touchgfx::TextArea text_timeout_secret;
     touchgfx::Image image_timeout_secret;
     touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  btn_reset_mcu_timeout;
+    verify_address s8_verify_address;
+    touchgfx::Container s9_check_address;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_close;
+    touchgfx::TextAreaWithOneWildcard check_receiver_address_3;
+    touchgfx::TextAreaWithOneWildcard check_receiver_address_2;
+    touchgfx::TextAreaWithOneWildcard check_receiver_address_1;
+    touchgfx::TextArea text_info;
     close_btn close_button;
 
     /*
@@ -235,18 +192,16 @@ protected:
     touchgfx::Unicode::UnicodeChar text_uidBuffer[TEXT_UID_SIZE];
     static const uint16_t TEXT_ALIAS_SIZE = 25;
     touchgfx::Unicode::UnicodeChar text_aliasBuffer[TEXT_ALIAS_SIZE];
-    static const uint16_t KEYBOARD_BTN_ENTER_SIZE = 25;
-    touchgfx::Unicode::UnicodeChar keyboard_btn_enterBuffer[KEYBOARD_BTN_ENTER_SIZE];
-    static const uint16_t KEYBOARD_TEXT_TYPED_SIZE = 45;
-    touchgfx::Unicode::UnicodeChar keyboard_text_typedBuffer[KEYBOARD_TEXT_TYPED_SIZE];
-    static const uint16_t KEYBOARD_TEXT_TYPED_HIDE_SIZE = 45;
-    touchgfx::Unicode::UnicodeChar keyboard_text_typed_hideBuffer[KEYBOARD_TEXT_TYPED_HIDE_SIZE];
-    static const uint16_t KEYBOARD_TEXT_INFO_SIZE = 50;
-    touchgfx::Unicode::UnicodeChar keyboard_text_infoBuffer[KEYBOARD_TEXT_INFO_SIZE];
     static const uint16_t TEXT_SECRET_CHECK_SIZE = 2005;
     touchgfx::Unicode::UnicodeChar text_secret_checkBuffer[TEXT_SECRET_CHECK_SIZE];
     static const uint16_t TEXT_TIMEOUT_SIZE = 5;
     touchgfx::Unicode::UnicodeChar text_timeoutBuffer[TEXT_TIMEOUT_SIZE];
+    static const uint16_t CHECK_RECEIVER_ADDRESS_3_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar check_receiver_address_3Buffer[CHECK_RECEIVER_ADDRESS_3_SIZE];
+    static const uint16_t CHECK_RECEIVER_ADDRESS_2_SIZE = 80;
+    touchgfx::Unicode::UnicodeChar check_receiver_address_2Buffer[CHECK_RECEIVER_ADDRESS_2_SIZE];
+    static const uint16_t CHECK_RECEIVER_ADDRESS_1_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar check_receiver_address_1Buffer[CHECK_RECEIVER_ADDRESS_1_SIZE];
 
 private:
 
@@ -259,20 +214,18 @@ private:
     /*
      * Tick Counter Declarations
      */
-    static const uint32_t TICK_TICKEVENT_INTERVAL = 10;
-    uint32_t frameCountTickEventInterval;
+    static const uint32_t TICK_TICKEVENTSCREEN_INTERVAL = 10;
+    uint32_t frameCountTickEventScreenInterval;
 
     /*
      * Callback Declarations
      */
     touchgfx::Callback<screen_flow_decryptViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
-    touchgfx::Callback<screen_flow_decryptViewBase, const touchgfx::AbstractButton&> buttonCallback;
 
     /*
      * Callback Handler Declarations
      */
     void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
-    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

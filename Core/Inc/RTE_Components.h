@@ -16,12 +16,12 @@
  ******************************************************************************
  */
 /* USER CODE END Header */
-/* Define to prevent recursive inclusion -------------------------------------*/
+  /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef  __RTE_COMPONENTS_H__
 #define  __RTE_COMPONENTS_H__
 
 /* Defines ------------------------------------------------------------------*/
-/* STMicroelectronics.X-CUBE-TOUCHGFX.4.23.0 */
+/* STMicroelectronics.X-CUBE-TOUCHGFX.4.24.2 */
 #define TOUCHGFX_APP
 
 #endif /* __RTE_COMPONENTS_H__ */

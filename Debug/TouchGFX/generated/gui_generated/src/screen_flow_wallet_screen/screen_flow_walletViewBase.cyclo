@@ -31,6 +31,7 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:43:18:virtual void touchgfx::TextAreaWithWildcardBase::invalidateContent() const	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:49:36:virtual touchgfx::TextArea::BoundingArea touchgfx::TextAreaWithWildcardBase::calculateBoundingArea() const	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:84:41:virtual const touchgfx::Unicode::UnicodeChar* touchgfx::TextAreaWithOneWildcard::getWildcard1() const	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:62:7:touchgfx::TextAreaWithOneWildcard::~TextAreaWithOneWildcard()	1
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_wallet_screen/screen_flow_walletViewBase.hpp:33:18:virtual void screen_flow_walletViewBase::btnDiceSelectPressed()	1
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_wallet_screen/screen_flow_walletViewBase.hpp:37:18:virtual void screen_flow_walletViewBase::btnGetWordsPressed()	1
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_wallet_screen/screen_flow_walletViewBase.hpp:41:18:virtual void screen_flow_walletViewBase::btnHeadsPressed()	1
@@ -51,19 +52,18 @@
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_wallet_screen/screen_flow_walletViewBase.hpp:101:18:virtual void screen_flow_walletViewBase::btnEncryptPressed()	1
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_wallet_screen/screen_flow_walletViewBase.hpp:105:18:virtual void screen_flow_walletViewBase::btnInfoWalletPressed()	1
 ../TouchGFX/generated/gui_generated/include/gui_generated/screen_flow_wallet_screen/screen_flow_walletViewBase.hpp:109:18:virtual void screen_flow_walletViewBase::btnRestartPressed()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:41:7:touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>::~BoxWithBorderButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:43:7:touchgfx::TextButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >::~TextButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/ImageButtonStyle.hpp:45:7:touchgfx::ImageButtonStyle<touchgfx::ClickButtonTrigger>::~ImageButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:43:7:touchgfx::TextButtonStyle<touchgfx::ImageButtonStyle<touchgfx::ClickButtonTrigger> >::~TextButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:44:7:touchgfx::IconButtonStyle<touchgfx::ClickButtonTrigger>::~IconButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/RepeatButtonTrigger.hpp:34:7:touchgfx::RepeatButtonTrigger::~RepeatButtonTrigger()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:44:7:touchgfx::IconButtonStyle<touchgfx::RepeatButtonTrigger>::~IconButtonStyle()	1
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:touchgfx::Callback<screen_flow_walletViewBase, const touchgfx::AbstractButtonContainer&>::~Callback()	1
 ../TouchGFX/generated/gui_generated/src/screen_flow_wallet_screen/screen_flow_walletViewBase.cpp:458:6:void screen_flow_walletViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer&)	20
 ../TouchGFX/generated/gui_generated/src/screen_flow_wallet_screen/screen_flow_walletViewBase.cpp:595:6:virtual void screen_flow_walletViewBase::handleTickEvent()	2
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:41:7:touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>::~BoxWithBorderButtonStyle()	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/ImageButtonStyle.hpp:45:7:touchgfx::ImageButtonStyle<touchgfx::ClickButtonTrigger>::~ImageButtonStyle()	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/RepeatButtonTrigger.hpp:34:7:touchgfx::RepeatButtonTrigger::~RepeatButtonTrigger()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/BoxWithBorderButtonStyle.hpp:123:18:void touchgfx::BoxWithBorderButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::ClickButtonTrigger]	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:138:18:void touchgfx::TextButtonStyle<T>::handlePressedUpdated() [with T = touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger>]	2
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:357:8:touchgfx::Callback<screen_flow_walletViewBase, const touchgfx::AbstractButtonContainer&>::~Callback()	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:44:7:touchgfx::IconButtonStyle<touchgfx::RepeatButtonTrigger>::~IconButtonStyle()	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:44:7:touchgfx::IconButtonStyle<touchgfx::ClickButtonTrigger>::~IconButtonStyle()	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:43:7:touchgfx::TextButtonStyle<touchgfx::ImageButtonStyle<touchgfx::ClickButtonTrigger> >::~TextButtonStyle()	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/TextButtonStyle.hpp:43:7:touchgfx::TextButtonStyle<touchgfx::BoxWithBorderButtonStyle<touchgfx::ClickButtonTrigger> >::~TextButtonStyle()	1
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:62:7:touchgfx::TextAreaWithOneWildcard::~TextAreaWithOneWildcard()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:386:18:void touchgfx::Callback<dest_type, T1, void, void>::execute(T1) [with dest_type = screen_flow_walletViewBase; T1 = const touchgfx::AbstractButtonContainer&]	2
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Callback.hpp:396:18:bool touchgfx::Callback<dest_type, T1, void, void>::isValid() const [with dest_type = screen_flow_walletViewBase; T1 = const touchgfx::AbstractButtonContainer&]	3
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/buttons/IconButtonStyle.hpp:144:18:void touchgfx::IconButtonStyle<T>::handleAlphaUpdated() [with T = touchgfx::RepeatButtonTrigger]	1
@@ -97,5 +97,4 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:343:10:void touchgfx::Drawable::setXY(int16_t, int16_t)	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Drawable.hpp:413:10:void touchgfx::Drawable::setWidthHeight(int16_t, int16_t)	1
 ../TouchGFX/generated/gui_generated/src/screen_flow_wallet_screen/screen_flow_walletViewBase.cpp:10:1:screen_flow_walletViewBase::screen_flow_walletViewBase()	1
-../TouchGFX/generated/gui_generated/src/screen_flow_wallet_screen/screen_flow_walletViewBase.cpp:606:1:cpp)	1
 ../TouchGFX/generated/gui_generated/src/screen_flow_wallet_screen/screen_flow_walletViewBase.cpp:606:1:cpp)	1

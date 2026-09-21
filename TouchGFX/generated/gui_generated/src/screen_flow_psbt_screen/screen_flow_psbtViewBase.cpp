@@ -9,8 +9,7 @@
 
 screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
     frameCountTickEventInterval(0),
-    flexButtonCallback(this, &screen_flow_psbtViewBase::flexButtonCallbackHandler),
-    buttonCallback(this, &screen_flow_psbtViewBase::buttonCallbackHandler)
+    flexButtonCallback(this, &screen_flow_psbtViewBase::flexButtonCallbackHandler)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
     
@@ -178,79 +177,8 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
 
     add(s4_waitReadNFC_crypto);
 
-    s5_typePassword.setPosition(0, 0, 320, 240);
+    s5_typePassword.setXY(0, 0);
     s5_typePassword.setVisible(false);
-    keyboard_password.setXY(0, 117);
-    keyboard_password.setVisible(false);
-    s5_typePassword.add(keyboard_password);
-
-    keyboard_btn_hide.setIconBitmaps(Bitmap(BITMAP___KEYBOARDALPHANUM_HIDE_RELEASED_ID), Bitmap(BITMAP___KEYBOARDALPHANUM_HIDE_PRESSED_ID));
-    keyboard_btn_hide.setIconXY(0, 0);
-    keyboard_btn_hide.setVisible(false);
-    keyboard_btn_hide.setAction(flexButtonCallback);
-    keyboard_btn_hide.setPosition(235, 211, 80, 27);
-    s5_typePassword.add(keyboard_btn_hide);
-
-    keyboard_text_area.setXY(45, 120);
-    s5_typePassword.add(keyboard_text_area);
-
-    keyboard_btn_show.setBoxWithBorderPosition(0, 0, 169, 30);
-    keyboard_btn_show.setBorderSize(5);
-    keyboard_btn_show.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard_btn_show.setAlpha(0);
-    keyboard_btn_show.setAction(flexButtonCallback);
-    keyboard_btn_show.setPosition(76, 120, 169, 30);
-    s5_typePassword.add(keyboard_btn_show);
-
-    keyboard_btn_enter.setBoxWithBorderPosition(0, 0, 320, 30);
-    keyboard_btn_enter.setBorderSize(0);
-    keyboard_btn_enter.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    keyboard_btn_enter.setWildcardText(TypedText(T_SP_KEYBOARD_BTN_ENTER));
-    Unicode::snprintf(keyboard_btn_enterBuffer, KEYBOARD_BTN_ENTER_SIZE, "%s", TypedText(T_SP_KEYBOARD_BTN_ENTER_VALUE).getText());
-    keyboard_btn_enter.setWildcardTextBuffer(keyboard_btn_enterBuffer);
-    keyboard_btn_enter.setWildcardTextPosition(0, 5, 320, 30);
-    keyboard_btn_enter.setWildcardTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
-    keyboard_btn_enter.setAction(flexButtonCallback);
-    keyboard_btn_enter.setPosition(0, 210, 320, 30);
-    s5_typePassword.add(keyboard_btn_enter);
-
-    keyboard_pwd_eye.setXY(245, 120);
-    keyboard_pwd_eye.setBitmaps(touchgfx::Bitmap(BITMAP_OJO_ABIERTO_ID), touchgfx::Bitmap(BITMAP_OJO_CERRADO_ID));
-    keyboard_pwd_eye.setAction(buttonCallback);
-    s5_typePassword.add(keyboard_pwd_eye);
-
-    keyboard_text_typed.setPosition(76, 125, 169, 20);
-    keyboard_text_typed.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard_text_typed.setLinespacing(0);
-    Unicode::snprintf(keyboard_text_typedBuffer, KEYBOARD_TEXT_TYPED_SIZE, "%s", touchgfx::TypedText(T_SP_KEYBOARD_TEXT_TYPED_VALUE).getText());
-    keyboard_text_typed.setWildcard(keyboard_text_typedBuffer);
-    keyboard_text_typed.setTypedText(touchgfx::TypedText(T_SP_KEYBOARD_TEXT_TYPED));
-    s5_typePassword.add(keyboard_text_typed);
-
-    keyboard_text_typed_hide.setPosition(76, 125, 169, 20);
-    keyboard_text_typed_hide.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard_text_typed_hide.setLinespacing(0);
-    Unicode::snprintf(keyboard_text_typed_hideBuffer, KEYBOARD_TEXT_TYPED_HIDE_SIZE, "%s", touchgfx::TypedText(T_SP_KEYBOARD_TEXT_TYPED_HIDE_VALUE).getText());
-    keyboard_text_typed_hide.setWildcard(keyboard_text_typed_hideBuffer);
-    keyboard_text_typed_hide.setTypedText(touchgfx::TypedText(T_SP_KEYBOARD_TEXT_TYPED_HIDE));
-    keyboard_text_typed_hide.setVisible(false);
-    s5_typePassword.add(keyboard_text_typed_hide);
-
-    keyboard_text_info.setPosition(0, 90, 320, 20);
-    keyboard_text_info.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    keyboard_text_info.setLinespacing(0);
-    Unicode::snprintf(keyboard_text_infoBuffer, KEYBOARD_TEXT_INFO_SIZE, "%s", touchgfx::TypedText(T_SP_KEYBOARD_INFO_VALUE).getText());
-    keyboard_text_info.setWildcard(keyboard_text_infoBuffer);
-    keyboard_text_info.setTypedText(touchgfx::TypedText(T_SP_KEYBOARD_INFO));
-    s5_typePassword.add(keyboard_text_info);
-
-    keyboard_placeholder.setPosition(62, 125, 180, 20);
-    keyboard_placeholder.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
-    keyboard_placeholder.setLinespacing(0);
-    keyboard_placeholder.setTypedText(touchgfx::TypedText(T_SP_KEYBOARD_PLACEHOLDER));
-    keyboard_placeholder.setAlpha(75);
-    s5_typePassword.add(keyboard_placeholder);
-
     add(s5_typePassword);
 
     s6_transactionInfo2.setPosition(0, 0, 320, 240);
@@ -306,6 +234,12 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
     text_transactions_info_2_fee.setTypedText(touchgfx::TypedText(T_SP_TRANSACTION_INFO_2_FEE));
     s6_transactionInfo2.add(text_transactions_info_2_fee);
 
+    text_transactions_info_2_rbf.setPosition(16, 124, 100, 20);
+    text_transactions_info_2_rbf.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    text_transactions_info_2_rbf.setLinespacing(0);
+    text_transactions_info_2_rbf.setTypedText(touchgfx::TypedText(T_SP_TRANSACTION_INFO_2_RBF));
+    s6_transactionInfo2.add(text_transactions_info_2_rbf);
+
     text_transactions_info_2_inputs_num.setPosition(116, 64, 188, 20);
     text_transactions_info_2_inputs_num.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     text_transactions_info_2_inputs_num.setLinespacing(0);
@@ -327,8 +261,16 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
     text_transactions_info_2_fee_num.setLinespacing(0);
     Unicode::snprintf(text_transactions_info_2_fee_numBuffer, TEXT_TRANSACTIONS_INFO_2_FEE_NUM_SIZE, "%s", touchgfx::TypedText(T_SP_TRANSACTION_INFO_2_FEE_NUM_VALUE).getText());
     text_transactions_info_2_fee_num.setWildcard(text_transactions_info_2_fee_numBuffer);
-    text_transactions_info_2_fee_num.setTypedText(touchgfx::TypedText(T_SP_TRANSACTION_INFO_2_FEE_NUM));
+    text_transactions_info_2_fee_num.setTypedText(touchgfx::TypedText(T_SP_TRANSACTION_INFO_2_RBF_NUM));
     s6_transactionInfo2.add(text_transactions_info_2_fee_num);
+
+    text_transactions_info_2_rbf_num.setPosition(116, 124, 188, 20);
+    text_transactions_info_2_rbf_num.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    text_transactions_info_2_rbf_num.setLinespacing(0);
+    Unicode::snprintf(text_transactions_info_2_rbf_numBuffer, TEXT_TRANSACTIONS_INFO_2_RBF_NUM_SIZE, "%s", touchgfx::TypedText(T_SP_TRANSACTION_INFO_2_FEE_NUM_VALUE).getText());
+    text_transactions_info_2_rbf_num.setWildcard(text_transactions_info_2_rbf_numBuffer);
+    text_transactions_info_2_rbf_num.setTypedText(touchgfx::TypedText(T_SP_TRANSACTION_INFO_2_FEE_NUM));
+    s6_transactionInfo2.add(text_transactions_info_2_rbf_num);
 
     btn_check_receiver.setBoxWithBorderPosition(0, 0, 320, 30);
     btn_check_receiver.setBorderSize(0);
@@ -422,8 +364,18 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
 
     add(s7_checkReceiver);
 
-    s8_checkSignedQR.setPosition(0, 0, 320, 240);
-    s8_checkSignedQR.setVisible(false);
+    s8_processing.setPosition(0, 0, 320, 240);
+    s8_processing.setVisible(false);
+    processing_text.setPosition(0, 108, 320, 25);
+    processing_text.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    processing_text.setLinespacing(0);
+    processing_text.setTypedText(touchgfx::TypedText(T_SP_PROCESSING));
+    s8_processing.add(processing_text);
+
+    add(s8_processing);
+
+    s9_checkSignedQR.setPosition(0, 0, 320, 240);
+    s9_checkSignedQR.setVisible(false);
     btn_write_psbt_via_nfc.setBoxWithBorderPosition(0, 0, 320, 30);
     btn_write_psbt_via_nfc.setBorderSize(0);
     btn_write_psbt_via_nfc.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
@@ -432,7 +384,16 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
     btn_write_psbt_via_nfc.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     btn_write_psbt_via_nfc.setAction(flexButtonCallback);
     btn_write_psbt_via_nfc.setPosition(0, 210, 320, 30);
-    s8_checkSignedQR.add(btn_write_psbt_via_nfc);
+    s9_checkSignedQR.add(btn_write_psbt_via_nfc);
+
+    qr_code.setXY(67, 12);
+    qr_code.setBuffers(qrBuffer_qr_code, qrScratchBuffer_qr_code);
+    qr_code.setVisible(false);
+    qr_code.setQRCodeVersion(19);
+    qr_code.setScale(2);
+    qr_code.setColors(touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    qr_code.convertStringToQRCode("---");
+    s9_checkSignedQR.add(qr_code);
 
     psbt_signed_success.setPosition(0, 0, 320, 210);
     psbt_signed_success.setVisible(false);
@@ -446,49 +407,49 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
     psbt_signed_success_image.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_PROCESO_EXITOSO_CUVEX_ID));
     psbt_signed_success.add(psbt_signed_success_image);
 
-    s8_checkSignedQR.add(psbt_signed_success);
+    s9_checkSignedQR.add(psbt_signed_success);
 
-    add(s8_checkSignedQR);
+    add(s9_checkSignedQR);
 
-    s9_initNFC_save_psbt.setPosition(0, 0, 320, 240);
-    s9_initNFC_save_psbt.setVisible(false);
+    s10_initNFC_save_psbt.setPosition(0, 0, 320, 240);
+    s10_initNFC_save_psbt.setVisible(false);
     init_nfc_thinking_circles_2.setXY(95, 170);
-    s9_initNFC_save_psbt.add(init_nfc_thinking_circles_2);
+    s10_initNFC_save_psbt.add(init_nfc_thinking_circles_2);
 
     init_nfc_image_2.setXY(124, 44);
     init_nfc_image_2.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_ACTIVANDO_NFC_CUVEX_ID));
-    s9_initNFC_save_psbt.add(init_nfc_image_2);
+    s10_initNFC_save_psbt.add(init_nfc_image_2);
 
     init_nfc_text1_2.setXY(110, 140);
     init_nfc_text1_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     init_nfc_text1_2.setLinespacing(0);
     init_nfc_text1_2.setTypedText(touchgfx::TypedText(T_SP_INIT_NFC_TEXT1));
-    s9_initNFC_save_psbt.add(init_nfc_text1_2);
+    s10_initNFC_save_psbt.add(init_nfc_text1_2);
 
     init_nfc_text2_2.setXY(178, 140);
     init_nfc_text2_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     init_nfc_text2_2.setLinespacing(0);
     init_nfc_text2_2.setTypedText(touchgfx::TypedText(T_SP_INIT_NFC_TEXT2));
-    s9_initNFC_save_psbt.add(init_nfc_text2_2);
+    s10_initNFC_save_psbt.add(init_nfc_text2_2);
 
-    add(s9_initNFC_save_psbt);
+    add(s10_initNFC_save_psbt);
 
-    s10_waitReadNFC_save_psbt.setPosition(0, 0, 320, 240);
-    s10_waitReadNFC_save_psbt.setVisible(false);
+    s11_waitReadNFC_save_psbt.setPosition(0, 0, 320, 240);
+    s11_waitReadNFC_save_psbt.setVisible(false);
     text_wait_read_nfc3.setPosition(0, 134, 320, 40);
     text_wait_read_nfc3.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     text_wait_read_nfc3.setLinespacing(0);
     text_wait_read_nfc3.setTypedText(touchgfx::TypedText(T_SP_WAIT_READ_NFC3));
-    s10_waitReadNFC_save_psbt.add(text_wait_read_nfc3);
+    s11_waitReadNFC_save_psbt.add(text_wait_read_nfc3);
 
     image_wait_read_nfc3.setXY(121, 48);
     image_wait_read_nfc3.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_NFC2_CUVEX_ID));
-    s10_waitReadNFC_save_psbt.add(image_wait_read_nfc3);
+    s11_waitReadNFC_save_psbt.add(image_wait_read_nfc3);
 
-    add(s10_waitReadNFC_save_psbt);
+    add(s11_waitReadNFC_save_psbt);
 
-    s11_psbtSigned_Success.setPosition(0, 0, 320, 240);
-    s11_psbtSigned_Success.setVisible(false);
+    s12_psbtSigned_Success.setPosition(0, 0, 320, 240);
+    s12_psbtSigned_Success.setVisible(false);
     btn_close.setBoxWithBorderPosition(0, 0, 320, 30);
     btn_close.setBorderSize(0);
     btn_close.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
@@ -497,19 +458,19 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
     btn_close.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     btn_close.setAction(flexButtonCallback);
     btn_close.setPosition(0, 210, 320, 30);
-    s11_psbtSigned_Success.add(btn_close);
+    s12_psbtSigned_Success.add(btn_close);
 
     psbt_save_success_text.setPosition(0, 130, 320, 20);
     psbt_save_success_text.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     psbt_save_success_text.setLinespacing(0);
     psbt_save_success_text.setTypedText(touchgfx::TypedText(T_SP_PSBT_SAVE_SUCCESS));
-    s11_psbtSigned_Success.add(psbt_save_success_text);
+    s12_psbtSigned_Success.add(psbt_save_success_text);
 
     psbt_save_success_image.setXY(117, 44);
     psbt_save_success_image.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_PROCESO_EXITOSO_CUVEX_ID));
-    s11_psbtSigned_Success.add(psbt_save_success_image);
+    s12_psbtSigned_Success.add(psbt_save_success_image);
 
-    add(s11_psbtSigned_Success);
+    add(s12_psbtSigned_Success);
 
     s99_error_warning_alert.setPosition(0, 0, 320, 240);
     s99_error_warning_alert.setVisible(false);
@@ -634,6 +595,30 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
 
     s99_error_warning_alert.add(error_cardFormat);
 
+    error_cardSize.setPosition(0, 0, 320, 240);
+    error_cardSize.setVisible(false);
+    card_size_error_text.setPosition(0, 130, 320, 20);
+    card_size_error_text.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    card_size_error_text.setLinespacing(0);
+    card_size_error_text.setTypedText(touchgfx::TypedText(T_SP_CARD_SIZE_ERROR));
+    error_cardSize.add(card_size_error_text);
+
+    card_size_error_image.setXY(122, 42);
+    card_size_error_image.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_PROCESO_ERROR_CUVEX_ID));
+    error_cardSize.add(card_size_error_image);
+
+    card_size_error_btn.setBoxWithBorderPosition(0, 0, 320, 30);
+    card_size_error_btn.setBorderSize(0);
+    card_size_error_btn.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    card_size_error_btn.setText(TypedText(T_SP_BTN_RETRY_CARD_SIZE));
+    card_size_error_btn.setTextPosition(0, 5, 320, 30);
+    card_size_error_btn.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
+    card_size_error_btn.setAction(flexButtonCallback);
+    card_size_error_btn.setPosition(0, 210, 320, 30);
+    error_cardSize.add(card_size_error_btn);
+
+    s99_error_warning_alert.add(error_cardSize);
+
     error_noCryptogram.setPosition(0, 0, 320, 240);
     error_noCryptogram.setVisible(false);
     no_cryptogram_error_text.setPosition(0, 130, 320, 40);
@@ -657,62 +642,6 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
     error_noCryptogram.add(no_cryptogram_error_btn);
 
     s99_error_warning_alert.add(error_noCryptogram);
-
-    error_koPassword1.setPosition(0, 0, 320, 240);
-    error_koPassword1.setVisible(false);
-    ko_password_1_error_text_1.setPosition(0, 118, 320, 20);
-    ko_password_1_error_text_1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    ko_password_1_error_text_1.setLinespacing(0);
-    ko_password_1_error_text_1.setTypedText(touchgfx::TypedText(T_KO_PASSWORD_1_ERROR_TEXT_1));
-    error_koPassword1.add(ko_password_1_error_text_1);
-
-    ko_password_1_error_text_2.setPosition(0, 147, 320, 60);
-    ko_password_1_error_text_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    ko_password_1_error_text_2.setLinespacing(0);
-    ko_password_1_error_text_2.setTypedText(touchgfx::TypedText(T_KO_PASSWORD_1_ERROR_TEXT_2));
-    error_koPassword1.add(ko_password_1_error_text_2);
-
-    ko_password_1_error_image.setXY(117, 32);
-    ko_password_1_error_image.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_ERROR_CUVEX_ID));
-    error_koPassword1.add(ko_password_1_error_image);
-
-    ko_password_1_btn.setBoxWithBorderPosition(0, 0, 320, 240);
-    ko_password_1_btn.setBorderSize(5);
-    ko_password_1_btn.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    ko_password_1_btn.setAlpha(0);
-    ko_password_1_btn.setAction(flexButtonCallback);
-    ko_password_1_btn.setPosition(0, 0, 320, 240);
-    error_koPassword1.add(ko_password_1_btn);
-
-    s99_error_warning_alert.add(error_koPassword1);
-
-    error_koPassword2.setPosition(0, 0, 320, 240);
-    error_koPassword2.setVisible(false);
-    ko_password_2_error_text_1.setPosition(0, 118, 320, 20);
-    ko_password_2_error_text_1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    ko_password_2_error_text_1.setLinespacing(0);
-    ko_password_2_error_text_1.setTypedText(touchgfx::TypedText(T_KO_PASSWORD_2_ERROR_TEXT_1));
-    error_koPassword2.add(ko_password_2_error_text_1);
-
-    ko_password_2_error_text_2.setPosition(0, 147, 320, 60);
-    ko_password_2_error_text_2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    ko_password_2_error_text_2.setLinespacing(0);
-    ko_password_2_error_text_2.setTypedText(touchgfx::TypedText(T_KO_PASSWORD_2_ERROR_TEXT_2));
-    error_koPassword2.add(ko_password_2_error_text_2);
-
-    ko_password_2_error_image.setXY(117, 32);
-    ko_password_2_error_image.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_ERROR_CUVEX_ID));
-    error_koPassword2.add(ko_password_2_error_image);
-
-    ko_password_2_btn.setBoxWithBorderPosition(0, 0, 320, 240);
-    ko_password_2_btn.setBorderSize(5);
-    ko_password_2_btn.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    ko_password_2_btn.setAlpha(0);
-    ko_password_2_btn.setAction(flexButtonCallback);
-    ko_password_2_btn.setPosition(0, 0, 320, 240);
-    error_koPassword2.add(ko_password_2_btn);
-
-    s99_error_warning_alert.add(error_koPassword2);
 
     error_koPrivatePassword.setPosition(0, 0, 320, 240);
     error_koPrivatePassword.setVisible(false);
@@ -766,12 +695,14 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
     no_change_address_warning_image.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_PROCESO_ERROR_CUVEX_ID));
     warning_noChangeAddress.add(no_change_address_warning_image);
 
-    no_change_address_warning_btn.setBoxWithBorderPosition(0, 0, 320, 240);
-    no_change_address_warning_btn.setBorderSize(5);
-    no_change_address_warning_btn.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
-    no_change_address_warning_btn.setAlpha(0);
+    no_change_address_warning_btn.setBoxWithBorderPosition(0, 0, 320, 30);
+    no_change_address_warning_btn.setBorderSize(0);
+    no_change_address_warning_btn.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    no_change_address_warning_btn.setText(TypedText(T_SP_NO_CHANGE_ADDRESS_WARNING_BTN));
+    no_change_address_warning_btn.setTextPosition(0, 5, 320, 30);
+    no_change_address_warning_btn.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     no_change_address_warning_btn.setAction(flexButtonCallback);
-    no_change_address_warning_btn.setPosition(0, 0, 320, 240);
+    no_change_address_warning_btn.setPosition(0, 210, 320, 30);
     warning_noChangeAddress.add(no_change_address_warning_btn);
 
     s99_error_warning_alert.add(warning_noChangeAddress);
@@ -791,8 +722,7 @@ void screen_flow_psbtViewBase::setupScreen()
 {
     init_nfc_thinking_circles.initialize();
     init_nfc_thinking_circles_1.initialize();
-    keyboard_password.initialize();
-    keyboard_text_area.initialize();
+    s5_typePassword.initialize();
     init_nfc_thinking_circles_2.initialize();
     close_button.initialize();
 }
@@ -805,20 +735,6 @@ void screen_flow_psbtViewBase::flexButtonCallbackHandler(const touchgfx::Abstrac
         //When btn_verify_transaction_info_1 clicked call virtual function
         //Call btnVerifyTransactionPressed
         btnVerifyTransactionPressed();
-    }
-    if (&src == &keyboard_btn_hide)
-    {
-        //hideKeyboardPressed
-        //When keyboard_btn_hide clicked call virtual function
-        //Call hideKeyboardPressed
-        hideKeyboardPressed();
-    }
-    if (&src == &keyboard_btn_show)
-    {
-        //showKeyboardPressed
-        //When keyboard_btn_show clicked call virtual function
-        //Call showKeyboardPressed
-        showKeyboardPressed();
     }
     if (&src == &card_format_error_btn)
     {
@@ -833,27 +749,6 @@ void screen_flow_psbtViewBase::flexButtonCallbackHandler(const touchgfx::Abstrac
         //When no_cryptogram_error_btn clicked call virtual function
         //Call retryNoCryptogramErrorPressed
         retryNoCryptogramErrorPressed();
-    }
-    if (&src == &keyboard_btn_enter)
-    {
-        //enterKeyboardPressed
-        //When keyboard_btn_enter clicked call virtual function
-        //Call enterKeyboardPressed
-        enterKeyboardPressed();
-    }
-    if (&src == &ko_password_1_btn)
-    {
-        //koPassword1BtnPressed
-        //When ko_password_1_btn clicked call virtual function
-        //Call koPassword1BtnPressed
-        koPassword1BtnPressed();
-    }
-    if (&src == &ko_password_2_btn)
-    {
-        //koPassword2BtnPressed
-        //When ko_password_2_btn clicked call virtual function
-        //Call koPassword2BtnPressed
-        koPassword2BtnPressed();
     }
     if (&src == &btn_check_receiver)
     {
@@ -897,16 +792,12 @@ void screen_flow_psbtViewBase::flexButtonCallbackHandler(const touchgfx::Abstrac
         //Call btnClosePressed
         btnClosePressed();
     }
-}
-
-void screen_flow_psbtViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
-{
-    if (&src == &keyboard_pwd_eye)
+    if (&src == &card_size_error_btn)
     {
-        //eyePressed
-        //When keyboard_pwd_eye clicked call virtual function
-        //Call eyePressed
-        eyePressed();
+        //retryCardSizeErrorPressed
+        //When card_size_error_btn clicked call virtual function
+        //Call retryCardSizeErrorPressed
+        retryCardSizeErrorPressed();
     }
 }
 

@@ -208,18 +208,6 @@
     <Filter Include="Header Files\generated\gui_generated\containers">
       <UniqueIdentifier>A4245688-335F-D55A-655F-89F5466D7842</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\gui\widgets">
-      <UniqueIdentifier>8D278E14-2CFC-E7BE-4A70-97895BCFDE35</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gui\widgets">
-      <UniqueIdentifier>E709E263-30BE-3A8C-157D-0E4811A8F109</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui\widgets\qrcode">
-      <UniqueIdentifier>769C2FAB-2F54-E276-BDA9-56D71C2D7296</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gui\widgets\qrcode">
-      <UniqueIdentifier>FB6EDFB7-95C6-E5AA-E56B-DB5D6BC74BAF</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\gui\screen_flow_settings_screen">
       <UniqueIdentifier>F70FBEC2-EDE3-4255-1182-1B9B1445C972</UniqueIdentifier>
     </Filter>
@@ -268,18 +256,6 @@
     <Filter Include="Header Files\gui\screen_flow_decrypt_screen">
       <UniqueIdentifier>FE7987D3-B683-F476-FFFF-44CD2B6FEEDD</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gui\screen_flow_encrypt_screen">
-      <UniqueIdentifier>6A0A12E1-5506-AD22-D74A-415F4D9D0E9F</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gui\screen_flow_encrypt_screen">
-      <UniqueIdentifier>51C151A0-7097-0D8F-2DA3-2102BCCBDD8D</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\generated\gui_generated\screen_flow_encrypt_screen">
-      <UniqueIdentifier>1B9012B5-3256-3ACC-A6C5-67B294FD05ED</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\generated\gui_generated\screen_flow_encrypt_screen">
-      <UniqueIdentifier>725B1269-9DC9-E29B-4EA1-1A3F38EBE57C</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\generated\gui_generated\screen_flow_decrypt_screen">
       <UniqueIdentifier>008AE48B-810F-E668-B39E-6090AAA837BD</UniqueIdentifier>
     </Filter>
@@ -291,6 +267,30 @@
     </Filter>
     <Filter Include="Source Files\generated\gui_generated\screen_flow_clone_screen">
       <UniqueIdentifier>793AD87E-E0EB-4872-026B-D891C047ED07</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\screen_flow_encrypt_part_1_screen">
+      <UniqueIdentifier>A7F54CE3-6AA9-AC60-2C49-D8243BA9D55F</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screen_flow_encrypt_part_1_screen">
+      <UniqueIdentifier>53F01B1B-61E7-87D3-F5E9-117154903514</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screen_flow_encrypt_part_1_screen">
+      <UniqueIdentifier>3489CC7D-20F8-D25E-0A8D-9CD53A240FA4</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screen_flow_encrypt_part_1_screen">
+      <UniqueIdentifier>C7F6A1E8-DC27-C344-C7B9-B1BB17161289</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screen_flow_encrypt_part_2_screen">
+      <UniqueIdentifier>213B29EA-9802-19CB-A627-C2785DA76E42</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\screen_flow_encrypt_part_2_screen">
+      <UniqueIdentifier>D331A325-27AC-C942-6882-32B1F39C9CB8</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screen_flow_encrypt_part_2_screen">
+      <UniqueIdentifier>C83173BC-E1FE-8B70-48E6-BC248B39D644</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screen_flow_encrypt_part_2_screen">
+      <UniqueIdentifier>5480028B-35A5-3FD3-9156-CE6CC6DB560C</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -342,12 +342,6 @@
     <ClCompile Include="..\..\generated\gui_generated\src\screen_menu_screen\screen_menuViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\screen_menu_screen</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\gui\src\widgets\qrcode\QRCode.cpp">
-      <Filter>Source Files\gui\widgets\qrcode</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\widgets\qrcode\QRCodeWidget.cpp">
-      <Filter>Source Files\gui\widgets\qrcode</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\gui\src\containers\boxDice.cpp">
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
@@ -398,15 +392,6 @@
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_decrypt_screen\screen_flow_decryptViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\screen_flow_decrypt_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_screen\screen_flow_encryptPresenter.cpp">
-      <Filter>Source Files\gui\screen_flow_encrypt_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_screen\screen_flow_encryptView.cpp">
-      <Filter>Source Files\gui\screen_flow_encrypt_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_encrypt_screen\screen_flow_encryptViewBase.cpp">
-      <Filter>Source Files\generated\gui_generated\screen_flow_encrypt_screen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\gui\src\containers\keyboard_decrypt_password.cpp">
       <Filter>Source Files\gui\containers</Filter>
@@ -502,6 +487,42 @@
       <Filter>Source Files\gui\containers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_psbt_passwordBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1Presenter.cpp">
+      <Filter>Source Files\gui\screen_flow_encrypt_part_1_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1View.cpp">
+      <Filter>Source Files\gui\screen_flow_encrypt_part_1_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1ViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screen_flow_encrypt_part_1_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2Presenter.cpp">
+      <Filter>Source Files\gui\screen_flow_encrypt_part_2_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2View.cpp">
+      <Filter>Source Files\gui\screen_flow_encrypt_part_2_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2ViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screen_flow_encrypt_part_2_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\decrypt_tag.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\decrypt_tagBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\keyboard_decrypt_verifyAddress.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_decrypt_verifyAddressBase.cpp">
+      <Filter>Source Files\generated\gui_generated\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\containers\verify_address.cpp">
+      <Filter>Source Files\gui\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\verify_addressBase.cpp">
       <Filter>Source Files\generated\gui_generated\containers</Filter>
     </ClCompile>
   </ItemGroup>
@@ -970,12 +991,6 @@
     <ClInclude Include="..\..\gui\include\gui\common\KeyboardLayout.hpp">
       <Filter>Header Files\gui\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\widgets\qrcode\QRCode.hpp">
-      <Filter>Header Files\gui\widgets\qrcode</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\widgets\qrcode\QRCodeWidget.hpp">
-      <Filter>Header Files\gui\widgets\qrcode</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\containers\boxDice.hpp">
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
@@ -1026,15 +1041,6 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_decrypt_screen\screen_flow_decryptViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\screen_flow_decrypt_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_screen\screen_flow_encryptPresenter.hpp">
-      <Filter>Header Files\gui\screen_flow_encrypt_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_screen\screen_flow_encryptView.hpp">
-      <Filter>Header Files\gui\screen_flow_encrypt_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_encrypt_screen\screen_flow_encryptViewBase.hpp">
-      <Filter>Header Files\generated\gui_generated\screen_flow_encrypt_screen</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\containers\keyboard_decrypt_password.hpp">
       <Filter>Header Files\gui\containers</Filter>
@@ -1130,6 +1136,42 @@
       <Filter>Header Files\gui\containers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_psbt_passwordBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1Presenter.hpp">
+      <Filter>Header Files\gui\screen_flow_encrypt_part_1_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1View.hpp">
+      <Filter>Header Files\gui\screen_flow_encrypt_part_1_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_encrypt_part_1_screen\screen_flow_encrypt_part_1ViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screen_flow_encrypt_part_1_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2Presenter.hpp">
+      <Filter>Header Files\gui\screen_flow_encrypt_part_2_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2View.hpp">
+      <Filter>Header Files\gui\screen_flow_encrypt_part_2_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_flow_encrypt_part_2_screen\screen_flow_encrypt_part_2ViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screen_flow_encrypt_part_2_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\decrypt_tag.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\decrypt_tagBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_decrypt_verifyAddress.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_decrypt_verifyAddressBase.hpp">
+      <Filter>Header Files\generated\gui_generated\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\containers\verify_address.hpp">
+      <Filter>Header Files\gui\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\verify_addressBase.hpp">
       <Filter>Header Files\generated\gui_generated\containers</Filter>
     </ClInclude>
   </ItemGroup>

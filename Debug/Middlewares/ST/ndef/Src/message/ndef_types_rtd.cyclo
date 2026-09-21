@@ -1,7 +1,7 @@
 ../Middlewares/ST/ndef/Src/message/ndef_types_rtd.c:199:17:ndefEmptyTypePayloadGetLength	1
 ../Middlewares/ST/ndef/Src/message/ndef_types_rtd.c:211:23:ndefEmptyTypePayloadItem	4
 ../Middlewares/ST/ndef/Src/message/ndef_types_rtd.c:294:17:ndefRtdDeviceInfoPayloadGetLength	5
-../Middlewares/ST/ndef/Src/message/ndef_types_rtd.c:320:23:ndefRtdDeviceInfoToPayloadItem	9
+../Middlewares/ST/ndef/Src/message/ndef_types_rtd.c:320:23:ndefRtdDeviceInfoToPayloadItem	8
 ../Middlewares/ST/ndef/Src/message/ndef_types_rtd.c:628:17:ndefRtdTextPayloadGetLength	3
 ../Middlewares/ST/ndef/Src/message/ndef_types_rtd.c:644:23:ndefRtdTextToPayloadItem	8
 ../Middlewares/ST/ndef/Src/message/ndef_types_rtd.c:851:17:ndefRtdUriPayloadGetLength	3
