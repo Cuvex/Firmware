@@ -18,7 +18,7 @@ extern struct cuvex cuvex;
 extern HASH_HandleTypeDef hhash;
 extern CRYP_HandleTypeDef hcryp;
 
-screen_flow_decryptView::screen_flow_decryptView(): passwordResultCallback(this, &screen_flow_decryptView::handlePasswordResult), verifyAddressCallback(this, &screen_flow_decryptView::handleVerifyAddressResult), qr_info_type(0), temporal_block(0), text_type(0), total_words(0), index_words(0), num_pwds(1), actual_pwd(0), pwd_ok(false), words_decrypted{0}, words_to_check{0}, buff_passphrase{0}, buff_plain_text{0}, buff_pass_der{0}, buff_derivation1{0}, buff_derivation2{0}, buff_pri_key{0}, buff_pub_key{0}/*, pwds{0}, pwd_raw{0}*/, pwd_sha256{0}, pwd_combined_sha256{0}, header_aes_gcm{0}, iv_aes_gcm{0}
+screen_flow_decryptView::screen_flow_decryptView(): passwordResultCallback(this, &screen_flow_decryptView::handlePasswordResult), verifyAddressCallback(this, &screen_flow_decryptView::handleVerifyAddressResult), createDescriptorCallback(this, &screen_flow_decryptView::handleCreateDescriptorResult)
 {
 
 }
@@ -31,8 +31,9 @@ void screen_flow_decryptView::setupScreen()
 	screen_flow_decryptView::setScreenLanguage();
 	screen_flow_decryptView::changeScreen(GUI_TO_MAIN_SCREEN_FLOW_DECRYPT);
 
-	s5_typePassword.setPasswordResultCallback(passwordResultCallback);
-	s8_verify_address.setVerifyAddressCallback(verifyAddressCallback);
+	s3_typePassword.setPasswordResultCallback(passwordResultCallback);
+	container_verify_address.setVerifyAddressCallback(verifyAddressCallback);
+	container_create_descriptor.setCreateDescriptorCallback(createDescriptorCallback);
 }
 
 void screen_flow_decryptView::tearDownScreen()
@@ -71,15 +72,16 @@ void screen_flow_decryptView::tickEventScreen()
 			screen_flow_decryptView::changeFlash(GUI_TO_MAIN_FLASH_SAVE_SETTINGS);
 			screen_flow_decryptView::changeStateNfc(GUI_TO_MAIN_NFC_ENABLE);
 			screen_flow_decryptView::changeStateNfc(GUI_TO_MAIN_NFC_TAG_READ);
-			s0_temporalBlock.setVisible(false);
-			s1_initNFC.setVisible(true);
+			s99_error_warning_alert.setVisible(false);
+			error_temporalBlock.setVisible(false);
+			s0_initNFC.setVisible(true);
 			close_button.setVisible(true);
 			background.invalidate();
 		}
 	}
 
-	/*** Timer management ***/
-	if(s6_viewSecret.isVisible() == true)
+	/*** Timer management --> General ***/
+	if(s5_viewSecret.isVisible() == true)
 	{
 		if(tick++ > 4)
 		{
@@ -97,11 +99,36 @@ void screen_flow_decryptView::tickEventScreen()
 			}
 			else
 			{
-				qr_code.setVisible(false);
-				btn_back.setVisible(false);
 				close_button.setVisible(false);
-				s6_viewSecret.setVisible(false);
-				s7_timeoutSecret.setVisible(true);
+				s99_error_warning_alert.setVisible(true);
+				warning_timeoutSecret.setVisible(true);
+				background.invalidate();
+			}
+		}
+	}
+
+	/*** Timer management --> Chat key ***/
+	if((wow_create_chat_key.isVisible() == true) && (container_check_chat_key.isVisible() == true) && (container_check_chat_key.isVisible() == true))
+	{
+		if(tick++ > 4)
+		{
+			if((Unicode::atoi(text_timeout_chat_keyBuffer) - 1) > 9)
+			{
+				Unicode::snprintf(text_timeout_chat_keyBuffer, TEXT_TIMEOUT_CHAT_KEY_SIZE, "%d", Unicode::atoi(text_timeout_chat_keyBuffer) - 1);
+				background.invalidate();
+				tick = 0;
+			}
+			else if(((Unicode::atoi(text_timeout_chat_keyBuffer) - 1) <= 9) && ((Unicode::atoi(text_timeout_chat_keyBuffer) - 1) > 0))
+			{
+				Unicode::snprintf(text_timeout_chat_keyBuffer, TEXT_TIMEOUT_CHAT_KEY_SIZE, "0%d", Unicode::atoi(text_timeout_chat_keyBuffer) - 1);
+				background.invalidate();
+				tick = 0;
+			}
+			else
+			{
+				close_button.setVisible(false);
+				s99_error_warning_alert.setVisible(true);
+				warning_timeoutSecret.setVisible(true);
 				background.invalidate();
 			}
 		}
@@ -163,21 +190,21 @@ void screen_flow_decryptView::updateStateNfc(uint16_t state)
 		break;
 
 	case MAIN_TO_GUI_NFC_INITIALIZED:
-		if(s1_initNFC.isVisible() == true)
+		if(s0_initNFC.isVisible() == true)
 		{
-			s1_initNFC.setVisible(false);
-			s2_waitReadNFC.setVisible(true);
+			s0_initNFC.setVisible(false);
+			s1_waitReadNFC.setVisible(true);
 		}
 		break;
 
 	case MAIN_TO_GUI_NFC_TAG_READED:
-		if(s2_waitReadNFC.isVisible() == true)
+		if(s1_waitReadNFC.isVisible() == true)
 		{
-			s2_waitReadNFC.setVisible(false);
+			s1_waitReadNFC.setVisible(false);
 
 			if(cuvex.nfc.tag.encripted == true)
 			{
-				s3_viewTagInfo.setVisible(true);
+				s2_viewTagInfo.setVisible(true);
 				screen_flow_decryptView::changeStateNfc(GUI_TO_MAIN_NFC_DISABLE);
 
 				if(cuvex.nfc.tag.alias[0] == 0x00)	//If the read tag doesn't have an alias => Text with the UID (otherwise alias)
@@ -210,7 +237,8 @@ void screen_flow_decryptView::updateStateNfc(uint16_t state)
 			}
 			else
 			{
-				s4_readError.setVisible(true);
+				s99_error_warning_alert.setVisible(true);
+				error_readError.setVisible(true);
 			}
 		}
 		break;
@@ -235,8 +263,24 @@ void screen_flow_decryptView::updateStateNfc(uint16_t state)
 void screen_flow_decryptView::decryptPressed()
 {
 	/*** Selecting visible/hidden elements on the screen ***/
-	s3_viewTagInfo.setVisible(false);
-	s5_typePassword.setVisible(true);
+	s2_viewTagInfo.setVisible(false);
+	s3_typePassword.setVisible(true);
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_decryptView::btnConfirmViewSecretPressed()
+{
+	/*** Selecting visible/hidden elements on the screen ***/
+	s4_confirmViewSecret.setVisible(false);
+	s5_viewSecret.setVisible(true);
 
 	/*** Screen update ***/
 	background.invalidate();
@@ -255,8 +299,9 @@ void screen_flow_decryptView::retryPressed()
 	screen_flow_decryptView::changeStateNfc(GUI_TO_MAIN_NFC_TAG_READ);
 
 	/*** Selecting visible/hidden elements on the screen ***/
-	s4_readError.setVisible(false);
-	s1_initNFC.setVisible(true);
+	s99_error_warning_alert.setVisible(false);
+	error_readError.setVisible(false);
+	s0_initNFC.setVisible(true);
 
 	/*** Screen update ***/
 	background.invalidate();
@@ -272,6 +317,18 @@ void screen_flow_decryptView::moreTimePressed()
 {
 	Unicode::snprintf(text_timeoutBuffer, TEXT_TIMEOUT_SIZE, "60");
 	text_timeout.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_decryptView::moreTimeChatKeyPressed()
+{
+	Unicode::snprintf(text_timeout_chat_keyBuffer, TEXT_TIMEOUT_CHAT_KEY_SIZE, "60");
+	text_timeout_chat_key.invalidate();
 }
 
 /**************************************************************************************************************************************
@@ -525,6 +582,43 @@ void screen_flow_decryptView::btnCautionMsgPressed()
  ***** Parameters 	: N/A
  ***** Response 	: N/A
  **************************************************************************************************************************************/
+void screen_flow_decryptView::btnClosePressed()
+{
+	NVIC_SystemReset();
+}
+
+/*************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************/
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_decryptView::btnWatchOnlyWalletPressed()
+{
+	/*** Selecting visible/hidden elements on the screen ***/
+	s5_viewSecret.setVisible(false);
+	s6_watch_only_wallet.setVisible(true);
+	wow_menu.setVisible(true);
+	wow_create_descriptor.setVisible(false);
+	wow_verify_address.setVisible(false);
+	wow_create_chat_key.setVisible(false);
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
 void screen_flow_decryptView::btnQrSeedPressed()
 {
 	qr_info_type = 1;
@@ -630,12 +724,42 @@ void screen_flow_decryptView::btnQrPublicKeyPressed()
  ***** Parameters 	: N/A
  ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_decryptView::btnVerifyAddressPressed()
+void screen_flow_decryptView::btnReuseSeedPhrasePressed()
 {
+	/*** Copy buffers in flow wallet expected format ***/
+	cuvex.wallet.flag_reuse_seed = true;
+
+	memset(cuvex.wallet.words_to_encrypt, 0x00, sizeof(cuvex.wallet.words_to_encrypt));
+
+	for(int i=0; i<24; i++){
+		memcpy(cuvex.wallet.words_to_encrypt[i], words_decrypted[i], 4);
+	}
+
+	/*** Jump to "flow wallet" ***/
+	application().gotoscreen_flow_walletScreenNoTransition();
+}
+
+/*************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************/
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_decryptView::btnCreateDescriptorPressed()
+{
+	cuvex.decrypt.descriptor_is_multisignature = false;
+
 	/*** Selecting visible/hidden elements on the screen ***/
-	s6_viewSecret.setVisible(false);
-	s7_timeoutSecret.setVisible(false);
-	s8_verify_address.setVisible(true);
+	wow_menu.setVisible(false);
+	wow_create_descriptor.setVisible(true);
+	wow_verify_address.setVisible(false);
+	wow_create_chat_key.setVisible(false);
 	close_button.setVisible(true);
 
 	/*** Screen update ***/
@@ -648,9 +772,137 @@ void screen_flow_decryptView::btnVerifyAddressPressed()
  ***** Parameters 	: N/A
  ***** Response 	: N/A
  **************************************************************************************************************************************/
-void screen_flow_decryptView::btnClosePressed()
+void screen_flow_decryptView::btnCreateDescriptorMultisignPressed()
 {
-	NVIC_SystemReset();
+	cuvex.decrypt.descriptor_is_multisignature = true;
+	container_create_descriptor.setCreateDescriptorMultisignatureInfo();
+
+	/*** Selecting visible/hidden elements on the screen ***/
+	wow_menu.setVisible(false);
+	wow_create_descriptor.setVisible(true);
+	wow_verify_address.setVisible(false);
+	wow_create_chat_key.setVisible(false);
+	close_button.setVisible(true);
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_decryptView::btnVerifyAddressPressed()
+{
+	/*** Selecting visible/hidden elements on the screen ***/
+	wow_menu.setVisible(false);
+	wow_create_descriptor.setVisible(false);
+	wow_verify_address.setVisible(true);
+	wow_create_chat_key.setVisible(false);
+	close_button.setVisible(true);
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_decryptView::btnCreateChatKeyPressed()
+{
+	/*** Configuration of text based on the selected language (Spanish/English) ***/
+	if(cuvex.info.language == SPANISH){
+		text_caution_chat_key_msg_spanish.setVisible(true);
+		text_caution_chat_key_msg_english.setVisible(false);
+	}
+	else{
+		text_caution_chat_key_msg_spanish.setVisible(false);
+		text_caution_chat_key_msg_english.setVisible(true);
+	}
+
+	/*** Selecting visible/hidden elements on the screen ***/
+	wow_menu.setVisible(false);
+	wow_create_descriptor.setVisible(false);
+	wow_verify_address.setVisible(false);
+	wow_create_chat_key.setVisible(true);
+	close_button.setVisible(true);
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/*************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************
+ *************************************************************************************************************************************************************************************************************/
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_decryptView::btnToggleHardenedAddress()
+{
+	/*** Selecting visible/hidden elements on the screen ***/
+	check_hardenend_address.setVisible(true);
+	check_not_hardenend_address.setVisible(false);
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_decryptView::btnToggleNotHardenedAddress()
+{
+	/*** Selecting visible/hidden elements on the screen ***/
+	check_hardenend_address.setVisible(false);
+	check_not_hardenend_address.setVisible(true);
+
+	/*** Screen update ***/
+	background.invalidate();
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_decryptView::btnCautionChatKeyPressed()
+{
+	char xpub[120] = {0};
+
+	/*** Root key ***/
+	HDPrivateKey rootPrv((char*) buff_pri_key);
+
+	/*** Derive deep hardened path ***/
+	HDPrivateKey chatKey = rootPrv.derive("m/84'/0'/3333'/0'/3333'");
+
+	/*** Force XPUB format ***/
+	chatKey.type = UNKNOWN_TYPE;
+	chatKey.xpub(xpub, sizeof(xpub));
+
+	/*** QR code generation with descriptor ***/
+	qr_code_chat_key.convertStringToQRCode(xpub);
+
+	/*** Selecting visible/hidden elements on the screen ***/
+	container_caution_chat_key_msg.setVisible(false);
+	container_check_chat_key.setVisible(true);
+
+	/*** Screen update ***/
+	background.invalidate();
 }
 
 /*************************************************************************************************************************************************************************************************************
@@ -671,25 +923,25 @@ void screen_flow_decryptView::setScreenMode()
 	if(cuvex.info.mode == DARK)
 	{
 		background.setColor(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		/***/
+		text_confirm_view_secret_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_confirm_view_secret_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_confirm_view_secret_3.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		btn_confirm_view_secret.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		/***/
 		btn_back.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
 		btn_back.setIconBitmaps(Bitmap(BITMAP_BACK_DARK_ID), Bitmap(BITMAP_BACK_ID));
 		init_nfc_text1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		init_nfc_text2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		text_wait_read_nfc.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		btn_decrypt.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_decrypt.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		text_alias_info.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		text_alias.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		text_uid_info.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		text_uid.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		btn_retry.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_retry.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_read_error.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		btn_more_time.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_more_time.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		text_secret_check.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		btn_caution_msg.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_caution_msg.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		caution_msg_english_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		caution_msg_english_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		caution_msg_english_3.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
@@ -697,7 +949,55 @@ void screen_flow_decryptView::setScreenMode()
 		caution_msg_spanish_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		caution_msg_spanish_3.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		text_timeout.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_timeout_secret.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		/***/
+		btn_1_watch_only_wallet.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_1_watch_only_wallet.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_2_qr_seed.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_2_qr_seed.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_3_qr_private_key.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_3_qr_private_key.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_4_qr_public_key.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_4_qr_public_key.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_5_reuse_seed_phrase.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_5_reuse_seed_phrase.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		/***/
+		btn_1_create_descriptor.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_1_create_descriptor.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_2_create_descriptor_multisign.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_2_create_descriptor_multisign.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_3_verify_address.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_3_verify_address.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		btn_4_create_chat_key.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_4_create_chat_key.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		/***/
+		btn_toggle_hardened.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_toggle_not_hardened.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		text_info.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_info_hardened_address.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_info_not_hardened_address.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		check_hardened_address_1.setColor(touchgfx::Color::getColorFromRGB(0xFF,0x8C,0x00));
+		check_hardened_address_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		check_hardened_address_3.setColor(touchgfx::Color::getColorFromRGB(0xFF,0x8C,0x00));
+		check_not_hardened_address_1.setColor(touchgfx::Color::getColorFromRGB(0xFF,0x8C,0x00));
+		check_not_hardened_address_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		check_not_hardened_address_3.setColor(touchgfx::Color::getColorFromRGB(0xFF,0x8C,0x00));
+		/***/
+		btn_close.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		/***/
+		btn_caution_chat_key_msg.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		btn_chat_key_more_time.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
+		caution_chat_key_msg_english_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		caution_chat_key_msg_english_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		caution_chat_key_msg_english_3.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		caution_chat_key_msg_spanish_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		caution_chat_key_msg_spanish_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		caution_chat_key_msg_spanish_3.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_timeout_chat_key.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		/***/
+		background_error.setColor(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
+		timeout_secret_warning_text.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		text_read_error.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
+		btn_retry.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
 		temporal_block_english_1.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		temporal_block_english_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		temporal_block_english_3.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
@@ -711,22 +1011,6 @@ void screen_flow_decryptView::setScreenMode()
 		temporal_block_spanish_5.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		temporal_block_spanish_6.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
 		temporal_block_spanish_7.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		/***/
-		btn_1_qr_seed.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_1_qr_seed.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
-		btn_2_qr_private_key.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_2_qr_private_key.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
-		btn_3_qr_public_key.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_3_qr_public_key.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
-		btn_4_verify_address.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_4_verify_address.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0x3F,0x3F,0x51));
-		/***/
-		btn_close.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0x6B,0x6B,0x7D), touchgfx::Color::getColorFromRGB(0x40,0x5C,0xA0), touchgfx::Color::getColorFromRGB(0,0,0), touchgfx::Color::getColorFromRGB(0,0,0));
-		btn_close.setTextColors(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED), touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		text_info.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		check_receiver_address_1.setColor(touchgfx::Color::getColorFromRGB(0xFF,0x8C,0x00));
-		check_receiver_address_2.setColor(touchgfx::Color::getColorFromRGB(0xED,0xED,0xED));
-		check_receiver_address_3.setColor(touchgfx::Color::getColorFromRGB(0xFF,0x8C,0x00));
 	}
 
 	/*** Screen update ***/
@@ -769,14 +1053,16 @@ void screen_flow_decryptView::checkTemporalBlock()
 	default:
 		screen_flow_decryptView::changeStateNfc(GUI_TO_MAIN_NFC_ENABLE);
 		screen_flow_decryptView::changeStateNfc(GUI_TO_MAIN_NFC_TAG_READ);
-		s0_temporalBlock.setVisible(false);
-		s1_initNFC.setVisible(true);
+		s99_error_warning_alert.setVisible(false);
+		error_temporalBlock.setVisible(false);
+		s0_initNFC.setVisible(true);
 		temporal_block = 0;
 		break;
 
 	case 2:
-		s0_temporalBlock.setVisible(true);
-		s1_initNFC.setVisible(false);
+		s99_error_warning_alert.setVisible(true);
+		error_temporalBlock.setVisible(true);
+		s0_initNFC.setVisible(false);
 		close_button.setVisible(false);
 
 		if(cuvex.info.language == SPANISH){
@@ -897,8 +1183,8 @@ void screen_flow_decryptView::passwordSuccess(uint8_t  decrypted_text[SIZE_CRYPT
 
 		text_secret_check.setPosition(0, 0, 200, (20*(total_words+1))+(20*7));
 		text_secret_check.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
-		s5_typePassword.setVisible(false);
-		s6_viewSecret.setVisible(true);
+		s3_typePassword.setVisible(false);
+		s4_confirmViewSecret.setVisible(true);
 		break;
 
 	case TEXT_TYPE_SLIP39:
@@ -954,8 +1240,8 @@ void screen_flow_decryptView::passwordSuccess(uint8_t  decrypted_text[SIZE_CRYPT
 
 		text_secret_check.setPosition(0, 0, 200, (20*(total_words+1))+(20*7));
 		text_secret_check.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
-		s5_typePassword.setVisible(false);
-		s6_viewSecret.setVisible(true);
+		s3_typePassword.setVisible(false);
+		s4_confirmViewSecret.setVisible(true);
 		break;
 
 	case TEXT_TYPE_XMR:
@@ -1011,8 +1297,8 @@ void screen_flow_decryptView::passwordSuccess(uint8_t  decrypted_text[SIZE_CRYPT
 
 		text_secret_check.setPosition(0, 0, 200, (20*(total_words+1))+(20*7));
 		text_secret_check.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
-		s5_typePassword.setVisible(false);
-		s6_viewSecret.setVisible(true);
+		s3_typePassword.setVisible(false);
+		s4_confirmViewSecret.setVisible(true);
 		break;
 
 	case TEXT_TYPE_PLAINTEXT:
@@ -1037,8 +1323,8 @@ void screen_flow_decryptView::passwordSuccess(uint8_t  decrypted_text[SIZE_CRYPT
 
 		text_secret_check.setPosition(0, 0, 200, 20*(text_secret_check.getTextWidth()/200)+2*20);
 		text_secret_check.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
-		s5_typePassword.setVisible(false);
-		s6_viewSecret.setVisible(true);
+		s3_typePassword.setVisible(false);
+		s4_confirmViewSecret.setVisible(true);
 		break;
 
 	case TEXT_TYPE_FROM_NFC_BIP39:
@@ -1165,8 +1451,8 @@ void screen_flow_decryptView::passwordSuccess(uint8_t  decrypted_text[SIZE_CRYPT
 		text_secret_check.setWideTextAction(touchgfx::WIDE_TEXT_CHARWRAP);
 
 		/*** Selecting visible/hidden elements on the screen ***/
-		s5_typePassword.setVisible(false);
-		s6_viewSecret.setVisible(true);
+		s3_typePassword.setVisible(false);
+		s4_confirmViewSecret.setVisible(true);
 		break;
 	}
 }
@@ -1218,12 +1504,16 @@ void screen_flow_decryptView::handlePasswordResult(uint8_t result)
  **************************************************************************************************************************************/
 void screen_flow_decryptView::handleVerifyAddressResult(bool result)
 {
-	Unicode::UnicodeChar address_part_1[20] = {0}, address_part_2[80] = {0}, address_part_3[20] = {0};
-
 	if(result == true)
 	{
+		Unicode::UnicodeChar address_part_1[20] = {0}, address_part_2[80] = {0}, address_part_3[20] = {0};
+		Unicode::UnicodeChar address_part_1_h[20] = {0}, address_part_2_h[80] = {0}, address_part_3_h[20] = {0};
+		char derivation_path_hardened[50] = {0}, derived_address_hardened[128] = {0}, account[10] = {0}, change[10] = {0}, index[10] = {0};
+
+		HDPrivateKey myPrvKey((char *) buff_pri_key);
 		HDPublicKey myPubKey((char *) buff_pub_key);
 
+		/*** Normal derivation + Split normal address + Buffers set ***/
 		HDPublicKey derivedPubKey = myPubKey.derive((char *) cuvex.decrypt.derivation_path);
 		derivedPubKey.address((char *) cuvex.decrypt.derived_address, sizeof(cuvex.decrypt.derived_address));
 
@@ -1231,17 +1521,107 @@ void screen_flow_decryptView::handleVerifyAddressResult(bool result)
 		Unicode::strncpy(address_part_2, (char *) cuvex.decrypt.derived_address + 10 , strlen((char *) cuvex.decrypt.derived_address) - 20);
 		Unicode::strncpy(address_part_3, (char *) cuvex.decrypt.derived_address + strlen((char *) cuvex.decrypt.derived_address) - 10, 10);
 
-		Unicode::snprintf(check_receiver_address_1Buffer, CHECK_RECEIVER_ADDRESS_1_SIZE, "%s", address_part_1);
-		Unicode::snprintf(check_receiver_address_2Buffer, CHECK_RECEIVER_ADDRESS_2_SIZE, "%s", address_part_2);
-		Unicode::snprintf(check_receiver_address_3Buffer, CHECK_RECEIVER_ADDRESS_3_SIZE, "%s", address_part_3);
+		Unicode::snprintf(check_not_hardened_address_1Buffer, CHECK_NOT_HARDENED_ADDRESS_1_SIZE, "%s", address_part_1);
+		Unicode::snprintf(check_not_hardened_address_2Buffer, CHECK_NOT_HARDENED_ADDRESS_2_SIZE, "%s", address_part_2);
+		Unicode::snprintf(check_not_hardened_address_3Buffer, CHECK_NOT_HARDENED_ADDRESS_3_SIZE, "%s", address_part_3);
+		Unicode::fromUTF8((const uint8_t*)cuvex.decrypt.derivation_path, text_info_not_hardened_addressBuffer, TEXT_INFO_NOT_HARDENED_ADDRESS_SIZE);
+
+		/*** Hardened derivation + Split hardened address + Buffers set ***/
+		sscanf((char*) cuvex.decrypt.derivation_path, "m/84/0/%[^/]/%[^/]/%s", account, change, index);
+		sprintf(derivation_path_hardened, "m/84'/0'/%s'/%s/%s", account, change, index);
+
+		HDPrivateKey derivedPrvKeyH = myPrvKey.derive(derivation_path_hardened);
+		derivedPrvKeyH.address(derived_address_hardened, sizeof(derived_address_hardened));
+
+		Unicode::strncpy(address_part_1_h, derived_address_hardened, 10);
+		Unicode::strncpy(address_part_2_h, derived_address_hardened + 10, strlen(derived_address_hardened) - 20);
+		Unicode::strncpy(address_part_3_h, derived_address_hardened + strlen(derived_address_hardened) - 10, 10);
+
+		Unicode::snprintf(check_hardened_address_1Buffer, CHECK_HARDENED_ADDRESS_1_SIZE, "%s", address_part_1_h);
+		Unicode::snprintf(check_hardened_address_2Buffer, CHECK_HARDENED_ADDRESS_2_SIZE, "%s", address_part_2_h);
+		Unicode::snprintf(check_hardened_address_3Buffer, CHECK_HARDENED_ADDRESS_3_SIZE, "%s", address_part_3_h);
+		Unicode::fromUTF8((const uint8_t*)derivation_path_hardened, text_info_hardened_addressBuffer, TEXT_INFO_HARDENED_ADDRESS_SIZE);
+
+		/*** Selecting visible/hidden elements on the screen ***/
+		check_hardenend_address.setVisible(false);
+		check_not_hardenend_address.setVisible(true);
+		container_verify_address.setVisible(false);
+		container_check_verify_address.setVisible(true);
+
+		/*** Screen update ***/
+		background.invalidate();
 	}
-
-	/*** Selecting visible/hidden elements on the screen ***/
-	s8_verify_address.setVisible(false);
-	s9_check_address.setVisible(true);
-
-	/*** Screen update ***/
-	background.invalidate();
 }
 
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void screen_flow_decryptView::handleCreateDescriptorResult(bool result)
+{
+	if(result == true)
+	{
+		char derivation_path[30] = {0}, xpub[120] = {0}, descriptor_qr[250] = {0};
+
+		if(cuvex.decrypt.descriptor_is_multisignature == true)	//Multiple signer
+		{
+			/*** Root extended keys (master level m) ***/
+			HDPrivateKey rootPrv((char*) buff_pri_key);
+			HDPublicKey rootPub((char*) buff_pub_key);
+
+			/*** Build BIP48 account derivation path (format: m/84'/0'/account'/2') ***/
+			sprintf(derivation_path, "m/48'/0'/%lu'/2'", atoi((char *) cuvex.decrypt.descriptor_acount_number));
+
+			/*** Derive account private key from root ***/
+			HDPrivateKey accountPrv = rootPrv.derive(derivation_path);
+
+			/*** Force standard XPUB format (uBitcoin defaults to ZPUB for BIP84) ***/
+			accountPrv.type = UNKNOWN_TYPE;
+			accountPrv.xpub(xpub, sizeof(xpub));
+
+			/*** Get root fingerprint (master key identifier) ***/
+			std::string fingerprint_str = rootPub.fingerprint();
+
+			/*** Build crypto-output descriptor JSON ***/
+			sprintf(descriptor_qr, "{\"t\":\"stdmsig_cx_v1\",\"net\":\"main\",\"fp\":\"%s\",\"path\":\"%s\",\"xpub\":\"%s\"}", fingerprint_str.c_str(), derivation_path, xpub);
+
+			/*** QR code generation with descriptor ***/
+			qr_code_descriptor.convertStringToQRCode(descriptor_qr);
+		}
+		else	//Single signer
+		{
+			/*** Root extended keys (master level m) ***/
+			HDPrivateKey rootPrv((char*) buff_pri_key);
+			HDPublicKey rootPub((char*) buff_pub_key);
+
+			/*** Build BIP84 account derivation path (format: m/84'/0'/account') ***/
+			sprintf(derivation_path, "m/84'/0'/%d'", atoi((char *) cuvex.decrypt.descriptor_acount_number));
+
+			/*** Derive account private key from root ***/
+			HDPrivateKey accountPrv = rootPrv.derive(derivation_path);
+
+			/*** Force standard XPUB format (uBitcoin defaults to ZPUB for BIP84) ***/
+			accountPrv.type = UNKNOWN_TYPE;
+			accountPrv.xpub(xpub, sizeof(xpub));
+
+			/*** Get root fingerprint (master key identifier) ***/
+			std::string fingerprint_str = rootPub.fingerprint();
+
+			/*** Build crypto-output descriptor JSON ***/
+			sprintf(descriptor_qr, "{\"t\":\"single_bip84_v1\",\"net\":\"main\",\"fp\":\"%s\",\"path\":\"%s\",\"xpub\":\"%s\"}", fingerprint_str.c_str(), derivation_path, xpub);
+
+			/*** QR code generation with descriptor ***/
+			qr_code_descriptor.convertStringToQRCode(descriptor_qr);
+		}
+
+		/*** Selecting visible/hidden elements on the screen ***/
+		container_create_descriptor.setVisible(false);
+		container_check_create_descriptor.setVisible(true);
+
+		/*** Screen update ***/
+		background.invalidate();
+	}
+}
 

@@ -1,18 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.24.2">
+<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.26.0">
   <Languages>
     <Language Id="SP" />
     <Language Id="GB" />
   </Languages>
   <Texts>
     <TextGroup Id="containers">
+      <Text Id="cont_create_descriptor_keyboard_placeholder" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Ej: 0</Translation>
+        <Translation Language="GB">Ej: 0</Translation>
+      </Text>
+      <Text Id="cont_create_descriptor_keyboard_info_3" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Ej: 0</Translation>
+        <Translation Language="GB">Ej: 0</Translation>
+      </Text>
+      <Text Id="cont_create_descriptor_keyboard_info_2" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Introduce aquí el número de &#10;cuenta que deseas crear.</Translation>
+        <Translation Language="GB">Enter the account number &#10;you want to create.</Translation>
+      </Text>
+      <Text Id="cont_create_descriptor_keyboard_info_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Crear Descriptor</Translation>
+        <Translation Language="GB">Create Descriptor</Translation>
+      </Text>
+      <Text Id="cont_create_descriptor_keyboard_info_2_multisignature" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Introduce aquí el número de &#10;cuenta multifirma que deseas crear.</Translation>
+        <Translation Language="GB">Enter the multisignature account &#10;number you want to create.</Translation>
+      </Text>
+      <Text Id="cont_create_descriptor_keyboard_info_1_multisignature" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">Crear Descriptor Multifirma</Translation>
+        <Translation Language="GB">Create Multisignature Descriptor</Translation>
+      </Text>
       <Text Id="cont_decrypt_tag_processing" Alignment="Center" TypographyId="Neue_bold_20px">
         <Translation Language="SP">Procesando...</Translation>
         <Translation Language="GB">Processing...</Translation>
-      </Text>
-      <Text Id="cont_verify_address_check_info" Alignment="Left" TypographyId="Neue_medium_10px">
-        <Translation Language="SP">Verificar dirección</Translation>
-        <Translation Language="GB">Verify address</Translation>
       </Text>
       <Text Id="cont_verify_address_keyboard_info_4_2" Alignment="Left" TypographyId="Neue_bold_15px">
         <Translation Language="SP">0/0/33</Translation>
@@ -745,6 +765,38 @@
       <Text Id="sd_init_nfc_text1" Alignment="Center" TypographyId="Neue_medium_15px">
         <Translation Language="SP">Activando </Translation>
         <Translation Language="GB">Activating </Translation>
+      </Text>
+      <Text Id="sd_btn_toggle_hardened" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">VER DIRECCIÓN ENDURECIDA</Translation>
+        <Translation Language="GB">VIEW HARDENED ADDRESS</Translation>
+      </Text>
+      <Text Id="sd_check_not_hardened_address_3_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sd_check_not_hardened_address_3" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_check_not_hardened_address_2_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sd_check_not_hardened_address_2" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_check_not_hardened_address_1_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sd_check_not_hardened_address_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_timeout_secret_warning_text" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">Se ha eliminado la información del &#10;dispositivo Cuvex.&#10;Para volver a verla, inicia el proceso &#10;nuevamente.</Translation>
+        <Translation Language="GB">The information on the Cuvex device &#10;has been deleted.&#10;To see it again, start the proccess &#10;again.</Translation>
       </Text>
     </TextGroup>
     <TextGroup Id="screen_flow_decrypt_caution_msg">
@@ -1595,7 +1647,136 @@
         <Translation Language="GB">For the next </Translation>
       </Text>
     </TextGroup>
-    <TextGroup Id="Unsorted" />
+    <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_I18V" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">No hagas fotos ni vídeos. Compromete tus &#10;fondos.</Translation>
+        <Translation Language="GB">Do not take photos or videos. Doing so may &#10;compromise your funds.</Translation>
+      </Text>
+      <Text Id="__SingleUse_GUYE" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">En la siguiente pantalla se muestra información &#10;sensible sin cifrar. Asegúrate de que:&#10;   • No hay cámaras grabando&#10;   • Nadie observa tu pantalla&#10;   • Estás en un entorno seguro&#10;   • Solo hay personas de confianza&#10;&#10;No hagas fotos ni vídeos. Compromete tus &#10;fondos.</Translation>
+        <Translation Language="GB">The next screen shows sensitive unencrypted &#10;information. Please ensure that:&#10;   • No cameras are recording&#10;   • No one is viewing your screen&#10;   • You are in a secure environment&#10;   • Only trusted individuals are present&#10;&#10;Do not take photos or videos. Doing so may &#10;compromise your funds.</Translation>
+      </Text>
+      <Text Id="__SingleUse_1K7V" Alignment="Left" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">IMPORTANTE:</Translation>
+        <Translation Language="GB">IMPORTANT:</Translation>
+      </Text>
+      <Text Id="__SingleUse_RK67" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CONTINUAR</Translation>
+        <Translation Language="GB">CONTINUE</Translation>
+      </Text>
+      <Text Id="se_processing" Alignment="Center" TypographyId="Neue_bold_20px">
+        <Translation Language="SP">Procesando...</Translation>
+        <Translation Language="GB">Processing...</Translation>
+      </Text>
+      <Text Id="sd_text_watch_only_wallet" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">WATCH ONLY WALLET</Translation>
+        <Translation Language="GB">WATCH ONLY WALLET</Translation>
+      </Text>
+      <Text Id="sd_text_reuse_seed_phrase" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">REUTILIZAR FRASE SEMILLA</Translation>
+        <Translation Language="GB">REUSE SEED PHRASE</Translation>
+      </Text>
+      <Text Id="sd_text_create_descriptor" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CREAR DESCRIPTOR</Translation>
+        <Translation Language="GB">CREATE DESCRIPTOR</Translation>
+      </Text>
+      <Text Id="sd_text_create_descriptor_multisign" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CREAR DESCRIPTOR MULTIFIRMA</Translation>
+        <Translation Language="GB">CREATE MULTISIGNATURE DESCRIPTOR</Translation>
+      </Text>
+      <Text Id="sd_text_create_chat_key" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CREAR CLAVE CHAT</Translation>
+        <Translation Language="GB">CREATE CHAT KEY</Translation>
+      </Text>
+      <Text Id="sd_not_hardened_address_text_info_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sd_not_hardened_address_text_info" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_btn_toggle_not_hardened" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">VER DIRECCIÓN NO ENDURECIDA</Translation>
+        <Translation Language="GB">VIEW NON-HARDENED ADDRESS</Translation>
+      </Text>
+      <Text Id="sd_check_hardened_address_3_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sd_check_hardened_address_3" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_check_hardened_address_2_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sd_check_hardened_address_2" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_check_hardened_address_1_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sd_check_hardened_address_1" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_hardened_address_text_info_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">---</Translation>
+        <Translation Language="GB">---</Translation>
+      </Text>
+      <Text Id="sd_hardened_address_text_info" Alignment="Center" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">&lt;value&gt;</Translation>
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_btn_caution_chat_key_msg" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CONTINUAR</Translation>
+        <Translation Language="GB">CONTINUE</Translation>
+      </Text>
+      <Text Id="sd_caution_chat_key_msg_spanish_1" Alignment="Right" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">IMPORTANTE: </Translation>
+        <Translation Language="GB">IMPORTANTE: </Translation>
+      </Text>
+      <Text Id="sd_caution_chat_key_msg_spanish_2" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">El siguiente QR muestra tu </Translation>
+        <Translation Language="GB">El siguiente QR muestra tu </Translation>
+      </Text>
+      <Text Id="sd_caution_chat_key_msg_spanish_3" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">clave para la activación del chat encriptado &#10;Cuvex. Jamás lo leas con la cámara de tu &#10;Smartphone o con Apps genéricas de &#10;lectura de QR. Esta información solo debe &#10;ser leída en el proceso de activación de &#10;chat por la App Cuvex.</Translation>
+        <Translation Language="GB">clave para la activación del chat encriptado &#10;Cuvex. Jamás lo leas con la cámara de tu &#10;Smartphone o con Apps genéricas de &#10;lectura de QR. Esta información solo debe &#10;ser leída en el proceso de activación de &#10;chat por la App Cuvex.</Translation>
+      </Text>
+      <Text Id="sd_caution_chat_key_msg_english_1" Alignment="Right" TypographyId="Neue_bold_15px">
+        <Translation Language="SP">IMPORTANT: </Translation>
+        <Translation Language="GB">IMPORTANT: </Translation>
+      </Text>
+      <Text Id="sd_caution_chat_key_msg_english_2" Alignment="Left" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">The following QR code shows </Translation>
+        <Translation Language="GB">The following QR code shows </Translation>
+      </Text>
+      <Text Id="sd_caution_chat_key_msg_english_3" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">your key for activating the encrypted &#10;Cuvex chat. Never scan it with your &#10;smartphone camera or with generic &#10;QR reader apps. This information must &#10;only be read during the chat activation &#10;process by the Cuvex App.</Translation>
+        <Translation Language="GB">your key for activating the encrypted &#10;Cuvex chat. Never scan it with your &#10;smartphone camera or with generic &#10;QR reader apps. This information must &#10;only be read during the chat activation &#10;process by the Cuvex App.</Translation>
+      </Text>
+      <Text Id="sd_btn_chat_key_more_time" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">AMPLIAR TIEMPO</Translation>
+        <Translation Language="GB">EXTEND TIME</Translation>
+      </Text>
+      <Text Id="sd_timeout_chat_key_value" Alignment="Left" TypographyId="Neue_medium_10px">
+        <Translation Language="SP">60</Translation>
+        <Translation Language="GB">60</Translation>
+      </Text>
+      <Text Id="sd_timeout_chat_key" Alignment="Left" TypographyId="Neue_medium_25px">
+        <Translation Language="SP">0:&lt;value&gt;</Translation>
+        <Translation Language="GB">0:&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="sd_btn_close" Alignment="Center" TypographyId="Neue_medium_15px">
+        <Translation Language="SP">CERRAR</Translation>
+        <Translation Language="GB">CLOSE</Translation>
+      </Text>
+    </TextGroup>
   </Texts>
   <Typographies>
     <Typography Id="Neue_medium_10px" Font="NeueMontreal-Medium.otf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="ºª•·!”&quot;#*%&amp;()'$+-@_, .:;?/~±×÷•º`´{}©£€^®¥_=[]¡¢|\¿&gt;&lt;" WildcardCharacterRanges="32-255" />

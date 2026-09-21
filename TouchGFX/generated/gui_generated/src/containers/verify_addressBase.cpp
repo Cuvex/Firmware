@@ -104,16 +104,6 @@ verify_addressBase::verify_addressBase() :
 
     add(typeDerivationPath);
 
-    checkAddress.setPosition(0, 0, 320, 240);
-    checkAddress.setVisible(false);
-    check_text_info.setPosition(0, 16, 320, 20);
-    check_text_info.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
-    check_text_info.setLinespacing(0);
-    check_text_info.setTypedText(touchgfx::TypedText(T_CONT_VERIFY_ADDRESS_CHECK_INFO));
-    checkAddress.add(check_text_info);
-
-    add(checkAddress);
-
 touchgfx::Application::getInstance()->registerTimerWidget(this);
 }
 

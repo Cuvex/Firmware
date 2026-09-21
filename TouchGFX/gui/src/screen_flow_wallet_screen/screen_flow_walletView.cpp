@@ -50,6 +50,34 @@ void screen_flow_walletView::setupScreen()
 	box_dice_6.setId(DICE_COLOUR_6);
 	box_dice_7.setId(DICE_COLOUR_7);
 	box_dice_8.setId(DICE_COLOUR_8);
+
+	/*** Reuse seed from "flow_decrypt" ***/
+	if(cuvex.wallet.flag_reuse_seed == true)
+	{
+		/*** Get words in "flow_wallet" format ***/
+		memset(words, 0x00, sizeof(words));
+
+		for(int i=0; i<24; i++){
+			memcpy(words[i], cuvex.wallet.words_to_encrypt[i], 4);
+			getBip39Word((char *) words[i]);
+		}
+
+		/*** Generate mnemonic sentence ***/
+		memset(mnemonic, 0x00, sizeof(mnemonic));
+
+		for(int i=0; i<24; i++){
+			strcat((char *) mnemonic, (char *) words[i]);
+			if(i<23){
+				strcat((char *) mnemonic, (char *) " ");
+			}
+		}
+
+		/*** Selecting visible/hidden elements on the screen ***/
+		s0_infoWallet.setVisible(false);
+		s1_selectDice.setVisible(false);
+		s2_getWords.setVisible(false);
+		s3_typePassprhase.setVisible(true);
+	}
 }
 
 void screen_flow_walletView::tearDownScreen()
@@ -827,7 +855,7 @@ void screen_flow_walletView::btnEncryptPressed()
 	strcat((char *) cuvex.wallet.zprv_key, (char *) zprv_key);
 	strcat((char *) cuvex.wallet.zpub_key, (char *) zpub_key);
 
-	/*** Jump to "encrypt part 1" ***/
+	/*** Jump to "encrypt part 2" ***/
 	application().gotoscreen_flow_encrypt_part_2ScreenNoTransition();
 }
 

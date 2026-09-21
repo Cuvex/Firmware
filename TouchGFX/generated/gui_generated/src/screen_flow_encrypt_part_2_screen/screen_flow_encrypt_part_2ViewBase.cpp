@@ -13,7 +13,7 @@ screen_flow_encrypt_part_2ViewBase::screen_flow_encrypt_part_2ViewBase() :
     buttonCallback(this, &screen_flow_encrypt_part_2ViewBase::buttonCallbackHandler)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
-    
+
     __background.setPosition(0, 0, 320, 240);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
@@ -339,45 +339,55 @@ screen_flow_encrypt_part_2ViewBase::screen_flow_encrypt_part_2ViewBase() :
 
     add(s4_alias);
 
-    s5_initNFC.setPosition(0, 0, 320, 240);
-    s5_initNFC.setVisible(false);
+    s5_processing.setPosition(0, 0, 320, 240);
+    s5_processing.setVisible(false);
+    processing_text.setPosition(0, 108, 320, 25);
+    processing_text.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
+    processing_text.setLinespacing(0);
+    processing_text.setTypedText(touchgfx::TypedText(T_SE_PROCESSING));
+    s5_processing.add(processing_text);
+
+    add(s5_processing);
+
+    s6_initNFC.setPosition(0, 0, 320, 240);
+    s6_initNFC.setVisible(false);
     init_nfc_thinking_circles.setXY(95, 170);
-    s5_initNFC.add(init_nfc_thinking_circles);
+    s6_initNFC.add(init_nfc_thinking_circles);
 
     init_nfc_image.setXY(124, 44);
     init_nfc_image.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_ACTIVANDO_NFC_CUVEX_ID));
-    s5_initNFC.add(init_nfc_image);
+    s6_initNFC.add(init_nfc_image);
 
     init_nfc_text1.setXY(110, 140);
     init_nfc_text1.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     init_nfc_text1.setLinespacing(0);
     init_nfc_text1.setTypedText(touchgfx::TypedText(T_SE_S5_INIT_NFC_TEXT1));
-    s5_initNFC.add(init_nfc_text1);
+    s6_initNFC.add(init_nfc_text1);
 
     init_nfc_text2.setXY(178, 140);
     init_nfc_text2.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     init_nfc_text2.setLinespacing(0);
     init_nfc_text2.setTypedText(touchgfx::TypedText(T_SE_S5_INIT_NFC_TEXT2));
-    s5_initNFC.add(init_nfc_text2);
+    s6_initNFC.add(init_nfc_text2);
 
-    add(s5_initNFC);
+    add(s6_initNFC);
 
-    s6_waitReadWriteNFC.setPosition(0, 0, 320, 240);
-    s6_waitReadWriteNFC.setVisible(false);
+    s7_waitReadWriteNFC.setPosition(0, 0, 320, 240);
+    s7_waitReadWriteNFC.setVisible(false);
     wait_read_write_nfc_image.setXY(112, 49);
     wait_read_write_nfc_image.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_NFC_CUVEX_ID));
-    s6_waitReadWriteNFC.add(wait_read_write_nfc_image);
+    s7_waitReadWriteNFC.add(wait_read_write_nfc_image);
 
     wait_read_write_nfc_text.setPosition(0, 140, 320, 40);
     wait_read_write_nfc_text.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     wait_read_write_nfc_text.setLinespacing(0);
     wait_read_write_nfc_text.setTypedText(touchgfx::TypedText(T_SE_S6_WAIT_READ_NFC_TEXT));
-    s6_waitReadWriteNFC.add(wait_read_write_nfc_text);
+    s7_waitReadWriteNFC.add(wait_read_write_nfc_text);
 
-    add(s6_waitReadWriteNFC);
+    add(s7_waitReadWriteNFC);
 
-    s7_writeError.setPosition(0, 0, 320, 240);
-    s7_writeError.setVisible(false);
+    s8_writeError.setPosition(0, 0, 320, 240);
+    s8_writeError.setVisible(false);
     btn_retry.setBoxWithBorderPosition(0, 0, 320, 30);
     btn_retry.setBorderSize(0);
     btn_retry.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
@@ -386,30 +396,30 @@ screen_flow_encrypt_part_2ViewBase::screen_flow_encrypt_part_2ViewBase() :
     btn_retry.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     btn_retry.setAction(flexButtonCallback);
     btn_retry.setPosition(0, 210, 320, 30);
-    s7_writeError.add(btn_retry);
+    s8_writeError.add(btn_retry);
 
     text_error_cryptogram.setPosition(0, 90, 320, 60);
     text_error_cryptogram.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     text_error_cryptogram.setLinespacing(0);
     text_error_cryptogram.setTypedText(touchgfx::TypedText(T_SE_S7_ERROR_TAG_WITH_CRYPTOGRAM));
-    s7_writeError.add(text_error_cryptogram);
+    s8_writeError.add(text_error_cryptogram);
 
     text_error_tag_format.setPosition(0, 130, 320, 40);
     text_error_tag_format.setColor(touchgfx::Color::getColorFromRGB(63, 63, 81));
     text_error_tag_format.setLinespacing(0);
     text_error_tag_format.setTypedText(touchgfx::TypedText(T_SE_S7_ERROR_TAG_WITH_BAD_FORMAT));
     text_error_tag_format.setVisible(false);
-    s7_writeError.add(text_error_tag_format);
+    s8_writeError.add(text_error_tag_format);
 
     image_error.setXY(117, 44);
     image_error.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_ERROR_CUVEX_ID));
     image_error.setVisible(false);
-    s7_writeError.add(image_error);
+    s8_writeError.add(image_error);
 
-    add(s7_writeError);
+    add(s8_writeError);
 
-    s8_writeSuccess.setPosition(0, 0, 320, 240);
-    s8_writeSuccess.setVisible(false);
+    s9_writeSuccess.setPosition(0, 0, 320, 240);
+    s9_writeSuccess.setVisible(false);
     btn_success.setBoxWithBorderPosition(0, 0, 320, 30);
     btn_success.setBorderSize(0);
     btn_success.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(63, 63, 81), touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(51, 102, 153));
@@ -418,11 +428,11 @@ screen_flow_encrypt_part_2ViewBase::screen_flow_encrypt_part_2ViewBase() :
     btn_success.setTextColors(touchgfx::Color::getColorFromRGB(237, 237, 237), touchgfx::Color::getColorFromRGB(237, 237, 237));
     btn_success.setAction(flexButtonCallback);
     btn_success.setPosition(0, 210, 320, 30);
-    s8_writeSuccess.add(btn_success);
+    s9_writeSuccess.add(btn_success);
 
     image_success.setXY(117, 44);
     image_success.setBitmap(touchgfx::Bitmap(BITMAP_GRAFISMO_PROCESO_EXITOSO_CUVEX_ID));
-    s8_writeSuccess.add(image_success);
+    s9_writeSuccess.add(image_success);
 
     text_cryptogram_success_spanish.setPosition(0, 0, 320, 240);
     text_cryptogram_success_spanish.setVisible(false);
@@ -461,7 +471,7 @@ screen_flow_encrypt_part_2ViewBase::screen_flow_encrypt_part_2ViewBase() :
     text_cryptogram_success_spanish_1.setTypedText(touchgfx::TypedText(T_SE_TEXT_CRYPTOGRAM_SUCCESS_SPANISH_1));
     text_cryptogram_success_spanish.add(text_cryptogram_success_spanish_1);
 
-    s8_writeSuccess.add(text_cryptogram_success_spanish);
+    s9_writeSuccess.add(text_cryptogram_success_spanish);
 
     text_cryptogram_success_english.setPosition(0, 0, 320, 240);
     text_cryptogram_success_english_6.setPosition(0, 173, 320, 18);
@@ -505,9 +515,9 @@ screen_flow_encrypt_part_2ViewBase::screen_flow_encrypt_part_2ViewBase() :
     text_cryptogram_success_english_1.setTypedText(touchgfx::TypedText(T_SE_TEXT_CRYPTOGRAM_SUCCESS_ENGLISH_1));
     text_cryptogram_success_english.add(text_cryptogram_success_english_1);
 
-    s8_writeSuccess.add(text_cryptogram_success_english);
+    s9_writeSuccess.add(text_cryptogram_success_english);
 
-    add(s8_writeSuccess);
+    add(s9_writeSuccess);
 
     close_button.setXY(0, 0);
     add(close_button);

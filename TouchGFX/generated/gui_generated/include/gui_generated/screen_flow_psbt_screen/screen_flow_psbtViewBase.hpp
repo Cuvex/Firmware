@@ -146,8 +146,8 @@ protected:
     touchgfx::TextArea processing_text;
     touchgfx::Container s9_checkSignedQR;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_write_psbt_via_nfc;
-    uint8_t qrBuffer_qr_code[QRCODE_BUFFER_SIZE(19)];
-    uint8_t qrScratchBuffer_qr_code[QRCODE_BUFFER_SIZE(19)];
+    uint8_t qrBuffer_qr_code[QRCODE_BUFFER_SIZE(20)];
+    uint8_t qrScratchBuffer_qr_code[QRCODE_BUFFER_SIZE(20)];
     touchgfx::QRCode qr_code;
     touchgfx::Container psbt_signed_success;
     touchgfx::TextArea psbt_signed_success_text;

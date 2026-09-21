@@ -30,7 +30,7 @@ void screen_initView::setupScreen()
     screen_initView::changeScreen(GUI_TO_MAIN_SCREEN_INIT);
 
     /*** Firmware version ***/
-	Unicode::snprintf(fw_versionBuffer, FW_VERSION_SIZE, (char *) cuvex.info.fw_version);
+	Unicode::snprintf(fw_versionBuffer, FW_VERSION_SIZE, (char *) FIRMWARE_VERSION);
 
 	/*** Device alias ***/
 	if((cuvex.device_alias_buffer[0] == 0xFF) && (cuvex.device_alias_buffer[1] == 0xFF) && (cuvex.device_alias_buffer[2] == 0xFF))

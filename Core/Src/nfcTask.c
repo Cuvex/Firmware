@@ -591,7 +591,7 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 		memcpy(cuvex.nfc.tag.new_cryptogram, cuvex.nfc.tag.cryptogram, sizeof(cuvex.nfc.tag.new_cryptogram));
 		memcpy(cuvex.nfc.tag.new_information, cuvex.nfc.tag.information, sizeof(cuvex.nfc.tag.new_information));
 
-		/*** READ + WRITE --> if tag1 equals tag2 ***/
+		/*** READ + WRITE --> if tag1 different from tag2 ***/
 		if(strstr((char *) cuvex.nfc.tag.uid, (char *) cuvex.nfc.tag.new_uid) == 0x00)
 		{
 			/*** READ --> if tag2 not formatted ***/
@@ -633,7 +633,30 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 				memcpy(cuvex.nfc.tag.alias, cuvex.nfc.tag.new_alias, sizeof(cuvex.nfc.tag.alias));
 				memcpy(cuvex.nfc.tag.cryptogram, cuvex.nfc.tag.new_cryptogram, sizeof(cuvex.nfc.tag.cryptogram));
 				memcpy(cuvex.nfc.tag.information, cuvex.nfc.tag.new_information, sizeof(cuvex.nfc.tag.information));
-				cuvex.nfc.tag.information[strlen((char *) cuvex.nfc.tag.information) - 1] = '1';
+
+				if((cuvex.nfc.tag.information[0] == 'E') && (cuvex.nfc.tag.information[1] == 'N') && (cuvex.nfc.tag.information[2] == 'C') && (cuvex.nfc.tag.information[3] == ','))	//LEGACY --> Try "complet format" (ASCII)
+				{
+					char *ptr = strstr((char *) cuvex.nfc.tag.information, ",C-");
+
+					if(ptr != 0x00){
+						ptr[3] = '1';	//Mark as cloned
+					}
+				}
+				else	//NEW --> Try "reduced format" (ASCII + binary)
+				{
+					enc_fields_t enc;
+					char token[ENC_TOKEN_LEN + 1] = {0};
+
+					memcpy(token, cuvex.nfc.tag.information, ENC_TOKEN_LEN);
+					token[ENC_TOKEN_LEN] = '\0';
+
+					if(enc_decode_reduced_to_fields(token, &enc) == ENC_OK)
+					{
+						enc.c = 1;													//Mark as cloned
+						enc_encode_fields_to_reduced(&enc, token, sizeof(token));	//Re-encode token (checksum auto updated)
+						memcpy(cuvex.nfc.tag.information, token, ENC_TOKEN_LEN);	//Replace ONLY ASCII token
+					}
+				}
 
 				/*** Text/record 1 --> Initialization and encoding ***/
 				buf_lan_code_1.buffer = (uint8_t *) "A:";
@@ -689,6 +712,10 @@ int stateMachineTagActionT2T_NTAG216(rfalNfcDevice *pNfcDevice, ndefContext *pNd
 #endif
 			}
 
+			cuvex.nfc.tag.flag_readed_writed = true;
+		}
+		else{
+			cuvex.nfc.tag.encripted	= true;	//If tag1 equals tag2 => ERROR tag encrypted
 			cuvex.nfc.tag.flag_readed_writed = true;
 		}
 		break;
@@ -1028,7 +1055,7 @@ int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx
 		memcpy(cuvex.nfc.tag.new_information, cuvex.nfc.tag.information, sizeof(cuvex.nfc.tag.new_information));
 		memcpy(cuvex.nfc.tag.new_multisignature, cuvex.nfc.tag.multisignature, sizeof(cuvex.nfc.tag.new_multisignature));
 
-		/*** READ + WRITE --> if tag1 equals tag2 ***/
+		/*** READ + WRITE --> if tag1 different from tag2 ***/
 		if(strstr((char *) cuvex.nfc.tag.uid, (char *) cuvex.nfc.tag.new_uid) == 0x00)
 		{
 			/*** READ --> if tag2 not formatted ***/
@@ -1072,7 +1099,30 @@ int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx
 				memcpy(cuvex.nfc.tag.cryptogram, cuvex.nfc.tag.new_cryptogram, sizeof(cuvex.nfc.tag.cryptogram));
 				memcpy(cuvex.nfc.tag.information, cuvex.nfc.tag.new_information, sizeof(cuvex.nfc.tag.information));
 				memcpy(cuvex.nfc.tag.multisignature, cuvex.nfc.tag.new_multisignature, sizeof(cuvex.nfc.tag.multisignature));
-				cuvex.nfc.tag.information[strlen((char *) cuvex.nfc.tag.information) - 1] = '1';
+
+				if((cuvex.nfc.tag.information[0] == 'E') && (cuvex.nfc.tag.information[1] == 'N') && (cuvex.nfc.tag.information[2] == 'C') && (cuvex.nfc.tag.information[3] == ','))	//LEGACY --> Try "complet format" (ASCII)
+				{
+					char *ptr = strstr((char *) cuvex.nfc.tag.information, ",C-");
+
+					if(ptr != 0x00){
+						ptr[3] = '1';	//Mark as cloned
+					}
+				}
+				else	//NEW --> Try "reduced format" (ASCII + binary)
+				{
+					enc_fields_t enc;
+					char token[ENC_TOKEN_LEN + 1] = {0};
+
+					memcpy(token, cuvex.nfc.tag.information, ENC_TOKEN_LEN);
+					token[ENC_TOKEN_LEN] = '\0';
+
+					if(enc_decode_reduced_to_fields(token, &enc) == ENC_OK)
+					{
+						enc.c = 1;													//Mark as cloned
+						enc_encode_fields_to_reduced(&enc, token, sizeof(token));	//Re-encode token (checksum auto updated)
+						memcpy(cuvex.nfc.tag.information, token, ENC_TOKEN_LEN);	//Replace ONLY ASCII token
+					}
+				}
 
 				/*** Text/record 1 --> Initialization and encoding ***/
 				buf_lan_code_1.buffer = (uint8_t *) "A:";
@@ -1138,6 +1188,10 @@ int stateMachineTagActionT4T_8K(rfalNfcDevice *pNfcDevice, ndefContext *pNdefCtx
 #endif
 			}
 
+			cuvex.nfc.tag.flag_readed_writed = true;
+		}
+		else{
+			cuvex.nfc.tag.encripted	= true;	//If tag1 equals tag2 => ERROR tag encrypted
 			cuvex.nfc.tag.flag_readed_writed = true;
 		}
 		break;
@@ -1253,111 +1307,101 @@ int ndefRecordGetInfoT2T_NTAG216(const ndefRecord* record)
 
 			break;
 
-		case 3:	//Record 3 (information --> Format "ENC,vXX.XX.XX(Y),M-X,P-X,C-X")
+		case 3: // Record 3 (information --> NEW + LEGACY formats)
 
 			if((bufLanguageCode.length == 2) && (bufLanguageCode.buffer[0] == 'I') && (bufLanguageCode.buffer[1] == ':'))
 			{
 				memset(cuvex.nfc.tag.information, 0x00, sizeof(cuvex.nfc.tag.information));
 				memcpy(cuvex.nfc.tag.information, bufSentence.buffer, bufSentence.length);
 
-				char *ptr;
-				ptr = strstr((char *) cuvex.nfc.tag.information, "ENC,");
+				enc_fields_t enc;
+				char *ptr = 0x00, *bin_start = 0x00;
+				int x=0, y=0;
 
-				if(ptr != 0x00)	//Get encripted tag info
+				/*** Defaults ***/
+				memset(cuvex.nfc.tag.fw_version, 0x00, sizeof(cuvex.nfc.tag.fw_version));
+				cuvex.nfc.tag.multisigned_total = 0;
+				cuvex.nfc.tag.multisigned_mandatory = 0;
+				cuvex.nfc.tag.encripted = false;
+
+				/*
+				 * NEW --> Try "reduced format" (ASCII + binary)
+				 */
+				if(cuvex.nfc.tag.information[0] == 'E')
 				{
-					cuvex.nfc.tag.encripted = true;
+					uint8_t *info = cuvex.nfc.tag.information;
 
-					ptr = strstr((char *) cuvex.nfc.tag.information, ",M-");
+					char token[ENC_TOKEN_LEN + 1] = {0};
+					memcpy(token, info, ENC_TOKEN_LEN);
+					token[ENC_TOKEN_LEN] = '\0';
 
-					if(ptr != 0x00)	//Get signed tag info
+					if(enc_decode_reduced_to_fields(token, &enc) == ENC_OK)
 					{
-						if(ptr[3] == '1'){
-							cuvex.nfc.tag.multisigned_total = 1;
-						}
-						else if(ptr[3] == '2'){
-							cuvex.nfc.tag.multisigned_total = 2;
-						}
-						else if(ptr[3] == '3'){
-							cuvex.nfc.tag.multisigned_total = 3;
-						}
-						else if(ptr[3] == '4'){
-							cuvex.nfc.tag.multisigned_total = 4;
-						}
-						else if(ptr[3] == '5'){
-							cuvex.nfc.tag.multisigned_total = 5;
-						}
-						else if(ptr[3] == '6'){
-							cuvex.nfc.tag.multisigned_total = 6;
-						}
-						else{
-							cuvex.nfc.tag.multisigned_total = 0;
-						}
+						cuvex.nfc.tag.encripted = true;
 
-						if(ptr[4] == ':'){
-							if(ptr[5] == '1'){
-								cuvex.nfc.tag.multisigned_mandatory = 1;
+						/*** ASCII --> Get firmware version info + Get signed tag info + Get Cuvex BIT identifier tag info ***/
+						snprintf(cuvex.nfc.tag.fw_version, sizeof(cuvex.nfc.tag.fw_version), "v%u.%u.%u", enc.f1, enc.f2, enc.f3);
+						cuvex.nfc.tag.multisigned_total = enc.mx;
+						cuvex.nfc.tag.multisigned_mandatory = enc.my;
+
+						/*** BINARY --> Get salt_PBKDF2 and iv_AE ***/
+						bin_start = info + ENC_TOKEN_LEN;
+						memcpy(cuvex.nfc.tag.salt_pbkdf2, bin_start, 16);
+						memcpy(cuvex.nfc.tag.iv_aes_gcm, bin_start + 16, 16);
+					}
+				}
+
+				/*
+				 * LEGACY --> Try "complet format" (ASCII)
+				 */
+				if(bin_start == 0x00)
+				{
+					/*** Get encripted tag info ***/
+					ptr = strstr((char *) cuvex.nfc.tag.information, "ENC,");
+
+					if(ptr != 0x00)
+					{
+						cuvex.nfc.tag.encripted = true;
+
+						/*** Get firmware version info (vX.Y.Z) ***/
+						memcpy(cuvex.nfc.tag.fw_version, ptr + 4, 6);
+
+						/*** Get signed tag info ***/
+						ptr = strstr((char *) cuvex.nfc.tag.information, ",M-");
+
+						if(ptr != 0x00)
+						{
+							if(sscanf(ptr+3, "%d:%d", &x, &y) == 2)
+							{
+								if((y <= x) && (x >= 1) && (x <= 6) && (y >= 1) && (y <= 6)){
+									cuvex.nfc.tag.multisigned_total = (uint8_t) x;
+									cuvex.nfc.tag.multisigned_mandatory = (uint8_t) y;
+								}
 							}
-							else if(ptr[5] == '2'){
-								cuvex.nfc.tag.multisigned_mandatory = 2;
+							else if(sscanf(ptr+3, "%d", &x) == 1)
+							{
+								if((x >= 1) && (x <= 6)){
+									cuvex.nfc.tag.multisigned_total = (uint8_t) x;
+									cuvex.nfc.tag.multisigned_mandatory = (uint8_t) x;
+								}
 							}
-							else if(ptr[5] == '3'){
-								cuvex.nfc.tag.multisigned_mandatory = 3;
-							}
-							else if(ptr[5] == '4'){
-								cuvex.nfc.tag.multisigned_mandatory = 4;
-							}
-							else if(ptr[5] == '5'){
-								cuvex.nfc.tag.multisigned_mandatory = 5;
-							}
-							else if(ptr[5] == '6'){
-								cuvex.nfc.tag.multisigned_mandatory = 6;
-							}
-							else{
-								cuvex.nfc.tag.multisigned_mandatory = 0;
-							}
-						}
-						else{
-							cuvex.nfc.tag.multisigned_mandatory = cuvex.nfc.tag.multisigned_total;
 						}
 					}
+				}
 
-					ptr = strstr((char *) cuvex.nfc.tag.information, ",P-");
-
-					if(ptr != 0x00)	//Get packed tag info
-					{
-						if(ptr[3] == '1'){
-							cuvex.nfc.tag.packed = 1;
-						}
-						else{
-							cuvex.nfc.tag.packed = 0;
-						}
+				/*** Return SUCCESS if encrypted ***/
+				if(cuvex.nfc.tag.encripted == true)
+				{
+#ifdef DEBUG_NFC_PRINTF
+					printf("\r\nInformation:\r\n");
+					for(int i = 0; i < sizeof(cuvex.nfc.tag.information); i++){
+						printf("%c", cuvex.nfc.tag.information[i]);
 					}
-
-					ptr = strstr((char *) cuvex.nfc.tag.information, ",C-");
-
-					if(ptr != 0x00)	//Get cloned tag info
-					{
-						if(ptr[3] == '1'){
-							cuvex.nfc.tag.cloned = 1;
-						}
-						else{
-							cuvex.nfc.tag.cloned = 0;
-						}
-					}
+					printf("\r\n");
+#endif
 
 					return SUCCESS;
 				}
-				else{
-					cuvex.nfc.tag.encripted = false;
-				}
-
-#ifdef DEBUG_NFC_PRINTF
-				printf("\r\nInformation:\r\n");
-				for(int i=0; i<sizeof(cuvex.nfc.tag.information); i++){
-					printf("%c", cuvex.nfc.tag.information[i]);
-				}
-				printf("\r\n");
-#endif
 			}
 
 			break;
@@ -1465,110 +1509,101 @@ int ndefRecordGetInfoT4T_8K(const ndefRecord* record)
 
 			break;
 
-		case 3:	//Record 3 (information --> Format "ENC,vXX.XX.XX(Y),M-X,P-X,C-X")
+		case 3: // Record 3 (information --> NEW + LEGACY formats)
 
 			if((bufLanguageCode.length == 2) && (bufLanguageCode.buffer[0] == 'I') && (bufLanguageCode.buffer[1] == ':'))
 			{
 				memset(cuvex.nfc.tag.information, 0x00, sizeof(cuvex.nfc.tag.information));
 				memcpy(cuvex.nfc.tag.information, bufSentence.buffer, bufSentence.length);
 
-				char *ptr;
-				ptr = strstr((char *) cuvex.nfc.tag.information, "ENC,");
+				enc_fields_t enc;
+				char *ptr = 0x00, *bin_start = 0x00;
+				int x=0, y=0;
 
-				if(ptr != 0x00)	//Get encripted tag info
+				/*** Defaults ***/
+				memset(cuvex.nfc.tag.fw_version, 0x00, sizeof(cuvex.nfc.tag.fw_version));
+				cuvex.nfc.tag.multisigned_total = 0;
+				cuvex.nfc.tag.multisigned_mandatory = 0;
+				cuvex.nfc.tag.encripted = false;
+
+				/*
+				 * NEW --> Try "reduced format" (ASCII + binary)
+				 */
+				if(cuvex.nfc.tag.information[0] == 'E')
 				{
-					cuvex.nfc.tag.encripted = true;
+					uint8_t *info = cuvex.nfc.tag.information;
 
-					ptr = strstr((char *) cuvex.nfc.tag.information, ",M-");
+					char token[ENC_TOKEN_LEN + 1] = {0};
+					memcpy(token, info, ENC_TOKEN_LEN);
+					token[ENC_TOKEN_LEN] = '\0';
 
-					if(ptr != 0x00)	//Get signed tag info
+					if(enc_decode_reduced_to_fields(token, &enc) == ENC_OK)
 					{
-						if(ptr[3] == '1'){
-							cuvex.nfc.tag.multisigned_total = 1;
-						}
-						else if(ptr[3] == '2'){
-							cuvex.nfc.tag.multisigned_total = 2;
-						}
-						else if(ptr[3] == '3'){
-							cuvex.nfc.tag.multisigned_total = 3;
-						}
-						else if(ptr[3] == '4'){
-							cuvex.nfc.tag.multisigned_total = 4;
-						}
-						else if(ptr[3] == '5'){
-							cuvex.nfc.tag.multisigned_total = 5;
-						}
-						else if(ptr[3] == '6'){
-							cuvex.nfc.tag.multisigned_total = 6;
-						}
-						else{
-							cuvex.nfc.tag.multisigned_total = 0;
-						}
+						cuvex.nfc.tag.encripted = true;
 
-						if(ptr[4] == ':'){
-							if(ptr[5] == '1'){
-								cuvex.nfc.tag.multisigned_mandatory = 1;
-							}
-							else if(ptr[5] == '2'){
-								cuvex.nfc.tag.multisigned_mandatory = 2;
-							}
-							else if(ptr[5] == '3'){
-								cuvex.nfc.tag.multisigned_mandatory = 3;
-							}
-							else if(ptr[5] == '4'){
-								cuvex.nfc.tag.multisigned_mandatory = 4;
-							}
-							else if(ptr[5] == '5'){
-								cuvex.nfc.tag.multisigned_mandatory = 5;
-							}
-							else if(ptr[5] == '6'){
-								cuvex.nfc.tag.multisigned_mandatory = 6;
-							}
-							else{
-								cuvex.nfc.tag.multisigned_mandatory = 0;
-							}
-						}
-						else{
-							cuvex.nfc.tag.multisigned_mandatory = cuvex.nfc.tag.multisigned_total;
-						}
+						/*** ASCII --> Get firmware version info + Get signed tag info + Get Cuvex BIT identifier tag info ***/
+						snprintf(cuvex.nfc.tag.fw_version, sizeof(cuvex.nfc.tag.fw_version), "v%u.%u.%u", enc.f1, enc.f2, enc.f3);
+						cuvex.nfc.tag.multisigned_total = enc.mx;
+						cuvex.nfc.tag.multisigned_mandatory = enc.my;
+
+						/*** BINARY --> Get salt_PBKDF2 and iv_AE ***/
+						bin_start = info + ENC_TOKEN_LEN;
+						memcpy(cuvex.nfc.tag.salt_pbkdf2, bin_start, 16);
+						memcpy(cuvex.nfc.tag.iv_aes_gcm, bin_start + 16, 16);
 					}
+				}
 
-					ptr = strstr((char *) cuvex.nfc.tag.information, ",P-");
+				/*
+				 * LEGACY --> Try "complet format" (ASCII)
+				 */
+				if(bin_start == 0x00)
+				{
+					/*** Get encripted tag info ***/
+					ptr = strstr((char *) cuvex.nfc.tag.information, "ENC,");
 
-					if(ptr != 0x00)	//Get packed tag info
+					if(ptr != 0x00)
 					{
-						if(ptr[3] == '1'){
-							cuvex.nfc.tag.packed = 1;
-						}
-						else{
-							cuvex.nfc.tag.packed = 0;
-						}
-					}
+						cuvex.nfc.tag.encripted = true;
 
-					ptr = strstr((char *) cuvex.nfc.tag.information, ",C-");
+						/*** Get firmware version info (vX.Y.Z) ***/
+						memcpy(cuvex.nfc.tag.fw_version, ptr + 4, 6);
 
-					if(ptr != 0x00)	//Get cloned tag info
-					{
-						if(ptr[3] == '1'){
-							cuvex.nfc.tag.cloned = 1;
-						}
-						else{
-							cuvex.nfc.tag.cloned = 0;
+						/*** Get signed tag info ***/
+						ptr = strstr((char *) cuvex.nfc.tag.information, ",M-");
+
+						if(ptr != 0x00)
+						{
+							if(sscanf(ptr+3, "%d:%d", &x, &y) == 2)
+							{
+								if((y <= x) && (x >= 1) && (x <= 6) && (y >= 1) && (y <= 6)){
+									cuvex.nfc.tag.multisigned_total = (uint8_t) x;
+									cuvex.nfc.tag.multisigned_mandatory = (uint8_t) y;
+								}
+							}
+							else if(sscanf(ptr+3, "%d", &x) == 1)
+							{
+								if((x >= 1) && (x <= 6)){
+									cuvex.nfc.tag.multisigned_total = (uint8_t) x;
+									cuvex.nfc.tag.multisigned_mandatory = (uint8_t) x;
+								}
+							}
 						}
 					}
 				}
-				else{
-					cuvex.nfc.tag.encripted = false;
-				}
 
+				/*** Return SUCCESS if encrypted ***/
+				if(cuvex.nfc.tag.encripted == true)
+				{
 #ifdef DEBUG_NFC_PRINTF
-				printf("\r\nInformation:\r\n");
-				for(int i=0; i<sizeof(cuvex.nfc.tag.information); i++){
-					printf("%c", cuvex.nfc.tag.information[i]);
-				}
-				printf("\r\n");
+					printf("\r\nInformation:\r\n");
+					for(int i = 0; i < sizeof(cuvex.nfc.tag.information); i++){
+						printf("%c", cuvex.nfc.tag.information[i]);
+					}
+					printf("\r\n");
 #endif
-				return SUCCESS;
+
+					return SUCCESS;
+				}
 			}
 
 			break;

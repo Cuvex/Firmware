@@ -12,7 +12,7 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
     flexButtonCallback(this, &screen_flow_psbtViewBase::flexButtonCallbackHandler)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
-    
+
     __background.setPosition(0, 0, 320, 240);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
@@ -386,10 +386,10 @@ screen_flow_psbtViewBase::screen_flow_psbtViewBase() :
     btn_write_psbt_via_nfc.setPosition(0, 210, 320, 30);
     s9_checkSignedQR.add(btn_write_psbt_via_nfc);
 
-    qr_code.setXY(67, 12);
+    qr_code.setXY(63, 8);
     qr_code.setBuffers(qrBuffer_qr_code, qrScratchBuffer_qr_code);
     qr_code.setVisible(false);
-    qr_code.setQRCodeVersion(19);
+    qr_code.setQRCodeVersion(20);
     qr_code.setScale(2);
     qr_code.setColors(touchgfx::Color::getColorFromRGB(64, 92, 160), touchgfx::Color::getColorFromRGB(237, 237, 237));
     qr_code.convertStringToQRCode("---");

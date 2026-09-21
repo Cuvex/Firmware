@@ -26,11 +26,10 @@
 void main_Task(void const * argument);
 void processGuiToMainQueue(void);
 void stateMachineScreens(void);
-void clearNfc_all(void);
-void clearNfc_readerFlags(void);
-void clearNfc_tagFlags(void);
-void clearNfc_tagInfo(void);
-void clearWallet(void);
+void clearCuvexStruct_1(void);
+void clearCuvexStruct_2(void);
+void clearCuvexStruct_nfcReaderFlags(void);
+void clearCuvexStruct_nfcTagFlags(void);
 void readFlash(uint32_t address, char* data, size_t data_size);
 void writeFlash(uint32_t address, char* data, size_t data_size);
 void eraseFlash(uint32_t Banks, uint32_t Page, uint32_t NbPages);
@@ -39,7 +38,6 @@ void loadEEPROM(void);
 void editEEPROM(void);
 void saveDeviceAlias(void);
 void eraseSignature(void);
-void getCuvexVersions(void);
 
 /********************************************************************** Extern's ***********************************************************************/
 extern osMessageQueueId_t guiToMainQueueHandle;	//RX --> guiTask to mainTask

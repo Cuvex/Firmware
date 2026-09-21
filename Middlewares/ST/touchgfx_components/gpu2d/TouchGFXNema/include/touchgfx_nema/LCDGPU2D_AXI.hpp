@@ -1,5 +1,5 @@
-#ifndef LCDGPU2D_AXI_HPP
-#define LCDGPU2D_AXI_HPP
+#ifndef TOUCHGFX_LCDGPU2D_AXI_HPP
+#define TOUCHGFX_LCDGPU2D_AXI_HPP
 
 #include <stdarg.h>
 #include <touchgfx/Bitmap.hpp>
@@ -81,6 +81,18 @@ public:
      *                     faster fillrects.
      */
     virtual void drawPartialBitmap(const Bitmap& bitmap, int16_t x, int16_t y, const Rect& rect, uint8_t alpha = 255, bool useOptimized = true);
+
+    /**
+     * Draws all (or a part) of a \a bitmap, scaled to fit desired rect.
+     *
+     * @param  bitmap          The bitmap to draw.
+     * @param  blitRect        The destination area to draw the bitmap in, in absolute coordinates.
+     * @param  invalidatedArea The subarea of the destination area that should be redrawn, in
+     *                         relative coordinates to the destination area.
+     * @param  renderVariant   The rendering variant to use for the scaling operation.
+     * @param  alpha           Optional alpha value ranging from 0=invisible to 255=solid.
+     */
+    virtual void drawScaledBitmap(const Bitmap& bitmap, const Rect& blitRect, const Rect& invalidatedArea, RenderingVariant renderVariant, uint8_t alpha = 255);
 
     /**
      * @fn virtual void LCDGPU2D_AXI::blitCopy(const uint16_t* sourceData, const Rect& source, const Rect& blitRect, uint8_t alpha, bool hasTransparentPixels);
@@ -412,7 +424,7 @@ protected:
 
 private:
     touchgfx::Bitmap::BitmapFormat format; // Framebuffer format
-     static const uint16_t BLOCK_SIZE = 1024U;
+    static const uint16_t BLOCK_SIZE = 1024U;
     static const uint16_t MAX_DICT_SIZE = 512U;
     uint8_t entryBuffer[64]; // Having 64byte max entry sizes entails 1 + 2 + ... + 63 + 64 = 2080px size image blocks
 
@@ -424,6 +436,14 @@ private:
     };
 
     LZW9DictionaryEntry lzw9Dictionary[MAX_DICT_SIZE];
+
+    static const uint16_t INDEX_TABLE_SIZE = 64U;
+
+    union
+    {
+        PixelRGB565 indexTable16[INDEX_TABLE_SIZE];
+        PixelARGB8888 indexTable32[INDEX_TABLE_SIZE];
+    };
 
     /**
      * @fn int UVtoCorner(float u, float v);
@@ -444,6 +464,69 @@ private:
      * @param v The vertical texture coordinate
      */
     int UVtoCornerQuad(float u, float v);
+
+    //Software/DMA2D implementations for RGB compressed bitmaps
+
+    /**
+     * Blits a 2D QOI-compressed source array to the framebuffer performing alpha-blending.
+     * If format is not supported by the DMA a software blend is performed.
+     *
+     * @param  sourceData The source pointer (points to the beginning of the data).
+     * @param  format     The compressed image format.
+     * @param  source     The location and dimensions of the source.
+     * @param  blitRect   A rectangle describing what region is to be drawn.
+     * @param  alpha      The alpha value to use for blending applied to the whole image (255 =
+     *                    solid, no blending)
+     */
+    void blitCopyCompressedRGB(const uint8_t* sourceData, Bitmap::BitmapFormat format, const Rect& source, const Rect& blitRect, uint8_t alpha);
+
+    /**
+     * Blits a QOI-compressed RGB565 source to the 16bpp framebuffer performing alpha-blending per
+     * pixel using DMA acceleration if available or software implementation otherwise.
+     *
+     * @param  sourceData The QOI-compressed RGB565 source pointer (points to the beginning of the data).
+     * @param  source     The location and dimensions of the source.
+     * @param  blitRect   A rectangle describing what region is to be drawn.
+     * @param  alpha      The alpha value to use for blending applied to the whole image (255 =
+     *                    solid, no blending)
+     */
+    void blitCopyCompressedRGB565_16BPP(const uint8_t* sourceData, const Rect& source, const Rect& blitRect, uint8_t alpha);
+
+    /**
+     * Blits a QOI-compressed ARGB8888 source to the 16bpp framebuffer performing alpha-blending per
+     * pixel using DMA acceleration if available or software implementation otherwise.
+     *
+     * @param  sourceData The QOI-compressed ARGB8888 source pointer (points to the beginning of the data).
+     * @param  source     The location and dimensions of the source.
+     * @param  blitRect   A rectangle describing what region is to be drawn.
+     * @param  alpha      The alpha value to use for blending applied to the whole image (255 =
+     *                    solid, no blending)
+     */
+    void blitCopyCompressedARGB8888_16BPP(const uint8_t* sourceData, const Rect& source, const Rect& blitRect, uint8_t alpha);
+
+    /**
+     * Blits a QOI-compressed RGB565 source to the 32bpp framebuffer performing alpha-blending per
+     * pixel using DMA acceleration if available or software implementation otherwise.
+     *
+     * @param  sourceData The QOI-compressed RGB565 source pointer (points to the beginning of the data).
+     * @param  source     The location and dimensions of the source.
+     * @param  blitRect   A rectangle describing what region is to be drawn.
+     * @param  alpha      The alpha value to use for blending applied to the whole image (255 =
+     *                    solid, no blending)
+     */
+    void blitCopyCompressedRGB565_32BPP(const uint8_t* sourceData, const Rect& source, const Rect& blitRect, uint8_t alpha);
+
+    /**
+     * Blits a QOI-compressed ARGB8888 source to the 32bpp framebuffer performing alpha-blending per
+     * pixel using DMA acceleration if available or software implementation otherwise.
+     *
+     * @param  sourceData The QOI-compressed ARGB8888 source pointer (points to the beginning of the data).
+     * @param  source     The location and dimensions of the source.
+     * @param  blitRect   A rectangle describing what region is to be drawn.
+     * @param  alpha      The alpha value to use for blending applied to the whole image (255 =
+     *                    solid, no blending)
+     */
+    void blitCopyCompressedARGB8888_32BPP(const uint8_t* sourceData, const Rect& source, const Rect& blitRect, uint8_t alpha);
 
     //Software/DMA2D implementations for L8 bitmaps
 
@@ -1162,4 +1245,4 @@ private:
 };
 
 } // namespace touchgfx
-#endif // LCDGPU2D_AXI_HPP
+#endif // TOUCHGFX_LCDGPU2D_AXI_HPP
