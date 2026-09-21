@@ -71,6 +71,14 @@ void HAL_GPU2D_CommandListCpltCallback(GPU2D_HandleTypeDef* hgpu2d, uint32_t Cmd
     osSemaphoreRelease(nema_irq_sem);
 }
 
+void HAL_GPU2D_ErrorCallback(GPU2D_HandleTypeDef *hgpu2d)
+{
+    uint32_t val = nema_reg_read(GPU2D_SYS_INTERRUPT); /* clear the ER interrupt */
+    nema_reg_write(GPU2D_SYS_INTERRUPT, val);
+
+    return;
+}
+
 int32_t nema_sys_init(void)
 {
     int error_code = 0;

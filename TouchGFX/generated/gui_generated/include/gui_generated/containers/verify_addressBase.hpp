@@ -64,8 +64,6 @@ protected:
     touchgfx::TextArea keyboard_text_info_3_1;
     touchgfx::TextArea keyboard_text_info_2;
     touchgfx::TextArea keyboard_text_info_1;
-    touchgfx::Container checkAddress;
-    touchgfx::TextArea check_text_info;
 
     /*
      * Wildcard Buffers

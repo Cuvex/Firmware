@@ -24,21 +24,24 @@
  **************************************************************************************************************************************/
 void main_Task(void const * argument)
 {
-	/*** EEPROM/SIGNATURE sector reading + initialization + data loading into RAM ***/
+	/*** Initialize struct "cuvex" to default values (part 1) ***/
+	clearCuvexStruct_1();
+
+	/*** Read specific memory sectors ***/
 	readFlash(DEV_ALIAS_ADDR, cuvex.device_alias_buffer, DEV_ALIAS_SIZE);
 	readFlash(EEPROM_ADDR, cuvex.eeprom_buffer, EEPROM_SIZE);
 	readFlash(SIGNATURE_ADDR, cuvex.signature_buffer, SIGNATURE_SIZE);
 
+	/*** Load data from EEPROM into RAM (init EEPROM, if not data to load) ***/
 	if(memcmp(cuvex.eeprom_buffer + 96, ">>>>>Footer<<<<<", 16) != 0){
 		initEEPROM();
 	}
 
 	loadEEPROM();
 
-	/*** Initialization of peripherals and variables + delay ****/
+	/*** Enable LCD + Initialize struct "cuvex" to default values (part 2) + delay  ***/
 	HAL_GPIO_WritePin(LCD_RESET_GPIO_Port, LCD_RESET_Pin, GPIO_PIN_SET);
-	getCuvexVersions();
-	clearNfc_all();
+	clearCuvexStruct_2();
 	osDelay(250);
 
 	/*** Main loop ***/
@@ -67,17 +70,15 @@ void processGuiToMainQueue(void)
 		default:
 			break;
 
-			/********************************************************/
+			/***********************************************************************************************************/
 		case GUI_TO_MAIN_SCREEN_INIT:
 			cuvex.screen = SCREEN_INIT;
-			clearNfc_all();
-			clearWallet();
+			clearCuvexStruct_2();
 			break;
 
 		case GUI_TO_MAIN_SCREEN_MAIN_MENU:
 			cuvex.screen = SCREEN_MAIN_MENU;
-			clearNfc_all();
-			clearWallet();
+			clearCuvexStruct_2();
 			break;
 
 		case GUI_TO_MAIN_SCREEN_FLOW_ENCRYPT:
@@ -104,70 +105,70 @@ void processGuiToMainQueue(void)
 			cuvex.screen = SCREEN_FLOW_SETTINGS;
 			break;
 
-			/********************************************************/
+			/***********************************************************************************************************/
 		case GUI_TO_MAIN_NFC_DISABLE:
-			clearNfc_readerFlags();
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcReaderFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.flag_enabled = false;
 			break;
 
 		case GUI_TO_MAIN_NFC_ENABLE:
-			clearNfc_readerFlags();
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcReaderFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.flag_enabled = true;
 			break;
 
 		case GUI_TO_MAIN_NFC_TAG_NONE:
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_NONE;
 			break;
 
 		case GUI_TO_MAIN_NFC_TAG_READ:
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ;
 			break;
 
 		case GUI_TO_MAIN_NFC_TAG_READ_FROM_NFC:
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ_FROM_NFC;
 			break;
 
 		case GUI_TO_MAIN_NFC_TAG_READ_FROM_PSBT:
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ_FROM_PSBT;
 			break;
 
 		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FROM_PSBT:
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FROM_PSBT;
 			break;
 
 		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FROM_PSBT_T4T_8K:
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FROM_PSBT_T4T_8K;
 			break;
 
 		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_ENCRYPT:
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FLOW_ENCRYPT;
 			break;
 
 		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_ENCRYPT_T4T_8K:
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FLOW_ENCRYPT_T4T_8K;
 			break;
 
 		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_CLONE:
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FLOW_CLONE;
 			break;
 
 		case GUI_TO_MAIN_NFC_TAG_READ_WRITE_FLOW_CLONE_T4T_8K:
-			clearNfc_tagFlags();
+			clearCuvexStruct_nfcTagFlags();
 			cuvex.nfc.tag.action = NFC_TAG_READ_WRITE_FLOW_CLONE_T4T_8K;
 			break;
 
-			/********************************************************/
+			/***********************************************************************************************************/
 		case GUI_TO_MAIN_FLASH_SAVE_SETTINGS:
 			editEEPROM();
 			break;
@@ -381,17 +382,25 @@ void stateMachineScreens(void)
 	}
 }
 
+/*
+ *
+ *
+ *
+ */
+
 /**************************************************************************************************************************************
  ***** Function 	: N/A
  ***** Description 	: N/A
  ***** Parameters 	: N/A
  ***** Response 	: N/A
  **************************************************************************************************************************************/
-void clearNfc_all(void)
+void clearCuvexStruct_1(void)
 {
-	clearNfc_readerFlags();
-	clearNfc_tagFlags();
-	clearNfc_tagInfo();
+	memset(&cuvex.screen, 0x00, sizeof(cuvex.screen));								//Clear struct "cuvex" root
+	memset(&cuvex.device_alias_buffer, 0x00, sizeof(cuvex.device_alias_buffer));	//...
+	memset(&cuvex.eeprom_buffer, 0x00, sizeof(cuvex.eeprom_buffer));				//...
+	memset(&cuvex.signature_buffer, 0x00, sizeof(cuvex.signature_buffer));			//...
+	memset(&cuvex.info, 0x00, sizeof(cuvex.info));									//...
 }
 
 /**************************************************************************************************************************************
@@ -400,7 +409,21 @@ void clearNfc_all(void)
  ***** Parameters 	: N/A
  ***** Response 	: N/A
  **************************************************************************************************************************************/
-void clearNfc_readerFlags(void)
+void clearCuvexStruct_2(void)
+{
+	memset(&cuvex.nfc, 0x00, sizeof(cuvex.nfc));			//Clear struct "cuvex.encrypt"
+	memset(&cuvex.encrypt, 0x00, sizeof(cuvex.encrypt));	//Clear struct "cuvex.encrypt"
+	memset(&cuvex.decrypt, 0x00, sizeof(cuvex.decrypt));	//Clear struct "cuvex.decrypt"
+	memset(&cuvex.wallet, 0x00, sizeof(cuvex.wallet));		//Clear struct "cuvex.wallet"
+}
+
+/**************************************************************************************************************************************
+ ***** Function 	: N/A
+ ***** Description 	: N/A
+ ***** Parameters 	: N/A
+ ***** Response 	: N/A
+ **************************************************************************************************************************************/
+void clearCuvexStruct_nfcReaderFlags(void)
 {
 	cuvex.nfc.flag_enabled     = false;
 	cuvex.nfc.flag_initialized = false;
@@ -413,7 +436,7 @@ void clearNfc_readerFlags(void)
  ***** Parameters 	: N/A
  ***** Response 	: N/A
  **************************************************************************************************************************************/
-void clearNfc_tagFlags(void)
+void clearCuvexStruct_nfcTagFlags(void)
 {
 	cuvex.nfc.tag.action = NFC_TAG_NONE;
 	cuvex.nfc.tag.type = NFC_TAG_TYPE_NONE;
@@ -425,63 +448,11 @@ void clearNfc_tagFlags(void)
 	cuvex.nfc.tag.flag_readed_writed_from_psbt_size_warning	= false;
 }
 
-/**************************************************************************************************************************************
- ***** Function 	: N/A
- ***** Description 	: N/A
- ***** Parameters 	: N/A
- ***** Response 	: N/A
- **************************************************************************************************************************************/
-void clearNfc_tagInfo(void)
-{
-	memset(cuvex.nfc.tag.uid, 0x00, sizeof(cuvex.nfc.tag.uid));
-	memset(cuvex.nfc.tag.alias, 0x00, sizeof(cuvex.nfc.tag.alias));
-	memset(cuvex.nfc.tag.cryptogram, 0x00, sizeof(cuvex.nfc.tag.cryptogram));
-	memset(cuvex.nfc.tag.information, 0x00, sizeof(cuvex.nfc.tag.information));
-	memset(cuvex.nfc.tag.multisignature, 0x00, sizeof(cuvex.nfc.tag.multisignature));
-	memset(cuvex.nfc.tag.new_uid, 0x00, sizeof(cuvex.nfc.tag.new_uid));
-	memset(cuvex.nfc.tag.new_alias, 0x00, sizeof(cuvex.nfc.tag.new_alias));
-	memset(cuvex.nfc.tag.new_cryptogram, 0x00, sizeof(cuvex.nfc.tag.new_cryptogram));
-	memset(cuvex.nfc.tag.new_information, 0x00, sizeof(cuvex.nfc.tag.new_information));
-	memset(cuvex.nfc.tag.new_multisignature, 0x00, sizeof(cuvex.nfc.tag.new_multisignature));
-	cuvex.nfc.tag.encripted	  			= 0;
-	cuvex.nfc.tag.multisigned_total 	= 0;
-	cuvex.nfc.tag.multisigned_mandatory = 0;
-	cuvex.nfc.tag.packed	  			= 0;
-	cuvex.nfc.tag.cloned	  			= 0;
-	/***/
-	cuvex.nfc.tag.from_nfc_type	= 0;
-	memset(cuvex.nfc.tag.from_nfc_seed, 0x00, sizeof(cuvex.nfc.tag.from_nfc_seed));
-	memset(cuvex.nfc.tag.from_nfc_private_key, 0x00, sizeof(cuvex.nfc.tag.from_nfc_private_key));
-	memset(cuvex.nfc.tag.from_nfc_public_key, 0x00, sizeof(cuvex.nfc.tag.from_nfc_public_key));
-	memset(cuvex.nfc.tag.from_nfc_pass_deriv, 0x00, sizeof(cuvex.nfc.tag.from_nfc_pass_deriv));
-	memset(cuvex.nfc.tag.from_nfc_plain_text, 0x00, sizeof(cuvex.nfc.tag.from_nfc_plain_text));
-	/***/
-	cuvex.nfc.tag.from_psbt_type = 0;
-	memset(cuvex.nfc.tag.from_psbt_base64, 0x00, sizeof(cuvex.nfc.tag.from_psbt_base64));
-	memset(cuvex.nfc.tag.from_psbt_base64_signed, 0x00, sizeof(cuvex.nfc.tag.from_psbt_base64_signed));
-	/***/
-	memset(cuvex.decrypt.cryptogram_decrypted, 0x00, sizeof(cuvex.decrypt.cryptogram_decrypted));
-}
-
-/**************************************************************************************************************************************
- ***** Function 	: N/A
- ***** Description 	: N/A
- ***** Parameters 	: N/A
- ***** Response 	: N/A
- **************************************************************************************************************************************/
-void clearWallet(void)
-{
-	cuvex.wallet.flag_new = false;
-	memset(cuvex.wallet.dice_selected, 0x00, sizeof(cuvex.wallet.dice_selected));
-	memset(cuvex.wallet.coin_dice_values, 0x00, sizeof(cuvex.wallet.coin_dice_values));
-	memset(cuvex.wallet.pass_deriv, 0x00, sizeof(cuvex.wallet.pass_deriv));
-	memset(cuvex.wallet.zprv_key, 0x00, sizeof(cuvex.wallet.zprv_key));
-	memset(cuvex.wallet.zpub_key, 0x00, sizeof(cuvex.wallet.zpub_key));
-
-	for(int i=0; i<24; i++){
-		memset(cuvex.wallet.words_to_encrypt[i], 0x00, sizeof(cuvex.wallet.words_to_encrypt));
-	}
-}
+/*
+ *
+ *
+ *
+ */
 
 /**************************************************************************************************************************************
  ***** Function 	: N/A
@@ -684,6 +655,12 @@ void editEEPROM(void)
 	}
 }
 
+/*
+ *
+ *
+ *
+ */
+
 /**************************************************************************************************************************************
  ***** Function 	: N/A
  ***** Description 	: N/A
@@ -709,45 +686,7 @@ void eraseSignature(void)
 	NVIC_SystemReset();
 }
 
-/**************************************************************************************************************************************
- ***** Function 	: N/A
- ***** Description 	: N/A
- ***** Parameters 	: N/A
- ***** Response 	: N/A
- **************************************************************************************************************************************/
-void getCuvexVersions(void)
-{
-	/*** Get firmware version ***/
-	memset(cuvex.info.fw_version, 0x00, sizeof(cuvex.info.fw_version));
-	memcpy(cuvex.info.fw_version, FIRMWARE_VERSION, strlen(FIRMWARE_VERSION));
 
-	/*** Get hardware version ***/
-	memset(cuvex.info.hw_version, 0x00, sizeof(cuvex.info.hw_version));
 
-	if((HAL_GPIO_ReadPin(HW_VER_3_GPIO_Port, HW_VER_3_Pin) == GPIO_PIN_RESET) && (HAL_GPIO_ReadPin(HW_VER_2_GPIO_Port, HW_VER_2_Pin) == GPIO_PIN_RESET) && (HAL_GPIO_ReadPin(HW_VER_1_GPIO_Port, HW_VER_1_Pin) == GPIO_PIN_RESET)){
-		memcpy(cuvex.info.hw_version, "1", 1);
-	}
-	else if((HAL_GPIO_ReadPin(HW_VER_3_GPIO_Port, HW_VER_3_Pin) == GPIO_PIN_RESET) && (HAL_GPIO_ReadPin(HW_VER_2_GPIO_Port, HW_VER_2_Pin) == GPIO_PIN_RESET) && (HAL_GPIO_ReadPin(HW_VER_1_GPIO_Port, HW_VER_1_Pin) == GPIO_PIN_SET)){
-		memcpy(cuvex.info.hw_version, "2", 1);
-	}
-	else if((HAL_GPIO_ReadPin(HW_VER_3_GPIO_Port, HW_VER_3_Pin) == GPIO_PIN_RESET) && (HAL_GPIO_ReadPin(HW_VER_2_GPIO_Port, HW_VER_2_Pin) == GPIO_PIN_SET) && (HAL_GPIO_ReadPin(HW_VER_1_GPIO_Port, HW_VER_1_Pin) == GPIO_PIN_RESET)){
-		memcpy(cuvex.info.hw_version, "3", 1);
-	}
-	else if((HAL_GPIO_ReadPin(HW_VER_3_GPIO_Port, HW_VER_3_Pin) == GPIO_PIN_RESET) && (HAL_GPIO_ReadPin(HW_VER_2_GPIO_Port, HW_VER_2_Pin) == GPIO_PIN_SET) && (HAL_GPIO_ReadPin(HW_VER_1_GPIO_Port, HW_VER_1_Pin) == GPIO_PIN_SET)){
-		memcpy(cuvex.info.hw_version, "4", 1);
-	}
-	else if((HAL_GPIO_ReadPin(HW_VER_3_GPIO_Port, HW_VER_3_Pin) == GPIO_PIN_SET) && (HAL_GPIO_ReadPin(HW_VER_2_GPIO_Port, HW_VER_2_Pin) == GPIO_PIN_RESET) && (HAL_GPIO_ReadPin(HW_VER_1_GPIO_Port, HW_VER_1_Pin) == GPIO_PIN_RESET)){
-		memcpy(cuvex.info.hw_version, "5", 1);
-	}
-	else if((HAL_GPIO_ReadPin(HW_VER_3_GPIO_Port, HW_VER_3_Pin) == GPIO_PIN_SET) && (HAL_GPIO_ReadPin(HW_VER_2_GPIO_Port, HW_VER_2_Pin) == GPIO_PIN_RESET) && (HAL_GPIO_ReadPin(HW_VER_1_GPIO_Port, HW_VER_1_Pin) == GPIO_PIN_SET)){
-		memcpy(cuvex.info.hw_version, "6", 1);
-	}
-	else if((HAL_GPIO_ReadPin(HW_VER_3_GPIO_Port, HW_VER_3_Pin) == GPIO_PIN_SET) && (HAL_GPIO_ReadPin(HW_VER_2_GPIO_Port, HW_VER_2_Pin) == GPIO_PIN_SET) && (HAL_GPIO_ReadPin(HW_VER_1_GPIO_Port, HW_VER_1_Pin) == GPIO_PIN_RESET)){
-		memcpy(cuvex.info.hw_version, "7", 1);
-	}
-	else if((HAL_GPIO_ReadPin(HW_VER_3_GPIO_Port, HW_VER_3_Pin) == GPIO_PIN_SET) && (HAL_GPIO_ReadPin(HW_VER_2_GPIO_Port, HW_VER_2_Pin) == GPIO_PIN_SET) && (HAL_GPIO_ReadPin(HW_VER_1_GPIO_Port, HW_VER_1_Pin) == GPIO_PIN_SET)){
-		memcpy(cuvex.info.hw_version, "8", 1);
-	}
-}
 
 

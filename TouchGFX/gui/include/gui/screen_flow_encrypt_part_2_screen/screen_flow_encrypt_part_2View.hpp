@@ -49,14 +49,21 @@ public:
 	virtual void multisignedSelectPressed();
 
 protected:
-	uint8_t  actual_pwd;
-	uint8_t	 total_pwds;
-	uint8_t	 mandatory_pwds;
-	uint8_t  pwds[10][KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE];		//6 passwords... 40 characters per password...
-	uint8_t  pwd_raw[10*KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE];	//6*40 = 240
-	uint8_t  pwd_sha256[32];									//32
-	uint8_t  pwd_combined_sha256[32];							//32
-	uint8_t  iv_aes_gcm[16];									//16
+	uint8_t actual_pwd;
+	uint8_t	total_pwds;
+	uint8_t	mandatory_pwds;
+
+	uint8_t pwd_raw[10*KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE];
+	uint8_t pwd_sha256[32];
+	uint8_t pwd_combined_sha256[32];
+	uint8_t iv_aes_gcm[16];
+
+	uint8_t pwds[10][KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE];		//New
+	uint8_t pwds_sha256[10][32];								//New
+	uint8_t pwds_sha256_concat[320];							//New
+	uint8_t pwds_key_pbkdf2[32];								//New
+	uint8_t salt_pbkdf2[16];									//New
+
 	void setScreenMode();
 	void setScreenLanguage();
 	void generateRecordData1_Alias();
@@ -64,7 +71,11 @@ protected:
 	void generateRecordData3_Information();
 	void generateRecordData4_Multisignature();
 	void configAESPeripheral(uint8_t keyAES[], uint8_t ivAES[]);
+	void generateCryptogram(uint8_t *text_to_encrypt);
 	void generateCombinations(int start, int index, char result[][KEYBOARD1_TEXT_TYPED_PASSWORD_SIZE]);
+	void sortPasswordsLexicographically(uint8_t pwds[10][32], uint8_t num_pwd);
+	uint8_t getRNG16Bytes(uint8_t *buffer);
+	uint8_t pbkdf2_sha256(const uint8_t *password, size_t pass_len, const uint8_t *salt, size_t salt_len, uint32_t iterations, uint8_t *derived_key, size_t dk_len);
 };
 
 #endif // SCREEN_FLOW_ENCRYPT_PART_2VIEW_HPP

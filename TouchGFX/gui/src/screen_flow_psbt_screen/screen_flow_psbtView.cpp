@@ -797,6 +797,7 @@ int screen_flow_psbtView::getCheckPsbtInfo2()
 	printf("######################### getCheckPsbtInfo2() #############################\r\n");
 	printf("###########################################################################\r\n");
 	printf("Public_key: \"%s\"\r\n", buff_pub_key);
+	printf("Private_key: \"%s\"\r\n", buff_pri_key);
 
 	/*** Inputs (metadata) ***/
 	printfPsbtInputsMetadata();
@@ -817,6 +818,7 @@ int screen_flow_psbtView::getCheckPsbtInfo2()
 	 * 1) Verify transaction
 	 */
 	HDPublicKey myPubKey((char *) buff_pub_key);
+	HDPrivateKey myPrivKey((char *) buff_pri_key);
 
 	for(int i=0; i<psbt.tx.inputsNumber; i++)
 	{
@@ -833,14 +835,33 @@ int screen_flow_psbtView::getCheckPsbtInfo2()
 			/*** Derived Address --> Get and compare ***/
 			char derivedAddress_input[100] = {0}, derivationPath_input[100] = "m";
 
-			for(int k=0; k<psbt.txInsMeta[i].derivations[0].derivationLen; k++){
+			for(int k=0; k<psbt.txInsMeta[i].derivations[0].derivationLen; k++)
+			{
 				char temp[20] = {0};
-				snprintf(temp, sizeof(temp), "/%d", psbt.txInsMeta[i].derivations[0].derivation[k]);
+				uint32_t index = psbt.txInsMeta[i].derivations[0].derivation[k];
+
+				if((index & 0x80000000) == 0x80000000){		//Hardened
+					snprintf(temp, sizeof(temp), "/%u'", (unsigned) (index & 0x7FFFFFFF));
+				}
+				else{	//Not hardened
+					snprintf(temp, sizeof(temp), "/%u", (unsigned) (index & 0x7FFFFFFF));
+				}
+
 				strcat(derivationPath_input, temp);
 			}
 
-			HDPublicKey derivedPubKey_input = myPubKey.derive(derivationPath_input);
+			HDPrivateKey derivedPrivKey_input = myPrivKey.derive(derivationPath_input);
+			HDPublicKey derivedPubKey_input = derivedPrivKey_input.xpub();
 			derivedPubKey_input.address(derivedAddress_input, sizeof(derivedAddress_input));
+
+#ifdef DEBUG_PSBT_PRINTF
+			printf("\r\n-----------------------------\r\n");
+			printf("INPUT -> #%d:\r\n", i);
+			printf("Path used is: %s\r\n", derivationPath_input);
+			printf("PSBT address: %s\r\n", psbt.txInsMeta[i].txOut.scriptPubkey.address(&DEFAULT_NETWORK).c_str());
+			printf("Der. address: %s\r\n", derivedAddress_input);
+			printf("\r\n-----------------------------\r\n");
+#endif
 
 			if(memcmp(derivedAddress_input, psbt.txInsMeta[i].txOut.scriptPubkey.address(&DEFAULT_NETWORK).c_str(), strlen(derivedAddress_input)) != 0x00){
 				return ERROR;
@@ -853,7 +874,7 @@ int screen_flow_psbtView::getCheckPsbtInfo2()
 
 	for(int i=0; i<psbt.tx.outputsNumber; i++)
 	{
-		if((psbt.txOutsMeta[i].derivationsLen == 1) && (psbt.isMine(i, myPubKey) == 1))
+		if((psbt.txOutsMeta[i].derivationsLen == 1) && (psbt.isMine(i, myPrivKey) == 1))
 		{
 			/*** Fingerprint --> Get and compare ***/
 			uint8_t fp_output[4] = {0};
@@ -866,14 +887,33 @@ int screen_flow_psbtView::getCheckPsbtInfo2()
 			/*** Derived Address --> Get and compare ***/
 			char derivedAddress_output[100] = {0}, derivationPath_output[100] = "m";
 
-			for(int k=0; k<psbt.txOutsMeta[i].derivations[0].derivationLen; k++){
+			for(int k=0; k<psbt.txOutsMeta[i].derivations[0].derivationLen; k++)
+			{
 				char temp[20] = {0};
-				snprintf(temp, sizeof(temp), "/%d", psbt.txOutsMeta[i].derivations[0].derivation[k]);
+				uint32_t index = psbt.txOutsMeta[i].derivations[0].derivation[k];
+
+				if((index & 0x80000000) == 0x80000000){		//Hardened
+					snprintf(temp, sizeof(temp), "/%u'", (unsigned) (index & 0x7FFFFFFF));
+				}
+				else{	//Not hardened
+					snprintf(temp, sizeof(temp), "/%u", (unsigned) (index & 0x7FFFFFFF));
+				}
+
 				strcat(derivationPath_output, temp);
 			}
 
-			HDPublicKey derivedPubKey_output = myPubKey.derive(derivationPath_output);
+			HDPrivateKey derivedPrivKey_output = myPrivKey.derive(derivationPath_output);
+			HDPublicKey derivedPubKey_output = derivedPrivKey_output.xpub();
 			derivedPubKey_output.address(derivedAddress_output, sizeof(derivedAddress_output));
+
+#ifdef DEBUG_PSBT_PRINTF
+			printf("\r\n-----------------------------\r\n");
+			printf("OUTPUT-> #%d:\r\n", i);
+			printf("Path used is: %s\r\n", derivationPath_output);
+			printf("PSBT address: %s\r\n", psbt.tx.txOuts[i].scriptPubkey.address(&DEFAULT_NETWORK).c_str());
+			printf("Der. address: %s\r\n", derivedAddress_output);
+			printf("\r\n-----------------------------\r\n");
+#endif
 
 			if(memcmp(derivedAddress_output, psbt.tx.txOuts[i].scriptPubkey.address(&DEFAULT_NETWORK).c_str(), strlen(derivedAddress_output)) != 0x00){
 				return ERROR;
@@ -897,7 +937,7 @@ int screen_flow_psbtView::getCheckPsbtInfo2()
 	}
 
 	for(int i=0; i<psbt.tx.outputsNumber; i++){
-		if(psbt.isMine(i, myPubKey) == 0){
+		if(psbt.isMine(i, myPrivKey) == 0){
 			total_output_btc += psbt.tx.txOuts[i].btcAmount();
 			psbt_total_receivers++;
 		}
@@ -957,10 +997,16 @@ void screen_flow_psbtView::signPsbtTransaction()
 	}
 
 	/*** QR code generation ***/
-	if(strlen(psbtBase64.c_str()) < FROM_PSBT_T2T_MAX_SIZE){
-		qr_code.convertStringToQRCode((char *) cuvex.nfc.tag.from_psbt_base64_signed);
-		psbt_signed_success.setVisible(false);
-		qr_code.setVisible(true);
+	if(strlen(psbtBase64.c_str()) < FROM_PSBT_T2T_MAX_SIZE)
+	{
+		if(qr_code.convertStringToQRCode((char *) cuvex.nfc.tag.from_psbt_base64_signed) == true){
+			psbt_signed_success.setVisible(false);
+			qr_code.setVisible(true);
+		}
+		else{
+			psbt_signed_success.setVisible(true);
+			qr_code.setVisible(false);
+		}
 	}
 	else{
 		psbt_signed_success.setVisible(true);
@@ -1213,8 +1259,16 @@ void screen_flow_psbtView::printfPsbtInputsMetadata()
 
 			/***/
 			printf(" - Path.... m");
-			for(int k=0; k<psbt.txInsMeta[i].derivations[j].derivationLen; k++){
-				printf("/%d", psbt.txInsMeta[i].derivations[j].derivation[k]);
+			for(int k=0; k<psbt.txInsMeta[i].derivations[j].derivationLen; k++)
+			{
+				uint32_t index = psbt.txInsMeta[i].derivations[j].derivation[k];
+
+				if((index & 0x80000000) == 0x80000000){		//Hardened
+					printf("/%u'", (unsigned int) (index & 0x7FFFFFFF));
+				}
+				else{	//Not hardened
+					printf("/%u", (unsigned int) (index & 0x7FFFFFFF));
+				}
 			}
 			printf("\r\n");
 		}

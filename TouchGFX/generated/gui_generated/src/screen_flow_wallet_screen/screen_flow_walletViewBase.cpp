@@ -12,7 +12,7 @@ screen_flow_walletViewBase::screen_flow_walletViewBase() :
     frameCountTickEventInterval(0)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
-    
+
     __background.setPosition(0, 0, 320, 240);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);

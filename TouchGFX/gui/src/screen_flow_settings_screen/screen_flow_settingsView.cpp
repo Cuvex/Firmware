@@ -79,8 +79,8 @@ void screen_flow_settingsView::menuVersionPressed()
 	btn_update_count = 0;
 
 	/*** Firmware and hardware versions ***/
-	Unicode::snprintf(text_versionBuffer1, TEXT_VERSIONBUFFER1_SIZE, (char *) cuvex.info.fw_version);
-	Unicode::snprintf(text_versionBuffer2, TEXT_VERSIONBUFFER2_SIZE, (char *) cuvex.info.hw_version);
+	Unicode::snprintf(text_versionBuffer1, TEXT_VERSIONBUFFER1_SIZE, (char *) FIRMWARE_VERSION);
+	Unicode::snprintf(text_versionBuffer2, TEXT_VERSIONBUFFER2_SIZE, "%c", HARDWARE_VERSION());
 	text_version.invalidate();
 
 	/*** Selecting visible/hidden elements on the screen ***/

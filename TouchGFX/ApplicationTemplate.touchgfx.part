@@ -1,7 +1,7 @@
 
 {
   "Application": {
-    "Name": "sml-230109",
+    "Name": "cuvex_firmware",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "AvailableColorDepths": [ 24 ],
     "AvailableLCDs":
@@ -19,7 +19,7 @@
     "SubFamily": "STM32U5x9",
     "Platform": "m33",
     "Toolchain": "STM32CubeIDE",
-    "ProjectFile": "../sml-230109.ioc",
+    "ProjectFile": "../cuvex_firmware.ioc",
     "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
     "OptionalComponents": [
       "GPU2D"
@@ -28,5 +28,5 @@
       "GPU2DVector"
     ]
   },
-  "Version": "4.24.2"
+  "Version": "4.26.0"
 }

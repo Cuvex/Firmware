@@ -9,9 +9,9 @@
 #include <gui/screen_flow_decrypt_screen/screen_flow_decryptPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/containers/Container.hpp>
+#include <gui/containers/thinking_circles.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
-#include <gui/containers/thinking_circles.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <gui/containers/decrypt_tag.hpp>
@@ -19,6 +19,7 @@
 #include <touchgfx/widgets/canvas/PainterRGB888.hpp>
 #include <touchgfx/containers/ScrollableContainer.hpp>
 #include <touchgfx/widgets/QRCode.hpp>
+#include <gui/containers/create_descriptor.hpp>
 #include <gui/containers/verify_address.hpp>
 #include <gui/containers/close_btn.hpp>
 
@@ -49,10 +50,6 @@ public:
     {
         // Override and implement this function in screen_flow_decrypt
     }
-    virtual void resetMicrocontrollerPressed()
-    {
-        // Override and implement this function in screen_flow_decrypt
-    }
     virtual void btnUpPressed()
     {
         // Override and implement this function in screen_flow_decrypt
@@ -73,6 +70,18 @@ public:
     {
         // Override and implement this function in screen_flow_decrypt
     }
+    virtual void btnClosePressed()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
+    virtual void resetMicrocontrollerPressed()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
+    virtual void btnWatchOnlyWalletPressed()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
     virtual void btnQrSeedPressed()
     {
         // Override and implement this function in screen_flow_decrypt
@@ -85,11 +94,43 @@ public:
     {
         // Override and implement this function in screen_flow_decrypt
     }
+    virtual void btnReuseSeedPhrasePressed()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
+    virtual void btnCreateDescriptorPressed()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
+    virtual void btnCreateDescriptorMultisignPressed()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
     virtual void btnVerifyAddressPressed()
     {
         // Override and implement this function in screen_flow_decrypt
     }
-    virtual void btnClosePressed()
+    virtual void btnCreateChatKeyPressed()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
+    virtual void btnConfirmViewSecretPressed()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
+    virtual void btnToggleHardenedAddress()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
+    virtual void btnToggleNotHardenedAddress()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
+    virtual void btnCautionChatKeyPressed()
+    {
+        // Override and implement this function in screen_flow_decrypt
+    }
+    virtual void moreTimeChatKeyPressed()
     {
         // Override and implement this function in screen_flow_decrypt
     }
@@ -104,43 +145,27 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box background;
-    touchgfx::Container s0_temporalBlock;
-    touchgfx::Image image_temporal_block;
-    touchgfx::Container text_temporal_block_spanish;
-    touchgfx::TextArea temporal_block_spanish_1;
-    touchgfx::TextArea temporal_block_spanish_2;
-    touchgfx::TextArea temporal_block_spanish_3;
-    touchgfx::TextArea temporal_block_spanish_4;
-    touchgfx::TextArea temporal_block_spanish_5;
-    touchgfx::TextArea temporal_block_spanish_6;
-    touchgfx::TextArea temporal_block_spanish_7;
-    touchgfx::Container text_temporal_block_english;
-    touchgfx::TextArea temporal_block_english_1;
-    touchgfx::TextArea temporal_block_english_2;
-    touchgfx::TextArea temporal_block_english_3;
-    touchgfx::TextArea temporal_block_english_4;
-    touchgfx::TextArea temporal_block_english_5;
-    touchgfx::TextArea temporal_block_english_6;
-    touchgfx::Container s1_initNFC;
+    touchgfx::Container s0_initNFC;
     thinking_circles init_nfc_thinking_circles;
     touchgfx::Image init_nfc_image;
     touchgfx::TextArea init_nfc_text1;
     touchgfx::TextArea init_nfc_text2;
-    touchgfx::Container s2_waitReadNFC;
+    touchgfx::Container s1_waitReadNFC;
     touchgfx::TextArea text_wait_read_nfc;
     touchgfx::Image image_wait_read_nfc;
-    touchgfx::Container s3_viewTagInfo;
+    touchgfx::Container s2_viewTagInfo;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_decrypt;
     touchgfx::TextArea text_uid_info;
     touchgfx::TextAreaWithOneWildcard text_uid;
     touchgfx::TextArea text_alias_info;
     touchgfx::TextAreaWithOneWildcard text_alias;
-    touchgfx::Container s4_readError;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_retry;
-    touchgfx::TextArea text_read_error;
-    touchgfx::Image image_read_error;
-    decrypt_tag s5_typePassword;
-    touchgfx::Container s6_viewSecret;
+    decrypt_tag s3_typePassword;
+    touchgfx::Container s4_confirmViewSecret;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_confirm_view_secret;
+    touchgfx::TextArea text_confirm_view_secret_1;
+    touchgfx::TextArea text_confirm_view_secret_2;
+    touchgfx::TextArea text_confirm_view_secret_3;
+    touchgfx::Container s5_viewSecret;
     touchgfx::Container container_qr_small_code;
     touchgfx::Circle circle_qr_small;
     touchgfx::PainterRGB888 circle_qr_smallPainter;
@@ -162,27 +187,92 @@ protected:
     touchgfx::TextArea caution_msg_english_2;
     touchgfx::TextArea caution_msg_english_3;
     touchgfx::Container container_qr_to_check_menu;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_1_qr_seed;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_2_qr_private_key;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_3_qr_public_key;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_4_verify_address;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_1_watch_only_wallet;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_2_qr_seed;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_3_qr_private_key;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_4_qr_public_key;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_5_reuse_seed_phrase;
     touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_more_time;
     touchgfx::TextAreaWithOneWildcard text_timeout;
     uint8_t qrBuffer_qr_code[QRCODE_BUFFER_SIZE(15)];
     uint8_t qrScratchBuffer_qr_code[QRCODE_BUFFER_SIZE(15)];
     touchgfx::QRCode qr_code;
     touchgfx::IconButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_back;
-    touchgfx::Container s7_timeoutSecret;
-    touchgfx::TextArea text_timeout_secret;
-    touchgfx::Image image_timeout_secret;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  btn_reset_mcu_timeout;
-    verify_address s8_verify_address;
-    touchgfx::Container s9_check_address;
-    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_close;
-    touchgfx::TextAreaWithOneWildcard check_receiver_address_3;
-    touchgfx::TextAreaWithOneWildcard check_receiver_address_2;
-    touchgfx::TextAreaWithOneWildcard check_receiver_address_1;
+    touchgfx::Container s6_watch_only_wallet;
+    touchgfx::Container wow_menu;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_1_create_descriptor;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_2_create_descriptor_multisign;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_3_verify_address;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_4_create_chat_key;
+    touchgfx::Container wow_create_descriptor;
+    create_descriptor container_create_descriptor;
+    touchgfx::Container wow_verify_address;
+    verify_address container_verify_address;
+    touchgfx::Container container_check_verify_address;
+    touchgfx::Container check_not_hardenend_address;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_toggle_hardened;
+    touchgfx::TextAreaWithOneWildcard check_not_hardened_address_3;
+    touchgfx::TextAreaWithOneWildcard check_not_hardened_address_2;
+    touchgfx::TextAreaWithOneWildcard check_not_hardened_address_1;
+    touchgfx::TextAreaWithOneWildcard text_info_not_hardened_address;
+    touchgfx::Container check_hardenend_address;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_toggle_not_hardened;
+    touchgfx::TextAreaWithOneWildcard check_hardened_address_3;
+    touchgfx::TextAreaWithOneWildcard check_hardened_address_2;
+    touchgfx::TextAreaWithOneWildcard check_hardened_address_1;
+    touchgfx::TextAreaWithOneWildcard text_info_hardened_address;
     touchgfx::TextArea text_info;
+    touchgfx::Container wow_create_chat_key;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_caution_chat_key_msg;
+    touchgfx::Container container_caution_chat_key_msg;
+    touchgfx::Container text_caution_chat_key_msg_spanish;
+    touchgfx::TextArea caution_chat_key_msg_spanish_1;
+    touchgfx::TextArea caution_chat_key_msg_spanish_2;
+    touchgfx::TextArea caution_chat_key_msg_spanish_3;
+    touchgfx::Container text_caution_chat_key_msg_english;
+    touchgfx::TextArea caution_chat_key_msg_english_1;
+    touchgfx::TextArea caution_chat_key_msg_english_2;
+    touchgfx::TextArea caution_chat_key_msg_english_3;
+    touchgfx::Container container_check_chat_key;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_chat_key_more_time;
+    touchgfx::Box qr_code_chat_key_background;
+    uint8_t qrBuffer_qr_code_chat_key[QRCODE_BUFFER_SIZE(8)];
+    uint8_t qrScratchBuffer_qr_code_chat_key[QRCODE_BUFFER_SIZE(8)];
+    touchgfx::QRCode qr_code_chat_key;
+    touchgfx::TextAreaWithOneWildcard text_timeout_chat_key;
+    touchgfx::Container container_check_create_descriptor;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_close;
+    touchgfx::Box qr_code_descriptor_background;
+    uint8_t qrBuffer_qr_code_descriptor[QRCODE_BUFFER_SIZE(10)];
+    uint8_t qrScratchBuffer_qr_code_descriptor[QRCODE_BUFFER_SIZE(10)];
+    touchgfx::QRCode qr_code_descriptor;
+    touchgfx::Container s99_error_warning_alert;
+    touchgfx::Box background_error;
+    touchgfx::Container error_temporalBlock;
+    touchgfx::Image image_temporal_block;
+    touchgfx::Container text_temporal_block_spanish;
+    touchgfx::TextArea temporal_block_spanish_1;
+    touchgfx::TextArea temporal_block_spanish_2;
+    touchgfx::TextArea temporal_block_spanish_3;
+    touchgfx::TextArea temporal_block_spanish_4;
+    touchgfx::TextArea temporal_block_spanish_5;
+    touchgfx::TextArea temporal_block_spanish_6;
+    touchgfx::TextArea temporal_block_spanish_7;
+    touchgfx::Container text_temporal_block_english;
+    touchgfx::TextArea temporal_block_english_1;
+    touchgfx::TextArea temporal_block_english_2;
+    touchgfx::TextArea temporal_block_english_3;
+    touchgfx::TextArea temporal_block_english_4;
+    touchgfx::TextArea temporal_block_english_5;
+    touchgfx::TextArea temporal_block_english_6;
+    touchgfx::Container error_readError;
+    touchgfx::TextButtonStyle< touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  >  btn_retry;
+    touchgfx::TextArea text_read_error;
+    touchgfx::Image image_read_error;
+    touchgfx::Container warning_timeoutSecret;
+    touchgfx::TextArea timeout_secret_warning_text;
+    touchgfx::Image timeout_secret_warning_image;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger >  timeout_secret_warning_btn;
     close_btn close_button;
 
     /*
@@ -196,12 +286,24 @@ protected:
     touchgfx::Unicode::UnicodeChar text_secret_checkBuffer[TEXT_SECRET_CHECK_SIZE];
     static const uint16_t TEXT_TIMEOUT_SIZE = 5;
     touchgfx::Unicode::UnicodeChar text_timeoutBuffer[TEXT_TIMEOUT_SIZE];
-    static const uint16_t CHECK_RECEIVER_ADDRESS_3_SIZE = 20;
-    touchgfx::Unicode::UnicodeChar check_receiver_address_3Buffer[CHECK_RECEIVER_ADDRESS_3_SIZE];
-    static const uint16_t CHECK_RECEIVER_ADDRESS_2_SIZE = 80;
-    touchgfx::Unicode::UnicodeChar check_receiver_address_2Buffer[CHECK_RECEIVER_ADDRESS_2_SIZE];
-    static const uint16_t CHECK_RECEIVER_ADDRESS_1_SIZE = 20;
-    touchgfx::Unicode::UnicodeChar check_receiver_address_1Buffer[CHECK_RECEIVER_ADDRESS_1_SIZE];
+    static const uint16_t CHECK_NOT_HARDENED_ADDRESS_3_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar check_not_hardened_address_3Buffer[CHECK_NOT_HARDENED_ADDRESS_3_SIZE];
+    static const uint16_t CHECK_NOT_HARDENED_ADDRESS_2_SIZE = 80;
+    touchgfx::Unicode::UnicodeChar check_not_hardened_address_2Buffer[CHECK_NOT_HARDENED_ADDRESS_2_SIZE];
+    static const uint16_t CHECK_NOT_HARDENED_ADDRESS_1_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar check_not_hardened_address_1Buffer[CHECK_NOT_HARDENED_ADDRESS_1_SIZE];
+    static const uint16_t TEXT_INFO_NOT_HARDENED_ADDRESS_SIZE = 50;
+    touchgfx::Unicode::UnicodeChar text_info_not_hardened_addressBuffer[TEXT_INFO_NOT_HARDENED_ADDRESS_SIZE];
+    static const uint16_t CHECK_HARDENED_ADDRESS_3_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar check_hardened_address_3Buffer[CHECK_HARDENED_ADDRESS_3_SIZE];
+    static const uint16_t CHECK_HARDENED_ADDRESS_2_SIZE = 80;
+    touchgfx::Unicode::UnicodeChar check_hardened_address_2Buffer[CHECK_HARDENED_ADDRESS_2_SIZE];
+    static const uint16_t CHECK_HARDENED_ADDRESS_1_SIZE = 20;
+    touchgfx::Unicode::UnicodeChar check_hardened_address_1Buffer[CHECK_HARDENED_ADDRESS_1_SIZE];
+    static const uint16_t TEXT_INFO_HARDENED_ADDRESS_SIZE = 50;
+    touchgfx::Unicode::UnicodeChar text_info_hardened_addressBuffer[TEXT_INFO_HARDENED_ADDRESS_SIZE];
+    static const uint16_t TEXT_TIMEOUT_CHAT_KEY_SIZE = 5;
+    touchgfx::Unicode::UnicodeChar text_timeout_chat_keyBuffer[TEXT_TIMEOUT_CHAT_KEY_SIZE];
 
 private:
 

@@ -88,6 +88,10 @@
     <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_decrypt_verifyAddressBase.cpp"/>
     <ClCompile Include="..\..\gui\src\containers\verify_address.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\containers\verify_addressBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\create_descriptor.cpp"/>
+    <ClCompile Include="..\..\gui\src\containers\keyboard_decrypt_createDescriptor.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\keyboard_decrypt_createDescriptorBase.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\containers\create_descriptorBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xml"/>
@@ -307,6 +311,10 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_decrypt_verifyAddressBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\containers\verify_address.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\verify_addressBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\create_descriptor.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\containers\keyboard_decrypt_createDescriptor.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\keyboard_decrypt_createDescriptorBase.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\containers\create_descriptorBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>
